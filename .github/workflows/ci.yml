@@ -71,9 +71,24 @@ jobs:
       - run: npm test
       - run: python3 -m unittest discover -s scripts -p 'test_*.py'
 
+  success:
+    name: Success
+    needs: [rust, msrv, coverage, release-tooling]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all checks to succeed
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          test -n "$RESULTS"
+          for result in $RESULTS; do
+            test "$result" = success
+          done
+
   release:
     name: Publish release
-    needs: [rust, msrv, coverage, release-tooling]
+    needs: [success]
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     permissions:
