@@ -1,0 +1,2678 @@
+{
+  "generator": {
+    "script": "scripts/research/extended/context/author_materials.py",
+    "script_sha256": "294304799ce5133851220ed1271a9a862d796f087916810b3646b5baf2d20a84",
+    "base_author_sha256": "9e543e12ded1b7881ac7abca844330b089b799687c90f53418854d2fd2aca4ed",
+    "camera_author_sha256": "7336b26802e1bbe7ed51a31fda714c6347832c6f36f5940a9d3fe23fab70567e",
+    "pillow": "11.3.0",
+    "libjpeg": "6.2",
+    "seed": 20261021,
+    "limits": "Original proceduralbacks and simulatedsingleplane sleeve/reflection/stack controls; not real commercialbacks, plastic optics,3Dstack parallax or independentcapture"
+  },
+  "recipes": [
+    {
+      "id": "back-pattern0-view0",
+      "tier": "challenge",
+      "description": "back pattern0 view0",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-0",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern0-view1",
+      "tier": "challenge",
+      "description": "back pattern0 view1",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-0",
+          "corners": [
+            [
+              266.8606457725517,
+              91.84914798821336
+            ],
+            [
+              461.8272316130582,
+              155.1976318350776
+            ],
+            [
+              373.1393542274483,
+              428.1508520117867
+            ],
+            [
+              178.1727683869418,
+              364.8023681649224
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern0-view2",
+      "tier": "challenge",
+      "description": "back pattern0 view2",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-0",
+          "corners": [
+            [
+              417.1339022016354,
+              128.55037070009243
+            ],
+            [
+              475.8471311328754,
+              309.25110879617154
+            ],
+            [
+              222.8660977983646,
+              391.4496292999076
+            ],
+            [
+              164.1528688671246,
+              210.74889120382844
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern0-view3",
+      "tier": "challenge",
+      "description": "back pattern0 view3",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-0",
+          "corners": [
+            [
+              184.85551938295242,
+              204.1254140172078
+            ],
+            [
+              329.02369572954484,
+              114.03913909756291
+            ],
+            [
+              455.1444806170476,
+              315.87458598279227
+            ],
+            [
+              310.97630427045516,
+              405.9608609024371
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern1-view0",
+      "tier": "challenge",
+      "description": "back pattern1 view0",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-1",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern1-view1",
+      "tier": "challenge",
+      "description": "back pattern1 view1",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-1",
+          "corners": [
+            [
+              266.8606457725517,
+              91.84914798821336
+            ],
+            [
+              461.8272316130582,
+              155.1976318350776
+            ],
+            [
+              373.1393542274483,
+              428.1508520117867
+            ],
+            [
+              178.1727683869418,
+              364.8023681649224
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern1-view2",
+      "tier": "challenge",
+      "description": "back pattern1 view2",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-1",
+          "corners": [
+            [
+              417.1339022016354,
+              128.55037070009243
+            ],
+            [
+              475.8471311328754,
+              309.25110879617154
+            ],
+            [
+              222.8660977983646,
+              391.4496292999076
+            ],
+            [
+              164.1528688671246,
+              210.74889120382844
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "back-pattern1-view3",
+      "tier": "challenge",
+      "description": "back pattern1 view3",
+      "tags": [
+        "materials",
+        "original-procedural-back",
+        "rotation"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-1",
+          "corners": [
+            [
+              184.85551938295242,
+              204.1254140172078
+            ],
+            [
+              329.02369572954484,
+              114.03913909756291
+            ],
+            [
+              455.1444806170476,
+              315.87458598279227
+            ],
+            [
+              310.97630427045516,
+              405.9608609024371
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-lightning-bolt-0",
+      "tier": "challenge",
+      "description": "sleeve lightning bolt 0",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              223.0,
+              118.4
+            ],
+            [
+              421.0,
+              118.4
+            ],
+            [
+              421.0,
+              395.6
+            ],
+            [
+              223.0,
+              395.6
+            ]
+          ],
+          "film_alpha": 12,
+          "reflection_alpha": 0,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-counterspell-0",
+      "tier": "challenge",
+      "description": "sleeve counterspell 0",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              223.0,
+              118.4
+            ],
+            [
+              421.0,
+              118.4
+            ],
+            [
+              421.0,
+              395.6
+            ],
+            [
+              223.0,
+              395.6
+            ]
+          ],
+          "film_alpha": 12,
+          "reflection_alpha": 0,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-black-lotus-0",
+      "tier": "challenge",
+      "description": "sleeve black lotus 0",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              223.0,
+              118.4
+            ],
+            [
+              421.0,
+              118.4
+            ],
+            [
+              421.0,
+              395.6
+            ],
+            [
+              223.0,
+              395.6
+            ]
+          ],
+          "film_alpha": 12,
+          "reflection_alpha": 0,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-sol-ring-0",
+      "tier": "challenge",
+      "description": "sleeve sol ring 0",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              223.0,
+              118.4
+            ],
+            [
+              421.0,
+              118.4
+            ],
+            [
+              421.0,
+              395.6
+            ],
+            [
+              223.0,
+              395.6
+            ]
+          ],
+          "film_alpha": 12,
+          "reflection_alpha": 0,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-lightning-bolt-1",
+      "tier": "challenge",
+      "description": "sleeve lightning bolt 1",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              269.803376165672,
+              90.94734856963947
+            ],
+            [
+              463.634684163532,
+              157.68882023335658
+            ],
+            [
+              370.196623834328,
+              429.0526514303605
+            ],
+            [
+              176.36531583646803,
+              362.3111797666434
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              267.39586773143833,
+              73.10370112697368
+            ],
+            [
+              478.24651009008596,
+              145.7053995709196
+            ],
+            [
+              376.60413226856167,
+              440.8962988730263
+            ],
+            [
+              165.75348990991404,
+              368.29460042908033
+            ]
+          ],
+          "film_alpha": 28,
+          "reflection_alpha": 90,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-counterspell-1",
+      "tier": "challenge",
+      "description": "sleeve counterspell 1",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              269.803376165672,
+              90.94734856963947
+            ],
+            [
+              463.634684163532,
+              157.68882023335658
+            ],
+            [
+              370.196623834328,
+              429.0526514303605
+            ],
+            [
+              176.36531583646803,
+              362.3111797666434
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              267.39586773143833,
+              73.10370112697368
+            ],
+            [
+              478.24651009008596,
+              145.7053995709196
+            ],
+            [
+              376.60413226856167,
+              440.8962988730263
+            ],
+            [
+              165.75348990991404,
+              368.29460042908033
+            ]
+          ],
+          "film_alpha": 28,
+          "reflection_alpha": 90,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-black-lotus-1",
+      "tier": "challenge",
+      "description": "sleeve black lotus 1",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              269.803376165672,
+              90.94734856963947
+            ],
+            [
+              463.634684163532,
+              157.68882023335658
+            ],
+            [
+              370.196623834328,
+              429.0526514303605
+            ],
+            [
+              176.36531583646803,
+              362.3111797666434
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              267.39586773143833,
+              73.10370112697368
+            ],
+            [
+              478.24651009008596,
+              145.7053995709196
+            ],
+            [
+              376.60413226856167,
+              440.8962988730263
+            ],
+            [
+              165.75348990991404,
+              368.29460042908033
+            ]
+          ],
+          "film_alpha": 28,
+          "reflection_alpha": 90,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-sol-ring-1",
+      "tier": "challenge",
+      "description": "sleeve sol ring 1",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              269.803376165672,
+              90.94734856963947
+            ],
+            [
+              463.634684163532,
+              157.68882023335658
+            ],
+            [
+              370.196623834328,
+              429.0526514303605
+            ],
+            [
+              176.36531583646803,
+              362.3111797666434
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              267.39586773143833,
+              73.10370112697368
+            ],
+            [
+              478.24651009008596,
+              145.7053995709196
+            ],
+            [
+              376.60413226856167,
+              440.8962988730263
+            ],
+            [
+              165.75348990991404,
+              368.29460042908033
+            ]
+          ],
+          "film_alpha": 28,
+          "reflection_alpha": 90,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-lightning-bolt-2",
+      "tier": "challenge",
+      "description": "sleeve lightning bolt 2",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              194.05605903454202,
+              194.54296268475616
+            ],
+            [
+              341.0721355256227,
+              119.6345302277309
+            ],
+            [
+              445.94394096545795,
+              325.45703731524384
+            ],
+            [
+              298.9278644743773,
+              400.3654697722691
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              182.3167200201284,
+              184.4021949776386
+            ],
+            [
+              345.37091394659967,
+              101.32193352530156
+            ],
+            [
+              461.6832799798716,
+              329.5978050223614
+            ],
+            [
+              298.6290860534003,
+              412.6780664746984
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 150,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-counterspell-2",
+      "tier": "challenge",
+      "description": "sleeve counterspell 2",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              194.05605903454202,
+              194.54296268475616
+            ],
+            [
+              341.0721355256227,
+              119.6345302277309
+            ],
+            [
+              445.94394096545795,
+              325.45703731524384
+            ],
+            [
+              298.9278644743773,
+              400.3654697722691
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              182.3167200201284,
+              184.4021949776386
+            ],
+            [
+              345.37091394659967,
+              101.32193352530156
+            ],
+            [
+              461.6832799798716,
+              329.5978050223614
+            ],
+            [
+              298.6290860534003,
+              412.6780664746984
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 150,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-black-lotus-2",
+      "tier": "challenge",
+      "description": "sleeve black lotus 2",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              194.05605903454202,
+              194.54296268475616
+            ],
+            [
+              341.0721355256227,
+              119.6345302277309
+            ],
+            [
+              445.94394096545795,
+              325.45703731524384
+            ],
+            [
+              298.9278644743773,
+              400.3654697722691
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              182.3167200201284,
+              184.4021949776386
+            ],
+            [
+              345.37091394659967,
+              101.32193352530156
+            ],
+            [
+              461.6832799798716,
+              329.5978050223614
+            ],
+            [
+              298.6290860534003,
+              412.6780664746984
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 150,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "sleeve-sol-ring-2",
+      "tier": "challenge",
+      "description": "sleeve sol ring 2",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "physical-card-vs-plastic-boundary"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              194.05605903454202,
+              194.54296268475616
+            ],
+            [
+              341.0721355256227,
+              119.6345302277309
+            ],
+            [
+              445.94394096545795,
+              325.45703731524384
+            ],
+            [
+              298.9278644743773,
+              400.3654697722691
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              182.3167200201284,
+              184.4021949776386
+            ],
+            [
+              345.37091394659967,
+              101.32193352530156
+            ],
+            [
+              461.6832799798716,
+              329.5978050223614
+            ],
+            [
+              298.6290860534003,
+              412.6780664746984
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 150,
+          "reflection_width": 13
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "stack-two-cards-0",
+      "tier": "challenge",
+      "description": "stack two cards 0",
+      "tags": [
+        "materials",
+        "stack",
+        "occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              177.41451104186208,
+              131.51579144857735
+            ],
+            [
+              365.5654441027605,
+              105.07290226616493
+            ],
+            [
+              402.5854889581379,
+              368.4842085514226
+            ],
+            [
+              214.4345558972395,
+              394.927097733835
+            ]
+          ]
+        },
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              286.4459108930228,
+              134.0980543043294
+            ],
+            [
+              467.40321702877685,
+              172.56171710561492
+            ],
+            [
+              413.5540891069772,
+              425.90194569567063
+            ],
+            [
+              232.59678297122315,
+              387.4382828943851
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              280.94934102431125,
+              118.47950764956872
+            ],
+            [
+              477.5570087718062,
+              160.2697575039384
+            ],
+            [
+              419.05065897568875,
+              435.52049235043125
+            ],
+            [
+              222.4429912281938,
+              393.7302424960616
+            ]
+          ],
+          "film_alpha": 13,
+          "reflection_alpha": 70
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "stack-two-cards-1",
+      "tier": "challenge",
+      "description": "stack two cards 1",
+      "tags": [
+        "materials",
+        "stack",
+        "occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              177.41451104186208,
+              131.51579144857735
+            ],
+            [
+              365.5654441027605,
+              105.07290226616493
+            ],
+            [
+              402.5854889581379,
+              368.4842085514226
+            ],
+            [
+              214.4345558972395,
+              394.927097733835
+            ]
+          ]
+        },
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              286.4459108930228,
+              134.0980543043294
+            ],
+            [
+              467.40321702877685,
+              172.56171710561492
+            ],
+            [
+              413.5540891069772,
+              425.90194569567063
+            ],
+            [
+              232.59678297122315,
+              387.4382828943851
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              280.94934102431125,
+              118.47950764956872
+            ],
+            [
+              477.5570087718062,
+              160.2697575039384
+            ],
+            [
+              419.05065897568875,
+              435.52049235043125
+            ],
+            [
+              222.4429912281938,
+              393.7302424960616
+            ]
+          ],
+          "film_alpha": 13,
+          "reflection_alpha": 70
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "stack-two-cards-2",
+      "tier": "challenge",
+      "description": "stack two cards 2",
+      "tags": [
+        "materials",
+        "stack",
+        "occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              177.41451104186208,
+              131.51579144857735
+            ],
+            [
+              365.5654441027605,
+              105.07290226616493
+            ],
+            [
+              402.5854889581379,
+              368.4842085514226
+            ],
+            [
+              214.4345558972395,
+              394.927097733835
+            ]
+          ]
+        },
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              286.4459108930228,
+              134.0980543043294
+            ],
+            [
+              467.40321702877685,
+              172.56171710561492
+            ],
+            [
+              413.5540891069772,
+              425.90194569567063
+            ],
+            [
+              232.59678297122315,
+              387.4382828943851
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              280.94934102431125,
+              118.47950764956872
+            ],
+            [
+              477.5570087718062,
+              160.2697575039384
+            ],
+            [
+              419.05065897568875,
+              435.52049235043125
+            ],
+            [
+              222.4429912281938,
+              393.7302424960616
+            ]
+          ],
+          "film_alpha": 13,
+          "reflection_alpha": 70
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "stack-two-cards-3",
+      "tier": "challenge",
+      "description": "stack two cards 3",
+      "tags": [
+        "materials",
+        "stack",
+        "occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              177.41451104186208,
+              131.51579144857735
+            ],
+            [
+              365.5654441027605,
+              105.07290226616493
+            ],
+            [
+              402.5854889581379,
+              368.4842085514226
+            ],
+            [
+              214.4345558972395,
+              394.927097733835
+            ]
+          ]
+        },
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              286.4459108930228,
+              134.0980543043294
+            ],
+            [
+              467.40321702877685,
+              172.56171710561492
+            ],
+            [
+              413.5540891069772,
+              425.90194569567063
+            ],
+            [
+              232.59678297122315,
+              387.4382828943851
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              280.94934102431125,
+              118.47950764956872
+            ],
+            [
+              477.5570087718062,
+              160.2697575039384
+            ],
+            [
+              419.05065897568875,
+              435.52049235043125
+            ],
+            [
+              222.4429912281938,
+              393.7302424960616
+            ]
+          ],
+          "film_alpha": 13,
+          "reflection_alpha": 70
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "opaque-partial-0",
+      "tier": "challenge",
+      "description": "opaque partial 0",
+      "tags": [
+        "materials",
+        "opaque-occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              225.0,
+              127.0
+            ],
+            [
+              415.0,
+              127.0
+            ],
+            [
+              415.0,
+              393.0
+            ],
+            [
+              225.0,
+              393.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [
+        {
+          "kind": "rectangle",
+          "bounds": [
+            220,
+            115,
+            420,
+            185
+          ],
+          "color": [
+            37,
+            40,
+            48
+          ]
+        }
+      ],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "opaque-partial-1",
+      "tier": "challenge",
+      "description": "opaque partial 1",
+      "tags": [
+        "materials",
+        "opaque-occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              225.0,
+              127.0
+            ],
+            [
+              415.0,
+              127.0
+            ],
+            [
+              415.0,
+              393.0
+            ],
+            [
+              225.0,
+              393.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [
+        {
+          "kind": "rectangle",
+          "bounds": [
+            220,
+            325,
+            420,
+            405
+          ],
+          "color": [
+            37,
+            40,
+            48
+          ]
+        }
+      ],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "opaque-partial-2",
+      "tier": "challenge",
+      "description": "opaque partial 2",
+      "tags": [
+        "materials",
+        "opaque-occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              225.0,
+              127.0
+            ],
+            [
+              415.0,
+              127.0
+            ],
+            [
+              415.0,
+              393.0
+            ],
+            [
+              225.0,
+              393.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [
+        {
+          "kind": "rectangle",
+          "bounds": [
+            240,
+            140,
+            400,
+            340
+          ],
+          "color": [
+            37,
+            40,
+            48
+          ]
+        }
+      ],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "opaque-partial-3",
+      "tier": "challenge",
+      "description": "opaque partial 3",
+      "tags": [
+        "materials",
+        "opaque-occlusion",
+        "amodal-full-extent"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              225.0,
+              127.0
+            ],
+            [
+              415.0,
+              127.0
+            ],
+            [
+              415.0,
+              393.0
+            ],
+            [
+              225.0,
+              393.0
+            ]
+          ]
+        }
+      ],
+      "effects": [],
+      "occluders": [
+        {
+          "kind": "rectangle",
+          "bounds": [
+            225,
+            200,
+            430,
+            355
+          ],
+          "color": [
+            37,
+            40,
+            48
+          ]
+        }
+      ],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      }
+    },
+    {
+      "id": "oblique-material-0",
+      "tier": "challenge",
+      "description": "oblique material 0",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "camera",
+        "lighting",
+        "blur"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              215.0,
+              113.0
+            ],
+            [
+              425.0,
+              113.0
+            ],
+            [
+              425.0,
+              407.0
+            ],
+            [
+              215.0,
+              407.0
+            ]
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "kind": "gaussian_blur",
+          "radius": 0.5
+        },
+        {
+          "kind": "lighting",
+          "gradient": true,
+          "minimum": 0.5,
+          "maximum": 1.05
+        }
+      ],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              207.0,
+              98.4
+            ],
+            [
+              435.0,
+              98.4
+            ],
+            [
+              435.0,
+              417.6
+            ],
+            [
+              207.0,
+              417.6
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 130,
+          "reflection_width": 18
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 20,
+        "azimuth_degrees": 30,
+        "roll_degrees": 9,
+        "focal_length": 1000,
+        "distance": 950
+      }
+    },
+    {
+      "id": "oblique-material-1",
+      "tier": "challenge",
+      "description": "oblique material 1",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "camera",
+        "lighting",
+        "blur"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              215.0,
+              113.0
+            ],
+            [
+              425.0,
+              113.0
+            ],
+            [
+              425.0,
+              407.0
+            ],
+            [
+              215.0,
+              407.0
+            ]
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "kind": "gaussian_blur",
+          "radius": 0.7
+        },
+        {
+          "kind": "lighting",
+          "gradient": true,
+          "minimum": 0.5,
+          "maximum": 1.05
+        }
+      ],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              207.0,
+              98.4
+            ],
+            [
+              435.0,
+              98.4
+            ],
+            [
+              435.0,
+              417.6
+            ],
+            [
+              207.0,
+              417.6
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 130,
+          "reflection_width": 18
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 45,
+        "azimuth_degrees": 110,
+        "roll_degrees": 9,
+        "focal_length": 1000,
+        "distance": 950
+      }
+    },
+    {
+      "id": "oblique-material-2",
+      "tier": "challenge",
+      "description": "oblique material 2",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "camera",
+        "lighting",
+        "blur"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              215.0,
+              113.0
+            ],
+            [
+              425.0,
+              113.0
+            ],
+            [
+              425.0,
+              407.0
+            ],
+            [
+              215.0,
+              407.0
+            ]
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "kind": "gaussian_blur",
+          "radius": 0.8
+        },
+        {
+          "kind": "lighting",
+          "gradient": true,
+          "minimum": 0.5,
+          "maximum": 1.05
+        }
+      ],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              207.0,
+              98.4
+            ],
+            [
+              435.0,
+              98.4
+            ],
+            [
+              435.0,
+              417.6
+            ],
+            [
+              207.0,
+              417.6
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 130,
+          "reflection_width": 18
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 65,
+        "azimuth_degrees": 230,
+        "roll_degrees": 9,
+        "focal_length": 1000,
+        "distance": 950
+      }
+    },
+    {
+      "id": "oblique-material-3",
+      "tier": "challenge",
+      "description": "oblique material 3",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "camera",
+        "lighting",
+        "blur"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              215.0,
+              113.0
+            ],
+            [
+              425.0,
+              113.0
+            ],
+            [
+              425.0,
+              407.0
+            ],
+            [
+              215.0,
+              407.0
+            ]
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "kind": "gaussian_blur",
+          "radius": 1.3
+        },
+        {
+          "kind": "lighting",
+          "gradient": true,
+          "minimum": 0.5,
+          "maximum": 1.05
+        }
+      ],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              207.0,
+              98.4
+            ],
+            [
+              435.0,
+              98.4
+            ],
+            [
+              435.0,
+              417.6
+            ],
+            [
+              207.0,
+              417.6
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 130,
+          "reflection_width": 18
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 25,
+        "azimuth_degrees": 300,
+        "roll_degrees": 9,
+        "focal_length": 1000,
+        "distance": 950
+      }
+    },
+    {
+      "id": "oblique-material-4",
+      "tier": "challenge",
+      "description": "oblique material 4",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "camera",
+        "lighting",
+        "blur"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-0",
+          "corners": [
+            [
+              215.0,
+              113.0
+            ],
+            [
+              425.0,
+              113.0
+            ],
+            [
+              425.0,
+              407.0
+            ],
+            [
+              215.0,
+              407.0
+            ]
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "kind": "gaussian_blur",
+          "radius": 1.1
+        },
+        {
+          "kind": "lighting",
+          "gradient": true,
+          "minimum": 0.5,
+          "maximum": 1.05
+        }
+      ],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              207.0,
+              98.4
+            ],
+            [
+              435.0,
+              98.4
+            ],
+            [
+              435.0,
+              417.6
+            ],
+            [
+              207.0,
+              417.6
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 130,
+          "reflection_width": 18
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 50,
+        "azimuth_degrees": 35,
+        "roll_degrees": 9,
+        "focal_length": 1000,
+        "distance": 950
+      }
+    },
+    {
+      "id": "oblique-material-5",
+      "tier": "challenge",
+      "description": "oblique material 5",
+      "tags": [
+        "materials",
+        "clear-sleeve",
+        "camera",
+        "lighting",
+        "blur"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [
+        {
+          "source": "original-back-1",
+          "corners": [
+            [
+              215.0,
+              113.0
+            ],
+            [
+              425.0,
+              113.0
+            ],
+            [
+              425.0,
+              407.0
+            ],
+            [
+              215.0,
+              407.0
+            ]
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "kind": "gaussian_blur",
+          "radius": 0.4
+        },
+        {
+          "kind": "lighting",
+          "gradient": true,
+          "minimum": 0.5,
+          "maximum": 1.05
+        }
+      ],
+      "occluders": [],
+      "sleeves": [
+        {
+          "corners": [
+            [
+              207.0,
+              98.4
+            ],
+            [
+              435.0,
+              98.4
+            ],
+            [
+              435.0,
+              417.6
+            ],
+            [
+              207.0,
+              417.6
+            ]
+          ],
+          "film_alpha": 18,
+          "reflection_alpha": 130,
+          "reflection_width": 18
+        }
+      ],
+      "camera": {
+        "pitch_degrees": 60,
+        "azimuth_degrees": 160,
+        "roll_degrees": 9,
+        "focal_length": 1000,
+        "distance": 950
+      }
+    },
+    {
+      "id": "negative-empty-sleeve",
+      "tier": "challenge",
+      "description": "negative empty sleeve",
+      "tags": [
+        "materials",
+        "negative",
+        "empty-sleeve"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      },
+      "negative_object": "empty-sleeve"
+    },
+    {
+      "id": "negative-empty-pocket-grid",
+      "tier": "challenge",
+      "description": "negative empty pocket grid",
+      "tags": [
+        "materials",
+        "negative",
+        "empty-pocket-grid"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      },
+      "negative_object": "empty-pocket-grid"
+    },
+    {
+      "id": "negative-phone",
+      "tier": "challenge",
+      "description": "negative phone",
+      "tags": [
+        "materials",
+        "negative",
+        "phone"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      },
+      "negative_object": "phone"
+    },
+    {
+      "id": "negative-receipt",
+      "tier": "challenge",
+      "description": "negative receipt",
+      "tags": [
+        "materials",
+        "negative",
+        "receipt"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      },
+      "negative_object": "receipt"
+    },
+    {
+      "id": "negative-printed-zone",
+      "tier": "challenge",
+      "description": "negative printed zone",
+      "tags": [
+        "materials",
+        "negative",
+        "printed-zone"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      },
+      "negative_object": "printed-zone"
+    },
+    {
+      "id": "negative-empty-reflective-pocket",
+      "tier": "challenge",
+      "description": "negative empty reflective pocket",
+      "tags": [
+        "materials",
+        "negative",
+        "empty-reflective-pocket"
+      ],
+      "background": {
+        "kind": "solid",
+        "color": [
+          73,
+          105,
+          81
+        ]
+      },
+      "cards": [],
+      "effects": [],
+      "occluders": [],
+      "sleeves": [],
+      "camera": {
+        "pitch_degrees": 0,
+        "azimuth_degrees": 0,
+        "roll_degrees": 0,
+        "focal_length": 900,
+        "distance": 900
+      },
+      "negative_object": "empty-reflective-pocket"
+    }
+  ]
+}

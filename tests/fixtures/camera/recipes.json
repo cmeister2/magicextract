@@ -1,0 +1,2962 @@
+[
+  {
+    "id": "camera-solid-normal-control",
+    "tier": "challenge",
+    "description": "camera solid normal control",
+    "tags": [
+      "camera",
+      "normal-control",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 0,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-forest-normal-control",
+    "tier": "challenge",
+    "description": "camera forest normal control",
+    "tags": [
+      "camera",
+      "normal-control",
+      "forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 0,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-arcane-normal-control",
+    "tier": "challenge",
+    "description": "camera arcane normal control",
+    "tags": [
+      "camera",
+      "normal-control",
+      "arcane"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 0,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-printed-normal-control",
+    "tier": "challenge",
+    "description": "camera printed normal control",
+    "tags": [
+      "camera",
+      "normal-control",
+      "printed"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            65,
+            90,
+            185,
+            258
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            455,
+            260,
+            575,
+            428
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              35,
+              345
+            ],
+            [
+              605,
+              345
+            ]
+          ],
+          "color": [
+            200,
+            184,
+            125,
+            160
+          ],
+          "width": 2
+        }
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 0,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p20-a000",
+    "tier": "challenge",
+    "description": "camera solid p20 a000",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p20-a090",
+    "tier": "challenge",
+    "description": "camera solid p20 a090",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p20-a180",
+    "tier": "challenge",
+    "description": "camera solid p20 a180",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p20-a270",
+    "tier": "challenge",
+    "description": "camera solid p20 a270",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p35-a000",
+    "tier": "regression",
+    "description": "camera solid p35 a000",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p35-a090",
+    "tier": "challenge",
+    "description": "camera solid p35 a090",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p35-a180",
+    "tier": "regression",
+    "description": "camera solid p35 a180",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p35-a270",
+    "tier": "challenge",
+    "description": "camera solid p35 a270",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p50-a000",
+    "tier": "regression",
+    "description": "camera solid p50 a000",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p50-a090",
+    "tier": "regression",
+    "description": "camera solid p50 a090",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p50-a180",
+    "tier": "regression",
+    "description": "camera solid p50 a180",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p50-a270",
+    "tier": "regression",
+    "description": "camera solid p50 a270",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p65-a000",
+    "tier": "regression",
+    "description": "camera solid p65 a000",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p65-a090",
+    "tier": "regression",
+    "description": "camera solid p65 a090",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p65-a180",
+    "tier": "regression",
+    "description": "camera solid p65 a180",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p65-a270",
+    "tier": "regression",
+    "description": "camera solid p65 a270",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-forest-p20-a045-roll",
+    "tier": "challenge",
+    "description": "camera forest p20 a045 roll",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "roll",
+      "forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 45,
+      "roll_degrees": 12,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-arcane-p35-a135-roll",
+    "tier": "challenge",
+    "description": "camera arcane p35 a135 roll",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "roll",
+      "arcane"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "black-lotus",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 135,
+      "roll_degrees": -12,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-forest-p50-a225-roll",
+    "tier": "challenge",
+    "description": "camera forest p50 a225 roll",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "roll",
+      "forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 225,
+      "roll_degrees": 8,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-printed-p65-a315-roll",
+    "tier": "challenge",
+    "description": "camera printed p65 a315 roll",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "roll",
+      "printed"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            65,
+            90,
+            185,
+            258
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            455,
+            260,
+            575,
+            428
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              35,
+              345
+            ],
+            [
+              605,
+              345
+            ]
+          ],
+          "color": [
+            200,
+            184,
+            125,
+            160
+          ],
+          "width": 2
+        }
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 315,
+      "roll_degrees": -8,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p20-two-cards",
+    "tier": "challenge",
+    "description": "camera solid p20 two cards",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "multiple-cards",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            113.57857373140301,
+            170.76133117751075
+          ],
+          [
+            252.53503496118807,
+            153.69962310079012
+          ],
+          [
+            276.421426268597,
+            348.2386688224892
+          ],
+          [
+            137.46496503881193,
+            365.3003768992098
+          ]
+        ]
+      },
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            390.192393732283,
+            151.75613006886036
+          ],
+          [
+            528.4687614156022,
+            173.65695517449265
+          ],
+          [
+            497.807606267717,
+            367.24386993113967
+          ],
+          [
+            359.5312385843978,
+            345.3430448255074
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 30,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-forest-p35-two-cards",
+    "tier": "challenge",
+    "description": "camera forest p35 two cards",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "multiple-cards",
+      "forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            113.57857373140301,
+            170.76133117751075
+          ],
+          [
+            252.53503496118807,
+            153.69962310079012
+          ],
+          [
+            276.421426268597,
+            348.2386688224892
+          ],
+          [
+            137.46496503881193,
+            365.3003768992098
+          ]
+        ]
+      },
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            390.192393732283,
+            151.75613006886036
+          ],
+          [
+            528.4687614156022,
+            173.65695517449265
+          ],
+          [
+            497.807606267717,
+            367.24386993113967
+          ],
+          [
+            359.5312385843978,
+            345.3430448255074
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 120,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-arcane-p50-two-cards",
+    "tier": "challenge",
+    "description": "camera arcane p50 two cards",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "multiple-cards",
+      "arcane"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            113.57857373140301,
+            170.76133117751075
+          ],
+          [
+            252.53503496118807,
+            153.69962310079012
+          ],
+          [
+            276.421426268597,
+            348.2386688224892
+          ],
+          [
+            137.46496503881193,
+            365.3003768992098
+          ]
+        ]
+      },
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            390.192393732283,
+            151.75613006886036
+          ],
+          [
+            528.4687614156022,
+            173.65695517449265
+          ],
+          [
+            497.807606267717,
+            367.24386993113967
+          ],
+          [
+            359.5312385843978,
+            345.3430448255074
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 210,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-printed-p65-two-cards",
+    "tier": "challenge",
+    "description": "camera printed p65 two cards",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "multiple-cards",
+      "printed"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            65,
+            90,
+            185,
+            258
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            455,
+            260,
+            575,
+            428
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              35,
+              345
+            ],
+            [
+              605,
+              345
+            ]
+          ],
+          "color": [
+            200,
+            184,
+            125,
+            160
+          ],
+          "width": 2
+        }
+      ]
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            113.57857373140301,
+            170.76133117751075
+          ],
+          [
+            252.53503496118807,
+            153.69962310079012
+          ],
+          [
+            276.421426268597,
+            348.2386688224892
+          ],
+          [
+            137.46496503881193,
+            365.3003768992098
+          ]
+        ]
+      },
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            390.192393732283,
+            151.75613006886036
+          ],
+          [
+            528.4687614156022,
+            173.65695517449265
+          ],
+          [
+            497.807606267717,
+            367.24386993113967
+          ],
+          [
+            359.5312385843978,
+            345.3430448255074
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 300,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-solid-p20-combined",
+    "tier": "challenge",
+    "description": "camera solid p20 combined",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "combined-effects",
+      "solid"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 60,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [
+      {
+        "kind": "gaussian_blur",
+        "radius": 0.65
+      }
+    ],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-forest-p35-combined",
+    "tier": "regression",
+    "description": "camera forest p35 combined",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "combined-effects",
+      "forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 150,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [
+      {
+        "kind": "lighting",
+        "gradient": true,
+        "minimum": 0.5,
+        "maximum": 1.05
+      }
+    ],
+    "occluders": [],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-arcane-p50-combined",
+    "tier": "challenge",
+    "description": "camera arcane p50 combined",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "combined-effects",
+      "arcane"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 240,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [
+      {
+        "kind": "gaussian_blur",
+        "radius": 0.55
+      }
+    ],
+    "occluders": [
+      {
+        "kind": "ellipse",
+        "bounds": [
+          208,
+          110,
+          252,
+          156
+        ],
+        "color": [
+          185,
+          137,
+          106
+        ]
+      }
+    ],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-printed-p65-combined",
+    "tier": "challenge",
+    "description": "camera printed p65 combined",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "combined-effects",
+      "printed"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            65,
+            90,
+            185,
+            258
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            455,
+            260,
+            575,
+            428
+          ],
+          "radius": 10,
+          "color": [
+            225,
+            204,
+            125,
+            190
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              35,
+              345
+            ],
+            [
+              605,
+              345
+            ]
+          ],
+          "color": [
+            200,
+            184,
+            125,
+            160
+          ],
+          "width": 2
+        }
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 330,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [
+      {
+        "kind": "lighting",
+        "factor": 0.85,
+        "tint": [
+          1.1,
+          0.98,
+          0.88
+        ]
+      },
+      {
+        "kind": "gaussian_blur",
+        "radius": 0.45
+      }
+    ],
+    "occluders": [
+      {
+        "kind": "rectangle",
+        "bounds": [
+          390,
+          335,
+          423,
+          400
+        ],
+        "color": [
+          154,
+          105,
+          74
+        ]
+      }
+    ],
+    "jpeg_quality": 94
+  },
+  {
+    "id": "camera-table-p0-a000",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 0-degree camera pitch from approach azimuth 0 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 0,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p20-a000",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 20-degree camera pitch from approach azimuth 0 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p20-a090",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 20-degree camera pitch from approach azimuth 90 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p20-a180",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 20-degree camera pitch from approach azimuth 180 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p20-a270",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 20-degree camera pitch from approach azimuth 270 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 20,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p35-a000",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 35-degree camera pitch from approach azimuth 0 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p35-a090",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 35-degree camera pitch from approach azimuth 90 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p35-a180",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 35-degree camera pitch from approach azimuth 180 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p35-a270",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 35-degree camera pitch from approach azimuth 270 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 35,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p50-a000",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 50-degree camera pitch from approach azimuth 0 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p50-a090",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 50-degree camera pitch from approach azimuth 90 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p50-a180",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 50-degree camera pitch from approach azimuth 180 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p50-a270",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 50-degree camera pitch from approach azimuth 270 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 50,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p65-a000",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 65-degree camera pitch from approach azimuth 0 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 0,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p65-a090",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 65-degree camera pitch from approach azimuth 90 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 90,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p65-a180",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 65-degree camera pitch from approach azimuth 180 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 180,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  },
+  {
+    "id": "camera-table-p65-a270",
+    "tier": "regression",
+    "description": "A continuous solid tabletop isolates a 65-degree camera pitch from approach azimuth 270 without a finite mat border.",
+    "tags": [
+      "camera",
+      "coherent-plane",
+      "solid",
+      "continuous-surface",
+      "pose-control"
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        75,
+        115,
+        90
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            229.5,
+            133.5
+          ],
+          [
+            409.5,
+            133.5
+          ],
+          [
+            409.5,
+            385.5
+          ],
+          [
+            229.5,
+            385.5
+          ]
+        ]
+      }
+    ],
+    "camera": {
+      "pitch_degrees": 65,
+      "azimuth_degrees": 270,
+      "roll_degrees": 0,
+      "focal_length": 900.0,
+      "distance": 1050.0
+    },
+    "effects": [],
+    "occluders": [],
+    "jpeg_quality": 94,
+    "table_color": [
+      75,
+      115,
+      90
+    ]
+  }
+]

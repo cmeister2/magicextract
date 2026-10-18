@@ -1,0 +1,2 @@
+# Local investigations are kept outside the maintained crate.
+exclude = ["research/**"]

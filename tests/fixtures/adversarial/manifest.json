@@ -1,0 +1,2278 @@
+{
+  "format_version": 1,
+  "references": {},
+  "sha256": {
+    "images/seed-20261018-case-0010-motion-reduction-3.jpg": "a9433a35c1f87738fb9f9114eb51c92a941842d9d320733bf64bba2929d2db45",
+    "references/seed-20261018-case-0010-motion-reduction-3-0-sol-ring.png": "4576c404a99970fb0b3c1d3b725e05914421c018221ddc05555833933756290d",
+    "images/seed-20261018-case-0048-dim-reduction-2.jpg": "4adaea5987091770c5d79d4796416387c404a7dc57e7d58e4c72521f7fcc2590",
+    "references/seed-20261018-case-0048-dim-reduction-2-0-lightning-bolt.png": "dc91e8917e5085f6c63b467dd2b972b21fb3f7256646010cdbef6dfd36fb2d66",
+    "images/seed-20261018-case-0077-glare-reduction-2.jpg": "bf6c1748a9889f1b68532ba63ef3bad156112def853e995cfdfd19a196ba5222",
+    "references/seed-20261018-case-0077-glare-reduction-2-0-lightning-bolt.png": "34f7fbc80d74bce88051df1bed6914cdd2b08324ec19e381dd464a4c9c528543",
+    "images/seed-20261018-case-0091-edge-occlusion.jpg": "86dc25d07e725cba648c8e8275262ef7ba928ce060f9f4502e29f6d14e8727c3",
+    "references/seed-20261018-case-0091-edge-occlusion-0-lightning-bolt.png": "70cdf196535d8a8955ae24bb74cbc5e2f600454e2558c1d017355e33ab0dfc24",
+    "images/seed-20261018-case-0042-motion-reduction-3.jpg": "9ccaa9ae064631c8ea35ab1683df2e9ba7cebd3947a1e6eec8dae19f92d15cb4",
+    "references/seed-20261018-case-0042-motion-reduction-3-0-lightning-bolt.png": "5a31a94117f8c54b04e301e9fc9dfe53279b9d2d7730ebf54e69ba4be2f96aa1",
+    "images/seed-20261018-case-0002-motion-reduction-3.jpg": "a1b866a722c4b8d871064d7672b0d924d1cf7593a71d56b8446fa52b2389e2d8",
+    "references/seed-20261018-case-0002-motion-reduction-3-0-sol-ring.png": "4448702806b1b7fe6d4f9e4a889b2fc6bfa20a67e7d8db81d03be9f2a00df64c",
+    "images/seed-20261018-case-0072-dim-reduction-3.jpg": "270194ece45f766c3267d256ede0b369491149123578fbe0d781bdf4071a28b8",
+    "references/seed-20261018-case-0072-dim-reduction-3-0-counterspell.png": "bff770d5d4fb81d44ab2a456c8eb737a6d05a388e009bf78849099a734a9b28d",
+    "images/seed-20261018-case-0056-dim.jpg": "f8c95162df1982aab1323a87fa6d572b07263274334a804cba1906d727f80b54",
+    "references/seed-20261018-case-0056-dim-0-black-lotus.png": "d27478d4277579fd9ad489db1b62b9cac982e908612e22fa38270de7102b2003",
+    "images/seed-20261019-case-0060-shadow.jpg": "2024f8821749e33ce9c816cb86899eb2d85596ef4192a03e67e1a8704184eaf5",
+    "references/seed-20261019-case-0060-shadow-0-counterspell.png": "4c494a759435c59df4e82c0c538b222dd3a4017da32a51f62c829b0557e121a1",
+    "images/seed-20261019-case-0065-motion.jpg": "c0aedee488a108ca7c9e79037607f29149eee01aa8b31048a033483ade06dbb9",
+    "references/seed-20261019-case-0065-motion-0-lightning-bolt.png": "b5978f0db2fc0659fbec6109e04d1104f5197d97b6acac3e80f7e13eede5b22e",
+    "images/seed-20261019-case-0075-edge-occlusion.jpg": "0ff9dac08b736e3301332663e103a4ce114e991093fda4bf4d53f7a3314dc254",
+    "references/seed-20261019-case-0075-edge-occlusion-0-black-lotus.png": "8769d4035a4d6e237dc3f6a2dc6db004fde8215c39b4f4bbfc1c012895b3b117",
+    "images/seed-20261019-case-0018-dim-reduction-2.jpg": "30eb1488fd152b0df845381cd7d40c9a10b97ffc9af5e6a0c5a49f0d25263474",
+    "references/seed-20261019-case-0018-dim-reduction-2-0-lightning-bolt.png": "bda00d39e2ee86c00a767e16a5dbc82dfaac58651ae68d61139f84bb105da1a1"
+  },
+  "sources": {
+    "lightning-bolt": {
+      "name": "Lightning Bolt",
+      "file": "lightning-bolt.png",
+      "id": "7673784e-db4b-43a1-8d55-1bb9fc1e284f",
+      "artist": "Milivoj \u0106eran",
+      "source": "https://scryfall.com/card/msc/806/lightning-bolt",
+      "image_url": "https://cards.scryfall.io/png/front/7/6/7673784e-db4b-43a1-8d55-1bb9fc1e284f.png?1783903008",
+      "sha256": "d73dbd96b45b1b8812644fd6bb73a32a0acae931efffc7a0e0a39294a9844dd6"
+    },
+    "counterspell": {
+      "name": "Counterspell",
+      "file": "counterspell.png",
+      "id": "4f616706-ec97-4923-bb1e-11a69fbaa1f8",
+      "artist": "Zack Stella",
+      "source": "https://scryfall.com/card/dsc/114/counterspell",
+      "image_url": "https://cards.scryfall.io/png/front/4/f/4f616706-ec97-4923-bb1e-11a69fbaa1f8.png?1783909630",
+      "sha256": "48f6f06bc22979d314c86bda528d9ffba69d07fcfdc1ae861508e853fe960559"
+    },
+    "black-lotus": {
+      "name": "Black Lotus",
+      "file": "black-lotus.png",
+      "id": "bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd",
+      "artist": "Chris Rahn",
+      "source": "https://scryfall.com/card/vma/4/black-lotus",
+      "image_url": "https://cards.scryfall.io/png/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.png?1783939332",
+      "sha256": "45c3c204329b6dadc4f3744aa5110d8da474c24269da08220e9eab1b64df7ff8"
+    },
+    "sol-ring": {
+      "name": "Sol Ring",
+      "file": "sol-ring.png",
+      "id": "8ee443cc-e17a-493b-9c93-1f9e141a30e4",
+      "artist": "Titus Lunter",
+      "source": "https://scryfall.com/card/frc/21/sol-ring",
+      "image_url": "https://cards.scryfall.io/png/front/8/e/8ee443cc-e17a-493b-9c93-1f9e141a30e4.png?1789644446",
+      "sha256": "51cf9fccea220c48ba14477dfe71b76d3e882a9046fd94a11553210d8f748341"
+    }
+  },
+  "scenes": [
+    {
+      "id": "seed-20261018-case-0010-motion-reduction-3",
+      "file": "images/seed-20261018-case-0010-motion-reduction-3.jpg",
+      "tier": "challenge",
+      "description": "Seeded motion counterexample search, severity 0.559474.",
+      "tags": [
+        "adversarial",
+        "motion"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              249.672057151399,
+              162.53016781283122
+            ],
+            [
+              405.0862783019669,
+              175.14393188962185
+            ],
+            [
+              387.42700859446006,
+              392.72384150041694
+            ],
+            [
+              232.01278744389217,
+              380.1100774236263
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0010-motion-reduction-3-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0010-motion-reduction-3",
+        "tier": "challenge",
+        "description": "Seeded motion counterexample search, severity 0.559474.",
+        "tags": [
+          "adversarial",
+          "motion"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                249.672057151399,
+                162.53016781283122
+              ],
+              [
+                405.0862783019669,
+                175.14393188962185
+              ],
+              [
+                387.42700859446006,
+                392.72384150041694
+              ],
+              [
+                232.01278744389217,
+                380.1100774236263
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "motion_blur",
+            "length": 9
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 10,
+          "mutation": "motion",
+          "severity": 0.5594737049587934,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.3196992599764534,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.47954888996468004,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.5594737049587934,
+              "passed": false,
+              "failures": [
+                "card 0 (sol-ring): corner error 16.087 > 8",
+                "card 0 (sol-ring): interior RGB MAE 31.106 >= 22"
+              ]
+            }
+          ],
+          "initial_severity": 0.6393985199529068,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 10,
+        "mutation": "motion",
+        "severity": 0.5594737049587934,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.3196992599764534,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.47954888996468004,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.5594737049587934,
+            "passed": false,
+            "failures": [
+              "card 0 (sol-ring): corner error 16.087 > 8",
+              "card 0 (sol-ring): interior RGB MAE 31.106 >= 22"
+            ]
+          }
+        ],
+        "initial_severity": 0.6393985199529068,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0048-dim-reduction-2",
+      "file": "images/seed-20261018-case-0048-dim-reduction-2.jpg",
+      "tier": "challenge",
+      "description": "Seeded dim counterexample search, severity 0.666272.",
+      "tags": [
+        "adversarial",
+        "dim"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              191.85351668181582,
+              200.1023812626576
+            ],
+            [
+              324.48717999335304,
+              117.5239274815494
+            ],
+            [
+              440.0970152869045,
+              303.21105611770145
+            ],
+            [
+              307.46335197536723,
+              385.7895098988097
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0048-dim-reduction-2-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0048-dim-reduction-2",
+        "tier": "challenge",
+        "description": "Seeded dim counterexample search, severity 0.666272.",
+        "tags": [
+          "adversarial",
+          "dim"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                191.85351668181582,
+                200.1023812626576
+              ],
+              [
+                324.48717999335304,
+                117.5239274815494
+              ],
+              [
+                440.0970152869045,
+                303.21105611770145
+              ],
+              [
+                307.46335197536723,
+                385.7895098988097
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "brightness",
+            "factor": 0.4669821751222619
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 48,
+          "mutation": "dim",
+          "severity": 0.6662722810971726,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.44418152073144845,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.6662722810971726,
+              "passed": false,
+              "failures": [
+                "expected 1 cards, detected 0"
+              ]
+            },
+            {
+              "severity": 0.5552269009143105,
+              "passed": true,
+              "failures": []
+            }
+          ],
+          "initial_severity": 0.8883630414628969,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 48,
+        "mutation": "dim",
+        "severity": 0.6662722810971726,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.44418152073144845,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.6662722810971726,
+            "passed": false,
+            "failures": [
+              "expected 1 cards, detected 0"
+            ]
+          },
+          {
+            "severity": 0.5552269009143105,
+            "passed": true,
+            "failures": []
+          }
+        ],
+        "initial_severity": 0.8883630414628969,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0077-glare-reduction-2",
+      "file": "images/seed-20261018-case-0077-glare-reduction-2.jpg",
+      "tier": "challenge",
+      "description": "Seeded glare counterexample search, severity 0.701086.",
+      "tags": [
+        "adversarial",
+        "glare"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              326.0198372211613,
+              81.92967630619565
+            ],
+            [
+              483.58472174109215,
+              168.90793556606104
+            ],
+            [
+              361.81515877728066,
+              389.4987738939642
+            ],
+            [
+              204.25027425734982,
+              302.52051463409884
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0077-glare-reduction-2-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0077-glare-reduction-2",
+        "tier": "challenge",
+        "description": "Seeded glare counterexample search, severity 0.701086.",
+        "tags": [
+          "adversarial",
+          "glare"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                326.0198372211613,
+                81.92967630619565
+              ],
+              [
+                483.58472174109215,
+                168.90793556606104
+              ],
+              [
+                361.81515877728066,
+                389.4987738939642
+              ],
+              [
+                204.25027425734982,
+                302.52051463409884
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "lighting",
+            "glare": [
+              483.58472174109215,
+              168.90793556606104,
+              145.10678362499075
+            ]
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 77,
+          "mutation": "glare",
+          "severity": 0.7010864832732779,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.46739098884885194,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.7010864832732779,
+              "passed": false,
+              "failures": [
+                "card 0 (lightning-bolt): corner error 8.195 > 8",
+                "card 0 (lightning-bolt): interior RGB MAE 25.938 >= 22"
+              ]
+            },
+            {
+              "severity": 0.5842387360610649,
+              "passed": true,
+              "failures": []
+            }
+          ],
+          "initial_severity": 0.9347819776977039,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 77,
+        "mutation": "glare",
+        "severity": 0.7010864832732779,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.46739098884885194,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.7010864832732779,
+            "passed": false,
+            "failures": [
+              "card 0 (lightning-bolt): corner error 8.195 > 8",
+              "card 0 (lightning-bolt): interior RGB MAE 25.938 >= 22"
+            ]
+          },
+          {
+            "severity": 0.5842387360610649,
+            "passed": true,
+            "failures": []
+          }
+        ],
+        "initial_severity": 0.9347819776977039,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0091-edge-occlusion",
+      "file": "images/seed-20261018-case-0091-edge-occlusion.jpg",
+      "tier": "challenge",
+      "description": "Seeded edge-occlusion counterexample search, severity 0.958798.",
+      "tags": [
+        "adversarial",
+        "edge-occlusion"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              190.0422527160122,
+              168.5457394870842
+            ],
+            [
+              353.5317909968182,
+              123.44767030439877
+            ],
+            [
+              416.6690878525778,
+              352.333023897527
+            ],
+            [
+              253.17954957177184,
+              397.43109308021246
+            ]
+          ],
+          "visible_fraction": 0.892277,
+          "reference": "references/seed-20261018-case-0091-edge-occlusion-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0091-edge-occlusion",
+        "tier": "challenge",
+        "description": "Seeded edge-occlusion counterexample search, severity 0.958798.",
+        "tags": [
+          "adversarial",
+          "edge-occlusion"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            100,
+            65,
+            45
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                190.0422527160122,
+                168.5457394870842
+              ],
+              [
+                353.5317909968182,
+                123.44767030439877
+              ],
+              [
+                416.6690878525778,
+                352.333023897527
+              ],
+              [
+                253.17954957177184,
+                397.43109308021246
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [],
+        "occluders": [
+          {
+            "kind": "ellipse",
+            "bounds": [
+              333.06592994581854,
+              185.85583762208347,
+              437.1349489035774,
+              289.92485657984236
+            ],
+            "color": [
+              185,
+              137,
+              106
+            ]
+          }
+        ],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 91,
+          "mutation": "edge-occlusion",
+          "severity": 0.9587975712857021,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.47939878564285104,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.7190981784642766,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.8389478748749893,
+              "passed": true,
+              "failures": []
+            }
+          ],
+          "initial_severity": 0.9587975712857021,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 91,
+        "mutation": "edge-occlusion",
+        "severity": 0.9587975712857021,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.47939878564285104,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.7190981784642766,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.8389478748749893,
+            "passed": true,
+            "failures": []
+          }
+        ],
+        "initial_severity": 0.9587975712857021,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0042-motion-reduction-3",
+      "file": "images/seed-20261018-case-0042-motion-reduction-3.jpg",
+      "tier": "challenge",
+      "description": "Seeded motion counterexample search, severity 0.658156.",
+      "tags": [
+        "adversarial",
+        "motion"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              282.368396723196,
+              140.62527248858834
+            ],
+            [
+              436.0987925585842,
+              174.32362577385192
+            ],
+            [
+              388.9210979592153,
+              389.54617994339543
+            ],
+            [
+              235.19070212382704,
+              355.84782665813185
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0042-motion-reduction-3-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0042-motion-reduction-3",
+        "tier": "challenge",
+        "description": "Seeded motion counterexample search, severity 0.658156.",
+        "tags": [
+          "adversarial",
+          "motion"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            100,
+            65,
+            45
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                282.368396723196,
+                140.62527248858834
+              ],
+              [
+                436.0987925585842,
+                174.32362577385192
+              ],
+              [
+                388.9210979592153,
+                389.54617994339543
+              ],
+              [
+                235.19070212382704,
+                355.84782665813185
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "motion_blur",
+            "length": 11
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 42,
+          "mutation": "motion",
+          "severity": 0.6581563259488592,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.37608932911363385,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.5641339936704508,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.6581563259488592,
+              "passed": false,
+              "failures": [
+                "card 0 (lightning-bolt): corner error 8.093 > 8",
+                "card 0 (lightning-bolt): interior RGB MAE 22.518 >= 22"
+              ]
+            }
+          ],
+          "initial_severity": 0.7521786582272677,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 42,
+        "mutation": "motion",
+        "severity": 0.6581563259488592,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.37608932911363385,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.5641339936704508,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.6581563259488592,
+            "passed": false,
+            "failures": [
+              "card 0 (lightning-bolt): corner error 8.093 > 8",
+              "card 0 (lightning-bolt): interior RGB MAE 22.518 >= 22"
+            ]
+          }
+        ],
+        "initial_severity": 0.7521786582272677,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0002-motion-reduction-3",
+      "file": "images/seed-20261018-case-0002-motion-reduction-3.jpg",
+      "tier": "challenge",
+      "description": "Seeded motion counterexample search, severity 0.508628.",
+      "tags": [
+        "adversarial",
+        "motion"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              196.77264912934032,
+              234.86146812162474
+            ],
+            [
+              299.911652091672,
+              115.57556369884382
+            ],
+            [
+              466.9119182835653,
+              259.9701678461081
+            ],
+            [
+              363.7729153212336,
+              379.25607226888906
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0002-motion-reduction-3-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0002-motion-reduction-3",
+        "tier": "challenge",
+        "description": "Seeded motion counterexample search, severity 0.508628.",
+        "tags": [
+          "adversarial",
+          "motion"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                196.77264912934032,
+                234.86146812162474
+              ],
+              [
+                299.911652091672,
+                115.57556369884382
+              ],
+              [
+                466.9119182835653,
+                259.9701678461081
+              ],
+              [
+                363.7729153212336,
+                379.25607226888906
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "motion_blur",
+            "length": 9
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 2,
+          "mutation": "motion",
+          "severity": 0.508628347209675,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.40690267776774,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.6103540166516099,
+              "passed": false,
+              "failures": [
+                "card 0 (sol-ring): corner error 15.735 > 8",
+                "card 0 (sol-ring): interior RGB MAE 23.505 >= 22"
+              ]
+            },
+            {
+              "severity": 0.508628347209675,
+              "passed": false,
+              "failures": [
+                "card 0 (sol-ring): corner error 15.735 > 8",
+                "card 0 (sol-ring): interior RGB MAE 23.505 >= 22"
+              ]
+            }
+          ],
+          "initial_severity": 0.81380535553548,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 2,
+        "mutation": "motion",
+        "severity": 0.508628347209675,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.40690267776774,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.6103540166516099,
+            "passed": false,
+            "failures": [
+              "card 0 (sol-ring): corner error 15.735 > 8",
+              "card 0 (sol-ring): interior RGB MAE 23.505 >= 22"
+            ]
+          },
+          {
+            "severity": 0.508628347209675,
+            "passed": false,
+            "failures": [
+              "card 0 (sol-ring): corner error 15.735 > 8",
+              "card 0 (sol-ring): interior RGB MAE 23.505 >= 22"
+            ]
+          }
+        ],
+        "initial_severity": 0.81380535553548,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0072-dim-reduction-3",
+      "file": "images/seed-20261018-case-0072-dim-reduction-3.jpg",
+      "tier": "challenge",
+      "description": "Seeded dim counterexample search, severity 0.606146.",
+      "tags": [
+        "adversarial",
+        "dim"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              215.2586916549764,
+              266.49908841146
+            ],
+            [
+              294.4169237877401,
+              123.63918190959515
+            ],
+            [
+              494.42079289035087,
+              234.4607068954644
+            ],
+            [
+              415.26256075758715,
+              377.3206133973292
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0072-dim-reduction-3-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0072-dim-reduction-3",
+        "tier": "challenge",
+        "description": "Seeded dim counterexample search, severity 0.606146.",
+        "tags": [
+          "adversarial",
+          "dim"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                215.2586916549764,
+                266.49908841146
+              ],
+              [
+                294.4169237877401,
+                123.63918190959515
+              ],
+              [
+                494.42079289035087,
+                234.4607068954644
+              ],
+              [
+                415.26256075758715,
+                377.3206133973292
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "brightness",
+            "factor": 0.5150832473025686
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 72,
+          "mutation": "dim",
+          "severity": 0.6061459408717893,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.4849167526974315,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.7273751290461472,
+              "passed": false,
+              "failures": [
+                "card 0 (counterspell): corner error 20.176 > 8"
+              ]
+            },
+            {
+              "severity": 0.6061459408717893,
+              "passed": false,
+              "failures": [
+                "card 0 (counterspell): corner error 21.631 > 8"
+              ]
+            }
+          ],
+          "initial_severity": 0.969833505394863,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 72,
+        "mutation": "dim",
+        "severity": 0.6061459408717893,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.4849167526974315,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.7273751290461472,
+            "passed": false,
+            "failures": [
+              "card 0 (counterspell): corner error 20.176 > 8"
+            ]
+          },
+          {
+            "severity": 0.6061459408717893,
+            "passed": false,
+            "failures": [
+              "card 0 (counterspell): corner error 21.631 > 8"
+            ]
+          }
+        ],
+        "initial_severity": 0.969833505394863,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261018-case-0056-dim",
+      "file": "images/seed-20261018-case-0056-dim.jpg",
+      "tier": "challenge",
+      "description": "Seeded dim counterexample search, severity 0.987161.",
+      "tags": [
+        "adversarial",
+        "dim"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              206.2398027270286,
+              162.06516405431694
+            ],
+            [
+              366.7701409543406,
+              142.01769704675814
+            ],
+            [
+              394.8365947649229,
+              366.76017056499484
+            ],
+            [
+              234.30625653761095,
+              386.80763757255363
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/seed-20261018-case-0056-dim-0-black-lotus.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261018-case-0056-dim",
+        "tier": "challenge",
+        "description": "Seeded dim counterexample search, severity 0.987161.",
+        "tags": [
+          "adversarial",
+          "dim"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                206.2398027270286,
+                162.06516405431694
+              ],
+              [
+                366.7701409543406,
+                142.01769704675814
+              ],
+              [
+                394.8365947649229,
+                366.76017056499484
+              ],
+              [
+                234.30625653761095,
+                386.80763757255363
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "brightness",
+            "factor": 0.21027114261013669
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261018,
+          "index": 56,
+          "mutation": "dim",
+          "severity": 0.9871610717373291,
+          "reduction_probes": [
+            {
+              "severity": 0.0,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.49358053586866457,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.7403708038029968,
+              "passed": true,
+              "failures": []
+            },
+            {
+              "severity": 0.863765937770163,
+              "passed": true,
+              "failures": []
+            }
+          ],
+          "initial_severity": 0.9871610717373291,
+          "reduction_method": "bounded severity bisection; not a proof of global minimality"
+        }
+      },
+      "finding": {
+        "seed": 20261018,
+        "index": 56,
+        "mutation": "dim",
+        "severity": 0.9871610717373291,
+        "reduction_probes": [
+          {
+            "severity": 0.0,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.49358053586866457,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.7403708038029968,
+            "passed": true,
+            "failures": []
+          },
+          {
+            "severity": 0.863765937770163,
+            "passed": true,
+            "failures": []
+          }
+        ],
+        "initial_severity": 0.9871610717373291,
+        "reduction_method": "bounded severity bisection; not a proof of global minimality"
+      }
+    },
+    {
+      "id": "seed-20261019-case-0060-shadow",
+      "file": "images/seed-20261019-case-0060-shadow.jpg",
+      "tier": "challenge",
+      "description": "Seeded shadow counterexample search, severity 0.379458.",
+      "tags": [
+        "adversarial",
+        "shadow",
+        "camera",
+        "coherent-plane",
+        "continuous-surface"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              331.3372845584844,
+              147.7267009207439
+            ],
+            [
+              409.0904992337566,
+              213.63663104833464
+            ],
+            [
+              325.60603230547395,
+              383.17628604140066
+            ],
+            [
+              264.9147596130057,
+              303.10300295257656
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "world_corners": [
+            [
+              346.92932080818315,
+              131.45942317380855
+            ],
+            [
+              467.36114989066624,
+              233.1493893247362
+            ],
+            [
+              324.9951972793676,
+              401.7539500402125
+            ],
+            [
+              204.56336819688448,
+              300.0639838892849
+            ]
+          ],
+          "projected_edge_angles_degrees": [
+            40.28731415183609,
+            116.2164892264295,
+            -127.16018415469253,
+            -66.85355535150646
+          ],
+          "reference": "references/seed-20261019-case-0060-shadow-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261019-case-0060-shadow",
+        "tier": "challenge",
+        "description": "Seeded shadow counterexample search, severity 0.379458.",
+        "tags": [
+          "adversarial",
+          "shadow",
+          "camera",
+          "coherent-plane",
+          "continuous-surface"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                346.92932080818315,
+                131.45942317380855
+              ],
+              [
+                467.36114989066624,
+                233.1493893247362
+              ],
+              [
+                324.9951972793676,
+                401.7539500402125
+              ],
+              [
+                204.56336819688448,
+                300.0639838892849
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "lighting",
+            "gradient": true,
+            "minimum": 0.6660766206258605,
+            "maximum": 1.0
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261019,
+          "index": 60,
+          "mutation": "shadow",
+          "severity": 0.3794583856524313,
+          "camera_angles": true
+        },
+        "camera": {
+          "pitch_degrees": 52.171096226749526,
+          "azimuth_degrees": 11.417175222485895,
+          "roll_degrees": 1.4285873696471718,
+          "focal_length": 714.4636659144415,
+          "distance": 833.5409435668485
+        },
+        "table_color": [
+          24,
+          60,
+          39
+        ],
+        "projection": {
+          "model": "pinhole camera; entire mat, cards, print and occluders share one plane",
+          "world_axes": "+x right, +y down, +z away from the overhead camera",
+          "world_plane_size": [
+            640,
+            520
+          ],
+          "world_plane_origin": [
+            319.5,
+            259.5
+          ],
+          "image_size": [
+            640,
+            520
+          ],
+          "principal_point": [
+            319.5,
+            259.5
+          ],
+          "intrinsic_matrix": [
+            [
+              714.4636659144415,
+              0.0,
+              319.5
+            ],
+            [
+              0.0,
+              714.4636659144415,
+              259.5
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_center_world": [
+            645.3408678248073,
+            130.3248715721219,
+            -511.21531351001846
+          ],
+          "world_to_camera_rotation": [
+            [
+              0.6176937337443137,
+              0.024624358171520234,
+              0.786033136882695
+            ],
+            [
+              -0.1379992398526744,
+              0.9873945710720826,
+              0.07751239138010359
+            ],
+            [
+              -0.7742161591526574,
+              -0.1563508938318518,
+              0.6133055819939095
+            ]
+          ],
+          "world_to_camera_translation": [
+            6.084022174945858e-14,
+            -7.105427357601002e-15,
+            833.5409435668485
+          ],
+          "plane_to_image_homography": [
+            [
+              193.9576665740673,
+              -32.360901369262066,
+              212744.5109045171
+            ],
+            [
+              -299.50453609866264,
+              664.8844880028122,
+              139458.04950239012
+            ],
+            [
+              -0.7742161591526574,
+              -0.1563508938318518,
+              1121.476063365488
+            ]
+          ],
+          "projected_plane_corners": [
+            [
+              189.70044734265886,
+              124.35223011705143
+            ],
+            [
+              537.1877446420626,
+              -82.848326337762
+            ],
+            [
+              586.2990058012981,
+              537.292102536911
+            ],
+            [
+              188.35293859828604,
+              465.74944710974376
+            ]
+          ],
+          "horizontal_fov_degrees": 48.25410955756162,
+          "vertical_fov_degrees": 39.99383801962335,
+          "pose": {
+            "pitch_degrees": 52.171096226749526,
+            "azimuth_degrees": 11.417175222485895,
+            "roll_degrees": 1.4285873696471718,
+            "focal_length": 714.4636659144415,
+            "distance": 833.5409435668485
+          }
+        }
+      }
+    },
+    {
+      "id": "seed-20261019-case-0065-motion",
+      "file": "images/seed-20261019-case-0065-motion.jpg",
+      "tier": "challenge",
+      "description": "Seeded motion counterexample search, severity 0.567185.",
+      "tags": [
+        "adversarial",
+        "motion",
+        "camera",
+        "coherent-plane",
+        "continuous-surface"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              261.55847659759326,
+              167.8003139603041
+            ],
+            [
+              389.5160936920082,
+              154.58369567497064
+            ],
+            [
+              410.0507571495622,
+              338.4904734517586
+            ],
+            [
+              284.73112385274436,
+              345.41432697700156
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "world_corners": [
+            [
+              271.4528385256748,
+              142.65225986294678
+            ],
+            [
+              423.7555276468647,
+              153.3175973510225
+            ],
+            [
+              408.8240551635587,
+              366.5413621206884
+            ],
+            [
+              256.52136604236875,
+              355.8760246326127
+            ]
+          ],
+          "projected_edge_angles_degrees": [
+            -5.897113518791614,
+            83.62885767387402,
+            176.8376489737273,
+            -97.4331848846384
+          ],
+          "reference": "references/seed-20261019-case-0065-motion-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261019-case-0065-motion",
+        "tier": "challenge",
+        "description": "Seeded motion counterexample search, severity 0.567185.",
+        "tags": [
+          "adversarial",
+          "motion",
+          "camera",
+          "coherent-plane",
+          "continuous-surface"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                271.4528385256748,
+                142.65225986294678
+              ],
+              [
+                423.7555276468647,
+                153.3175973510225
+              ],
+              [
+                408.8240551635587,
+                366.5413621206884
+              ],
+              [
+                256.52136604236875,
+                355.8760246326127
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "motion_blur",
+            "length": 9
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261019,
+          "index": 65,
+          "mutation": "motion",
+          "severity": 0.5671851929313092,
+          "camera_angles": true
+        },
+        "camera": {
+          "pitch_degrees": 18.526809064602137,
+          "azimuth_degrees": 334.3374237662354,
+          "roll_degrees": 10.934123618932023,
+          "focal_length": 1089.6218407142617,
+          "distance": 1271.2254808333053
+        },
+        "table_color": [
+          24,
+          60,
+          39
+        ],
+        "projection": {
+          "model": "pinhole camera; entire mat, cards, print and occluders share one plane",
+          "world_axes": "+x right, +y down, +z away from the overhead camera",
+          "world_plane_size": [
+            640,
+            520
+          ],
+          "world_plane_origin": [
+            319.5,
+            259.5
+          ],
+          "image_size": [
+            640,
+            520
+          ],
+          "principal_point": [
+            319.5,
+            259.5
+          ],
+          "intrinsic_matrix": [
+            [
+              1089.6218407142617,
+              0.0,
+              319.5
+            ],
+            [
+              0.0,
+              1089.6218407142617,
+              259.5
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_center_world": [
+            364.08619465113094,
+            -174.9300539012045,
+            -1205.3443251728731
+          ],
+          "world_to_camera_rotation": [
+            [
+              0.9474506672593356,
+              0.1878757774637721,
+              0.2589206931711381
+            ],
+            [
+              -0.1425097231940951,
+              0.9725054710553876,
+              -0.18418492762026212
+            ],
+            [
+              -0.28640567715215054,
+              0.13760741625988768,
+              0.9481750825060192
+            ]
+          ],
+          "world_to_camera_translation": [
+            -7.105427357601002e-15,
+            2.1316282072803006e-14,
+            1271.2254808333055
+          ],
+          "plane_to_image_homography": [
+            [
+              940.8563261949606,
+              248.67911996073246,
+              41020.7132771411
+            ],
+            [
+              -229.6039801274129,
+              1095.3723259955025,
+              118992.36533111829
+            ],
+            [
+              -0.28640567715215054,
+              0.13760741625988768,
+              1327.0229701639767
+            ]
+          ],
+          "projected_plane_corners": [
+            [
+              30.911833630183718,
+              89.66865533338486
+            ],
+            [
+              561.3832486536448,
+              -24.234564568122114
+            ],
+            [
+              634.584997521566,
+              444.9244735204827
+            ],
+            [
+              121.6248307052287,
+              491.61208428529346
+            ]
+          ],
+          "horizontal_fov_degrees": 32.73290366420142,
+          "vertical_fov_degrees": 26.84134243852437,
+          "pose": {
+            "pitch_degrees": 18.526809064602137,
+            "azimuth_degrees": 334.3374237662354,
+            "roll_degrees": 10.934123618932023,
+            "focal_length": 1089.6218407142617,
+            "distance": 1271.2254808333053
+          }
+        }
+      }
+    },
+    {
+      "id": "seed-20261019-case-0075-edge-occlusion",
+      "file": "images/seed-20261019-case-0075-edge-occlusion.jpg",
+      "tier": "challenge",
+      "description": "Seeded edge-occlusion counterexample search, severity 0.784687.",
+      "tags": [
+        "adversarial",
+        "edge-occlusion",
+        "camera",
+        "coherent-plane",
+        "continuous-surface"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              239.3941367030292,
+              202.50834145297694
+            ],
+            [
+              387.66960725227165,
+              180.74390800755796
+            ],
+            [
+              449.0268880217224,
+              322.40134334635985
+            ],
+            [
+              270.72630218319546,
+              352.0671060835907
+            ]
+          ],
+          "visible_fraction": 0.929379,
+          "world_corners": [
+            [
+              219.0916612547689,
+              140.83730645469984
+            ],
+            [
+              409.1809491354024,
+              106.64707412065252
+            ],
+            [
+              457.0472744030687,
+              372.7720771535394
+            ],
+            [
+              266.9579865224352,
+              406.9623094875867
+            ]
+          ],
+          "projected_edge_angles_degrees": [
+            -8.35046004301946,
+            66.58070901175316,
+            170.55362462003106,
+            -101.83219326195942
+          ],
+          "reference": "references/seed-20261019-case-0075-edge-occlusion-0-black-lotus.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261019-case-0075-edge-occlusion",
+        "tier": "challenge",
+        "description": "Seeded edge-occlusion counterexample search, severity 0.784687.",
+        "tags": [
+          "adversarial",
+          "edge-occlusion",
+          "camera",
+          "coherent-plane",
+          "continuous-surface"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            100,
+            65,
+            45
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                219.0916612547689,
+                140.83730645469984
+              ],
+              [
+                409.1809491354024,
+                106.64707412065252
+              ],
+              [
+                457.0472744030687,
+                372.7720771535394
+              ],
+              [
+                266.9579865224352,
+                406.9623094875867
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [],
+        "occluders": [
+          {
+            "kind": "ellipse",
+            "bounds": [
+              384.61675785339514,
+              191.21222172125556,
+              481.6114656850759,
+              288.20692955293634
+            ],
+            "color": [
+              185,
+              137,
+              106
+            ]
+          }
+        ],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261019,
+          "index": 75,
+          "mutation": "edge-occlusion",
+          "severity": 0.7846874608900999,
+          "camera_angles": true
+        },
+        "camera": {
+          "pitch_degrees": 50.06290666819917,
+          "azimuth_degrees": 88.50714235848505,
+          "roll_degrees": 0.9057183914623739,
+          "focal_length": 924.2121208418357,
+          "distance": 1078.247474315475
+        },
+        "table_color": [
+          100,
+          65,
+          45
+        ],
+        "projection": {
+          "model": "pinhole camera; entire mat, cards, print and occluders share one plane",
+          "world_axes": "+x right, +y down, +z away from the overhead camera",
+          "world_plane_size": [
+            640,
+            520
+          ],
+          "world_plane_origin": [
+            319.5,
+            259.5
+          ],
+          "image_size": [
+            640,
+            520
+          ],
+          "principal_point": [
+            319.5,
+            259.5
+          ],
+          "intrinsic_matrix": [
+            [
+              924.2121208418357,
+              0.0,
+              319.5
+            ],
+            [
+              0.0,
+              924.2121208418357,
+              259.5
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_center_world": [
+            21.53866078442342,
+            826.4653309984573,
+            -692.1768261195438
+          ],
+          "world_to_camera_rotation": [
+            [
+              0.9990144949496873,
+              0.010152224924112822,
+              0.04320846224423554
+            ],
+            [
+              -0.03963601296981701,
+              0.6421766350183891,
+              0.7655312899629351
+            ],
+            [
+              -0.019975619046172337,
+              -0.7664894661804225,
+              0.6419461604201502
+            ]
+          ],
+          "world_to_camera_translation": [
+            -0.0,
+            -7.216449660063518e-15,
+            1078.247474315475
+          ],
+          "plane_to_image_homography": [
+            [
+              916.9190948439337,
+              -235.51057511626732,
+              112659.41148382885
+            ],
+            [
+              -41.81575675103081,
+              394.6034133315992,
+              190765.76810727012
+            ],
+            [
+              -0.019975619046172337,
+              -0.7664894661804225,
+              1283.5337010745468
+            ]
+          ],
+          "projected_plane_corners": [
+            [
+              87.77285036576197,
+              148.6254454772517
+            ],
+            [
+              549.7226945964721,
+              129.0914897457183
+            ],
+            [
+              660.2134129287583,
+              422.52124260376155
+            ],
+            [
+              -10.805351302230301,
+              446.5998376934168
+            ]
+          ],
+          "horizontal_fov_degrees": 38.195887948613844,
+          "vertical_fov_degrees": 31.424783178214607,
+          "pose": {
+            "pitch_degrees": 50.06290666819917,
+            "azimuth_degrees": 88.50714235848505,
+            "roll_degrees": 0.9057183914623739,
+            "focal_length": 924.2121208418357,
+            "distance": 1078.247474315475
+          }
+        }
+      }
+    },
+    {
+      "id": "seed-20261019-case-0018-dim-reduction-2",
+      "file": "images/seed-20261019-case-0018-dim-reduction-2.jpg",
+      "tier": "challenge",
+      "description": "Seeded dim counterexample search, severity 0.651255.",
+      "tags": [
+        "adversarial",
+        "dim",
+        "camera",
+        "coherent-plane",
+        "continuous-surface"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              247.6550997287423,
+              168.86923401106117
+            ],
+            [
+              380.1796056917316,
+              158.4566066219956
+            ],
+            [
+              372.8858135829718,
+              380.36695893370023
+            ],
+            [
+              237.2986498173552,
+              371.2813181581691
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "world_corners": [
+            [
+              203.05452806258359,
+              155.13798468356487
+            ],
+            [
+              380.85972603228834,
+              138.2640394660113
+            ],
+            [
+              404.4832493368633,
+              387.19131662359786
+            ],
+            [
+              226.67805136715856,
+              404.0652618411514
+            ]
+          ],
+          "projected_edge_angles_degrees": [
+            -4.492576166746105,
+            91.88253097716809,
+            -176.1663642705602,
+            -87.07100548896312
+          ],
+          "reference": "references/seed-20261019-case-0018-dim-reduction-2-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "seed-20261019-case-0018-dim-reduction-2",
+        "tier": "challenge",
+        "description": "Seeded dim counterexample search, severity 0.651255.",
+        "tags": [
+          "adversarial",
+          "dim",
+          "camera",
+          "coherent-plane",
+          "continuous-surface"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                203.05452806258359,
+                155.13798468356487
+              ],
+              [
+                380.85972603228834,
+                138.2640394660113
+              ],
+              [
+                404.4832493368633,
+                387.19131662359786
+              ],
+              [
+                226.67805136715856,
+                404.0652618411514
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "effects": [
+          {
+            "kind": "brightness",
+            "factor": 0.4789963765960389
+          }
+        ],
+        "occluders": [],
+        "jpeg_quality": 90,
+        "search": {
+          "seed": 20261019,
+          "index": 18,
+          "mutation": "dim",
+          "severity": 0.6512545292549513,
+          "camera_angles": true
+        },
+        "camera": {
+          "pitch_degrees": 28.087045304212353,
+          "azimuth_degrees": 7.227108520309002,
+          "roll_degrees": -7.146526139116467,
+          "focal_length": 758.7745856140195,
+          "distance": 885.2370165496895
+        },
+        "table_color": [
+          24,
+          60,
+          39
+        ],
+        "projection": {
+          "model": "pinhole camera; entire mat, cards, print and occluders share one plane",
+          "world_axes": "+x right, +y down, +z away from the overhead camera",
+          "world_plane_size": [
+            640,
+            520
+          ],
+          "world_plane_origin": [
+            319.5,
+            259.5
+          ],
+          "image_size": [
+            640,
+            520
+          ],
+          "principal_point": [
+            319.5,
+            259.5
+          ],
+          "intrinsic_matrix": [
+            [
+              758.7745856140195,
+              0.0,
+              319.5
+            ],
+            [
+              0.0,
+              758.7745856140195,
+              259.5
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_center_world": [
+            413.4693802284824,
+            52.43208970379764,
+            -780.9856100163197
+          ],
+          "world_to_camera_rotation": [
+            [
+              0.8803667112489306,
+              -0.1241888336138409,
+              0.45774620405894745
+            ],
+            [
+              0.08245147975037503,
+              0.990489276797864,
+              0.11014874504694971
+            ],
+            [
+              -0.46707195078672337,
+              -0.05922943655040272,
+              0.8822333402418017
+            ]
+          ],
+          "world_to_camera_translation": [
+            4.3520742565306136e-14,
+            1.4210854715202004e-14,
+            885.2370165496897
+          ],
+          "plane_to_image_homography": [
+            [
+              518.7703982399264,
+              -113.15513574108422,
+              146449.84227478085
+            ],
+            [
+              -58.643083848301174,
+              736.1880517725997,
+              57414.67164918719
+            ],
+            [
+              -0.46707195078672337,
+              -0.05922943655040272,
+              1049.8365436108775
+            ]
+          ],
+          "projected_plane_corners": [
+            [
+              139.49775626124762,
+              54.689153276862854
+            ],
+            [
+              636.0904925886588,
+              26.54024014610903
+            ],
+            [
+              581.7302283260684,
+              557.8718090637392
+            ],
+            [
+              86.07853107952012,
+              431.2607149217516
+            ]
+          ],
+          "horizontal_fov_degrees": 45.73347998526694,
+          "vertical_fov_degrees": 37.82884326228039,
+          "pose": {
+            "pitch_degrees": 28.087045304212353,
+            "azimuth_degrees": 7.227108520309002,
+            "roll_degrees": -7.146526139116467,
+            "focal_length": 758.7745856140195,
+            "distance": 885.2370165496895
+          }
+        }
+      }
+    }
+  ]
+}

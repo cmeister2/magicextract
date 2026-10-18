@@ -1,0 +1,1206 @@
+[
+  {
+    "id": "playmat-fantasy-forest-empty",
+    "tier": "regression",
+    "description": "Empty illustrated playmat: printed artwork is not a physical card.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-lightning-bolt",
+    "tier": "challenge",
+    "description": "lightning-bolt on detailed printed playmat artwork, rotated -17 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            99.09373716826198,
+            150.81905417370385
+          ],
+          [
+            271.22859324160834,
+            98.19214732361124
+          ],
+          [
+            344.906262831738,
+            339.1809458262961
+          ],
+          [
+            172.77140675839163,
+            391.80785267638873
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-counterspell",
+    "tier": "challenge",
+    "description": "counterspell on detailed printed playmat artwork, rotated 24 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            396.0297258397168,
+            109.28697446021027
+          ],
+          [
+            560.4679082153849,
+            182.4995702138543
+          ],
+          [
+            457.9702741602832,
+            412.71302553978967
+          ],
+          [
+            293.5320917846151,
+            339.5004297861457
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-black-lotus",
+    "tier": "challenge",
+    "description": "black-lotus on detailed printed playmat artwork, rotated 7 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "black-lotus",
+        "corners": [
+          [
+            236.0263836213296,
+            151.97094398673016
+          ],
+          [
+            414.6846909167675,
+            173.90742579965672
+          ],
+          [
+            383.9736163786704,
+            424.02905601326984
+          ],
+          [
+            205.31530908323245,
+            402.0925742003433
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-sol-ring",
+    "tier": "challenge",
+    "description": "sol-ring on detailed printed playmat artwork, rotated -41 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            179.4127001271466,
+            208.9519055010764
+          ],
+          [
+            315.2604245672456,
+            90.8612802827851
+          ],
+          [
+            480.5872998728534,
+            281.0480944989236
+          ],
+          [
+            344.7395754327544,
+            399.1387197172149
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-two-cards",
+    "tier": "challenge",
+    "description": "Two separated cards on busy artwork; retain both full physical outlines.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            83.46427266788311,
+            161.89366305656307
+          ],
+          [
+            241.49440716310514,
+            136.8641486501261
+          ],
+          [
+            276.53572733211683,
+            358.106336943437
+          ],
+          [
+            118.50559283689483,
+            383.1358513498739
+          ]
+        ]
+      },
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            404.24491290369406,
+            142.87446839654444
+          ],
+          [
+            560.1441232693317,
+            178.8666370915629
+          ],
+          [
+            509.75508709630594,
+            397.12553160345556
+          ],
+          [
+            353.85587673066834,
+            361.13336290843716
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-finger-corner",
+    "tier": "regression",
+    "description": "A rounded fingertip hides one corner on a densely illustrated playmat.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest",
+      "occlusion",
+      "hidden-corner"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "black-lotus",
+        "corners": [
+          [
+            230.0,
+            134.0
+          ],
+          [
+            410.0,
+            134.0
+          ],
+          [
+            410.0,
+            386.0
+          ],
+          [
+            230.0,
+            386.0
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0,
+    "occluders": [
+      {
+        "kind": "ellipse",
+        "bounds": [
+          194,
+          94,
+          270,
+          174
+        ],
+        "color": [
+          188,
+          139,
+          107
+        ]
+      }
+    ]
+  },
+  {
+    "id": "playmat-fantasy-forest-slight-defocus",
+    "tier": "challenge",
+    "description": "Slight camera defocus blurs both the printed mat and the physical card.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest",
+      "blur"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            275.9249156576632,
+            111.56352557334198
+          ],
+          [
+            446.11825926554025,
+            170.1657933756302
+          ],
+          [
+            364.0750843423368,
+            408.43647442665804
+          ],
+          [
+            193.88174073445973,
+            349.8342066243698
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0,
+    "effects": [
+      {
+        "kind": "gaussian_blur",
+        "radius": 0.75
+      }
+    ]
+  },
+  {
+    "id": "playmat-fantasy-forest-empty-printed-zones",
+    "tier": "challenge",
+    "description": "Printed card-zone outlines on an empty mat: zero physical cards.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest",
+      "printed-zones",
+      "negative"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            46,
+            155,
+            176,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            255,
+            155,
+            385,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            464,
+            155,
+            594,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              122
+            ],
+            [
+              622,
+              122
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              373
+            ],
+            [
+              622,
+              373
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        }
+      ]
+    },
+    "cards": [],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-fantasy-forest-card-over-printed-zones",
+    "tier": "challenge",
+    "description": "One physical card crosses printed card zones; the uncovered empty zones are distractors.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "fantasy-forest",
+      "printed-zones",
+      "distractors"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            46,
+            155,
+            176,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            255,
+            155,
+            385,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            464,
+            155,
+            594,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              122
+            ],
+            [
+              622,
+              122
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              373
+            ],
+            [
+              622,
+              373
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        }
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            206.97731839957677,
+            162.36380243035978
+          ],
+          [
+            368.9458036684414,
+            130.88031819322987
+          ],
+          [
+            413.0226816004232,
+            357.6361975696402
+          ],
+          [
+            251.05419633155864,
+            389.11968180677013
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-empty",
+    "tier": "challenge",
+    "description": "Empty illustrated playmat: printed artwork is not a physical card.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-lightning-bolt",
+    "tier": "challenge",
+    "description": "lightning-bolt on detailed printed playmat artwork, rotated -17 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            99.09373716826198,
+            150.81905417370385
+          ],
+          [
+            271.22859324160834,
+            98.19214732361124
+          ],
+          [
+            344.906262831738,
+            339.1809458262961
+          ],
+          [
+            172.77140675839163,
+            391.80785267638873
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-counterspell",
+    "tier": "challenge",
+    "description": "counterspell on detailed printed playmat artwork, rotated 24 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            396.0297258397168,
+            109.28697446021027
+          ],
+          [
+            560.4679082153849,
+            182.4995702138543
+          ],
+          [
+            457.9702741602832,
+            412.71302553978967
+          ],
+          [
+            293.5320917846151,
+            339.5004297861457
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-black-lotus",
+    "tier": "challenge",
+    "description": "black-lotus on detailed printed playmat artwork, rotated 7 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "black-lotus",
+        "corners": [
+          [
+            236.0263836213296,
+            151.97094398673016
+          ],
+          [
+            414.6846909167675,
+            173.90742579965672
+          ],
+          [
+            383.9736163786704,
+            424.02905601326984
+          ],
+          [
+            205.31530908323245,
+            402.0925742003433
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-sol-ring",
+    "tier": "challenge",
+    "description": "sol-ring on detailed printed playmat artwork, rotated -41 degrees.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            179.4127001271466,
+            208.9519055010764
+          ],
+          [
+            315.2604245672456,
+            90.8612802827851
+          ],
+          [
+            480.5872998728534,
+            281.0480944989236
+          ],
+          [
+            344.7395754327544,
+            399.1387197172149
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-two-cards",
+    "tier": "challenge",
+    "description": "Two separated cards on busy artwork; retain both full physical outlines.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            83.46427266788311,
+            161.89366305656307
+          ],
+          [
+            241.49440716310514,
+            136.8641486501261
+          ],
+          [
+            276.53572733211683,
+            358.106336943437
+          ],
+          [
+            118.50559283689483,
+            383.1358513498739
+          ]
+        ]
+      },
+      {
+        "source": "counterspell",
+        "corners": [
+          [
+            404.24491290369406,
+            142.87446839654444
+          ],
+          [
+            560.1441232693317,
+            178.8666370915629
+          ],
+          [
+            509.75508709630594,
+            397.12553160345556
+          ],
+          [
+            353.85587673066834,
+            361.13336290843716
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-finger-corner",
+    "tier": "challenge",
+    "description": "A rounded fingertip hides one corner on a densely illustrated playmat.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones",
+      "occlusion",
+      "hidden-corner"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "black-lotus",
+        "corners": [
+          [
+            230.0,
+            134.0
+          ],
+          [
+            410.0,
+            134.0
+          ],
+          [
+            410.0,
+            386.0
+          ],
+          [
+            230.0,
+            386.0
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0,
+    "occluders": [
+      {
+        "kind": "ellipse",
+        "bounds": [
+          194,
+          94,
+          270,
+          174
+        ],
+        "color": [
+          188,
+          139,
+          107
+        ]
+      }
+    ]
+  },
+  {
+    "id": "playmat-arcane-zones-slight-defocus",
+    "tier": "challenge",
+    "description": "Slight camera defocus blurs both the printed mat and the physical card.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones",
+      "blur"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0"
+    },
+    "cards": [
+      {
+        "source": "sol-ring",
+        "corners": [
+          [
+            275.9249156576632,
+            111.56352557334198
+          ],
+          [
+            446.11825926554025,
+            170.1657933756302
+          ],
+          [
+            364.0750843423368,
+            408.43647442665804
+          ],
+          [
+            193.88174073445973,
+            349.8342066243698
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0,
+    "effects": [
+      {
+        "kind": "gaussian_blur",
+        "radius": 0.75
+      }
+    ]
+  },
+  {
+    "id": "playmat-arcane-zones-empty-printed-zones",
+    "tier": "challenge",
+    "description": "Printed card-zone outlines on an empty mat: zero physical cards.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones",
+      "printed-zones",
+      "negative"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            46,
+            155,
+            176,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            255,
+            155,
+            385,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            464,
+            155,
+            594,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              122
+            ],
+            [
+              622,
+              122
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              373
+            ],
+            [
+              622,
+              373
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        }
+      ]
+    },
+    "cards": [],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  },
+  {
+    "id": "playmat-arcane-zones-card-over-printed-zones",
+    "tier": "challenge",
+    "description": "One physical card crosses printed card zones; the uncovered empty zones are distractors.",
+    "tags": [
+      "playmat",
+      "busy-background",
+      "arcane-zones",
+      "printed-zones",
+      "distractors"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/arcane-zones.png",
+      "sha256": "e0f89e128a86f9192800cc2a96f40cc7d6aaca68b078ef8e047a9b4e688879d0",
+      "overlays": [
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            46,
+            155,
+            176,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            255,
+            155,
+            385,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "rounded_rectangle",
+          "bounds": [
+            464,
+            155,
+            594,
+            337
+          ],
+          "radius": 8,
+          "color": [
+            225,
+            210,
+            167,
+            210
+          ],
+          "width": 3
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              122
+            ],
+            [
+              622,
+              122
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              18,
+              373
+            ],
+            [
+              622,
+              373
+            ]
+          ],
+          "width": 2,
+          "color": [
+            225,
+            210,
+            167,
+            190
+          ]
+        }
+      ]
+    },
+    "cards": [
+      {
+        "source": "lightning-bolt",
+        "corners": [
+          [
+            206.97731839957677,
+            162.36380243035978
+          ],
+          [
+            368.9458036684414,
+            130.88031819322987
+          ],
+          [
+            413.0226816004232,
+            357.6361975696402
+          ],
+          [
+            251.05419633155864,
+            389.11968180677013
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 92,
+    "pixel_mae_limit": 22.0
+  }
+]

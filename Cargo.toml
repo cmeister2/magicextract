@@ -1,0 +1,41 @@
+[package]
+name = "magicextract"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.90.0"
+description = "Extract trading card sized outlines from images as perspective-corrected crops"
+license = "MIT"
+repository = "https://github.com/cmeister2/magicextract"
+documentation = "https://docs.rs/magicextract"
+readme = "README.md"
+keywords = ["cards", "trading-cards", "extraction", "computer-vision", "image-processing"]
+categories = ["multimedia::images", "computer-vision"]
+include = [
+    "/src/**",
+    "/examples/extract.rs",
+    "/tests/extraction.rs",
+    "/docs/**",
+    "/Cargo.toml",
+    "/Cargo.lock",
+    "/README.md",
+    "/LICENSE",
+]
+
+[dependencies]
+image = { version = "0.25.10", default-features = false }
+imageproc = { version = "0.27.0", default-features = false }
+
+[dev-dependencies]
+image = { version = "0.25.10", default-features = false, features = ["jpeg", "png"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+
+[lints.rust]
+missing_docs = "deny"
+unsafe_code = "forbid"
+
+[lints.clippy]
+missing_docs_in_private_items = "deny"
+missing_errors_doc = "deny"
+missing_panics_doc = "deny"

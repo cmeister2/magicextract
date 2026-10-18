@@ -1,0 +1,16 @@
+/target/
+/node_modules/
+# Local camera captures used for investigation.
+/binder/
+/lcov.info
+npm-debug.log*
+__pycache__/
+/tests/fixtures/scryfall/cache/
+/cargo-msrv-verify.log*
+
+# Generated fixture evaluations and search diagnostics.
+**/baseline.json
+**/discovery.json
+**/evaluation.json
+**/archived-evaluation.json
+**/search-report.json

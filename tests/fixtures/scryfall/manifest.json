@@ -1,0 +1,42 @@
+{
+  "source": "https://scryfall.com",
+  "retrieved": "2026-10-18",
+  "cards": [
+    {
+      "name": "Lightning Bolt",
+      "file": "lightning-bolt.png",
+      "id": "7673784e-db4b-43a1-8d55-1bb9fc1e284f",
+      "artist": "Milivoj Ćeran",
+      "source": "https://scryfall.com/card/msc/806/lightning-bolt",
+      "image_url": "https://cards.scryfall.io/png/front/7/6/7673784e-db4b-43a1-8d55-1bb9fc1e284f.png?1783903008",
+      "sha256": "d73dbd96b45b1b8812644fd6bb73a32a0acae931efffc7a0e0a39294a9844dd6"
+    },
+    {
+      "name": "Counterspell",
+      "file": "counterspell.png",
+      "id": "4f616706-ec97-4923-bb1e-11a69fbaa1f8",
+      "artist": "Zack Stella",
+      "source": "https://scryfall.com/card/dsc/114/counterspell",
+      "image_url": "https://cards.scryfall.io/png/front/4/f/4f616706-ec97-4923-bb1e-11a69fbaa1f8.png?1783909630",
+      "sha256": "48f6f06bc22979d314c86bda528d9ffba69d07fcfdc1ae861508e853fe960559"
+    },
+    {
+      "name": "Black Lotus",
+      "file": "black-lotus.png",
+      "id": "bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd",
+      "artist": "Chris Rahn",
+      "source": "https://scryfall.com/card/vma/4/black-lotus",
+      "image_url": "https://cards.scryfall.io/png/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.png?1783939332",
+      "sha256": "45c3c204329b6dadc4f3744aa5110d8da474c24269da08220e9eab1b64df7ff8"
+    },
+    {
+      "name": "Sol Ring",
+      "file": "sol-ring.png",
+      "id": "8ee443cc-e17a-493b-9c93-1f9e141a30e4",
+      "artist": "Titus Lunter",
+      "source": "https://scryfall.com/card/frc/21/sol-ring",
+      "image_url": "https://cards.scryfall.io/png/front/8/e/8ee443cc-e17a-493b-9c93-1f9e141a30e4.png?1789644446",
+      "sha256": "51cf9fccea220c48ba14477dfe71b76d3e882a9046fd94a11553210d8f748341"
+    }
+  ]
+}

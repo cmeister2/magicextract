@@ -1,0 +1,7488 @@
+{
+  "format_version": 1,
+  "generator": {
+    "script": "scripts/build-scene-fixtures.py",
+    "script_sha256": "e74442106015356e5b3596e9ff5972aa036b590c91f9a9cb4b0c067b4e50a17a",
+    "pillow": "10.2.0",
+    "libjpeg": "8.0",
+    "seed": 20261018,
+    "size": [
+      640,
+      520
+    ],
+    "jpeg_quality": 94,
+    "jpeg_subsampling": 0,
+    "projection_antialias": "RGBA LANCZOS prefilter to maximum projected opposite-edge lengths",
+    "source_alpha": "preserved",
+    "authoritative_inputs": "saved JPEG and reference PNG bytes"
+  },
+  "sources": {
+    "lightning-bolt": {
+      "name": "Lightning Bolt",
+      "file": "lightning-bolt.png",
+      "id": "7673784e-db4b-43a1-8d55-1bb9fc1e284f",
+      "artist": "Milivoj Ćeran",
+      "source": "https://scryfall.com/card/msc/806/lightning-bolt",
+      "image_url": "https://cards.scryfall.io/png/front/7/6/7673784e-db4b-43a1-8d55-1bb9fc1e284f.png?1783903008",
+      "sha256": "d73dbd96b45b1b8812644fd6bb73a32a0acae931efffc7a0e0a39294a9844dd6"
+    },
+    "counterspell": {
+      "name": "Counterspell",
+      "file": "counterspell.png",
+      "id": "4f616706-ec97-4923-bb1e-11a69fbaa1f8",
+      "artist": "Zack Stella",
+      "source": "https://scryfall.com/card/dsc/114/counterspell",
+      "image_url": "https://cards.scryfall.io/png/front/4/f/4f616706-ec97-4923-bb1e-11a69fbaa1f8.png?1783909630",
+      "sha256": "48f6f06bc22979d314c86bda528d9ffba69d07fcfdc1ae861508e853fe960559"
+    },
+    "black-lotus": {
+      "name": "Black Lotus",
+      "file": "black-lotus.png",
+      "id": "bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd",
+      "artist": "Chris Rahn",
+      "source": "https://scryfall.com/card/vma/4/black-lotus",
+      "image_url": "https://cards.scryfall.io/png/front/b/d/bd8fa327-dd41-4737-8f19-2cf5eb1f7cdd.png?1783939332",
+      "sha256": "45c3c204329b6dadc4f3744aa5110d8da474c24269da08220e9eab1b64df7ff8"
+    },
+    "sol-ring": {
+      "name": "Sol Ring",
+      "file": "sol-ring.png",
+      "id": "8ee443cc-e17a-493b-9c93-1f9e141a30e4",
+      "artist": "Titus Lunter",
+      "source": "https://scryfall.com/card/frc/21/sol-ring",
+      "image_url": "https://cards.scryfall.io/png/front/8/e/8ee443cc-e17a-493b-9c93-1f9e141a30e4.png?1789644446",
+      "sha256": "51cf9fccea220c48ba14477dfe71b76d3e882a9046fd94a11553210d8f748341"
+    }
+  },
+  "references": {
+    "lightning-bolt": "references/lightning-bolt.png",
+    "counterspell": "references/counterspell.png",
+    "black-lotus": "references/black-lotus.png",
+    "sol-ring": "references/sol-ring.png"
+  },
+  "sha256": {
+    "references/lightning-bolt.png": "8c71d39e326c612cf04dfbfd84cb2d7ffeb69e8eea644161a4a77fe48c647b77",
+    "references/counterspell.png": "6cb2bf41960d2c7d9bd27973322fa7ace34e7ba306dcc549738a4f175a84a365",
+    "references/black-lotus.png": "c77c4f891f2e4bfa3b917417441b837d4543fe130b86d6344131e9b374a02f54",
+    "references/sol-ring.png": "a6ff8adc6056c2a4d7ea767bceb6593f1bc870494eccdbb8521d4248514700b0",
+    "images/baseline-lightning-bolt-background-green.jpg": "1614f158aa7194ddd3cd07ca7f5361a03e179df74443d32863dea5dcc232ebdb",
+    "images/baseline-lightning-bolt-background-dark.jpg": "4a7e8aef503ad303b4f5b2e6c67a6916792ddff3511d299b6257847964ae585f",
+    "images/baseline-lightning-bolt-background-light.jpg": "8f8db0d795319d6ac1efd707fe2be4af0b884545338fcaf5cea1b1dae546be8d",
+    "images/baseline-lightning-bolt-rotation-minus42.jpg": "b9b562173907a6eafa71394b07eece42b6ac434070b94e077223ebf784f64d7f",
+    "images/baseline-lightning-bolt-rotation-minus13.jpg": "ddeb79793bac78fff1057ed4aa69c55dc166ee9855aa2ba95c929b63ca410773",
+    "images/baseline-lightning-bolt-rotation-27.jpg": "e9c1362c83cb45494c04eb81c9242169a366a82d65dcfcc5e766517e7b13ae9b",
+    "images/baseline-lightning-bolt-rotation-73.jpg": "915ff2c92fceb82414e1a8152620289f7b9fb9098984fe2fe30d294ed41ea19d",
+    "images/baseline-lightning-bolt-rotation-155.jpg": "ffcafd37bbb4840e364ca95c7a100bce53d3e598ef72d8009a852cf45d66872f",
+    "images/baseline-lightning-bolt-perspective-1.jpg": "909792f28aac8584ac9b3913dcccf7b9ea57dbf3da25910f25ef4891c3c558d8",
+    "images/baseline-lightning-bolt-perspective-2.jpg": "6a3b918ea76ca969189b314c674eda78530ef0d4b3bf6e3214c8b077d39dbbe8",
+    "images/baseline-lightning-bolt-soft-shadow.jpg": "c2b76ccd449aa1ac652293c290a484e34df6c8d770b21027cfed596e709a21bb",
+    "images/baseline-lightning-bolt-blur.jpg": "bc909b9e15cf4050490ade3856c5ee63b7fa9dc4c05f2bbef2ebe92d782c1f0d",
+    "images/baseline-lightning-bolt-jpeg.jpg": "c5b07647ab1332df47759ce723097816885858b23ddd1ac455b1e3588d2c039b",
+    "images/baseline-lightning-bolt-sensor-noise.jpg": "0ff3c03d561edc0b30c286b807c02320645770a16f89974352a46820cb258de8",
+    "images/baseline-counterspell-background-green.jpg": "fa678ecf6ed87be2b45bd3d12d28b8c321f85240ce1a6c7c48dd8dddb859a8bb",
+    "images/baseline-counterspell-background-dark.jpg": "a91f97f0fcc313de80deaa65f59a09f688139edf6be6517593d444242c0a81ca",
+    "images/baseline-counterspell-background-light.jpg": "ce8a4ee69c82906172808af6ddf36fe071de59e1f6b3de64fbcaea7ceb73720c",
+    "images/baseline-counterspell-rotation-minus42.jpg": "4f1e040fa91f19a96228a99d8ca572ec9bfa9e77d4adfd07fff984c494c7a44e",
+    "images/baseline-counterspell-rotation-minus13.jpg": "1baf695ab6e36860c7489be1c9fb58b7b13a80b8441cfb4322f7d35f6d2c3896",
+    "images/baseline-counterspell-rotation-27.jpg": "cd62b76f3948d69425a1ef723f74c5e63596d1aa09297a5c6a99483ab6e20b59",
+    "images/baseline-counterspell-rotation-73.jpg": "8709f01c86706fff7743cd4a15e3f673ffaec0aee2fbcfa5dbd3b2d0eb911bb5",
+    "images/baseline-counterspell-rotation-155.jpg": "46fe984ce65e11a843a80d54bbe192bf6638834dceabb779ab3039b05ffec648",
+    "images/baseline-counterspell-perspective-1.jpg": "9bc35fd21643133bec583470590b93363aebdf5f5d8dd5b121c8dc3c5f831a01",
+    "images/baseline-counterspell-perspective-2.jpg": "c05b9c43b970ec786a6e1d2d52af71eeedf115de698077cf7df04f000c2aba5d",
+    "images/baseline-counterspell-soft-shadow.jpg": "24e88bf197da78805b19735733a28def6d1989b310e11c87c15bb84742b85c0a",
+    "images/baseline-counterspell-blur.jpg": "610341e6c457db5d95e2bb2cdcbafb5d9d82d4b6c7c7c775e6fc65f25cac804a",
+    "images/baseline-counterspell-jpeg.jpg": "3ccfc5cea4b04d1c8a58ce4da03601c3e88d2145a6e895a23df19dc2c8d2182f",
+    "images/baseline-counterspell-sensor-noise.jpg": "425beb1fc70dcb5772e89854946c2c0732533d1dc09dcb1380ff0ed5b51af227",
+    "images/baseline-black-lotus-background-green.jpg": "d764c9749bbe895f2acb6b630c20991b0be8f69e00fc247c9eab258c3aa69862",
+    "images/baseline-black-lotus-background-dark.jpg": "82fb8a21c97e4948f2b03b7c7a86b3ce464a8f52128b84caffee7887e92cfe02",
+    "images/baseline-black-lotus-background-light.jpg": "31768f1b226233a445deb0a686bc26853bb309e18e2d10c8c7df047a1286bb9a",
+    "images/baseline-black-lotus-rotation-minus42.jpg": "e176524448f56f35e3782f8b1da08245e8148e6b12cc52a07dc472da1267814a",
+    "images/baseline-black-lotus-rotation-minus13.jpg": "e18e0f01b719f5c98b1fe5284043db3c44e47bdbdef98d24239617f09491c41e",
+    "images/baseline-black-lotus-rotation-27.jpg": "e889fa1fd46e79f9c02466d195aa63962d1ab7688c57ef0b9fdbc41d9efcd3c4",
+    "images/baseline-black-lotus-rotation-73.jpg": "ef57d4508c238dd8c974294730a8b3351161643bbaf100bd375e4239e9a10507",
+    "images/baseline-black-lotus-rotation-155.jpg": "66a5febe382efbf88e855027cc343604d1c91b8bb29a32c3baca0a87dbde2b98",
+    "images/baseline-black-lotus-perspective-1.jpg": "23cd84459c6b4ee3165b76f3915839d6dfab217c4c281dea22ea62cbbaef6b8c",
+    "images/baseline-black-lotus-perspective-2.jpg": "430222d8e58d4334e113b9340de3be0fb63ffbcf372a6e4581f39589cb6b17de",
+    "images/baseline-black-lotus-soft-shadow.jpg": "3d009943d669ce84b55840abf0e1140a13f696b688832a153d1bbe50f732dbab",
+    "images/baseline-black-lotus-blur.jpg": "060805f9defd2ed3189113c1d35ab0922bf879db06f3bb38fd36a0e3d257dc42",
+    "images/baseline-black-lotus-jpeg.jpg": "cdc5ab4e2ae9db4dd879dd3d5a258b1e78b1815d1937a0fdb301f66e02a0ca35",
+    "images/baseline-black-lotus-sensor-noise.jpg": "05ef5c6940e516e5fdef25e2c6f0948c8d6d8dea3612434e50bf0f6ae708bbd6",
+    "images/baseline-sol-ring-background-green.jpg": "ae963bb914ea5ecf7412253587f55b3e0b33e92ee716a8f93294b25e4a10b997",
+    "images/baseline-sol-ring-background-dark.jpg": "51e4ff5d83fad2fa772ab45d1514b03a25ad3d184d1126138b9edbc5b4158188",
+    "images/baseline-sol-ring-background-light.jpg": "eb82ca39f01b7095984ca28324cadbb0d42bafb882837973b714dffc46ad3a37",
+    "images/baseline-sol-ring-rotation-minus42.jpg": "6c0183768d108cc8a2db1e85b749c70ccd8d86ee873356d1f42165135346a2e1",
+    "images/baseline-sol-ring-rotation-minus13.jpg": "e8b6d116d1b04532cf61bc2f9c505df14209e391095fd88c704b5fe9bc3a0b00",
+    "images/baseline-sol-ring-rotation-27.jpg": "66d5d96e052e5bc3b022705c1fafd7982943ddbd5bfb4870c53895bc77621e3f",
+    "images/baseline-sol-ring-rotation-73.jpg": "c3a2654e01ad7b42680658cbbf7cd77449f10c7aa82f93ca544fdde06d879a30",
+    "images/baseline-sol-ring-rotation-155.jpg": "d18f887828cfc2e0b6de296228d1b2ef0e44b0569ae23a4e54526afc875dada2",
+    "images/baseline-sol-ring-perspective-1.jpg": "b88da0741a5a63ca8881f0d8c9bdb12c6113641c44ab44ced9514e4b560e7081",
+    "images/baseline-sol-ring-perspective-2.jpg": "bf8e57f38f448c5ea3a27a3408e58ecb4c03f349c6c3da79500e1806d9659d2f",
+    "images/baseline-sol-ring-soft-shadow.jpg": "342f12d2bb146f7296a45a18d33cf697b1ed6f5daf675930e607ccc6d1672026",
+    "images/baseline-sol-ring-blur.jpg": "9374ca1d801a45b2afff4aff4eeb4a0f98c1d068dab5cf8a182f6f761467d799",
+    "images/baseline-sol-ring-jpeg.jpg": "f35defe2451790d7560117c9db70df374e41f8b3e77a50dcfd0369e1cb2bad5a",
+    "images/baseline-sol-ring-sensor-noise.jpg": "4223eac296ba93c377efe0f13193b2a17fa32f8b0f894f543994bf6ee3ed35c9",
+    "images/baseline-four-cards.jpg": "c06d63f1b8b8b500d5ac6434ef0526bbf370662b371064ac8bb6025603096261",
+    "images/occlusion-corner-top-left.jpg": "b5b1c1428992e0c729313584b5a5eb2447f23fafe07c0597ad62e26f23b100ca",
+    "references/occlusion-corner-top-left-0-lightning-bolt.png": "005d04ca93a864202ace8f882aae73c80878dad3c458e67a7b420e983bb939db",
+    "images/occlusion-corner-top-right.jpg": "d1ba21a0514d673e4eb9bd330935fa5fe45a52b7636575d5f6f0b2d1c6d8bd5d",
+    "references/occlusion-corner-top-right-0-counterspell.png": "ae254b7a5fa648bbeabd95fe964adaaf296d35312f2673ec26ef850a9aa6755c",
+    "images/occlusion-corner-bottom-right.jpg": "c8a8a4d7d2084abc1797f054c045a3f748f115877e7fed14eb603e5c5c83221e",
+    "references/occlusion-corner-bottom-right-0-black-lotus.png": "611947462dbbb3d16a17759656f5ff6bbc563009e9c6a894b57479e808eef95b",
+    "images/occlusion-corner-bottom-left.jpg": "3d4ef5ef18699bdccc584a7d29a5876960d3387fd042cf5ef84c80c6c1a1f322",
+    "references/occlusion-corner-bottom-left-0-sol-ring.png": "d0efd561964a5c324e69497d59ec53f5b1e6b29e2d048bd17aea503b74c4bdfa",
+    "images/occlusion-edge-top.jpg": "e41767bba1c882d51088132871a1cf6fa78aa4ac31388c74be25dacd059a2fb3",
+    "references/occlusion-edge-top-0-lightning-bolt.png": "b71e6d96c0a5c2bf768570200aa979f298af3e37cbd2f1b5d43cb80dec21fb11",
+    "images/occlusion-edge-right.jpg": "f837b159bf32c808203c31e2f032ee5867c94e5a72b29495e7ef545d45fd6d36",
+    "references/occlusion-edge-right-0-counterspell.png": "72858322c872aa2120085b5bf20acfafb24d1a070da8482c5c83793e6b302fc2",
+    "images/occlusion-edge-bottom.jpg": "8a4c0accf54590f6966685dfeba957876f16cea3ef3526ee4a164160b5f7156d",
+    "references/occlusion-edge-bottom-0-black-lotus.png": "ae88231f095967d53a0465a5920a6998df65f9b5f51ae069d1c341d76c8c8204",
+    "images/occlusion-edge-left.jpg": "60722b7d3c96b880ef7bceb8ff26b029b8b76b4d9b513fbe53bc3982160560eb",
+    "references/occlusion-edge-left-0-sol-ring.png": "8573da10304e59fbfbecab8bd5b6cf4f52aa0c9df6a4c4a34690694d8f856aee",
+    "images/occlusion-finger-corner.jpg": "452d03197fc0bb907ff643df2a1fb6bdbb83bb6b1c1f0537d98728a838e228a6",
+    "references/occlusion-finger-corner-0-lightning-bolt.png": "a5129298e447e30a17fc743b6376f06b9bbfb0ccfd8aedd4e88014294dd8746b",
+    "images/occlusion-pen-across-middle.jpg": "43ca6c37c8cb33819c5b64188a36d9189c938d06283a15d8e1995e8240813cb1",
+    "references/occlusion-pen-across-middle-0-counterspell.png": "0c9b7a6da5cd9fdbd40e0649cd892053ee2e129aa653a4417ef9661fc123c5c1",
+    "images/occlusion-two-cards-1.jpg": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
+    "references/occlusion-two-cards-1-0-black-lotus.png": "8fd8cdef7e8b13b035da602369e51eab105a1e18e8d77b9fee90fff4074d2e85",
+    "references/occlusion-two-cards-1-1-sol-ring.png": "bf937f882609dbd01ebab157c9d1e20f359813b9f3c5e432e1032ef4e191815e",
+    "images/occlusion-two-cards-2.jpg": "cc16af8214e70a21007f0ca4e9e853cbc9a8ca927ac403a27b325b5ba886e3be",
+    "references/occlusion-two-cards-2-0-black-lotus.png": "2aea7485849a12c642a39583dce038a099865924a29e10b38eaa2030cc9ed547",
+    "references/occlusion-two-cards-2-1-sol-ring.png": "83746621f1ea5de031a8cafb5eb8f8ec57116e71b07b0ecf58f33d1501de3038",
+    "images/lighting-directional-shadow.jpg": "5873f7f36ae59bdf58008580474c3f74727bdb744dee11c539116c028e6f3313",
+    "references/lighting-directional-shadow-0-black-lotus.png": "8882c0c09522221931f55fa2b2db2ff37723891ec32fb99a5a0e372a3bb8ad87",
+    "images/lighting-warm-dim.jpg": "11d689b27473cf37281fe22f295f41aa47c188289c7764b9daded3457ef292be",
+    "references/lighting-warm-dim-0-sol-ring.png": "3c7618cfc7a69ac12360225c076c81ca963e8c645d90af034ec6a7f7e02f5ac5",
+    "images/lighting-local-glare.jpg": "02d9d76976017e3028bb815cc2ca23f655f0c6d80548533bcb3e7a5eb2b9f304",
+    "references/lighting-local-glare-0-lightning-bolt.png": "8bb187eb1ed1046bbed321005f50ef7366ba4679eda3c6d8120d1a0b51d803d3",
+    "images/blur-gaussian-1-3.jpg": "63384cfeef273043640e530d3472e961b21eb47150ca6ef3b0dd6576c57552b7",
+    "references/blur-gaussian-1-3-0-counterspell.png": "f6fe515db6ef39da3cbb097c2a989cf5d6a34b1708b41d45717933d9aa505432",
+    "images/blur-gaussian-2-1.jpg": "ffd266a1a8145f8f95c6583e38d4f79f1e6b39403b9c82536c8fb62f76a00994",
+    "references/blur-gaussian-2-1-0-counterspell.png": "6e686d8ccbc62c0e01c1f9cdc17c1da561bb14218e0eaa405a533923b7a47120",
+    "images/blur-motion-horizontal.jpg": "ff8fef9141ef2cdcd5fe45e895e6bd75b17fa92c6ec67bcb4ee8ae128d02dbb0",
+    "references/blur-motion-horizontal-0-sol-ring.png": "882f43302a9387cd04af636f6b31c7641880ce6e45fc123128ea33eb15272092",
+    "images/low-contrast-dark-surface.jpg": "3c0f32fe1f5805083d7965321e231a24d4d4b47723743a433f90322f9203f595",
+    "references/low-contrast-dark-surface-0-black-lotus.png": "e9c4ca58970c2836d730a60ebfcb07e3fff676a78294c5af212d4b24eaebba0c",
+    "images/clutter-checker-surface.jpg": "50106603105dd4a1e46d33173379d8ff78b827d6a27e7f548ad1c4bee2e61e27",
+    "references/clutter-checker-surface-0-lightning-bolt.png": "8326411d286e05e7ce9d4c943958e1a8719ae767a65eee6a42a80d0c2cd5f128",
+    "images/clutter-wood-surface.jpg": "6f779c3dd3b5b60d4b5f72bb3dd8aa315ecb45b15a64613c803947e553de1e55",
+    "references/clutter-wood-surface-0-lightning-bolt.png": "16484322cbdcab9a9206456905814ca63dcb1f8e97eff992445662c1b0b88cb1",
+    "images/perspective-steep-1.jpg": "d2a042cc3d474459714509a76ee81bd977cb6494d39b6ae530a80fcf79c4a7d7",
+    "references/perspective-steep-1-0-counterspell.png": "bf35a374cbbaf3001bbb798e47348d1b6cc044822f3dbffaeaaf5352b2caf625",
+    "images/perspective-steep-2.jpg": "7bd440f9cff8d3fd666d84fc844b8b8803d2943ffb91713ceaa7bf78f7cf0a63",
+    "references/perspective-steep-2-0-counterspell.png": "afa3903ce0e8a670d1da8b246d9d30bee5c4eb564a6650253a2bfd98d6824bf7",
+    "images/frame-clipped-left.jpg": "dd33bc88614c82244e23fb3ce6d523fa1d28e3f81b2c656df73f68d661e86e8d",
+    "references/frame-clipped-left-0-sol-ring.png": "912675d8cb8b0f07ff478c75afb0c5ae252531637dcb24253eead8fdd095d0cc",
+    "images/negative-empty-table.jpg": "1e448536a250f9d94c061966768ad8c43e86c6c003c5e2255d7328ce1434e7f6",
+    "images/negative-poker-chip.jpg": "6a2a6921ffde5d6b2dd8be423a52a638fcefad24101c5df15194b980568769ae",
+    "images/negative-finger.jpg": "092327fc4cd7d2de014c9ed84939df6bae4ae0edc90acd58a6ec27b567410d61",
+    "images/negative-phone.jpg": "15af932a4c93f5293a8e0429c3b54cb78f552e5413ebff7fbacd6337d73d4208",
+    "images/negative-square-paper.jpg": "aefd0af27566fa2b62ef51a5b3545a125f57cfa67bb1a1eb8d71714e63d3241c",
+    "images/negative-triangle-paper.jpg": "7101d3def5da5a87d6397c43d318e172ea76e41ff50a6a9e373d6cb12c442af8",
+    "images/negative-deep-notched-paper.jpg": "5db78d07116fa91594c2f71dd2a63c56ba019ae880978eecdd6bb38868d36b2d",
+    "images/negative-receipt.jpg": "56f626794a8a6982f14ee78ea9f701ab968dc0e405be2e3ac51526cef07e3389"
+  },
+  "scenes": [
+    {
+      "id": "baseline-lightning-bolt-background-green",
+      "file": "images/baseline-lightning-bolt-background-green.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt background green",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-background-green",
+        "tier": "regression",
+        "description": "baseline lightning bolt background green",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-background-dark",
+      "file": "images/baseline-lightning-bolt-background-dark.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt background dark",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-background-dark",
+        "tier": "regression",
+        "description": "baseline lightning bolt background dark",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-background-light",
+      "file": "images/baseline-lightning-bolt-background-light.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt background light",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-background-light",
+        "tier": "regression",
+        "description": "baseline lightning bolt background light",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            210,
+            210,
+            205
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-rotation-minus42",
+      "file": "images/baseline-lightning-bolt-rotation-minus42.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt rotation minus42",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              168.8065093058184,
+              226.58550656214558
+            ],
+            [
+              302.57257789174935,
+              106.1419974175511
+            ],
+            [
+              471.1934906941816,
+              293.4144934378544
+            ],
+            [
+              337.42742210825065,
+              413.8580025824489
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-rotation-minus42",
+        "tier": "regression",
+        "description": "baseline lightning bolt rotation minus42",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                168.8065093058184,
+                226.58550656214558
+              ],
+              [
+                302.57257789174935,
+                106.1419974175511
+              ],
+              [
+                471.1934906941816,
+                293.4144934378544
+              ],
+              [
+                337.42742210825065,
+                413.8580025824489
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-rotation-minus13",
+      "file": "images/baseline-lightning-bolt-rotation-minus13.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt rotation minus13",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              203.96286132200183,
+              157.47496672800824
+            ],
+            [
+              379.3494729833442,
+              116.98377694611253
+            ],
+            [
+              436.0371386779982,
+              362.5250332719918
+            ],
+            [
+              260.6505270166558,
+              403.01622305388753
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-rotation-minus13",
+        "tier": "regression",
+        "description": "baseline lightning bolt rotation minus13",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                203.96286132200183,
+                157.47496672800824
+              ],
+              [
+                379.3494729833442,
+                116.98377694611253
+              ],
+              [
+                436.0371386779982,
+                362.5250332719918
+              ],
+              [
+                260.6505270166558,
+                403.01622305388753
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-rotation-27",
+      "file": "images/baseline-lightning-bolt-rotation-27.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt rotation 27",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              297.0122157902298,
+              106.87403297570646
+            ],
+            [
+              457.393390144136,
+              188.59232292882487
+            ],
+            [
+              342.9877842097702,
+              413.1259670242936
+            ],
+            [
+              182.606609855864,
+              331.40767707117516
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-rotation-27",
+        "tier": "regression",
+        "description": "baseline lightning bolt rotation 27",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                297.0122157902298,
+                106.87403297570646
+              ],
+              [
+                457.393390144136,
+                188.59232292882487
+              ],
+              [
+                342.9877842097702,
+                413.1259670242936
+              ],
+              [
+                182.606609855864,
+                331.40767707117516
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-rotation-73",
+      "file": "images/baseline-lightning-bolt-rotation-73.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt rotation 73",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              414.1809458262961,
+              137.09373716826198
+            ],
+            [
+              466.80785267638873,
+              309.22859324160834
+            ],
+            [
+              225.81905417370385,
+              382.906262831738
+            ],
+            [
+              173.19214732361124,
+              210.77140675839163
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-rotation-73",
+        "tier": "regression",
+        "description": "baseline lightning bolt rotation 73",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                414.1809458262961,
+                137.09373716826198
+              ],
+              [
+                466.80785267638873,
+                309.22859324160834
+              ],
+              [
+                225.81905417370385,
+                382.906262831738
+              ],
+              [
+                173.19214732361124,
+                210.77140675839163
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-rotation-155",
+      "file": "images/baseline-lightning-bolt-rotation-155.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt rotation 155",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              454.8176018126266,
+              336.1591376099549
+            ],
+            [
+              291.68220014602963,
+              412.2304247232808
+            ],
+            [
+              185.1823981873734,
+              183.84086239004506
+            ],
+            [
+              348.31779985397037,
+              107.76957527671917
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-rotation-155",
+        "tier": "regression",
+        "description": "baseline lightning bolt rotation 155",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                454.8176018126266,
+                336.1591376099549
+              ],
+              [
+                291.68220014602963,
+                412.2304247232808
+              ],
+              [
+                185.1823981873734,
+                183.84086239004506
+              ],
+              [
+                348.31779985397037,
+                107.76957527671917
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-perspective-1",
+      "file": "images/baseline-lightning-bolt-perspective-1.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt perspective 1",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230,
+              120
+            ],
+            [
+              405,
+              140
+            ],
+            [
+              420,
+              390
+            ],
+            [
+              210,
+              370
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-perspective-1",
+        "tier": "regression",
+        "description": "baseline lightning bolt perspective 1",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230,
+                120
+              ],
+              [
+                405,
+                140
+              ],
+              [
+                420,
+                390
+              ],
+              [
+                210,
+                370
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-perspective-2",
+      "file": "images/baseline-lightning-bolt-perspective-2.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt perspective 2",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              240,
+              120
+            ],
+            [
+              410,
+              100
+            ],
+            [
+              390,
+              380
+            ],
+            [
+              220,
+              360
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-perspective-2",
+        "tier": "regression",
+        "description": "baseline lightning bolt perspective 2",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                240,
+                120
+              ],
+              [
+                410,
+                100
+              ],
+              [
+                390,
+                380
+              ],
+              [
+                220,
+                360
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-soft-shadow",
+      "file": "images/baseline-lightning-bolt-soft-shadow.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt soft shadow",
+      "tags": [
+        "baseline",
+        "shadow",
+        "lighting"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              270.77140675839166,
+              113.19214732361124
+            ],
+            [
+              442.906262831738,
+              165.81905417370385
+            ],
+            [
+              369.22859324160834,
+              406.80785267638873
+            ],
+            [
+              197.09373716826198,
+              354.1809458262961
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-soft-shadow",
+        "tier": "regression",
+        "description": "baseline lightning bolt soft shadow",
+        "tags": [
+          "baseline",
+          "shadow",
+          "lighting"
+        ],
+        "background": {
+          "kind": "gradient",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                270.77140675839166,
+                113.19214732361124
+              ],
+              [
+                442.906262831738,
+                165.81905417370385
+              ],
+              [
+                369.22859324160834,
+                406.80785267638873
+              ],
+              [
+                197.09373716826198,
+                354.1809458262961
+              ]
+            ]
+          }
+        ],
+        "shadows": [
+          {
+            "corners": [
+              [
+                276.77140675839166,
+                121.19214732361124
+              ],
+              [
+                448.906262831738,
+                173.81905417370385
+              ],
+              [
+                375.22859324160834,
+                414.80785267638873
+              ],
+              [
+                203.09373716826198,
+                362.1809458262961
+              ]
+            ],
+            "radius": 2,
+            "color": [
+              30,
+              45,
+              35,
+              75
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-blur",
+      "file": "images/baseline-lightning-bolt-blur.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt blur",
+      "tags": [
+        "baseline",
+        "blur"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-blur",
+        "tier": "regression",
+        "description": "baseline lightning bolt blur",
+        "tags": [
+          "baseline",
+          "blur"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "gaussian_blur",
+            "radius": 0.65
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-jpeg",
+      "file": "images/baseline-lightning-bolt-jpeg.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt jpeg",
+      "tags": [
+        "baseline",
+        "jpeg"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-jpeg",
+        "tier": "regression",
+        "description": "baseline lightning bolt jpeg",
+        "tags": [
+          "baseline",
+          "jpeg"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "jpeg_roundtrip",
+            "quality": 78
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-lightning-bolt-sensor-noise",
+      "file": "images/baseline-lightning-bolt-sensor-noise.jpg",
+      "tier": "regression",
+      "description": "baseline lightning bolt sensor noise",
+      "tags": [
+        "baseline",
+        "noise"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              248.4116845342269,
+              122.70064425215627
+            ],
+            [
+              426.6599369077096,
+              147.75180242496805
+            ],
+            [
+              391.5883154657731,
+              397.2993557478438
+            ],
+            [
+              213.34006309229042,
+              372.24819757503195
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-lightning-bolt-sensor-noise",
+        "tier": "regression",
+        "description": "baseline lightning bolt sensor noise",
+        "tags": [
+          "baseline",
+          "noise"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                248.4116845342269,
+                122.70064425215627
+              ],
+              [
+                426.6599369077096,
+                147.75180242496805
+              ],
+              [
+                391.5883154657731,
+                397.2993557478438
+              ],
+              [
+                213.34006309229042,
+                372.24819757503195
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "noise",
+            "amplitude": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-background-green",
+      "file": "images/baseline-counterspell-background-green.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell background green",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-background-green",
+        "tier": "regression",
+        "description": "baseline counterspell background green",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-background-dark",
+      "file": "images/baseline-counterspell-background-dark.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell background dark",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-background-dark",
+        "tier": "regression",
+        "description": "baseline counterspell background dark",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-background-light",
+      "file": "images/baseline-counterspell-background-light.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell background light",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-background-light",
+        "tier": "regression",
+        "description": "baseline counterspell background light",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            210,
+            210,
+            205
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-rotation-minus42",
+      "file": "images/baseline-counterspell-rotation-minus42.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell rotation minus42",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              168.8065093058184,
+              226.58550656214558
+            ],
+            [
+              302.57257789174935,
+              106.1419974175511
+            ],
+            [
+              471.1934906941816,
+              293.4144934378544
+            ],
+            [
+              337.42742210825065,
+              413.8580025824489
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-rotation-minus42",
+        "tier": "regression",
+        "description": "baseline counterspell rotation minus42",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                168.8065093058184,
+                226.58550656214558
+              ],
+              [
+                302.57257789174935,
+                106.1419974175511
+              ],
+              [
+                471.1934906941816,
+                293.4144934378544
+              ],
+              [
+                337.42742210825065,
+                413.8580025824489
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-rotation-minus13",
+      "file": "images/baseline-counterspell-rotation-minus13.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell rotation minus13",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              203.96286132200183,
+              157.47496672800824
+            ],
+            [
+              379.3494729833442,
+              116.98377694611253
+            ],
+            [
+              436.0371386779982,
+              362.5250332719918
+            ],
+            [
+              260.6505270166558,
+              403.01622305388753
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-rotation-minus13",
+        "tier": "regression",
+        "description": "baseline counterspell rotation minus13",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                203.96286132200183,
+                157.47496672800824
+              ],
+              [
+                379.3494729833442,
+                116.98377694611253
+              ],
+              [
+                436.0371386779982,
+                362.5250332719918
+              ],
+              [
+                260.6505270166558,
+                403.01622305388753
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-rotation-27",
+      "file": "images/baseline-counterspell-rotation-27.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell rotation 27",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              297.0122157902298,
+              106.87403297570646
+            ],
+            [
+              457.393390144136,
+              188.59232292882487
+            ],
+            [
+              342.9877842097702,
+              413.1259670242936
+            ],
+            [
+              182.606609855864,
+              331.40767707117516
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-rotation-27",
+        "tier": "regression",
+        "description": "baseline counterspell rotation 27",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                297.0122157902298,
+                106.87403297570646
+              ],
+              [
+                457.393390144136,
+                188.59232292882487
+              ],
+              [
+                342.9877842097702,
+                413.1259670242936
+              ],
+              [
+                182.606609855864,
+                331.40767707117516
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-rotation-73",
+      "file": "images/baseline-counterspell-rotation-73.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell rotation 73",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              414.1809458262961,
+              137.09373716826198
+            ],
+            [
+              466.80785267638873,
+              309.22859324160834
+            ],
+            [
+              225.81905417370385,
+              382.906262831738
+            ],
+            [
+              173.19214732361124,
+              210.77140675839163
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-rotation-73",
+        "tier": "regression",
+        "description": "baseline counterspell rotation 73",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                414.1809458262961,
+                137.09373716826198
+              ],
+              [
+                466.80785267638873,
+                309.22859324160834
+              ],
+              [
+                225.81905417370385,
+                382.906262831738
+              ],
+              [
+                173.19214732361124,
+                210.77140675839163
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-rotation-155",
+      "file": "images/baseline-counterspell-rotation-155.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell rotation 155",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              454.8176018126266,
+              336.1591376099549
+            ],
+            [
+              291.68220014602963,
+              412.2304247232808
+            ],
+            [
+              185.1823981873734,
+              183.84086239004506
+            ],
+            [
+              348.31779985397037,
+              107.76957527671917
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-rotation-155",
+        "tier": "regression",
+        "description": "baseline counterspell rotation 155",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                454.8176018126266,
+                336.1591376099549
+              ],
+              [
+                291.68220014602963,
+                412.2304247232808
+              ],
+              [
+                185.1823981873734,
+                183.84086239004506
+              ],
+              [
+                348.31779985397037,
+                107.76957527671917
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-perspective-1",
+      "file": "images/baseline-counterspell-perspective-1.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell perspective 1",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230,
+              120
+            ],
+            [
+              405,
+              140
+            ],
+            [
+              420,
+              390
+            ],
+            [
+              210,
+              370
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-perspective-1",
+        "tier": "regression",
+        "description": "baseline counterspell perspective 1",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230,
+                120
+              ],
+              [
+                405,
+                140
+              ],
+              [
+                420,
+                390
+              ],
+              [
+                210,
+                370
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-perspective-2",
+      "file": "images/baseline-counterspell-perspective-2.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell perspective 2",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              240,
+              120
+            ],
+            [
+              410,
+              100
+            ],
+            [
+              390,
+              380
+            ],
+            [
+              220,
+              360
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-perspective-2",
+        "tier": "regression",
+        "description": "baseline counterspell perspective 2",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                240,
+                120
+              ],
+              [
+                410,
+                100
+              ],
+              [
+                390,
+                380
+              ],
+              [
+                220,
+                360
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-soft-shadow",
+      "file": "images/baseline-counterspell-soft-shadow.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell soft shadow",
+      "tags": [
+        "baseline",
+        "shadow",
+        "lighting"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              270.77140675839166,
+              113.19214732361124
+            ],
+            [
+              442.906262831738,
+              165.81905417370385
+            ],
+            [
+              369.22859324160834,
+              406.80785267638873
+            ],
+            [
+              197.09373716826198,
+              354.1809458262961
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-soft-shadow",
+        "tier": "regression",
+        "description": "baseline counterspell soft shadow",
+        "tags": [
+          "baseline",
+          "shadow",
+          "lighting"
+        ],
+        "background": {
+          "kind": "gradient",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                270.77140675839166,
+                113.19214732361124
+              ],
+              [
+                442.906262831738,
+                165.81905417370385
+              ],
+              [
+                369.22859324160834,
+                406.80785267638873
+              ],
+              [
+                197.09373716826198,
+                354.1809458262961
+              ]
+            ]
+          }
+        ],
+        "shadows": [
+          {
+            "corners": [
+              [
+                276.77140675839166,
+                121.19214732361124
+              ],
+              [
+                448.906262831738,
+                173.81905417370385
+              ],
+              [
+                375.22859324160834,
+                414.80785267638873
+              ],
+              [
+                203.09373716826198,
+                362.1809458262961
+              ]
+            ],
+            "radius": 2,
+            "color": [
+              30,
+              45,
+              35,
+              75
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-blur",
+      "file": "images/baseline-counterspell-blur.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell blur",
+      "tags": [
+        "baseline",
+        "blur"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-blur",
+        "tier": "regression",
+        "description": "baseline counterspell blur",
+        "tags": [
+          "baseline",
+          "blur"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "gaussian_blur",
+            "radius": 0.65
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-jpeg",
+      "file": "images/baseline-counterspell-jpeg.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell jpeg",
+      "tags": [
+        "baseline",
+        "jpeg"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-jpeg",
+        "tier": "regression",
+        "description": "baseline counterspell jpeg",
+        "tags": [
+          "baseline",
+          "jpeg"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "jpeg_roundtrip",
+            "quality": 78
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-counterspell-sensor-noise",
+      "file": "images/baseline-counterspell-sensor-noise.jpg",
+      "tier": "regression",
+      "description": "baseline counterspell sensor noise",
+      "tags": [
+        "baseline",
+        "noise"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              248.4116845342269,
+              122.70064425215627
+            ],
+            [
+              426.6599369077096,
+              147.75180242496805
+            ],
+            [
+              391.5883154657731,
+              397.2993557478438
+            ],
+            [
+              213.34006309229042,
+              372.24819757503195
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-counterspell-sensor-noise",
+        "tier": "regression",
+        "description": "baseline counterspell sensor noise",
+        "tags": [
+          "baseline",
+          "noise"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                248.4116845342269,
+                122.70064425215627
+              ],
+              [
+                426.6599369077096,
+                147.75180242496805
+              ],
+              [
+                391.5883154657731,
+                397.2993557478438
+              ],
+              [
+                213.34006309229042,
+                372.24819757503195
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "noise",
+            "amplitude": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-background-green",
+      "file": "images/baseline-black-lotus-background-green.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus background green",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-background-green",
+        "tier": "regression",
+        "description": "baseline black lotus background green",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-background-dark",
+      "file": "images/baseline-black-lotus-background-dark.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus background dark",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-background-dark",
+        "tier": "regression",
+        "description": "baseline black lotus background dark",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-background-light",
+      "file": "images/baseline-black-lotus-background-light.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus background light",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-background-light",
+        "tier": "regression",
+        "description": "baseline black lotus background light",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            210,
+            210,
+            205
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-rotation-minus42",
+      "file": "images/baseline-black-lotus-rotation-minus42.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus rotation minus42",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              168.8065093058184,
+              226.58550656214558
+            ],
+            [
+              302.57257789174935,
+              106.1419974175511
+            ],
+            [
+              471.1934906941816,
+              293.4144934378544
+            ],
+            [
+              337.42742210825065,
+              413.8580025824489
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-rotation-minus42",
+        "tier": "regression",
+        "description": "baseline black lotus rotation minus42",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                168.8065093058184,
+                226.58550656214558
+              ],
+              [
+                302.57257789174935,
+                106.1419974175511
+              ],
+              [
+                471.1934906941816,
+                293.4144934378544
+              ],
+              [
+                337.42742210825065,
+                413.8580025824489
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-rotation-minus13",
+      "file": "images/baseline-black-lotus-rotation-minus13.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus rotation minus13",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              203.96286132200183,
+              157.47496672800824
+            ],
+            [
+              379.3494729833442,
+              116.98377694611253
+            ],
+            [
+              436.0371386779982,
+              362.5250332719918
+            ],
+            [
+              260.6505270166558,
+              403.01622305388753
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-rotation-minus13",
+        "tier": "regression",
+        "description": "baseline black lotus rotation minus13",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                203.96286132200183,
+                157.47496672800824
+              ],
+              [
+                379.3494729833442,
+                116.98377694611253
+              ],
+              [
+                436.0371386779982,
+                362.5250332719918
+              ],
+              [
+                260.6505270166558,
+                403.01622305388753
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-rotation-27",
+      "file": "images/baseline-black-lotus-rotation-27.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus rotation 27",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              297.0122157902298,
+              106.87403297570646
+            ],
+            [
+              457.393390144136,
+              188.59232292882487
+            ],
+            [
+              342.9877842097702,
+              413.1259670242936
+            ],
+            [
+              182.606609855864,
+              331.40767707117516
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-rotation-27",
+        "tier": "regression",
+        "description": "baseline black lotus rotation 27",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                297.0122157902298,
+                106.87403297570646
+              ],
+              [
+                457.393390144136,
+                188.59232292882487
+              ],
+              [
+                342.9877842097702,
+                413.1259670242936
+              ],
+              [
+                182.606609855864,
+                331.40767707117516
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-rotation-73",
+      "file": "images/baseline-black-lotus-rotation-73.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus rotation 73",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              414.1809458262961,
+              137.09373716826198
+            ],
+            [
+              466.80785267638873,
+              309.22859324160834
+            ],
+            [
+              225.81905417370385,
+              382.906262831738
+            ],
+            [
+              173.19214732361124,
+              210.77140675839163
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-rotation-73",
+        "tier": "regression",
+        "description": "baseline black lotus rotation 73",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                414.1809458262961,
+                137.09373716826198
+              ],
+              [
+                466.80785267638873,
+                309.22859324160834
+              ],
+              [
+                225.81905417370385,
+                382.906262831738
+              ],
+              [
+                173.19214732361124,
+                210.77140675839163
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-rotation-155",
+      "file": "images/baseline-black-lotus-rotation-155.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus rotation 155",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              454.8176018126266,
+              336.1591376099549
+            ],
+            [
+              291.68220014602963,
+              412.2304247232808
+            ],
+            [
+              185.1823981873734,
+              183.84086239004506
+            ],
+            [
+              348.31779985397037,
+              107.76957527671917
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-rotation-155",
+        "tier": "regression",
+        "description": "baseline black lotus rotation 155",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                454.8176018126266,
+                336.1591376099549
+              ],
+              [
+                291.68220014602963,
+                412.2304247232808
+              ],
+              [
+                185.1823981873734,
+                183.84086239004506
+              ],
+              [
+                348.31779985397037,
+                107.76957527671917
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-perspective-1",
+      "file": "images/baseline-black-lotus-perspective-1.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus perspective 1",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230,
+              120
+            ],
+            [
+              405,
+              140
+            ],
+            [
+              420,
+              390
+            ],
+            [
+              210,
+              370
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-perspective-1",
+        "tier": "regression",
+        "description": "baseline black lotus perspective 1",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                230,
+                120
+              ],
+              [
+                405,
+                140
+              ],
+              [
+                420,
+                390
+              ],
+              [
+                210,
+                370
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-perspective-2",
+      "file": "images/baseline-black-lotus-perspective-2.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus perspective 2",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              240,
+              120
+            ],
+            [
+              410,
+              100
+            ],
+            [
+              390,
+              380
+            ],
+            [
+              220,
+              360
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-perspective-2",
+        "tier": "regression",
+        "description": "baseline black lotus perspective 2",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                240,
+                120
+              ],
+              [
+                410,
+                100
+              ],
+              [
+                390,
+                380
+              ],
+              [
+                220,
+                360
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-soft-shadow",
+      "file": "images/baseline-black-lotus-soft-shadow.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus soft shadow",
+      "tags": [
+        "baseline",
+        "shadow",
+        "lighting"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              270.77140675839166,
+              113.19214732361124
+            ],
+            [
+              442.906262831738,
+              165.81905417370385
+            ],
+            [
+              369.22859324160834,
+              406.80785267638873
+            ],
+            [
+              197.09373716826198,
+              354.1809458262961
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-soft-shadow",
+        "tier": "regression",
+        "description": "baseline black lotus soft shadow",
+        "tags": [
+          "baseline",
+          "shadow",
+          "lighting"
+        ],
+        "background": {
+          "kind": "gradient",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                270.77140675839166,
+                113.19214732361124
+              ],
+              [
+                442.906262831738,
+                165.81905417370385
+              ],
+              [
+                369.22859324160834,
+                406.80785267638873
+              ],
+              [
+                197.09373716826198,
+                354.1809458262961
+              ]
+            ]
+          }
+        ],
+        "shadows": [
+          {
+            "corners": [
+              [
+                276.77140675839166,
+                121.19214732361124
+              ],
+              [
+                448.906262831738,
+                173.81905417370385
+              ],
+              [
+                375.22859324160834,
+                414.80785267638873
+              ],
+              [
+                203.09373716826198,
+                362.1809458262961
+              ]
+            ],
+            "radius": 2,
+            "color": [
+              30,
+              45,
+              35,
+              75
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-blur",
+      "file": "images/baseline-black-lotus-blur.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus blur",
+      "tags": [
+        "baseline",
+        "blur"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-blur",
+        "tier": "regression",
+        "description": "baseline black lotus blur",
+        "tags": [
+          "baseline",
+          "blur"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "gaussian_blur",
+            "radius": 0.65
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-jpeg",
+      "file": "images/baseline-black-lotus-jpeg.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus jpeg",
+      "tags": [
+        "baseline",
+        "jpeg"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-jpeg",
+        "tier": "regression",
+        "description": "baseline black lotus jpeg",
+        "tags": [
+          "baseline",
+          "jpeg"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "jpeg_roundtrip",
+            "quality": 78
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-black-lotus-sensor-noise",
+      "file": "images/baseline-black-lotus-sensor-noise.jpg",
+      "tier": "regression",
+      "description": "baseline black lotus sensor noise",
+      "tags": [
+        "baseline",
+        "noise"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              248.4116845342269,
+              122.70064425215627
+            ],
+            [
+              426.6599369077096,
+              147.75180242496805
+            ],
+            [
+              391.5883154657731,
+              397.2993557478438
+            ],
+            [
+              213.34006309229042,
+              372.24819757503195
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-black-lotus-sensor-noise",
+        "tier": "regression",
+        "description": "baseline black lotus sensor noise",
+        "tags": [
+          "baseline",
+          "noise"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                248.4116845342269,
+                122.70064425215627
+              ],
+              [
+                426.6599369077096,
+                147.75180242496805
+              ],
+              [
+                391.5883154657731,
+                397.2993557478438
+              ],
+              [
+                213.34006309229042,
+                372.24819757503195
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "noise",
+            "amplitude": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-background-green",
+      "file": "images/baseline-sol-ring-background-green.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring background green",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-background-green",
+        "tier": "regression",
+        "description": "baseline sol ring background green",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-background-dark",
+      "file": "images/baseline-sol-ring-background-dark.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring background dark",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-background-dark",
+        "tier": "regression",
+        "description": "baseline sol ring background dark",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            24,
+            60,
+            39
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-background-light",
+      "file": "images/baseline-sol-ring-background-light.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring background light",
+      "tags": [
+        "baseline",
+        "background"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-background-light",
+        "tier": "regression",
+        "description": "baseline sol ring background light",
+        "tags": [
+          "baseline",
+          "background"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            210,
+            210,
+            205
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-rotation-minus42",
+      "file": "images/baseline-sol-ring-rotation-minus42.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring rotation minus42",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              168.8065093058184,
+              226.58550656214558
+            ],
+            [
+              302.57257789174935,
+              106.1419974175511
+            ],
+            [
+              471.1934906941816,
+              293.4144934378544
+            ],
+            [
+              337.42742210825065,
+              413.8580025824489
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-rotation-minus42",
+        "tier": "regression",
+        "description": "baseline sol ring rotation minus42",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                168.8065093058184,
+                226.58550656214558
+              ],
+              [
+                302.57257789174935,
+                106.1419974175511
+              ],
+              [
+                471.1934906941816,
+                293.4144934378544
+              ],
+              [
+                337.42742210825065,
+                413.8580025824489
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-rotation-minus13",
+      "file": "images/baseline-sol-ring-rotation-minus13.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring rotation minus13",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              203.96286132200183,
+              157.47496672800824
+            ],
+            [
+              379.3494729833442,
+              116.98377694611253
+            ],
+            [
+              436.0371386779982,
+              362.5250332719918
+            ],
+            [
+              260.6505270166558,
+              403.01622305388753
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-rotation-minus13",
+        "tier": "regression",
+        "description": "baseline sol ring rotation minus13",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                203.96286132200183,
+                157.47496672800824
+              ],
+              [
+                379.3494729833442,
+                116.98377694611253
+              ],
+              [
+                436.0371386779982,
+                362.5250332719918
+              ],
+              [
+                260.6505270166558,
+                403.01622305388753
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-rotation-27",
+      "file": "images/baseline-sol-ring-rotation-27.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring rotation 27",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              297.0122157902298,
+              106.87403297570646
+            ],
+            [
+              457.393390144136,
+              188.59232292882487
+            ],
+            [
+              342.9877842097702,
+              413.1259670242936
+            ],
+            [
+              182.606609855864,
+              331.40767707117516
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-rotation-27",
+        "tier": "regression",
+        "description": "baseline sol ring rotation 27",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                297.0122157902298,
+                106.87403297570646
+              ],
+              [
+                457.393390144136,
+                188.59232292882487
+              ],
+              [
+                342.9877842097702,
+                413.1259670242936
+              ],
+              [
+                182.606609855864,
+                331.40767707117516
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-rotation-73",
+      "file": "images/baseline-sol-ring-rotation-73.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring rotation 73",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              414.1809458262961,
+              137.09373716826198
+            ],
+            [
+              466.80785267638873,
+              309.22859324160834
+            ],
+            [
+              225.81905417370385,
+              382.906262831738
+            ],
+            [
+              173.19214732361124,
+              210.77140675839163
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-rotation-73",
+        "tier": "regression",
+        "description": "baseline sol ring rotation 73",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                414.1809458262961,
+                137.09373716826198
+              ],
+              [
+                466.80785267638873,
+                309.22859324160834
+              ],
+              [
+                225.81905417370385,
+                382.906262831738
+              ],
+              [
+                173.19214732361124,
+                210.77140675839163
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-rotation-155",
+      "file": "images/baseline-sol-ring-rotation-155.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring rotation 155",
+      "tags": [
+        "baseline",
+        "rotation"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              454.8176018126266,
+              336.1591376099549
+            ],
+            [
+              291.68220014602963,
+              412.2304247232808
+            ],
+            [
+              185.1823981873734,
+              183.84086239004506
+            ],
+            [
+              348.31779985397037,
+              107.76957527671917
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-rotation-155",
+        "tier": "regression",
+        "description": "baseline sol ring rotation 155",
+        "tags": [
+          "baseline",
+          "rotation"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                454.8176018126266,
+                336.1591376099549
+              ],
+              [
+                291.68220014602963,
+                412.2304247232808
+              ],
+              [
+                185.1823981873734,
+                183.84086239004506
+              ],
+              [
+                348.31779985397037,
+                107.76957527671917
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-perspective-1",
+      "file": "images/baseline-sol-ring-perspective-1.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring perspective 1",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230,
+              120
+            ],
+            [
+              405,
+              140
+            ],
+            [
+              420,
+              390
+            ],
+            [
+              210,
+              370
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-perspective-1",
+        "tier": "regression",
+        "description": "baseline sol ring perspective 1",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                230,
+                120
+              ],
+              [
+                405,
+                140
+              ],
+              [
+                420,
+                390
+              ],
+              [
+                210,
+                370
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-perspective-2",
+      "file": "images/baseline-sol-ring-perspective-2.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring perspective 2",
+      "tags": [
+        "baseline",
+        "perspective"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              240,
+              120
+            ],
+            [
+              410,
+              100
+            ],
+            [
+              390,
+              380
+            ],
+            [
+              220,
+              360
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-perspective-2",
+        "tier": "regression",
+        "description": "baseline sol ring perspective 2",
+        "tags": [
+          "baseline",
+          "perspective"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                240,
+                120
+              ],
+              [
+                410,
+                100
+              ],
+              [
+                390,
+                380
+              ],
+              [
+                220,
+                360
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-soft-shadow",
+      "file": "images/baseline-sol-ring-soft-shadow.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring soft shadow",
+      "tags": [
+        "baseline",
+        "shadow",
+        "lighting"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              270.77140675839166,
+              113.19214732361124
+            ],
+            [
+              442.906262831738,
+              165.81905417370385
+            ],
+            [
+              369.22859324160834,
+              406.80785267638873
+            ],
+            [
+              197.09373716826198,
+              354.1809458262961
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-soft-shadow",
+        "tier": "regression",
+        "description": "baseline sol ring soft shadow",
+        "tags": [
+          "baseline",
+          "shadow",
+          "lighting"
+        ],
+        "background": {
+          "kind": "gradient",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                270.77140675839166,
+                113.19214732361124
+              ],
+              [
+                442.906262831738,
+                165.81905417370385
+              ],
+              [
+                369.22859324160834,
+                406.80785267638873
+              ],
+              [
+                197.09373716826198,
+                354.1809458262961
+              ]
+            ]
+          }
+        ],
+        "shadows": [
+          {
+            "corners": [
+              [
+                276.77140675839166,
+                121.19214732361124
+              ],
+              [
+                448.906262831738,
+                173.81905417370385
+              ],
+              [
+                375.22859324160834,
+                414.80785267638873
+              ],
+              [
+                203.09373716826198,
+                362.1809458262961
+              ]
+            ],
+            "radius": 2,
+            "color": [
+              30,
+              45,
+              35,
+              75
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-blur",
+      "file": "images/baseline-sol-ring-blur.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring blur",
+      "tags": [
+        "baseline",
+        "blur"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-blur",
+        "tier": "regression",
+        "description": "baseline sol ring blur",
+        "tags": [
+          "baseline",
+          "blur"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "gaussian_blur",
+            "radius": 0.65
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-jpeg",
+      "file": "images/baseline-sol-ring-jpeg.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring jpeg",
+      "tags": [
+        "baseline",
+        "jpeg"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-jpeg",
+        "tier": "regression",
+        "description": "baseline sol ring jpeg",
+        "tags": [
+          "baseline",
+          "jpeg"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "jpeg_roundtrip",
+            "quality": 78
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-sol-ring-sensor-noise",
+      "file": "images/baseline-sol-ring-sensor-noise.jpg",
+      "tier": "regression",
+      "description": "baseline sol ring sensor noise",
+      "tags": [
+        "baseline",
+        "noise"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              248.4116845342269,
+              122.70064425215627
+            ],
+            [
+              426.6599369077096,
+              147.75180242496805
+            ],
+            [
+              391.5883154657731,
+              397.2993557478438
+            ],
+            [
+              213.34006309229042,
+              372.24819757503195
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "baseline-sol-ring-sensor-noise",
+        "tier": "regression",
+        "description": "baseline sol ring sensor noise",
+        "tags": [
+          "baseline",
+          "noise"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                248.4116845342269,
+                122.70064425215627
+              ],
+              [
+                426.6599369077096,
+                147.75180242496805
+              ],
+              [
+                391.5883154657731,
+                397.2993557478438
+              ],
+              [
+                213.34006309229042,
+                372.24819757503195
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "noise",
+            "amplitude": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseline-four-cards",
+      "file": "images/baseline-four-cards.jpg",
+      "tier": "regression",
+      "description": "baseline four cards",
+      "tags": [
+        "baseline",
+        "multiple-cards"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              82.96782334443196,
+              53.931857306921344
+            ],
+            [
+              211.7026722808361,
+              35.83935418211284
+            ],
+            [
+              237.03217665556804,
+              216.06814269307864
+            ],
+            [
+              108.29732771916389,
+              234.16064581788714
+            ]
+          ],
+          "visible_fraction": 1.0
+        },
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              425.34036981671875,
+              32.47430843006933
+            ],
+            [
+              552.4995579121135,
+              59.50282823637805
+            ],
+            [
+              514.6596301832813,
+              237.5256915699307
+            ],
+            [
+              387.50044208788654,
+              210.49717176362196
+            ]
+          ],
+          "visible_fraction": 1.0
+        },
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              110.03579417997705,
+              284.9521207782275
+            ],
+            [
+              238.435278457345,
+              305.2886012334575
+            ],
+            [
+              209.96420582002295,
+              485.0478792217725
+            ],
+            [
+              81.56472154265504,
+              464.7113987665425
+            ]
+          ],
+          "visible_fraction": 1.0
+        },
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              388.83061449663626,
+              308.07451100573803
+            ],
+            [
+              516.4421483448326,
+              283.2693416067872
+            ],
+            [
+              551.1693855033637,
+              461.92548899426197
+            ],
+            [
+              423.5578516551674,
+              486.7306583932128
+            ]
+          ],
+          "visible_fraction": 1.0
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 26.0,
+      "params": {
+        "id": "baseline-four-cards",
+        "tier": "regression",
+        "description": "baseline four cards",
+        "tags": [
+          "baseline",
+          "multiple-cards"
+        ],
+        "background": {
+          "kind": "gradient",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                82.96782334443196,
+                53.931857306921344
+              ],
+              [
+                211.7026722808361,
+                35.83935418211284
+              ],
+              [
+                237.03217665556804,
+                216.06814269307864
+              ],
+              [
+                108.29732771916389,
+                234.16064581788714
+              ]
+            ]
+          },
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                425.34036981671875,
+                32.47430843006933
+              ],
+              [
+                552.4995579121135,
+                59.50282823637805
+              ],
+              [
+                514.6596301832813,
+                237.5256915699307
+              ],
+              [
+                387.50044208788654,
+                210.49717176362196
+              ]
+            ]
+          },
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                110.03579417997705,
+                284.9521207782275
+              ],
+              [
+                238.435278457345,
+                305.2886012334575
+              ],
+              [
+                209.96420582002295,
+                485.0478792217725
+              ],
+              [
+                81.56472154265504,
+                464.7113987665425
+              ]
+            ]
+          },
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                388.83061449663626,
+                308.07451100573803
+              ],
+              [
+                516.4421483448326,
+                283.2693416067872
+              ],
+              [
+                551.1693855033637,
+                461.92548899426197
+              ],
+              [
+                423.5578516551674,
+                486.7306583932128
+              ]
+            ]
+          }
+        ],
+        "pixel_mae_limit": 26.0
+      }
+    },
+    {
+      "id": "occlusion-corner-top-left",
+      "file": "images/occlusion-corner-top-left.jpg",
+      "tier": "regression",
+      "description": "A small object hides the top-left corner; the other three corners and long edges determine the full outline.",
+      "tags": [
+        "occlusion",
+        "hidden-corner",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.95209,
+          "reference": "references/occlusion-corner-top-left-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-corner-top-left",
+        "tier": "regression",
+        "description": "A small object hides the top-left corner; the other three corners and long edges determine the full outline.",
+        "tags": [
+          "occlusion",
+          "hidden-corner",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              220,
+              124,
+              278,
+              178
+            ],
+            "color": [
+              120,
+              83,
+              58
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-corner-top-right",
+      "file": "images/occlusion-corner-top-right.jpg",
+      "tier": "challenge",
+      "description": "A small object hides the top-right corner; the other three corners and long edges determine the full outline.",
+      "tags": [
+        "occlusion",
+        "hidden-corner",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.952053,
+          "reference": "references/occlusion-corner-top-right-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-corner-top-right",
+        "tier": "challenge",
+        "description": "A small object hides the top-right corner; the other three corners and long edges determine the full outline.",
+        "tags": [
+          "occlusion",
+          "hidden-corner",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              362,
+              124,
+              420,
+              178
+            ],
+            "color": [
+              120,
+              83,
+              58
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-corner-bottom-right",
+      "file": "images/occlusion-corner-bottom-right.jpg",
+      "tier": "challenge",
+      "description": "A small object hides the bottom-right corner; the other three corners and long edges determine the full outline.",
+      "tags": [
+        "occlusion",
+        "hidden-corner",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.952084,
+          "reference": "references/occlusion-corner-bottom-right-0-black-lotus.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-corner-bottom-right",
+        "tier": "challenge",
+        "description": "A small object hides the bottom-right corner; the other three corners and long edges determine the full outline.",
+        "tags": [
+          "occlusion",
+          "hidden-corner",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              362,
+              342,
+              420,
+              396
+            ],
+            "color": [
+              120,
+              83,
+              58
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-corner-bottom-left",
+      "file": "images/occlusion-corner-bottom-left.jpg",
+      "tier": "challenge",
+      "description": "A small object hides the bottom-left corner; the other three corners and long edges determine the full outline.",
+      "tags": [
+        "occlusion",
+        "hidden-corner",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.952089,
+          "reference": "references/occlusion-corner-bottom-left-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-corner-bottom-left",
+        "tier": "challenge",
+        "description": "A small object hides the bottom-left corner; the other three corners and long edges determine the full outline.",
+        "tags": [
+          "occlusion",
+          "hidden-corner",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              220,
+              342,
+              278,
+              396
+            ],
+            "color": [
+              120,
+              83,
+              58
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-edge-top",
+      "file": "images/occlusion-edge-top.jpg",
+      "tier": "regression",
+      "description": "A foreground tab interrupts the top edge while all original card corners remain visible.",
+      "tags": [
+        "occlusion",
+        "edge-tab",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.958747,
+          "reference": "references/occlusion-edge-top-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-edge-top",
+        "tier": "regression",
+        "description": "A foreground tab interrupts the top edge while all original card corners remain visible.",
+        "tags": [
+          "occlusion",
+          "edge-tab",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              295,
+              120,
+              345,
+              170
+            ],
+            "color": [
+              154,
+              105,
+              74
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-edge-right",
+      "file": "images/occlusion-edge-right.jpg",
+      "tier": "challenge",
+      "description": "A foreground tab interrupts the right edge while all original card corners remain visible.",
+      "tags": [
+        "occlusion",
+        "edge-tab",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.948844,
+          "reference": "references/occlusion-edge-right-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-edge-right",
+        "tier": "challenge",
+        "description": "A foreground tab interrupts the right edge while all original card corners remain visible.",
+        "tags": [
+          "occlusion",
+          "edge-tab",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              375,
+              228,
+              430,
+              292
+            ],
+            "color": [
+              154,
+              105,
+              74
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-edge-bottom",
+      "file": "images/occlusion-edge-bottom.jpg",
+      "tier": "challenge",
+      "description": "A foreground tab interrupts the bottom edge while all original card corners remain visible.",
+      "tags": [
+        "occlusion",
+        "edge-tab",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.958745,
+          "reference": "references/occlusion-edge-bottom-0-black-lotus.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-edge-bottom",
+        "tier": "challenge",
+        "description": "A foreground tab interrupts the bottom edge while all original card corners remain visible.",
+        "tags": [
+          "occlusion",
+          "edge-tab",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              295,
+              350,
+              345,
+              400
+            ],
+            "color": [
+              154,
+              105,
+              74
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-edge-left",
+      "file": "images/occlusion-edge-left.jpg",
+      "tier": "challenge",
+      "description": "A foreground tab interrupts the left edge while all original card corners remain visible.",
+      "tags": [
+        "occlusion",
+        "edge-tab",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.948844,
+          "reference": "references/occlusion-edge-left-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-edge-left",
+        "tier": "challenge",
+        "description": "A foreground tab interrupts the left edge while all original card corners remain visible.",
+        "tags": [
+          "occlusion",
+          "edge-tab",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              210,
+              228,
+              265,
+              292
+            ],
+            "color": [
+              154,
+              105,
+              74
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-finger-corner",
+      "file": "images/occlusion-finger-corner.jpg",
+      "tier": "regression",
+      "description": "A rounded fingertip covers one corner with three corners and the remaining sides visible.",
+      "tags": [
+        "occlusion",
+        "finger",
+        "hidden-corner",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.971,
+          "reference": "references/occlusion-finger-corner-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-finger-corner",
+        "tier": "regression",
+        "description": "A rounded fingertip covers one corner with three corners and the remaining sides visible.",
+        "tags": [
+          "occlusion",
+          "finger",
+          "hidden-corner",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "ellipse",
+            "bounds": [
+              193,
+              94,
+              270,
+              174
+            ],
+            "color": [
+              188,
+              139,
+              107
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-pen-across-middle",
+      "file": "images/occlusion-pen-across-middle.jpg",
+      "tier": "challenge",
+      "description": "A narrow diagonal pen divides the face; visible edge segments still determine the original rectangle.",
+      "tags": [
+        "occlusion",
+        "disconnected-outline",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              230.0,
+              134.0
+            ],
+            [
+              410.0,
+              134.0
+            ],
+            [
+              410.0,
+              386.0
+            ],
+            [
+              230.0,
+              386.0
+            ]
+          ],
+          "visible_fraction": 0.951008,
+          "reference": "references/occlusion-pen-across-middle-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-pen-across-middle",
+        "tier": "challenge",
+        "description": "A narrow diagonal pen divides the face; visible edge segments still determine the original rectangle.",
+        "tags": [
+          "occlusion",
+          "disconnected-outline",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                230.0,
+                134.0
+              ],
+              [
+                410.0,
+                134.0
+              ],
+              [
+                410.0,
+                386.0
+              ],
+              [
+                230.0,
+                386.0
+              ]
+            ]
+          }
+        ],
+        "occluders": [
+          {
+            "kind": "line",
+            "points": [
+              [
+                175,
+                245
+              ],
+              [
+                468,
+                283
+              ]
+            ],
+            "width": 13,
+            "color": [
+              25,
+              31,
+              35
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-two-cards-1",
+      "file": "images/occlusion-two-cards-1.jpg",
+      "tier": "challenge",
+      "description": "Two partially overlapping real cards require retaining both complete source outlines.",
+      "tags": [
+        "occlusion",
+        "multiple-cards",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              178.34006309229042,
+              137.75180242496805
+            ],
+            [
+              356.5883154657731,
+              112.70064425215627
+            ],
+            [
+              391.6599369077096,
+              362.24819757503195
+            ],
+            [
+              213.4116845342269,
+              387.2993557478438
+            ]
+          ],
+          "visible_fraction": 0.85586,
+          "reference": "references/occlusion-two-cards-1-0-black-lotus.png"
+        },
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              366.31356884290074,
+              188.9714474471847
+            ],
+            [
+              531.2638423098201,
+              230.09816969912822
+            ],
+            [
+              473.68643115709926,
+              461.0285525528153
+            ],
+            [
+              308.7361576901799,
+              419.9018303008718
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/occlusion-two-cards-1-1-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-two-cards-1",
+        "tier": "challenge",
+        "description": "Two partially overlapping real cards require retaining both complete source outlines.",
+        "tags": [
+          "occlusion",
+          "multiple-cards",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                178.34006309229042,
+                137.75180242496805
+              ],
+              [
+                356.5883154657731,
+                112.70064425215627
+              ],
+              [
+                391.6599369077096,
+                362.24819757503195
+              ],
+              [
+                213.4116845342269,
+                387.2993557478438
+              ]
+            ]
+          },
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                366.31356884290074,
+                188.9714474471847
+              ],
+              [
+                531.2638423098201,
+                230.09816969912822
+              ],
+              [
+                473.68643115709926,
+                461.0285525528153
+              ],
+              [
+                308.7361576901799,
+                419.9018303008718
+              ]
+            ]
+          }
+        ],
+        "pixel_mae_limit": 22.0,
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "occlusion-two-cards-2",
+      "file": "images/occlusion-two-cards-2.jpg",
+      "tier": "challenge",
+      "description": "Two partially overlapping real cards require retaining both complete source outlines.",
+      "tags": [
+        "occlusion",
+        "multiple-cards",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              178.34006309229042,
+              137.75180242496805
+            ],
+            [
+              356.5883154657731,
+              112.70064425215627
+            ],
+            [
+              391.6599369077096,
+              362.24819757503195
+            ],
+            [
+              213.4116845342269,
+              387.2993557478438
+            ]
+          ],
+          "visible_fraction": 0.868086,
+          "reference": "references/occlusion-two-cards-2-0-black-lotus.png"
+        },
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              381.31356884290074,
+              103.97144744718467
+            ],
+            [
+              546.2638423098202,
+              145.09816969912822
+            ],
+            [
+              488.68643115709926,
+              376.0285525528153
+            ],
+            [
+              323.7361576901799,
+              334.9018303008718
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/occlusion-two-cards-2-1-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "occlusion-two-cards-2",
+        "tier": "challenge",
+        "description": "Two partially overlapping real cards require retaining both complete source outlines.",
+        "tags": [
+          "occlusion",
+          "multiple-cards",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                178.34006309229042,
+                137.75180242496805
+              ],
+              [
+                356.5883154657731,
+                112.70064425215627
+              ],
+              [
+                391.6599369077096,
+                362.24819757503195
+              ],
+              [
+                213.4116845342269,
+                387.2993557478438
+              ]
+            ]
+          },
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                381.31356884290074,
+                103.97144744718467
+              ],
+              [
+                546.2638423098202,
+                145.09816969912822
+              ],
+              [
+                488.68643115709926,
+                376.0285525528153
+              ],
+              [
+                323.7361576901799,
+                334.9018303008718
+              ]
+            ]
+          }
+        ],
+        "pixel_mae_limit": 22.0,
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "lighting-directional-shadow",
+      "file": "images/lighting-directional-shadow.jpg",
+      "tier": "challenge",
+      "description": "A strong illumination gradient darkens part of the scene and card.",
+      "tags": [
+        "lighting",
+        "directional-shadow"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              270.77140675839166,
+              113.19214732361124
+            ],
+            [
+              442.906262831738,
+              165.81905417370385
+            ],
+            [
+              369.22859324160834,
+              406.80785267638873
+            ],
+            [
+              197.09373716826198,
+              354.1809458262961
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/lighting-directional-shadow-0-black-lotus.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "lighting-directional-shadow",
+        "tier": "challenge",
+        "description": "A strong illumination gradient darkens part of the scene and card.",
+        "tags": [
+          "lighting",
+          "directional-shadow"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                270.77140675839166,
+                113.19214732361124
+              ],
+              [
+                442.906262831738,
+                165.81905417370385
+              ],
+              [
+                369.22859324160834,
+                406.80785267638873
+              ],
+              [
+                197.09373716826198,
+                354.1809458262961
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "lighting",
+            "gradient": true,
+            "minimum": 0.2,
+            "maximum": 1.15
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "lighting-warm-dim",
+      "file": "images/lighting-warm-dim.jpg",
+      "tier": "challenge",
+      "description": "Warm dim illumination changes the observed artwork and border contrast.",
+      "tags": [
+        "lighting",
+        "white-balance",
+        "dim"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              205.76984289091982,
+              155.46545448113886
+            ],
+            [
+              381.8364110230048,
+              118.04135013394215
+            ],
+            [
+              434.23015710908015,
+              364.53454551886114
+            ],
+            [
+              258.1635889769952,
+              401.95864986605784
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/lighting-warm-dim-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "lighting-warm-dim",
+        "tier": "challenge",
+        "description": "Warm dim illumination changes the observed artwork and border contrast.",
+        "tags": [
+          "lighting",
+          "white-balance",
+          "dim"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                205.76984289091982,
+                155.46545448113886
+              ],
+              [
+                381.8364110230048,
+                118.04135013394215
+              ],
+              [
+                434.23015710908015,
+                364.53454551886114
+              ],
+              [
+                258.1635889769952,
+                401.95864986605784
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "lighting",
+            "factor": 0.6,
+            "tint": [
+              1.35,
+              0.93,
+              0.65
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "lighting-local-glare",
+      "file": "images/lighting-local-glare.jpg",
+      "tier": "challenge",
+      "description": "A local clipped highlight fades part of a card edge and artwork.",
+      "tags": [
+        "lighting",
+        "glare"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              250.8187919415067,
+              121.47216723139186
+            ],
+            [
+              428.60269324863145,
+              149.63037093863343
+            ],
+            [
+              389.1812080584933,
+              398.52783276860816
+            ],
+            [
+              211.39730675136852,
+              370.3696290613666
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/lighting-local-glare-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "lighting-local-glare",
+        "tier": "challenge",
+        "description": "A local clipped highlight fades part of a card edge and artwork.",
+        "tags": [
+          "lighting",
+          "glare"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                250.8187919415067,
+                121.47216723139186
+              ],
+              [
+                428.60269324863145,
+                149.63037093863343
+              ],
+              [
+                389.1812080584933,
+                398.52783276860816
+              ],
+              [
+                211.39730675136852,
+                370.3696290613666
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "lighting",
+            "glare": [
+              389,
+              192,
+              110
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "blur-gaussian-1-3",
+      "file": "images/blur-gaussian-1-3.jpg",
+      "tier": "challenge",
+      "description": "Gaussian defocus with radius 1.3 pixels.",
+      "tags": [
+        "blur",
+        "defocus"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/blur-gaussian-1-3-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "blur-gaussian-1-3",
+        "tier": "challenge",
+        "description": "Gaussian defocus with radius 1.3 pixels.",
+        "tags": [
+          "blur",
+          "defocus"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "gaussian_blur",
+            "radius": 1.3
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "blur-gaussian-2-1",
+      "file": "images/blur-gaussian-2-1.jpg",
+      "tier": "challenge",
+      "description": "Gaussian defocus with radius 2.1 pixels.",
+      "tags": [
+        "blur",
+        "defocus"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              193.88174073445973,
+              170.1657933756302
+            ],
+            [
+              364.0750843423368,
+              111.56352557334198
+            ],
+            [
+              446.11825926554025,
+              349.8342066243698
+            ],
+            [
+              275.9249156576632,
+              408.43647442665804
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/blur-gaussian-2-1-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "blur-gaussian-2-1",
+        "tier": "challenge",
+        "description": "Gaussian defocus with radius 2.1 pixels.",
+        "tags": [
+          "blur",
+          "defocus"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                193.88174073445973,
+                170.1657933756302
+              ],
+              [
+                364.0750843423368,
+                111.56352557334198
+              ],
+              [
+                446.11825926554025,
+                349.8342066243698
+              ],
+              [
+                275.9249156576632,
+                408.43647442665804
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "gaussian_blur",
+            "radius": 2.1
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "blur-motion-horizontal",
+      "file": "images/blur-motion-horizontal.jpg",
+      "tier": "challenge",
+      "description": "A nine-pixel horizontal camera-motion exposure smears the full scene.",
+      "tags": [
+        "blur",
+        "motion"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              281.1321232579597,
+              110.11575080227556
+            ],
+            [
+              449.176600027456,
+              174.62198172042963
+            ],
+            [
+              358.8678767420403,
+              409.88424919772444
+            ],
+            [
+              190.823399972544,
+              345.37801827957037
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/blur-motion-horizontal-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "blur-motion-horizontal",
+        "tier": "challenge",
+        "description": "A nine-pixel horizontal camera-motion exposure smears the full scene.",
+        "tags": [
+          "blur",
+          "motion"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                281.1321232579597,
+                110.11575080227556
+              ],
+              [
+                449.176600027456,
+                174.62198172042963
+              ],
+              [
+                358.8678767420403,
+                409.88424919772444
+              ],
+              [
+                190.823399972544,
+                345.37801827957037
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "motion_blur",
+            "length": 9
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "low-contrast-dark-surface",
+      "file": "images/low-contrast-dark-surface.jpg",
+      "tier": "challenge",
+      "description": "A dark-bordered card lies on a dim surface of similar brightness.",
+      "tags": [
+        "low-contrast",
+        "lighting"
+      ],
+      "cards": [
+        {
+          "source": "black-lotus",
+          "corners": [
+            [
+              241.32410075794783,
+              126.63545119315086
+            ],
+            [
+              420.63914641446206,
+              142.32348488772934
+            ],
+            [
+              398.6758992420522,
+              393.36454880684914
+            ],
+            [
+              219.36085358553797,
+              377.6765151122707
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/low-contrast-dark-surface-0-black-lotus.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "low-contrast-dark-surface",
+        "tier": "challenge",
+        "description": "A dark-bordered card lies on a dim surface of similar brightness.",
+        "tags": [
+          "low-contrast",
+          "lighting"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            35,
+            37,
+            35
+          ]
+        },
+        "cards": [
+          {
+            "source": "black-lotus",
+            "corners": [
+              [
+                241.32410075794783,
+                126.63545119315086
+              ],
+              [
+                420.63914641446206,
+                142.32348488772934
+              ],
+              [
+                398.6758992420522,
+                393.36454880684914
+              ],
+              [
+                219.36085358553797,
+                377.6765151122707
+              ]
+            ]
+          }
+        ],
+        "effects": [
+          {
+            "kind": "brightness",
+            "factor": 0.38
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "clutter-checker-surface",
+      "file": "images/clutter-checker-surface.jpg",
+      "tier": "challenge",
+      "description": "Card edges compete with a checker tabletop texture.",
+      "tags": [
+        "clutter",
+        "texture"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              187.92244099963187,
+              179.18219002902714
+            ],
+            [
+              353.61331462107114,
+              108.8505869009579
+            ],
+            [
+              452.0775590003682,
+              340.8178099709728
+            ],
+            [
+              286.38668537892886,
+              411.1494130990421
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/clutter-checker-surface-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "clutter-checker-surface",
+        "tier": "challenge",
+        "description": "Card edges compete with a checker tabletop texture.",
+        "tags": [
+          "clutter",
+          "texture"
+        ],
+        "background": {
+          "kind": "checker",
+          "color": [
+            86,
+            108,
+            93
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                187.92244099963187,
+                179.18219002902714
+              ],
+              [
+                353.61331462107114,
+                108.8505869009579
+              ],
+              [
+                452.0775590003682,
+                340.8178099709728
+              ],
+              [
+                286.38668537892886,
+                411.1494130990421
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "clutter-wood-surface",
+      "file": "images/clutter-wood-surface.jpg",
+      "tier": "challenge",
+      "description": "Card edges compete with a wood tabletop texture.",
+      "tags": [
+        "clutter",
+        "texture"
+      ],
+      "cards": [
+        {
+          "source": "lightning-bolt",
+          "corners": [
+            [
+              187.92244099963187,
+              179.18219002902714
+            ],
+            [
+              353.61331462107114,
+              108.8505869009579
+            ],
+            [
+              452.0775590003682,
+              340.8178099709728
+            ],
+            [
+              286.38668537892886,
+              411.1494130990421
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/clutter-wood-surface-0-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "clutter-wood-surface",
+        "tier": "challenge",
+        "description": "Card edges compete with a wood tabletop texture.",
+        "tags": [
+          "clutter",
+          "texture"
+        ],
+        "background": {
+          "kind": "wood",
+          "color": [
+            123,
+            87,
+            54
+          ]
+        },
+        "cards": [
+          {
+            "source": "lightning-bolt",
+            "corners": [
+              [
+                187.92244099963187,
+                179.18219002902714
+              ],
+              [
+                353.61331462107114,
+                108.8505869009579
+              ],
+              [
+                452.0775590003682,
+                340.8178099709728
+              ],
+              [
+                286.38668537892886,
+                411.1494130990421
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "perspective-steep-1",
+      "file": "images/perspective-steep-1.jpg",
+      "tier": "challenge",
+      "description": "Stronger projective foreshortening challenges apparent aspect-ratio filtering.",
+      "tags": [
+        "perspective",
+        "foreshortening"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              274,
+              150
+            ],
+            [
+              382,
+              122
+            ],
+            [
+              435,
+              395
+            ],
+            [
+              195,
+              365
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/perspective-steep-1-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "perspective-steep-1",
+        "tier": "challenge",
+        "description": "Stronger projective foreshortening challenges apparent aspect-ratio filtering.",
+        "tags": [
+          "perspective",
+          "foreshortening"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                274,
+                150
+              ],
+              [
+                382,
+                122
+              ],
+              [
+                435,
+                395
+              ],
+              [
+                195,
+                365
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "perspective-steep-2",
+      "file": "images/perspective-steep-2.jpg",
+      "tier": "challenge",
+      "description": "Stronger projective foreshortening challenges apparent aspect-ratio filtering.",
+      "tags": [
+        "perspective",
+        "foreshortening"
+      ],
+      "cards": [
+        {
+          "source": "counterspell",
+          "corners": [
+            [
+              250,
+              180
+            ],
+            [
+              411,
+              151
+            ],
+            [
+              415,
+              290
+            ],
+            [
+              229,
+              350
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/perspective-steep-2-0-counterspell.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "perspective-steep-2",
+        "tier": "challenge",
+        "description": "Stronger projective foreshortening challenges apparent aspect-ratio filtering.",
+        "tags": [
+          "perspective",
+          "foreshortening"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "counterspell",
+            "corners": [
+              [
+                250,
+                180
+              ],
+              [
+                411,
+                151
+              ],
+              [
+                415,
+                290
+              ],
+              [
+                229,
+                350
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "frame-clipped-left",
+      "file": "images/frame-clipped-left.jpg",
+      "tier": "challenge",
+      "description": "The frame hides part of the left edge; the expected outline records its complete source rectangle.",
+      "tags": [
+        "occlusion",
+        "out-of-frame",
+        "full-outline-inference"
+      ],
+      "cards": [
+        {
+          "source": "sol-ring",
+          "corners": [
+            [
+              -36.65993690770958,
+              147.75180242496805
+            ],
+            [
+              141.5883154657731,
+              122.70064425215627
+            ],
+            [
+              176.65993690770958,
+              372.24819757503195
+            ],
+            [
+              -1.5883154657730927,
+              397.2993557478438
+            ]
+          ],
+          "visible_fraction": 0.89402,
+          "reference": "references/frame-clipped-left-0-sol-ring.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22.0,
+      "params": {
+        "id": "frame-clipped-left",
+        "tier": "challenge",
+        "description": "The frame hides part of the left edge; the expected outline records its complete source rectangle.",
+        "tags": [
+          "occlusion",
+          "out-of-frame",
+          "full-outline-inference"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [
+          {
+            "source": "sol-ring",
+            "corners": [
+              [
+                -36.65993690770958,
+                147.75180242496805
+              ],
+              [
+                141.5883154657731,
+                122.70064425215627
+              ],
+              [
+                176.65993690770958,
+                372.24819757503195
+              ],
+              [
+                -1.5883154657730927,
+                397.2993557478438
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true
+      }
+    },
+    {
+      "id": "negative-empty-table",
+      "file": "images/negative-empty-table.jpg",
+      "tier": "regression",
+      "description": "An empty softly illuminated tabletop.",
+      "tags": [
+        "negative"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-empty-table",
+        "tier": "regression",
+        "description": "An empty softly illuminated tabletop.",
+        "tags": [
+          "negative"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-poker-chip",
+      "file": "images/negative-poker-chip.jpg",
+      "tier": "regression",
+      "description": "A round poker chip has no four-corner card outline.",
+      "tags": [
+        "negative",
+        "round-object"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-poker-chip",
+        "tier": "regression",
+        "description": "A round poker chip has no four-corner card outline.",
+        "tags": [
+          "negative",
+          "round-object"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "ellipse",
+            "bounds": [
+              235,
+              175,
+              405,
+              345
+            ],
+            "color": [
+              210,
+              47,
+              47
+            ]
+          },
+          {
+            "kind": "ellipse",
+            "bounds": [
+              255,
+              195,
+              385,
+              325
+            ],
+            "color": [
+              236,
+              224,
+              208
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-finger",
+      "file": "images/negative-finger.jpg",
+      "tier": "regression",
+      "description": "A rounded finger shape enters from the edge.",
+      "tags": [
+        "negative",
+        "finger"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-finger",
+        "tier": "regression",
+        "description": "A rounded finger shape enters from the edge.",
+        "tags": [
+          "negative",
+          "finger"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "rounded_rectangle",
+            "bounds": [
+              285,
+              180,
+              355,
+              519
+            ],
+            "radius": 35,
+            "color": [
+              186,
+              139,
+              106
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-phone",
+      "file": "images/negative-phone.jpg",
+      "tier": "regression",
+      "description": "A tall phone has a non-card aspect ratio.",
+      "tags": [
+        "negative",
+        "wrong-aspect"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-phone",
+        "tier": "regression",
+        "description": "A tall phone has a non-card aspect ratio.",
+        "tags": [
+          "negative",
+          "wrong-aspect"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "rounded_rectangle",
+            "bounds": [
+              263,
+              130,
+              377,
+              390
+            ],
+            "radius": 20,
+            "color": [
+              22,
+              26,
+              28
+            ]
+          },
+          {
+            "kind": "rounded_rectangle",
+            "bounds": [
+              271,
+              145,
+              369,
+              373
+            ],
+            "radius": 12,
+            "color": [
+              93,
+              119,
+              139
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-square-paper",
+      "file": "images/negative-square-paper.jpg",
+      "tier": "regression",
+      "description": "A square paper sheet is outside the trading-card proportion filter.",
+      "tags": [
+        "negative",
+        "wrong-aspect"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-square-paper",
+        "tier": "regression",
+        "description": "A square paper sheet is outside the trading-card proportion filter.",
+        "tags": [
+          "negative",
+          "wrong-aspect"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              230,
+              170,
+              410,
+              350
+            ],
+            "color": [
+              235,
+              231,
+              220
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-triangle-paper",
+      "file": "images/negative-triangle-paper.jpg",
+      "tier": "regression",
+      "description": "A triangular sheet shares card-shaped bounds but lacks four corners.",
+      "tags": [
+        "negative",
+        "non-quadrilateral"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-triangle-paper",
+        "tier": "regression",
+        "description": "A triangular sheet shares card-shaped bounds but lacks four corners.",
+        "tags": [
+          "negative",
+          "non-quadrilateral"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "polygon",
+            "points": [
+              [
+                230,
+                134
+              ],
+              [
+                410,
+                134
+              ],
+              [
+                320,
+                386
+              ]
+            ],
+            "color": [
+              235,
+              231,
+              220
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-deep-notched-paper",
+      "file": "images/negative-deep-notched-paper.jpg",
+      "tier": "regression",
+      "description": "A deeply notched object must not become a complete card merely through its convex hull.",
+      "tags": [
+        "negative",
+        "concave-object"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-deep-notched-paper",
+        "tier": "regression",
+        "description": "A deeply notched object must not become a complete card merely through its convex hull.",
+        "tags": [
+          "negative",
+          "concave-object"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "polygon",
+            "points": [
+              [
+                230,
+                134
+              ],
+              [
+                410,
+                134
+              ],
+              [
+                410,
+                200
+              ],
+              [
+                280,
+                200
+              ],
+              [
+                280,
+                320
+              ],
+              [
+                410,
+                320
+              ],
+              [
+                410,
+                386
+              ],
+              [
+                230,
+                386
+              ]
+            ],
+            "color": [
+              235,
+              231,
+              220
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    },
+    {
+      "id": "negative-receipt",
+      "file": "images/negative-receipt.jpg",
+      "tier": "regression",
+      "description": "A narrow receipt has a rectangular outline with the wrong proportions.",
+      "tags": [
+        "negative",
+        "wrong-aspect"
+      ],
+      "cards": [],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": null,
+      "params": {
+        "id": "negative-receipt",
+        "tier": "regression",
+        "description": "A narrow receipt has a rectangular outline with the wrong proportions.",
+        "tags": [
+          "negative",
+          "wrong-aspect"
+        ],
+        "background": {
+          "kind": "solid",
+          "color": [
+            75,
+            115,
+            90
+          ]
+        },
+        "cards": [],
+        "occluders": [
+          {
+            "kind": "rectangle",
+            "bounds": [
+              278,
+              120,
+              362,
+              400
+            ],
+            "color": [
+              235,
+              231,
+              220
+            ]
+          }
+        ],
+        "pixel_mae_limit": null
+      }
+    }
+  ]
+}

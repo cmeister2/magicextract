@@ -1,0 +1,19 @@
+{
+  "name": "magicextract-release",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0"
+  },
+  "scripts": {
+    "test": "node --test release.config.test.mjs scripts/*.test.mjs"
+  },
+  "dependencies": {
+    "@semantic-release/exec": "^7.1.0",
+    "conventional-changelog-conventionalcommits": "10.4.0",
+    "semantic-release": "^25.0.2"
+  },
+  "overrides": {
+    "@semantic-release/release-notes-generator": "15.0.0-beta.3"
+  }
+}
