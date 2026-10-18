@@ -1,6 +1,6 @@
 /** Release Rust packages to crates.io and publish matching GitHub release notes. */
 export default {
-  branches: ["main", "master"],
+  branches: ["main"],
   repositoryUrl: "https://github.com/cmeister2/magicextract",
   tagFormat: "${version}",
   plugins: [

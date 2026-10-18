@@ -38,7 +38,7 @@ Set the repository's `CARGO_REGISTRY_TOKEN` Actions secret to a crates.io token
 authorized to publish this crate. Actions supplies `GITHUB_TOKEN`; the release
 job grants the permissions needed for GitHub releases and related issue comments.
 
-Only **pushes to `main` or `master`** run semantic-release, after Rust checks,
+Only **pushes to `main`** run semantic-release, after Rust checks,
 MSRV verification, coverage, and release-tooling regressions pass. The release
 checkout fetches complete history and tags. The workflow runs `npm ci` and
 `npm test` again before invoking semantic-release.
