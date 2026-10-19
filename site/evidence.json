@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "8217db886842f83b97d650cb3a933d2f4affdc8d",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/8217db886842f83b97d650cb3a933d2f4affdc8d",
+  "source_revision": "638984bbf4f7a4f2bc369bc171dd46f7d04d8d75",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/638984bbf4f7a4f2bc369bc171dd46f7d04d8d75",
   "source_sha256": {
-    "src/detection.rs": "0fa593f6ead4b8c5db4a0c71009b4b8fc383be0e24f34e2d81297f4e5d5bda9c",
+    "src/detection.rs": "64671c837fb0a92a27468206daf2471aab52f2e32e06031a0c8dbb4a014cb11b",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "72b7134c21abe514e78cd2074fb0b36fbd678f44b16e2f701cae04123a4f8b3c",
+  "selection_sha256": "2b6cee236e2f3a2cb2166d2feebe5c2cc3fe8e3ace10a767dba8ae5920236fcd",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -609,6 +609,68 @@
       }
     },
     {
+      "corpus": "playmats",
+      "id": "playmat-fantasy-forest-lightning-bolt",
+      "title": "Busy playmat",
+      "result": "Match",
+      "description": "The visible dark border is recovered outside the inner printed frame, despite the busy background.",
+      "group": "matches",
+      "input": "images/playmat-fantasy-forest-lightning-bolt/input.jpg",
+      "input_source": "tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
+      "input_sha256": "9d09cf400dbf16e921236f137f037390d9e50f997993360b763d2669c978fa26",
+      "source_manifest": "tests/fixtures/playmats/manifest.json",
+      "source_manifest_sha256": "0bb237b583ad65804d52863ef8cabb8866f7998fbee04481e961a84279e2f45e",
+      "crops": [
+        "images/playmat-fantasy-forest-lightning-bolt/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/playmat-fantasy-forest-lightning-bolt/card-000.png": "867ec607949feedbe7840a8f8efbc86486a1b17ed551e7bdd054ae56b079cc1e"
+      },
+      "report": {
+        "id": "playmat-fantasy-forest-lightning-bolt",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                98.43465,
+                150.39807
+              ],
+              [
+                271.73212,
+                97.2993
+              ],
+              [
+                345.5714,
+                339.3006
+              ],
+              [
+                172.54132,
+                392.38843
+              ]
+            ],
+            "area": 45832.38
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 1.0250338,
+            "pixel_mae": 6.257327,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
       "corpus": "materials",
       "id": "stack-two-cards-3",
       "title": "Stacked cards",
@@ -658,7 +720,7 @@
       ],
       "crop_sha256": {
         "images/occlusion-two-cards-1/card-000.png": "ea1bc40f6d500f4957f75d2de059ee181f54960743c430ba486c4434790a199e",
-        "images/occlusion-two-cards-1/card-001.png": "7ff197fcd567f300e5282544b72a28be6e20f044851393895d03d188a461dbc9"
+        "images/occlusion-two-cards-1/card-001.png": "5903742e2b3823b0d0ef2fdc44888d12433b39b8248ac56af409bd6777711a21"
       },
       "report": {
         "id": "occlusion-two-cards-1",
@@ -691,23 +753,23 @@
           {
             "corners": [
               [
-                370.78564,
-                196.8854
+                365.76425,
+                188.38045
               ],
               [
-                523.3159,
-                234.79681
+                531.6953,
+                229.75336
               ],
               [
-                471.4416,
-                443.14447
+                474.01288,
+                461.7533
               ],
               [
-                318.92615,
-                405.15582
+                307.9478,
+                420.49084
               ]
             ],
-            "area": 33740.25
+            "area": 40906.78
           }
         ],
         "matches": [
@@ -723,8 +785,8 @@
             "expected_index": 1,
             "source": "sol-ring",
             "detected_index": 1,
-            "corner_error": 18.024431,
-            "pixel_mae": 37.51643,
+            "corner_error": 0.9840775,
+            "pixel_mae": 5.9872656,
             "pixel_orientation": "original"
           }
         ],
@@ -732,9 +794,7 @@
         "unmatched_detected": [],
         "failures": [
           "card 0 (black-lotus): corner error 67.680 > 8",
-          "card 0 (black-lotus): interior RGB MAE 60.805 >= 22",
-          "card 1 (sol-ring): corner error 18.024 > 8",
-          "card 1 (sol-ring): interior RGB MAE 37.516 >= 22"
+          "card 0 (black-lotus): interior RGB MAE 60.805 >= 22"
         ]
       }
     },
@@ -865,71 +925,6 @@
         "failures": [
           "card 0 (lightning-bolt): corner error 20.003 > 8",
           "card 0 (lightning-bolt): interior RGB MAE 37.430 >= 22"
-        ]
-      }
-    },
-    {
-      "corpus": "playmats",
-      "id": "playmat-fantasy-forest-lightning-bolt",
-      "title": "Busy playmat",
-      "result": "Wrong crop",
-      "description": "The card is found, but the crop cuts inside its outer border on a busy illustrated surface.",
-      "group": "misses",
-      "input": "images/playmat-fantasy-forest-lightning-bolt/input.jpg",
-      "input_source": "tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
-      "input_sha256": "9d09cf400dbf16e921236f137f037390d9e50f997993360b763d2669c978fa26",
-      "source_manifest": "tests/fixtures/playmats/manifest.json",
-      "source_manifest_sha256": "0bb237b583ad65804d52863ef8cabb8866f7998fbee04481e961a84279e2f45e",
-      "crops": [
-        "images/playmat-fantasy-forest-lightning-bolt/card-000.png"
-      ],
-      "crop_sha256": {
-        "images/playmat-fantasy-forest-lightning-bolt/card-000.png": "249d06aa3708cdcb31709c617894a05adc31cf181ffc29ba0c25d008a9ef7e1e"
-      },
-      "report": {
-        "id": "playmat-fantasy-forest-lightning-bolt",
-        "tier": "challenge",
-        "passed": false,
-        "expected_count": 1,
-        "detected_count": 1,
-        "detected": [
-          {
-            "corners": [
-              [
-                107.633224,
-                155.17972
-              ],
-              [
-                267.0222,
-                106.39697
-              ],
-              [
-                333.03653,
-                323.08002
-              ],
-              [
-                173.7821,
-                371.60944
-              ]
-            ],
-            "area": 37717.4
-          }
-        ],
-        "matches": [
-          {
-            "expected_index": 0,
-            "source": "lightning-bolt",
-            "detected_index": 0,
-            "corner_error": 20.223696,
-            "pixel_mae": 35.82539,
-            "pixel_orientation": "original"
-          }
-        ],
-        "unmatched_expected": [],
-        "unmatched_detected": [],
-        "failures": [
-          "card 0 (lightning-bolt): corner error 20.224 > 8",
-          "card 0 (lightning-bolt): interior RGB MAE 35.825 >= 22"
         ]
       }
     },

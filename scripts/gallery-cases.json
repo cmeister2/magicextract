@@ -60,6 +60,13 @@
           "title": "Card back",
           "result": "Match",
           "description": "An original patterned card back can be extracted without knowing the card's identity."
+        },
+        {
+          "corpus": "playmats",
+          "id": "playmat-fantasy-forest-lightning-bolt",
+          "title": "Busy playmat",
+          "result": "Match",
+          "description": "The visible dark border is recovered outside the inner printed frame, despite the busy background."
         }
       ]
     },
@@ -95,13 +102,6 @@
           "title": "Clear sleeve",
           "result": "Wrong crop",
           "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop."
-        },
-        {
-          "corpus": "playmats",
-          "id": "playmat-fantasy-forest-lightning-bolt",
-          "title": "Busy playmat",
-          "result": "Wrong crop",
-          "description": "The card is found, but the crop cuts inside its outer border on a busy illustrated surface."
         }
       ]
     },
