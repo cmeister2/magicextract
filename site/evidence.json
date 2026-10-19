@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "f49441848ef303cbed3584b2b7707e4582764e20",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/f49441848ef303cbed3584b2b7707e4582764e20",
+  "source_revision": "8217db886842f83b97d650cb3a933d2f4affdc8d",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/8217db886842f83b97d650cb3a933d2f4affdc8d",
   "source_sha256": {
-    "src/detection.rs": "f4488938ca02229f162f7ddbe836f17b1ef6949ff779ca3351dba2d7cfdb8328",
+    "src/detection.rs": "0fa593f6ead4b8c5db4a0c71009b4b8fc383be0e24f34e2d81297f4e5d5bda9c",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "74b7207f43e7fb3578f408e2b80e1a57e5d864ec34e6e2b8a2a5236b3661fe54",
+  "selection_sha256": "72b7134c21abe514e78cd2074fb0b36fbd678f44b16e2f701cae04123a4f8b3c",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -197,6 +197,68 @@
             "detected_index": 0,
             "corner_error": 0.9543607,
             "pixel_mae": 8.927399,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "adversarial",
+      "id": "seed-20261018-case-0048-dim-reduction-2",
+      "title": "Dim light",
+      "result": "Match",
+      "description": "The faint outer border is recovered; the crop keeps the image's original brightness.",
+      "group": "matches",
+      "input": "images/seed-20261018-case-0048-dim-reduction-2/input.jpg",
+      "input_source": "tests/fixtures/adversarial/images/seed-20261018-case-0048-dim-reduction-2.jpg",
+      "input_sha256": "4adaea5987091770c5d79d4796416387c404a7dc57e7d58e4c72521f7fcc2590",
+      "source_manifest": "tests/fixtures/adversarial/manifest.json",
+      "source_manifest_sha256": "e1f38de0410a0e137db582b875e4768e6d8ec095e678f8fbf7a22e730ac00eeb",
+      "crops": [
+        "images/seed-20261018-case-0048-dim-reduction-2/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/seed-20261018-case-0048-dim-reduction-2/card-000.png": "ff92c3b1faff7b13d249aef2447ac2570cbf9db0ef6125fd0fd728311053b88c"
+      },
+      "report": {
+        "id": "seed-20261018-case-0048-dim-reduction-2",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                191.4228,
+                199.68661
+              ],
+              [
+                324.76794,
+                116.45801
+              ],
+              [
+                441.0146,
+                303.01172
+              ],
+              [
+                307.48248,
+                386.20264
+              ]
+            ],
+            "area": 34556.03
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 1.1022742,
+            "pixel_mae": 2.9297543,
             "pixel_orientation": "original"
           }
         ],
@@ -544,37 +606,6 @@
         "unmatched_expected": [],
         "unmatched_detected": [],
         "failures": []
-      }
-    },
-    {
-      "corpus": "adversarial",
-      "id": "seed-20261018-case-0048-dim-reduction-2",
-      "title": "Too dim",
-      "result": "Miss",
-      "description": "The dim card is missed completely.",
-      "group": "misses",
-      "input": "images/seed-20261018-case-0048-dim-reduction-2/input.jpg",
-      "input_source": "tests/fixtures/adversarial/images/seed-20261018-case-0048-dim-reduction-2.jpg",
-      "input_sha256": "4adaea5987091770c5d79d4796416387c404a7dc57e7d58e4c72521f7fcc2590",
-      "source_manifest": "tests/fixtures/adversarial/manifest.json",
-      "source_manifest_sha256": "e1f38de0410a0e137db582b875e4768e6d8ec095e678f8fbf7a22e730ac00eeb",
-      "crops": [],
-      "crop_sha256": {},
-      "report": {
-        "id": "seed-20261018-case-0048-dim-reduction-2",
-        "tier": "challenge",
-        "passed": false,
-        "expected_count": 1,
-        "detected_count": 0,
-        "detected": [],
-        "matches": [],
-        "unmatched_expected": [
-          0
-        ],
-        "unmatched_detected": [],
-        "failures": [
-          "expected 1 cards, detected 0"
-        ]
       }
     },
     {

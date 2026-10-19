@@ -27,6 +27,13 @@
           "description": "Mild simulated defocus leaves enough of the border to extract the card."
         },
         {
+          "corpus": "adversarial",
+          "id": "seed-20261018-case-0048-dim-reduction-2",
+          "title": "Dim light",
+          "result": "Match",
+          "description": "The faint outer border is recovered; the crop keeps the image's original brightness."
+        },
+        {
           "corpus": "scenes",
           "id": "baseline-four-cards",
           "title": "Several separate cards",
@@ -61,13 +68,6 @@
       "title": "Misses and wrong crops",
       "intro": "Returning an image does not guarantee a good extraction. These examples either miss cards or return the wrong outline.",
       "cases": [
-        {
-          "corpus": "adversarial",
-          "id": "seed-20261018-case-0048-dim-reduction-2",
-          "title": "Too dim",
-          "result": "Miss",
-          "description": "The dim card is missed completely."
-        },
         {
           "corpus": "materials",
           "id": "stack-two-cards-3",
