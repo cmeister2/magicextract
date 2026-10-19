@@ -123,6 +123,20 @@
           "title": "Extended-art card in a sleeve",
           "result": "Match",
           "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-plain",
+          "title": "Borderless card",
+          "result": "Match",
+          "description": "The complete card perimeter is recovered, including artwork that reaches the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-plain",
+          "title": "Extended-art card",
+          "result": "Match",
+          "description": "The complete card perimeter is recovered, including artwork that reaches the edges."
         }
       ]
     },
@@ -147,22 +161,8 @@
         },
         {
           "corpus": "art-treatments",
-          "id": "borderless-plain",
-          "title": "Borderless card",
-          "result": "Wrong crop",
-          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
-        },
-        {
-          "corpus": "art-treatments",
           "id": "borderless-playmat",
           "title": "Borderless card on a playmat",
-          "result": "Wrong crop",
-          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
-        },
-        {
-          "corpus": "art-treatments",
-          "id": "extended-art-plain",
-          "title": "Extended-art card",
           "result": "Wrong crop",
           "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
         },

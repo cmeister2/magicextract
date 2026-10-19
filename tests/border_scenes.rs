@@ -263,3 +263,9 @@ fn assert_art_treatment_scenes_match(scene_ids: &[&str]) -> EvaluationResult<()>
 fn art_treatment_sleeves_match_saved_ground_truth() -> EvaluationResult<()> {
     assert_art_treatment_scenes_match(&["borderless-sleeve", "extended-art-sleeve"])
 }
+
+/// Color edges retain the complete borderless and extended-art faces on plain surfaces.
+#[test]
+fn art_treatment_plain_cards_match_saved_ground_truth() -> EvaluationResult<()> {
+    assert_art_treatment_scenes_match(&["borderless-plain", "extended-art-plain"])
+}

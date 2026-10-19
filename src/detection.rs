@@ -206,6 +206,7 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
     let mut retained = distinct;
+    recover_colour_perimeters(image, &gray, config, &mut retained);
     // A clear sleeve may surround a separately observed physical card frame.
     // Refine only retained outlines so nested printed panels stay suppressed.
     for candidate in &mut retained {
@@ -3304,5 +3305,370 @@ mod artwork_sleeve_tests {
             )
             .is_none()
         );
+    }
+}
+
+/// Measures an unsigned RGB normal derivative while rejecting tangential texture.
+fn colour_outline_strength(image: &image::RgbImage, point: Point, tangent: Point) -> f32 {
+    let normal = Point {
+        x: tangent.y,
+        y: -tangent.x,
+    };
+    let outside = sample_outline_rgb(image, point.x + normal.x, point.y + normal.y);
+    let inside = sample_outline_rgb(image, point.x - normal.x, point.y - normal.y);
+    let first = sample_outline_rgb(image, point.x + tangent.x, point.y + tangent.y);
+    let second = sample_outline_rgb(image, point.x - tangent.x, point.y - tangent.y);
+    let across = (0..3)
+        .map(|c| (outside[c] - inside[c]).abs())
+        .fold(0.0, f32::max);
+    let along = (0..3)
+        .map(|c| (first[c] - second[c]).abs())
+        .fold(0.0, f32::max);
+    if across > 20.0 && across > along * 1.4 {
+        across
+    } else {
+        0.0
+    }
+}
+
+/// Requires a visible straight boundary across its span and both corner approaches.
+fn colour_outline_support(
+    start: Point,
+    end: Point,
+    image: &image::RgbImage,
+    minimum: usize,
+) -> bool {
+    let length = squared_distance(start, end).sqrt();
+    let tangent = Point {
+        x: (end.x - start.x) / length,
+        y: (end.y - start.y) / length,
+    };
+    let mut present = [false; 48];
+    for (sample, value) in present.iter_mut().enumerate() {
+        let fraction = 0.03 + 0.94 * sample as f32 / 47.0;
+        let point = Point {
+            x: start.x + (end.x - start.x) * fraction,
+            y: start.y + (end.y - start.y) * fraction,
+        };
+        *value = colour_outline_strength(image, point, tangent) > 0.0;
+    }
+    present.iter().filter(|&&v| v).count() >= minimum
+        && present[..5].iter().filter(|&&v| v).count() >= 4
+        && present[43..].iter().filter(|&&v| v).count() >= 4
+}
+
+/// Fits an observed RGB edge, then validates support in its fitted coordinates.
+fn colour_outline_line(
+    start: Point,
+    end: Point,
+    image: &image::RgbImage,
+    radius: f32,
+    minimum: usize,
+) -> Option<(Point, Point)> {
+    let length = squared_distance(start, end).sqrt();
+    let tangent = Point {
+        x: (end.x - start.x) / length,
+        y: (end.y - start.y) / length,
+    };
+    let normal = Point {
+        x: tangent.y,
+        y: -tangent.x,
+    };
+    let strength = |fraction: f32, offset: f32| {
+        let point = Point {
+            x: start.x + (end.x - start.x) * fraction + normal.x * offset,
+            y: start.y + (end.y - start.y) * fraction + normal.y * offset,
+        };
+        colour_outline_strength(image, point, tangent)
+    };
+    let mut best = None;
+    for step in -((radius * 2.0) as i32)..=((radius * 2.0) as i32) {
+        let offset = step as f32 * 0.5;
+        let mut supported = [false; 48];
+        let mut total = 0.0;
+        for (sample, present) in supported.iter_mut().enumerate() {
+            let value = strength(0.03 + 0.94 * sample as f32 / 47.0, offset);
+            *present = value > 0.0;
+            total += value;
+        }
+        let count = supported.iter().filter(|&&v| v).count();
+        if count < 30
+            || supported[..5].iter().filter(|&&v| v).count() < 2
+            || supported[43..].iter().filter(|&&v| v).count() < 2
+        {
+            continue;
+        }
+        let score = count as f32 * 1000.0 + total;
+        if best.is_none_or(|(_, old)| score > old) {
+            best = Some((offset, score));
+        }
+    }
+    let (offset, _) = best?;
+    let mut points = Vec::new();
+    for sample in 0..48 {
+        let fraction = 0.03 + 0.94 * sample as f32 / 47.0;
+        let mut chosen = None;
+        let mut greatest = 20.0;
+        for step in -6..=6 {
+            let trial = offset + step as f32 * 0.25;
+            let value = strength(fraction, trial);
+            if value > greatest {
+                greatest = value;
+                chosen = Some(trial);
+            }
+        }
+        if let Some(value) = chosen {
+            points.push(Point {
+                x: start.x + (end.x - start.x) * fraction + normal.x * value,
+                y: start.y + (end.y - start.y) * fraction + normal.y * value,
+            });
+        }
+    }
+    if points.len() < 30 {
+        return None;
+    }
+    let line = principal_line(&points)?;
+    let project = |point: Point| {
+        let distance = (point.x - line.0.x) * line.1.x + (point.y - line.0.y) * line.1.y;
+        Point {
+            x: line.0.x + line.1.x * distance,
+            y: line.0.y + line.1.y * distance,
+        }
+    };
+    colour_outline_support(project(start), project(end), image, minimum).then_some(line)
+}
+
+/// Bilinearly samples original color channels without discarding hue contrast.
+fn sample_outline_rgb(image: &image::RgbImage, x: f32, y: f32) -> [f32; 3] {
+    let x = x.clamp(0.0, image.width() as f32 - 1.0);
+    let y = y.clamp(0.0, image.height() as f32 - 1.0);
+    let left = x.floor() as u32;
+    let top = y.floor() as u32;
+    let right = (left + 1).min(image.width() - 1);
+    let bottom = (top + 1).min(image.height() - 1);
+    let dx = x - left as f32;
+    let dy = y - top as f32;
+    std::array::from_fn(|c| {
+        f32::from(image.get_pixel(left, top)[c]) * (1.0 - dx) * (1.0 - dy)
+            + f32::from(image.get_pixel(right, top)[c]) * dx * (1.0 - dy)
+            + f32::from(image.get_pixel(left, bottom)[c]) * (1.0 - dx) * dy
+            + f32::from(image.get_pixel(right, bottom)[c]) * dx * dy
+    })
+}
+
+/// Requires an enclosing observed perimeter to agree with three retained side lines.
+fn colour_perimeter_follows_panel(original: &CardDetection, recovered: &CardDetection) -> bool {
+    if recovered.area < original.area * 1.5 || recovered.area > original.area * 3.0 {
+        return false;
+    }
+    let (_, containment) = quadrilateral_overlap(original, recovered);
+    if containment < 0.95 {
+        return false;
+    }
+    let lengths = edge_lengths(&original.corners);
+    let limit = lengths.into_iter().fold(f32::INFINITY, f32::min) * 0.17;
+    (0..4).any(|shift| {
+        (0..4)
+            .filter(|&i| {
+                let a = original.corners[i];
+                let b = original.corners[(i + 1) % 4];
+                let c = recovered.corners[(i + shift) % 4];
+                let d = recovered.corners[(i + shift + 1) % 4];
+                let length = squared_distance(c, d).sqrt();
+                let dot = (b.x - a.x) * (d.x - c.x) + (b.y - a.y) * (d.y - c.y);
+                dot / (lengths[i] * length) > 0.995
+                    && cross(c, d, a).abs() / length <= limit
+                    && cross(c, d, b).abs() / length <= limit
+            })
+            .count()
+            == 3
+    })
+}
+
+/// Replaces a retained printed panel with a complete observed color perimeter.
+///
+/// Color-channel edges are combined only for this replacement pass: they never
+/// introduce another detection or relax the normal contour geometry checks.
+fn recover_colour_perimeters(
+    image: &DynamicImage,
+    gray: &GrayImage,
+    config: &ExtractorConfig,
+    retained: &mut [CardDetection],
+) {
+    if retained.is_empty() {
+        return;
+    }
+    let rgb = image.to_rgb8();
+    let rgb = if rgb.dimensions() == gray.dimensions() {
+        rgb
+    } else {
+        imageops::resize(
+            &rgb,
+            gray.width(),
+            gray.height(),
+            imageops::FilterType::Triangle,
+        )
+    };
+    let mut edges = canny(
+        gray,
+        config.canny_low_threshold,
+        config.canny_high_threshold,
+    );
+    for channel in 0..3 {
+        let plane = GrayImage::from_fn(rgb.width(), rgb.height(), |x, y| {
+            image::Luma([rgb.get_pixel(x, y)[channel]])
+        });
+        let channel_edges = canny(
+            &plane,
+            config.canny_low_threshold,
+            config.canny_high_threshold,
+        );
+        for (value, additional) in edges.iter_mut().zip(channel_edges.iter()) {
+            *value = (*value).max(*additional);
+        }
+    }
+    let mut candidates = Vec::new();
+    collect_candidates(&edges, config, &mut candidates);
+    candidates.sort_by(|a, b| b.area.total_cmp(&a.area).then_with(|| spatial_order(a, b)));
+    let originals = retained.to_vec();
+    for (index, original) in originals.iter().enumerate() {
+        let mut proposals: Vec<CardDetection> = Vec::new();
+        for candidate in &candidates {
+            if !colour_perimeter_follows_panel(original, candidate) {
+                continue;
+            }
+            let mut lines = [(Point { x: 0.0, y: 0.0 }, Point { x: 1.0, y: 0.0 }); 4];
+            let mut complete = true;
+            for (i, line) in lines.iter_mut().enumerate() {
+                if let Some(fitted) = colour_outline_line(
+                    candidate.corners[i],
+                    candidate.corners[(i + 1) % 4],
+                    &rgb,
+                    3.0,
+                    30,
+                ) {
+                    *line = fitted;
+                } else {
+                    complete = false;
+                    break;
+                }
+            }
+            if !complete {
+                continue;
+            }
+            let mut corners = candidate.corners;
+            for (i, corner) in corners.iter_mut().enumerate() {
+                if let Some(point) = intersect_lines(lines[(i + 3) % 4], lines[i]) {
+                    *corner = point;
+                } else {
+                    complete = false;
+                    break;
+                }
+            }
+            if !complete
+                || (0..4).any(|i| {
+                    squared_distance(corners[i], candidate.corners[i]) > 16.0
+                        || !colour_outline_support(corners[i], corners[(i + 1) % 4], &rgb, 30)
+                })
+            {
+                continue;
+            }
+            let Some(corners) = orient_card_corners(
+                corners,
+                config.aspect_ratio_tolerance,
+                gray.width(),
+                gray.height(),
+            ) else {
+                continue;
+            };
+            let recovered = CardDetection {
+                area: polygon_area(&corners),
+                corners,
+            };
+            if !colour_perimeter_follows_panel(original, &recovered)
+                || originals.iter().enumerate().any(|(other_index, other)| {
+                    other_index != index && quadrilateral_overlap(&recovered, other).0 > 0.02
+                })
+                || recovered.area
+                    < gray.width() as f32 * gray.height() as f32 * config.min_area_fraction
+                || recovered.area
+                    > gray.width() as f32 * gray.height() as f32 * config.max_area_fraction
+            {
+                continue;
+            }
+            if proposals
+                .iter()
+                .all(|old| quadrilateral_overlap(old, &recovered).0 < 0.95)
+            {
+                proposals.push(recovered);
+            }
+        }
+        if proposals.len() == 1 {
+            retained[index] = proposals.remove(0);
+        }
+    }
+}
+
+#[cfg(test)]
+/// Conservative color-perimeter replacement guards independent of card artwork.
+mod colour_perimeter_tests {
+    use super::*;
+
+    /// Builds an axis-aligned outline for relationship checks.
+    fn rectangle(left: f32, top: f32, right: f32, bottom: f32) -> CardDetection {
+        let corners = [
+            Point { x: left, y: top },
+            Point { x: right, y: top },
+            Point {
+                x: right,
+                y: bottom,
+            },
+            Point { x: left, y: bottom },
+        ];
+        CardDetection {
+            area: polygon_area(&corners),
+            corners,
+        }
+    }
+
+    #[test]
+    /// An enclosing perimeter must agree with three observed panel side lines.
+    fn colour_replacement_rejects_two_shared_sides_and_partial_containment() {
+        let physical = rectangle(0.0, 0.0, 200.0, 280.0);
+        let panel = rectangle(10.0, 130.0, 190.0, 270.0);
+        assert!(colour_perimeter_follows_panel(&panel, &physical));
+        assert!(!colour_perimeter_follows_panel(
+            &rectangle(10.0, 130.0, 190.0, 240.0),
+            &physical,
+        ));
+        assert!(!colour_perimeter_follows_panel(
+            &rectangle(-20.0, 130.0, 160.0, 270.0),
+            &physical,
+        ));
+        assert!(!colour_perimeter_follows_panel(&physical, &physical));
+    }
+
+    #[test]
+    /// Hue contrast can prove a side, while a missing corner approach cannot.
+    fn colour_edge_support_requires_both_endpoint_sections() {
+        let background = image::Rgb([73, 105, 81]);
+        let foreground = image::Rgb([155, 78, 84]);
+        let mut image =
+            image::RgbImage::from_fn(
+                400,
+                400,
+                |x, _| {
+                    if x < 200 { foreground } else { background }
+                },
+            );
+        let start = Point { x: 199.5, y: 30.0 };
+        let end = Point { x: 199.5, y: 370.0 };
+        assert!(colour_outline_support(start, end, &image, 40));
+        for y in 20..90 {
+            for x in 195..205 {
+                image.put_pixel(x, y, background);
+            }
+        }
+        assert!(!colour_outline_support(start, end, &image, 30));
     }
 }
