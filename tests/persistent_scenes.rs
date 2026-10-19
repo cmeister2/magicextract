@@ -96,6 +96,15 @@ fn dim_card_matches_saved_ground_truth() -> EvaluationResult<()> {
     )
 }
 
+/// The physical card border is retained instead of its inner printed frame.
+#[test]
+fn busy_playmat_card_matches_saved_ground_truth() -> EvaluationResult<()> {
+    assert_saved_scene_matches(
+        playmat_manifest_path(),
+        "playmat-fantasy-forest-lightning-bolt",
+    )
+}
+
 /// Explicit challenge evaluation reports every unsupported count, outline, or pixel error.
 #[test]
 #[ignore = "includes difficult challenge fixtures; use evaluate_scenes for a complete JSON report"]

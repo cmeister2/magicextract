@@ -27,6 +27,19 @@ const MINIMUM_EDGE_COVERAGE: f32 = 0.6;
 /// Bounded line pool that leaves room for short visible sides beside printed panels.
 const MAXIMUM_OBSERVED_EDGES: usize = 12;
 
+/// Number of distributed luminance profiles used to verify an enclosing border.
+const BORDER_PROFILE_SAMPLES: usize = 48;
+
+/// Contrast statistics across a proposed edge, measured along its middle section.
+struct BorderProfile {
+    /// Signed outward contrast exceeded by three quarters of the samples.
+    lower_quartile: f32,
+    /// Signed outward contrast exceeded by one quarter of the samples.
+    upper_quartile: f32,
+    /// Number of samples whose inner side belongs to a dark border.
+    dark_samples: usize,
+}
+
 /// A straight observed section of a contour, used to infer missing corner joins.
 #[derive(Clone, Copy)]
 struct ObservedEdge {
@@ -124,6 +137,48 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
             }
         }
     }
+    // A printed panel can be the only closed contour on a busy surface. Recover
+    // its surrounding dark card border only when all four outer edges are seen.
+    // Refine only retained detections so suppressed contours cannot reappear as
+    // extra cards when their expanded geometry changes overlap relationships.
+    for candidate in &mut retained {
+        if let Some(expanded) = expand_dark_border(candidate.corners, &gray)
+            && let Some(corners) = orient_card_corners(
+                refine_gradient_corners(expanded, &gray),
+                config.aspect_ratio_tolerance,
+                gray.width(),
+                gray.height(),
+            )
+        {
+            let area = polygon_area(&corners);
+            let image_area = gray.width() as f32 * gray.height() as f32;
+            if area >= config.min_area_fraction * image_area
+                && area <= config.max_area_fraction * image_area
+            {
+                candidate.corners = corners;
+                candidate.area = area;
+            }
+        }
+    }
+
+    // Enlarged borders can overlap another retained card; suppress duplicates
+    // again using the final geometry before mapping corners into source pixels.
+    retained.sort_by(|left, right| {
+        right
+            .area
+            .total_cmp(&left.area)
+            .then_with(|| spatial_order(left, right))
+    });
+    let mut distinct = Vec::new();
+    for candidate in retained {
+        if distinct.iter().all(|existing| {
+            let (iou, containment) = quadrilateral_overlap(existing, &candidate);
+            iou < DUPLICATE_IOU && containment < INTERIOR_CONTAINMENT
+        }) {
+            distinct.push(candidate);
+        }
+    }
+    let mut retained = distinct;
     let scale_x = image.width() as f32 / gray.width() as f32;
     let scale_y = image.height() as f32 / gray.height() as f32;
     for candidate in &mut retained {
@@ -482,6 +537,111 @@ fn refine_gradient_corners(corners: [Point; 4], image: &GrayImage) -> [Point; 4]
         refined.rotate_left(2);
     }
     refined
+}
+
+/// Recovers a dark outer border around an observed bright rectangular panel.
+///
+/// Each panel edge must first cross into a dark band. An enclosing edge is then
+/// accepted only when three quarters of its distributed samples cross from dark
+/// pixels into a brighter surface. Independent edge searches permit a wider
+/// copyright strip without treating arbitrary padding as evidence of a card.
+fn expand_dark_border(corners: [Point; 4], image: &GrayImage) -> Option<[Point; 4]> {
+    let lengths = edge_lengths(&corners);
+    let maximum_offset = lengths.iter().copied().fold(f32::INFINITY, f32::min) * 0.15;
+    let mut lines = [(corners[0], corners[0]); 4];
+    for index in 0..4 {
+        // Require a dark band and a coherent outer transition on every side.
+        let start = corners[index];
+        let end = corners[(index + 1) % 4];
+        let normal = Point {
+            x: (end.y - start.y) / lengths[index],
+            y: (start.x - end.x) / lengths[index],
+        };
+        if border_profile(start, end, normal, 0.0, image).upper_quartile > -12.0 {
+            return None;
+        }
+        let mut best_offset = None;
+        let mut best_contrast = 16.0;
+        for offset in 3..=maximum_offset as u32 {
+            // Prefer the transition supported across the edge, rather than one
+            // bright spot in surrounding artwork or a mark inside the border.
+            let profile = border_profile(start, end, normal, offset as f32, image);
+            if profile.dark_samples >= BORDER_PROFILE_SAMPLES * 3 / 4
+                && profile.lower_quartile > best_contrast
+            {
+                best_offset = Some(offset as f32);
+                best_contrast = profile.lower_quartile;
+            }
+        }
+        let offset = best_offset?;
+        let shifted_start = Point {
+            x: start.x + offset * normal.x,
+            y: start.y + offset * normal.y,
+        };
+        let shifted_end = Point {
+            x: end.x + offset * normal.x,
+            y: end.y + offset * normal.y,
+        };
+        lines[index] = gradient_edge_line(shifted_start, shifted_end, image).unwrap_or((
+            shifted_start,
+            Point {
+                x: end.x - start.x,
+                y: end.y - start.y,
+            },
+        ));
+    }
+    let mut expanded = corners;
+    for index in 0..4 {
+        // Intersect independently supported borders while keeping every corner
+        // in frame; clipped or occluded sides do not justify inventing pixels.
+        let point = intersect_lines(lines[(index + 3) % 4], lines[index])?;
+        if point.x < 0.0
+            || point.y < 0.0
+            || point.x > image.width() as f32 - 1.0
+            || point.y > image.height() as f32 - 1.0
+        {
+            return None;
+        }
+        expanded[index] = point;
+    }
+    (plausible_quadrilateral(&expanded) && polygon_area(&expanded) <= polygon_area(&corners) * 1.5)
+        .then_some(expanded)
+}
+
+/// Measures signed outward contrast and dark-band coverage along a shifted edge.
+fn border_profile(
+    start: Point,
+    end: Point,
+    normal: Point,
+    offset: f32,
+    image: &GrayImage,
+) -> BorderProfile {
+    let mut contrasts = [0.0; BORDER_PROFILE_SAMPLES];
+    let mut dark_samples = 0;
+    for (index, contrast) in contrasts.iter_mut().enumerate() {
+        // Ignore corner sections and span four pixels across the proposed edge.
+        let fraction = 0.12 + 0.76 * index as f32 / (BORDER_PROFILE_SAMPLES - 1) as f32;
+        let x = start.x + fraction * (end.x - start.x);
+        let y = start.y + fraction * (end.y - start.y);
+        let inner = sample_luma(
+            image,
+            x + (offset - 2.0) * normal.x,
+            y + (offset - 2.0) * normal.y,
+        );
+        let outer = sample_luma(
+            image,
+            x + (offset + 2.0) * normal.x,
+            y + (offset + 2.0) * normal.y,
+        );
+        *contrast = outer - inner;
+        dark_samples += usize::from(inner < 48.0);
+    }
+    contrasts.sort_unstable_by(f32::total_cmp);
+    BorderProfile {
+        lower_quartile: contrasts[BORDER_PROFILE_SAMPLES / 4],
+        upper_quartile: contrasts[BORDER_PROFILE_SAMPLES * 3 / 4],
+        dark_samples,
+    }
 }
 
 /// Fits one boundary line to local subpixel gradient peaks away from its corners.
@@ -1064,6 +1224,67 @@ mod tests {
     fn uniform_card_proportions_produce_no_detection() {
         let image = DynamicImage::ImageLuma8(GrayImage::from_pixel(250, 350, Luma([180])));
         assert!(detect(&image, &ExtractorConfig::default()).is_empty());
+    }
+
+    #[test]
+    /// An observed inner panel recovers independently supported unequal borders.
+    fn recovers_dark_border_with_wider_bottom_strip() {
+        let image = GrayImage::from_fn(360, 400, |x, y| {
+            Luma([if (88..=252).contains(&x) && (68..=292).contains(&y) {
+                220
+            } else if (80..=260).contains(&x) && (60..=312).contains(&y) {
+                14
+            } else {
+                (70 + (x * 17 + y * 31) % 140) as u8
+            }])
+        });
+        let panel = [
+            Point { x: 88.0, y: 68.0 },
+            Point { x: 252.0, y: 68.0 },
+            Point { x: 252.0, y: 292.0 },
+            Point { x: 88.0, y: 292.0 },
+        ];
+        let expanded = expand_dark_border(panel, &image).expect("four observed outer edges");
+        for (actual, expected) in expanded.into_iter().zip([
+            Point { x: 79.5, y: 59.5 },
+            Point { x: 260.5, y: 59.5 },
+            Point { x: 260.5, y: 312.5 },
+            Point { x: 79.5, y: 312.5 },
+        ]) {
+            assert!(squared_distance(actual, expected).sqrt() < 1.0);
+        }
+    }
+
+    #[test]
+    /// A dark band without an observed enclosing edge cannot justify padding.
+    fn border_recovery_requires_all_four_outer_edges() {
+        let panel = [
+            Point { x: 88.0, y: 68.0 },
+            Point { x: 252.0, y: 68.0 },
+            Point { x: 252.0, y: 292.0 },
+            Point { x: 88.0, y: 292.0 },
+        ];
+        for missing_edge in 0..4 {
+            let image = GrayImage::from_fn(360, 400, |x, y| {
+                let extended_band = match missing_edge {
+                    0 => y < 60 && (80..=260).contains(&x),
+                    1 => x > 260 && (60..=312).contains(&y),
+                    2 => y > 312 && (80..=260).contains(&x),
+                    _ => x < 80 && (60..=312).contains(&y),
+                };
+                Luma([if (88..=252).contains(&x) && (68..=292).contains(&y) {
+                    220
+                } else if extended_band || ((80..=260).contains(&x) && (60..=312).contains(&y)) {
+                    14
+                } else {
+                    160
+                }])
+            });
+            assert!(
+                expand_dark_border(panel, &image).is_none(),
+                "edge {missing_edge} has no enclosing boundary"
+            );
+        }
     }
 
     #[test]
