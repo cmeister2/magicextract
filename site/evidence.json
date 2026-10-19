@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "818d80db69c6c8d3e84b49b17ca43c668dae6d05",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/818d80db69c6c8d3e84b49b17ca43c668dae6d05",
+  "source_revision": "8480ea736f7a583a2ddaa55b8579cfe4181e00ec",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/8480ea736f7a583a2ddaa55b8579cfe4181e00ec",
   "source_sha256": {
-    "src/detection.rs": "3cc7cb719cf58fa6abb9054638b71429c191f167326400c6cfc95e6d21a2bf6f",
+    "src/detection.rs": "6163cf53932681427def885753c881b3b86553eb42ecf5996bdf5efbcc1849b6",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "49d4caf34849e4c05a9a6d90d17ecc9f390238f8f3fa63079e59782b49b5985c",
+  "selection_sha256": "fd0b6c05a604d3329d716945b0d4b032c8c9055300e7d914ccea746d40ba8932",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -624,7 +624,7 @@
         "images/playmat-fantasy-forest-lightning-bolt/card-000.png"
       ],
       "crop_sha256": {
-        "images/playmat-fantasy-forest-lightning-bolt/card-000.png": "867ec607949feedbe7840a8f8efbc86486a1b17ed551e7bdd054ae56b079cc1e"
+        "images/playmat-fantasy-forest-lightning-bolt/card-000.png": "9cf6e55fa90cbd1dd4b9fd89ae27bcf1f73232413362b0569d2f57313542bb84"
       },
       "report": {
         "id": "playmat-fantasy-forest-lightning-bolt",
@@ -636,23 +636,23 @@
           {
             "corners": [
               [
-                98.43465,
-                150.39807
+                98.57457,
+                150.34238
               ],
               [
-                271.73212,
-                97.2993
+                271.65118,
+                97.33049
               ],
               [
-                345.5714,
-                339.3006
+                345.58826,
+                339.30133
               ],
               [
-                172.54132,
-                392.38843
+                172.4595,
+                392.41055
               ]
             ],
-            "area": 45832.38
+            "area": 45815.992
           }
         ],
         "matches": [
@@ -660,8 +660,132 @@
             "expected_index": 0,
             "source": "lightning-bolt",
             "detected_index": 0,
-            "corner_error": 1.0250338,
-            "pixel_mae": 6.257327,
+            "corner_error": 0.9596992,
+            "pixel_mae": 5.5412188,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "borders",
+      "id": "white-border-playmat",
+      "title": "White border on a playmat",
+      "result": "Match",
+      "description": "A white-border Lightning Bolt keeps its full printed border against a busy mat.",
+      "group": "matches",
+      "input": "images/white-border-playmat/input.jpg",
+      "input_source": "tests/fixtures/borders/images/white-border-playmat.jpg",
+      "input_sha256": "1c3dfb097520a48f0951079935845b047e50d0b36a67486e746784776fb36298",
+      "source_manifest": "tests/fixtures/borders/manifest.json",
+      "source_manifest_sha256": "061e3fd076a47e73aa2a775c46d219cefb89aea0c55e3aff03ea38201bbf8959",
+      "crops": [
+        "images/white-border-playmat/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/white-border-playmat/card-000.png": "79580d3f6c0ffbb210ae77a3066448113ad63e892d7cdd94cb64819784f7bb9b"
+      },
+      "report": {
+        "id": "white-border-playmat",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                98.58858,
+                150.02869
+              ],
+              [
+                271.81448,
+                97.66211
+              ],
+              [
+                345.96533,
+                340.2463
+              ],
+              [
+                172.31873,
+                391.7139
+              ]
+            ],
+            "area": 45833.707
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "white-lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 1.50222,
+            "pixel_mae": 3.4409728,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "borders",
+      "id": "silver-border-playmat",
+      "title": "Silver border on a playmat",
+      "result": "Match",
+      "description": "A silver-border Booster Tutor is extracted along its physical edge, including the pale frame.",
+      "group": "matches",
+      "input": "images/silver-border-playmat/input.jpg",
+      "input_source": "tests/fixtures/borders/images/silver-border-playmat.jpg",
+      "input_sha256": "31a52e6c4b39129b3251cb1c52be6d1d61bf14ae5bce4a208f3c04a960946d5e",
+      "source_manifest": "tests/fixtures/borders/manifest.json",
+      "source_manifest_sha256": "061e3fd076a47e73aa2a775c46d219cefb89aea0c55e3aff03ea38201bbf8959",
+      "crops": [
+        "images/silver-border-playmat/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/silver-border-playmat/card-000.png": "9223473b07710e0cd4a40818696fe73a18772d4333b7c39c6f7d9bbfd755d489"
+      },
+      "report": {
+        "id": "silver-border-playmat",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                98.661606,
+                150.41075
+              ],
+              [
+                271.5338,
+                96.91258
+              ],
+              [
+                346.1832,
+                341.10284
+              ],
+              [
+                172.97336,
+                393.72958
+              ]
+            ],
+            "area": 46131.656
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "silver-booster-tutor",
+            "detected_index": 0,
+            "corner_error": 2.3074477,
+            "pixel_mae": 13.017445,
             "pixel_orientation": "original"
           }
         ],
@@ -686,7 +810,7 @@
         "images/sleeve-lightning-bolt-1/card-000.png"
       ],
       "crop_sha256": {
-        "images/sleeve-lightning-bolt-1/card-000.png": "5f86700fe35d5957250125e43dd10dc169f080614d88f9d3a02373d5f1a75724"
+        "images/sleeve-lightning-bolt-1/card-000.png": "4980ec5e1651752ed14e3f0b8e06886eb0c1f637203a3b3dcd07ec77923cad76"
       },
       "report": {
         "id": "sleeve-lightning-bolt-1",
@@ -698,23 +822,23 @@
           {
             "corners": [
               [
-                269.3106,
-                90.56474
+                269.31143,
+                90.56238
               ],
               [
-                464.1609,
-                157.4111
+                464.1606,
+                157.41193
               ],
               [
-                370.1661,
-                430.02423
+                370.17084,
+                430.01056
               ],
               [
-                175.58151,
-                362.6058
+                175.5806,
+                362.60846
               ]
             ],
-            "area": 59328.0
+            "area": 59326.977
           }
         ],
         "matches": [
@@ -722,8 +846,8 @@
             "expected_index": 0,
             "source": "lightning-bolt",
             "detected_index": 0,
-            "corner_error": 0.9720673,
-            "pixel_mae": 4.6304507,
+            "corner_error": 0.9582633,
+            "pixel_mae": 4.600461,
             "pixel_orientation": "original"
           }
         ],
@@ -733,90 +857,121 @@
       }
     },
     {
-      "corpus": "scenes",
-      "id": "occlusion-two-cards-1",
-      "title": "Overlapping cards",
+      "corpus": "borders",
+      "id": "white-border-sleeve",
+      "title": "White border in a sleeve",
       "result": "Match",
-      "description": "Both full outlines are recovered from their visible edges. Covered pixels remain covered in the crops.",
+      "description": "The pale card frame is separated from the wider sleeve outline.",
       "group": "matches",
-      "input": "images/occlusion-two-cards-1/input.jpg",
-      "input_source": "tests/fixtures/scenes/images/occlusion-two-cards-1.jpg",
-      "input_sha256": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
-      "source_manifest": "tests/fixtures/scenes/manifest.json",
-      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "input": "images/white-border-sleeve/input.jpg",
+      "input_source": "tests/fixtures/borders/images/white-border-sleeve.jpg",
+      "input_sha256": "dc5de7c327e56dcd3b6b7212fdc47b3306662e65efff3e1e49f7ca633e31f782",
+      "source_manifest": "tests/fixtures/borders/manifest.json",
+      "source_manifest_sha256": "061e3fd076a47e73aa2a775c46d219cefb89aea0c55e3aff03ea38201bbf8959",
       "crops": [
-        "images/occlusion-two-cards-1/card-000.png",
-        "images/occlusion-two-cards-1/card-001.png"
+        "images/white-border-sleeve/card-000.png"
       ],
       "crop_sha256": {
-        "images/occlusion-two-cards-1/card-000.png": "188268fb2565674cac8b359e0af6e00097967263a550d7cc555532b13046e12d",
-        "images/occlusion-two-cards-1/card-001.png": "5903742e2b3823b0d0ef2fdc44888d12433b39b8248ac56af409bd6777711a21"
+        "images/white-border-sleeve/card-000.png": "1ee11a490d8196a10b49c2b6f228eb5bd4c4f114cb2bf256bab74921dcdd7c04"
       },
       "report": {
-        "id": "occlusion-two-cards-1",
+        "id": "white-border-sleeve",
         "tier": "challenge",
         "passed": true,
-        "expected_count": 2,
-        "detected_count": 2,
+        "expected_count": 1,
+        "detected_count": 1,
         "detected": [
           {
             "corners": [
               [
-                177.88351,
-                137.2138
+                196.59415,
+                165.31357
               ],
               [
-                356.43967,
-                112.17692
+                369.62415,
+                112.424164
               ],
               [
-                394.3946,
-                361.93118
+                443.73053,
+                354.35434
               ],
               [
-                213.03806,
-                387.9677
+                270.50565,
+                407.29688
               ]
             ],
-            "area": 45968.305
-          },
-          {
-            "corners": [
-              [
-                365.76425,
-                188.38045
-              ],
-              [
-                531.6953,
-                229.75336
-              ],
-              [
-                474.01288,
-                461.7533
-              ],
-              [
-                307.9478,
-                420.49084
-              ]
-            ],
-            "area": 40906.78
+            "area": 45805.61
           }
         ],
         "matches": [
           {
             "expected_index": 0,
-            "source": "black-lotus",
+            "source": "white-lightning-bolt",
             "detected_index": 0,
-            "corner_error": 2.7529635,
-            "pixel_mae": 13.106831,
+            "corner_error": 0.86385626,
+            "pixel_mae": 2.9945571,
             "pixel_orientation": "original"
-          },
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "borders",
+      "id": "silver-border-sleeve",
+      "title": "Silver border in a sleeve",
+      "result": "Match",
+      "description": "The silver printed border is retained while the surrounding sleeve margin is removed.",
+      "group": "matches",
+      "input": "images/silver-border-sleeve/input.jpg",
+      "input_source": "tests/fixtures/borders/images/silver-border-sleeve.jpg",
+      "input_sha256": "80377681b51c22d86a0d93ab4c322d4b8780142037dd40ae3cd5c7a60107e1d5",
+      "source_manifest": "tests/fixtures/borders/manifest.json",
+      "source_manifest_sha256": "061e3fd076a47e73aa2a775c46d219cefb89aea0c55e3aff03ea38201bbf8959",
+      "crops": [
+        "images/silver-border-sleeve/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/silver-border-sleeve/card-000.png": "b9a71ecdf294422592d98ffc1d3bab5c05788240d5d41e1c56ca360136327402"
+      },
+      "report": {
+        "id": "silver-border-sleeve",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
           {
-            "expected_index": 1,
-            "source": "sol-ring",
-            "detected_index": 1,
-            "corner_error": 0.9840775,
-            "pixel_mae": 5.9872656,
+            "corners": [
+              [
+                296.38947,
+                106.43996
+              ],
+              [
+                457.87704,
+                188.43082
+              ],
+              [
+                342.9051,
+                413.96484
+              ],
+              [
+                181.60916,
+                331.73367
+              ]
+            ],
+            "area": 45812.535
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "silver-booster-tutor",
+            "detected_index": 0,
+            "corner_error": 1.0493706,
+            "pixel_mae": 9.0553665,
             "pixel_orientation": "original"
           }
         ],
@@ -854,6 +1009,102 @@
         "unmatched_detected": [],
         "failures": [
           "expected 2 cards, detected 0"
+        ]
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "occlusion-two-cards-1",
+      "title": "Overlapping cards",
+      "result": "Wrong crop",
+      "description": "Two crops are returned, but their outlines do not match the two full cards.",
+      "group": "misses",
+      "input": "images/occlusion-two-cards-1/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/occlusion-two-cards-1.jpg",
+      "input_sha256": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/occlusion-two-cards-1/card-000.png",
+        "images/occlusion-two-cards-1/card-001.png"
+      ],
+      "crop_sha256": {
+        "images/occlusion-two-cards-1/card-000.png": "ea1bc40f6d500f4957f75d2de059ee181f54960743c430ba486c4434790a199e",
+        "images/occlusion-two-cards-1/card-001.png": "5903742e2b3823b0d0ef2fdc44888d12433b39b8248ac56af409bd6777711a21"
+      },
+      "report": {
+        "id": "occlusion-two-cards-1",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 2,
+        "detected_count": 2,
+        "detected": [
+          {
+            "corners": [
+              [
+                185.9553,
+                143.8808
+              ],
+              [
+                383.82086,
+                115.901276
+              ],
+              [
+                324.4979,
+                353.8927
+              ],
+              [
+                217.57355,
+                369.02502
+              ]
+            ],
+            "area": 34991.168
+          },
+          {
+            "corners": [
+              [
+                365.76425,
+                188.38045
+              ],
+              [
+                531.6953,
+                229.75336
+              ],
+              [
+                474.01288,
+                461.7533
+              ],
+              [
+                307.9478,
+                420.49084
+              ]
+            ],
+            "area": 40906.78
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "black-lotus",
+            "detected_index": 0,
+            "corner_error": 67.6798,
+            "pixel_mae": 60.805347,
+            "pixel_orientation": "original"
+          },
+          {
+            "expected_index": 1,
+            "source": "sol-ring",
+            "detected_index": 1,
+            "corner_error": 0.9840775,
+            "pixel_mae": 5.9872656,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": [
+          "card 0 (black-lotus): corner error 67.680 > 8",
+          "card 0 (black-lotus): interior RGB MAE 60.805 >= 22"
         ]
       }
     },
