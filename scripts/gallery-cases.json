@@ -27,6 +27,13 @@
           "description": "Mild simulated defocus leaves enough of the border to extract the card."
         },
         {
+          "corpus": "adversarial",
+          "id": "seed-20261018-case-0048-dim-reduction-2",
+          "title": "Dim light",
+          "result": "Match",
+          "description": "The faint outer border is recovered; the crop keeps the image's original brightness."
+        },
+        {
           "corpus": "scenes",
           "id": "baseline-four-cards",
           "title": "Several separate cards",
@@ -53,6 +60,104 @@
           "title": "Card back",
           "result": "Match",
           "description": "An original patterned card back can be extracted without knowing the card's identity."
+        },
+        {
+          "corpus": "playmats",
+          "id": "playmat-fantasy-forest-lightning-bolt",
+          "title": "Busy playmat",
+          "result": "Match",
+          "description": "The visible dark border is recovered outside the inner printed frame, despite the busy background."
+        },
+        {
+          "corpus": "borders",
+          "id": "white-border-playmat-lower-centre",
+          "title": "White border near the bottom of a playmat",
+          "result": "Match",
+          "description": "A smaller white-border Lightning Bolt near the bottom is recovered at a different position, angle, and size."
+        },
+        {
+          "corpus": "borders",
+          "id": "silver-border-playmat-upper-right",
+          "title": "Silver border at the upper right of a playmat",
+          "result": "Match",
+          "description": "A smaller silver-border Booster Tutor at the upper right is extracted along its full physical edge."
+        },
+        {
+          "corpus": "borders",
+          "id": "silver-border-playmat-lower-centre",
+          "title": "Silver border near the bottom of a playmat",
+          "result": "Match",
+          "description": "The same silver-border card is recovered lower down against a different part of the illustrated mat."
+        },
+        {
+          "corpus": "materials",
+          "id": "sleeve-lightning-bolt-1",
+          "title": "Clear sleeve",
+          "result": "Match",
+          "description": "The card inside the clear sleeve is extracted without the surrounding plastic margin; the reflection remains."
+        },
+        {
+          "corpus": "borders",
+          "id": "white-border-sleeve",
+          "title": "White border in a sleeve",
+          "result": "Match",
+          "description": "The pale card frame is separated from the wider sleeve outline."
+        },
+        {
+          "corpus": "borders",
+          "id": "silver-border-sleeve",
+          "title": "Silver border in a sleeve",
+          "result": "Match",
+          "description": "The silver printed border is retained while the surrounding sleeve margin is removed."
+        },
+        {
+          "corpus": "scenes",
+          "id": "occlusion-two-cards-1",
+          "title": "Overlapping cards",
+          "result": "Match",
+          "description": "Both full card outlines are recovered. The front card still covers part of the rear card in its crop."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-sleeve",
+          "title": "Borderless card in a sleeve",
+          "result": "Match",
+          "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-sleeve",
+          "title": "Extended-art card in a sleeve",
+          "result": "Match",
+          "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-plain",
+          "title": "Borderless card",
+          "result": "Match",
+          "description": "The complete card perimeter is recovered, including artwork that reaches the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-plain",
+          "title": "Extended-art card",
+          "result": "Match",
+          "description": "The complete card perimeter is recovered, including artwork that reaches the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-playmat",
+          "title": "Borderless card on a playmat",
+          "result": "Match",
+          "description": "Observed colour edges recover the full card against the illustrated playmat."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-playmat",
+          "title": "Extended-art card on a playmat",
+          "result": "Match",
+          "description": "Observed colour edges recover the full card against the illustrated playmat."
         }
       ]
     },
@@ -62,11 +167,11 @@
       "intro": "Returning an image does not guarantee a good extraction. These examples either miss cards or return the wrong outline.",
       "cases": [
         {
-          "corpus": "adversarial",
-          "id": "seed-20261018-case-0048-dim-reduction-2",
-          "title": "Too dim",
-          "result": "Miss",
-          "description": "The dim card is missed completely."
+          "corpus": "borders",
+          "id": "white-border-playmat-upper-right",
+          "title": "White border with an extra background crop",
+          "result": "Wrong crop",
+          "description": "The upper-right white-border card is recovered, but a small patch near the bottom-right background edge also produces a crop. One card is present; two crops are returned."
         },
         {
           "corpus": "materials",
@@ -77,31 +182,10 @@
         },
         {
           "corpus": "scenes",
-          "id": "occlusion-two-cards-1",
-          "title": "Overlapping cards",
-          "result": "Wrong crop",
-          "description": "Two crops are returned, but their outlines do not match the two full cards."
-        },
-        {
-          "corpus": "scenes",
           "id": "frame-clipped-left",
           "title": "Outside the frame",
           "result": "Wrong crop",
           "description": "The card runs beyond the image edge; the returned crop has the wrong outline."
-        },
-        {
-          "corpus": "materials",
-          "id": "sleeve-lightning-bolt-1",
-          "title": "Clear sleeve",
-          "result": "Wrong crop",
-          "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop."
-        },
-        {
-          "corpus": "playmats",
-          "id": "playmat-fantasy-forest-lightning-bolt",
-          "title": "Busy playmat",
-          "result": "Wrong crop",
-          "description": "The card is found, but the crop cuts inside its outer border on a busy illustrated surface."
         }
       ]
     },

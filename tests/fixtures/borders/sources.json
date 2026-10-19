@@ -1,0 +1,33 @@
+{
+  "format_version": 1,
+  "provenance": "Official Scryfall card metadata and original PNG faces, cached only for authoring. The saved scenes are generated planar projections, not independent camera captures.",
+  "copyright": "Card artwork copyright Wizards of the Coast and/or the credited artists. Source downloads are not part of the library or repository fixture cache.",
+  "cards": [
+    {
+      "id": "9521375e-0bc1-45ef-b513-6d332a25f9d2",
+      "name": "Lightning Bolt",
+      "artist": "Christopher Rush",
+      "border_color": "white",
+      "scryfall_uri": "https://scryfall.com/card/4ed/208/lightning-bolt?utm_source=api",
+      "set": "4ed",
+      "collector_number": "208",
+      "key": "white-lightning-bolt",
+      "file": "white-lightning-bolt.png",
+      "image_url": "https://cards.scryfall.io/png/front/9/5/9521375e-0bc1-45ef-b513-6d332a25f9d2.png?1783947826",
+      "sha256": "9447c53e51973a374826ccbc162ffda2d5dfd71d7aa5c2a6a35791b671c3de6d"
+    },
+    {
+      "id": "c3a5b25e-c5af-417e-8675-162ab18ac2b1",
+      "name": "Booster Tutor",
+      "artist": "Christopher Rush",
+      "border_color": "silver",
+      "scryfall_uri": "https://scryfall.com/card/unh/51/booster-tutor?utm_source=api",
+      "set": "unh",
+      "collector_number": "51",
+      "key": "silver-booster-tutor",
+      "file": "silver-booster-tutor.png",
+      "image_url": "https://cards.scryfall.io/png/front/c/3/c3a5b25e-c5af-417e-8675-162ab18ac2b1.png?1783944252",
+      "sha256": "e3d050871b9abd76d47b1e5f85575e57126aa4bfae39893f1ee90b106616b36e"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "format_version": 1,
+  "provenance": "Official Scryfall card metadata and original PNG faces, cached only for authoring. The saved scenes are generated planar projections, not independent camera captures.",
+  "copyright": "Card artwork copyright Wizards of the Coast and/or the credited artists. Source downloads are not part of the library or repository fixture cache.",
+  "cards": [
+    {
+      "id": "c8c8390f-4072-454f-8dc4-174919187a47",
+      "name": "Lightning Bolt",
+      "artist": "Chuck Lukacs",
+      "border_color": "borderless",
+      "frame_effects": [
+        "inverted"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/2x2/361/lightning-bolt?utm_source=api",
+      "set": "2x2",
+      "collector_number": "361",
+      "layout": "normal",
+      "key": "borderless-lightning-bolt",
+      "file": "borderless-lightning-bolt.png",
+      "image_url": "https://cards.scryfall.io/png/front/c/8/c8c8390f-4072-454f-8dc4-174919187a47.png?1783921769",
+      "sha256": "efeaad475faee9800bc078ba5ceba4ce7529e093e7cf4cc64288ddab5c601cdb"
+    },
+    {
+      "id": "f2ca07ab-32e9-477c-a263-721a03f778ff",
+      "name": "Once Upon a Time",
+      "artist": "Matt Stewart",
+      "border_color": "black",
+      "frame_effects": [
+        "extendedart"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eld/371/once-upon-a-time?utm_source=api",
+      "set": "eld",
+      "collector_number": "371",
+      "layout": "normal",
+      "key": "extended-once-upon-a-time",
+      "file": "extended-once-upon-a-time.png",
+      "image_url": "https://cards.scryfall.io/png/front/f/2/f2ca07ab-32e9-477c-a263-721a03f778ff.png?1783932528",
+      "sha256": "7d10431ddc7d6a77961a9844e65d64381c0ecf98191c2fcc8f7fec4182874708"
+    }
+  ]
+}

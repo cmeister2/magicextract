@@ -1,0 +1,328 @@
+[
+  {
+    "cards": [
+      {
+        "source": "borderless-lightning-bolt",
+        "corners": [
+          [
+            197.09373716826198,
+            165.81905417370385
+          ],
+          [
+            369.22859324160834,
+            113.19214732361124
+          ],
+          [
+            442.906262831738,
+            354.1809458262961
+          ],
+          [
+            270.77140675839166,
+            406.80785267638873
+          ]
+        ]
+      }
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        73,
+        105,
+        81
+      ]
+    },
+    "id": "borderless-plain",
+    "tier": "challenge",
+    "description": "Lightning Bolt with borderless treatment in a generated plain scene.",
+    "tags": [
+      "art-treatment",
+      "borderless",
+      "plain"
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "id": "borderless-playmat",
+    "tier": "challenge",
+    "description": "Lightning Bolt with borderless treatment in a generated playmat scene.",
+    "tags": [
+      "art-treatment",
+      "borderless",
+      "playmat"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "borderless-lightning-bolt",
+        "corners": [
+          [
+            99.09373716826198,
+            150.81905417370385
+          ],
+          [
+            271.22859324160834,
+            98.19214732361124
+          ],
+          [
+            344.906262831738,
+            339.1809458262961
+          ],
+          [
+            172.77140675839163,
+            391.80785267638873
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "cards": [
+      {
+        "source": "borderless-lightning-bolt",
+        "corners": [
+          [
+            197.09373716826198,
+            165.81905417370385
+          ],
+          [
+            369.22859324160834,
+            113.19214732361124
+          ],
+          [
+            442.906262831738,
+            354.1809458262961
+          ],
+          [
+            270.77140675839166,
+            406.80785267638873
+          ]
+        ]
+      }
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        73,
+        105,
+        81
+      ],
+      "overlays": [
+        {
+          "kind": "line",
+          "points": [
+            [
+              180.7062354573636,
+              153.2615947301977
+            ],
+            [
+              375.7924056738228,
+              93.6177669667594
+            ],
+            [
+              459.2937645426364,
+              366.7384052698023
+            ],
+            [
+              264.2075943261772,
+              426.3822330332406
+            ],
+            [
+              180.7062354573636,
+              153.2615947301977
+            ]
+          ],
+          "color": [
+            225,
+            225,
+            225,
+            255
+          ],
+          "width": 2
+        }
+      ]
+    },
+    "id": "borderless-sleeve",
+    "tier": "challenge",
+    "description": "Lightning Bolt with borderless treatment in a generated sleeve scene.",
+    "tags": [
+      "art-treatment",
+      "borderless",
+      "sleeve"
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "cards": [
+      {
+        "source": "extended-once-upon-a-time",
+        "corners": [
+          [
+            297.0122157902298,
+            106.87403297570646
+          ],
+          [
+            457.393390144136,
+            188.59232292882487
+          ],
+          [
+            342.9877842097702,
+            413.1259670242936
+          ],
+          [
+            182.606609855864,
+            331.40767707117516
+          ]
+        ]
+      }
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        73,
+        105,
+        81
+      ]
+    },
+    "id": "extended-art-plain",
+    "tier": "challenge",
+    "description": "Once Upon a Time with extended-art treatment in a generated plain scene.",
+    "tags": [
+      "art-treatment",
+      "extended-art",
+      "plain"
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "id": "extended-art-playmat",
+    "tier": "challenge",
+    "description": "Once Upon a Time with extended-art treatment in a generated playmat scene.",
+    "tags": [
+      "art-treatment",
+      "extended-art",
+      "playmat"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "extended-once-upon-a-time",
+        "corners": [
+          [
+            99.09373716826198,
+            150.81905417370385
+          ],
+          [
+            271.22859324160834,
+            98.19214732361124
+          ],
+          [
+            344.906262831738,
+            339.1809458262961
+          ],
+          [
+            172.77140675839163,
+            391.80785267638873
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "cards": [
+      {
+        "source": "extended-once-upon-a-time",
+        "corners": [
+          [
+            297.0122157902298,
+            106.87403297570646
+          ],
+          [
+            457.393390144136,
+            188.59232292882487
+          ],
+          [
+            342.9877842097702,
+            413.1259670242936
+          ],
+          [
+            182.606609855864,
+            331.40767707117516
+          ]
+        ]
+      }
+    ],
+    "background": {
+      "kind": "solid",
+      "color": [
+        73,
+        105,
+        81
+      ],
+      "overlays": [
+        {
+          "kind": "line",
+          "points": [
+            [
+              293.9471778955937,
+              86.4572373724673
+            ],
+            [
+              475.7125088300208,
+              179.07129931933486
+            ],
+            [
+              346.0528221044063,
+              433.5427626275327
+            ],
+            [
+              164.2874911699792,
+              340.92870068066514
+            ],
+            [
+              293.9471778955937,
+              86.4572373724673
+            ]
+          ],
+          "color": [
+            225,
+            225,
+            225,
+            255
+          ],
+          "width": 2
+        }
+      ]
+    },
+    "id": "extended-art-sleeve",
+    "tier": "challenge",
+    "description": "Once Upon a Time with extended-art treatment in a generated sleeve scene.",
+    "tags": [
+      "art-treatment",
+      "extended-art",
+      "sleeve"
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  }
+]
