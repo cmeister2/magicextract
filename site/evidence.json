@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "638984bbf4f7a4f2bc369bc171dd46f7d04d8d75",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/638984bbf4f7a4f2bc369bc171dd46f7d04d8d75",
+  "source_revision": "b404352d494585ec871b38b4c2d7a64506cda005",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/b404352d494585ec871b38b4c2d7a64506cda005",
   "source_sha256": {
-    "src/detection.rs": "64671c837fb0a92a27468206daf2471aab52f2e32e06031a0c8dbb4a014cb11b",
+    "src/detection.rs": "1b1a8923fce169481b4b69db50383832b41b14f8ac35cdf0538568af44cf80e2",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "2b6cee236e2f3a2cb2166d2feebe5c2cc3fe8e3ace10a767dba8ae5920236fcd",
+  "selection_sha256": "cd1c5f2ea27db4d5235be14df1c45b852bcdb3c20c76fbac4e86cb9f88ddfa7b",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -672,6 +672,68 @@
     },
     {
       "corpus": "materials",
+      "id": "sleeve-lightning-bolt-1",
+      "title": "Clear sleeve",
+      "result": "Match",
+      "description": "The card inside the clear sleeve is extracted without the surrounding plastic margin; the reflection remains.",
+      "group": "matches",
+      "input": "images/sleeve-lightning-bolt-1/input.jpg",
+      "input_source": "tests/fixtures/materials/images/sleeve-lightning-bolt-1.jpg",
+      "input_sha256": "232ae3280e79085af02e135b76f09fdf0e8cd7fc9b130a0de72a45bd16310042",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [
+        "images/sleeve-lightning-bolt-1/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/sleeve-lightning-bolt-1/card-000.png": "5f86700fe35d5957250125e43dd10dc169f080614d88f9d3a02373d5f1a75724"
+      },
+      "report": {
+        "id": "sleeve-lightning-bolt-1",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                269.3106,
+                90.56474
+              ],
+              [
+                464.1609,
+                157.4111
+              ],
+              [
+                370.1661,
+                430.02423
+              ],
+              [
+                175.58151,
+                362.6058
+              ]
+            ],
+            "area": 59328.0
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.9720673,
+            "pixel_mae": 4.6304507,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "materials",
       "id": "stack-two-cards-3",
       "title": "Stacked cards",
       "result": "Miss",
@@ -860,71 +922,6 @@
         "failures": [
           "card 0 (sol-ring): corner error 113.650 > 8",
           "card 0 (sol-ring): interior RGB MAE 77.359 >= 22"
-        ]
-      }
-    },
-    {
-      "corpus": "materials",
-      "id": "sleeve-lightning-bolt-1",
-      "title": "Clear sleeve",
-      "result": "Wrong crop",
-      "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop.",
-      "group": "misses",
-      "input": "images/sleeve-lightning-bolt-1/input.jpg",
-      "input_source": "tests/fixtures/materials/images/sleeve-lightning-bolt-1.jpg",
-      "input_sha256": "232ae3280e79085af02e135b76f09fdf0e8cd7fc9b130a0de72a45bd16310042",
-      "source_manifest": "tests/fixtures/materials/manifest.json",
-      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
-      "crops": [
-        "images/sleeve-lightning-bolt-1/card-000.png"
-      ],
-      "crop_sha256": {
-        "images/sleeve-lightning-bolt-1/card-000.png": "b5714f347b226be96a7f876ee60fa8a1ccda9f205417cafeae3b6d378fce8896"
-      },
-      "report": {
-        "id": "sleeve-lightning-bolt-1",
-        "tier": "challenge",
-        "passed": false,
-        "expected_count": 1,
-        "detected_count": 1,
-        "detected": [
-          {
-            "corners": [
-              [
-                265.75717,
-                72.27782
-              ],
-              [
-                479.3255,
-                145.2819
-              ],
-              [
-                377.2058,
-                440.74133
-              ],
-              [
-                163.64366,
-                367.71967
-              ]
-            ],
-            "area": 70553.81
-          }
-        ],
-        "matches": [
-          {
-            "expected_index": 0,
-            "source": "lightning-bolt",
-            "detected_index": 0,
-            "corner_error": 20.003344,
-            "pixel_mae": 37.42964,
-            "pixel_orientation": "original"
-          }
-        ],
-        "unmatched_expected": [],
-        "unmatched_detected": [],
-        "failures": [
-          "card 0 (lightning-bolt): corner error 20.003 > 8",
-          "card 0 (lightning-bolt): interior RGB MAE 37.430 >= 22"
         ]
       }
     },

@@ -67,6 +67,13 @@
           "title": "Busy playmat",
           "result": "Match",
           "description": "The visible dark border is recovered outside the inner printed frame, despite the busy background."
+        },
+        {
+          "corpus": "materials",
+          "id": "sleeve-lightning-bolt-1",
+          "title": "Clear sleeve",
+          "result": "Match",
+          "description": "The card inside the clear sleeve is extracted without the surrounding plastic margin; the reflection remains."
         }
       ]
     },
@@ -95,13 +102,6 @@
           "title": "Outside the frame",
           "result": "Wrong crop",
           "description": "The card runs beyond the image edge; the returned crop has the wrong outline."
-        },
-        {
-          "corpus": "materials",
-          "id": "sleeve-lightning-bolt-1",
-          "title": "Clear sleeve",
-          "result": "Wrong crop",
-          "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop."
         }
       ]
     },
