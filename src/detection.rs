@@ -179,6 +179,14 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
     let mut retained = distinct;
+    // A clear sleeve may surround a separately observed physical card frame.
+    // Refine only retained outlines so nested printed panels stay suppressed.
+    for candidate in &mut retained {
+        if let Some(corners) = recover_inner_card_border(candidate.corners, &gray, config) {
+            candidate.corners = corners;
+            candidate.area = polygon_area(&corners);
+        }
+    }
     let scale_x = image.width() as f32 / gray.width() as f32;
     let scale_y = image.height() as f32 / gray.height() as f32;
     for candidate in &mut retained {
@@ -1187,6 +1195,131 @@ fn polygon_perimeter(points: &[Point]) -> f32 {
         .sum()
 }
 
+/// Replaces a reflective outer rim with a nearby four-sided dark card frame.
+///
+/// A narrow bright rim with similar luminance on both sides can enclose plastic
+/// rather than the card. Each replacement edge must separately mark a supported
+/// transition into a dark frame, within a bounded fraction of the current size.
+fn recover_inner_card_border(
+    corners: [Point; 4],
+    image: &GrayImage,
+    config: &ExtractorConfig,
+) -> Option<[Point; 4]> {
+    let short_side = edge_lengths(&corners)
+        .into_iter()
+        .fold(f32::INFINITY, f32::min);
+    let search_limit = short_side * 0.15;
+    let mut lines = Vec::with_capacity(4);
+    for index in 0..4 {
+        let start = corners[index];
+        let end = corners[(index + 1) % 4];
+        let length = squared_distance(start, end).sqrt();
+        let normal = Point {
+            x: (start.y - end.y) / length,
+            y: (end.x - start.x) / length,
+        };
+        let at = |fraction: f32, offset: f32| {
+            sample_luma(
+                image,
+                start.x + (end.x - start.x) * fraction + normal.x * offset,
+                start.y + (end.y - start.y) * fraction + normal.y * offset,
+            )
+        };
+        // Require a bright line returning to similar background tones on both sides.
+        let mut rim_support = 0;
+        for sample in 0..40 {
+            let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
+            let outside = (at(fraction, -4.0) + at(fraction, -6.0)) * 0.5;
+            let inside = (at(fraction, 4.0) + at(fraction, 6.0)) * 0.5;
+            let peak = [-1.0, 0.0, 1.0, 2.0]
+                .into_iter()
+                .map(|offset| at(fraction, offset))
+                .fold(0.0, f32::max);
+            if inside > 55.0
+                && (outside - inside).abs() < 30.0
+                && peak > inside + 30.0
+                && peak > outside + 30.0
+            {
+                rim_support += 1;
+            }
+        }
+        if rim_support < 30 {
+            return None;
+        }
+        // Find the inward light-to-dark boundary, allowing reflections to interrupt it.
+        let mut best: Option<(f32, f32)> = None;
+        for step in 8..=(search_limit * 2.0) as i32 {
+            let offset = step as f32 * 0.5;
+            let mut support = 0;
+            let mut strength = 0.0;
+            for sample in 0..40 {
+                let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
+                let before = at(fraction, offset - 1.0);
+                let after = at(fraction, offset + 1.0);
+                let dark = (at(fraction, offset + 2.0) + at(fraction, offset + 4.0)) * 0.5;
+                if before - after > 25.0 && dark < 65.0 && before > dark + 35.0 {
+                    support += 1;
+                    strength += before - after;
+                }
+            }
+            if support >= 30 && best.as_ref().is_none_or(|(_, score)| strength > *score) {
+                best = Some((offset, strength));
+            }
+        }
+        let (offset, _) = best?;
+        // Fit observed local gradient peaks rather than assuming equal sleeve margins.
+        let mut points = Vec::new();
+        for sample in 0..48 {
+            let fraction = 0.15 + 0.7 * sample as f32 / 47.0;
+            let mut best_gradient = 25.0;
+            let mut best_offset = None;
+            for step in -6..=6 {
+                let trial = offset + step as f32 * 0.25;
+                let gradient = at(fraction, trial - 0.5) - at(fraction, trial + 0.5);
+                if gradient > best_gradient && at(fraction, trial + 2.0) < 65.0 {
+                    best_gradient = gradient;
+                    best_offset = Some(trial);
+                }
+            }
+            if let Some(found) = best_offset {
+                points.push(Point {
+                    x: start.x + (end.x - start.x) * fraction + normal.x * found,
+                    y: start.y + (end.y - start.y) * fraction + normal.y * found,
+                });
+            }
+        }
+        if points.len() < 32 {
+            return None;
+        }
+        lines.push(principal_line(&points)?);
+    }
+    let mut refined = corners;
+    for index in 0..4 {
+        let point = intersect_lines(lines[(index + 3) % 4], lines[index])?;
+        if squared_distance(point, corners[index]) > (short_side * 0.20).powi(2)
+            || point.x < 0.0
+            || point.y < 0.0
+            || point.x > image.width() as f32 - 1.0
+            || point.y > image.height() as f32 - 1.0
+            || (0..4).any(|side| cross(corners[side], corners[(side + 1) % 4], point) < 0.0)
+        {
+            return None;
+        }
+        refined[index] = point;
+    }
+    let refined = orient_card_corners(
+        refined,
+        config.aspect_ratio_tolerance,
+        image.width(),
+        image.height(),
+    )?;
+    let area = polygon_area(&refined);
+    (area >= polygon_area(&corners) * 0.60
+        && area < polygon_area(&corners) * 0.95
+        && area >= config.min_area_fraction * image.width() as f32 * image.height() as f32)
+        .then_some(refined)
+}
+
 #[cfg(test)]
 /// Regression tests for contour recovery and duplicate suppression.
 mod tests {
@@ -1585,5 +1718,107 @@ mod tests {
                 );
             }
         }
+    }
+}
+
+#[cfg(test)]
+/// Checks that inward refinement follows a physical frame inside a transparent rim.
+mod sleeve_tests {
+    use super::*;
+    use image::Luma;
+
+    /// Renders independent sleeve, physical frame, and printed interior boundaries.
+    fn sleeve_control(card: bool, missing_frame: bool) -> GrayImage {
+        GrayImage::from_fn(280, 340, |x, y| {
+            let in_sleeve = (40..=240).contains(&x) && (30..=310).contains(&y);
+            let sleeve_edge = in_sleeve && (x == 40 || x == 240 || y == 30 || y == 310);
+            let in_card = card && (50..=230).contains(&x) && (47..=299).contains(&y);
+            let in_panel = (58..=222).contains(&x) && (55..=279).contains(&y);
+            let pixel = if sleeve_edge {
+                220
+            } else if in_card {
+                if in_panel || (missing_frame && x > 222) {
+                    200
+                } else {
+                    14
+                }
+            } else if in_sleeve {
+                110
+            } else {
+                100
+            };
+            Luma([pixel])
+        })
+    }
+
+    /// Locates the reflective sleeve perimeter around the physical card.
+    fn sleeve_corners() -> [Point; 4] {
+        [
+            Point { x: 39.5, y: 29.5 },
+            Point { x: 240.5, y: 29.5 },
+            Point { x: 240.5, y: 310.5 },
+            Point { x: 39.5, y: 310.5 },
+        ]
+    }
+
+    #[test]
+    /// Independent observed frame lines recover unequal sleeve margins.
+    fn selects_card_frame_inside_reflective_rim() {
+        let image = sleeve_control(true, false);
+        let refined =
+            recover_inner_card_border(sleeve_corners(), &image, &ExtractorConfig::default())
+                .expect("four physical frame edges");
+        let expected = [
+            Point { x: 49.5, y: 46.5 },
+            Point { x: 230.5, y: 46.5 },
+            Point { x: 230.5, y: 299.5 },
+            Point { x: 49.5, y: 299.5 },
+        ];
+        for (actual, expected) in refined.into_iter().zip(expected) {
+            assert!(squared_distance(actual, expected).sqrt() < 1.0);
+        }
+    }
+
+    #[test]
+    /// An empty rim or three-sided inner frame cannot justify shrinking.
+    fn requires_four_inner_frame_edges() {
+        for (card, missing_frame) in [(false, false), (true, true)] {
+            assert!(
+                recover_inner_card_border(
+                    sleeve_corners(),
+                    &sleeve_control(card, missing_frame),
+                    &ExtractorConfig::default()
+                )
+                .is_none()
+            );
+        }
+    }
+
+    #[test]
+    /// Already selected physical borders and opaque card margins remain unchanged.
+    fn preserves_physical_card_border_and_printed_panel() {
+        let image = sleeve_control(true, false);
+        let physical = [
+            Point { x: 49.5, y: 46.5 },
+            Point { x: 230.5, y: 46.5 },
+            Point { x: 230.5, y: 299.5 },
+            Point { x: 49.5, y: 299.5 },
+        ];
+        assert!(recover_inner_card_border(physical, &image, &ExtractorConfig::default()).is_none());
+        let opaque = GrayImage::from_fn(280, 340, |x, y| {
+            let in_card = (40..=240).contains(&x) && (30..=310).contains(&y);
+            let in_printed_panel = (50..=230).contains(&x) && (47..=299).contains(&y);
+            Luma([if in_printed_panel {
+                14
+            } else if in_card {
+                220
+            } else {
+                100
+            }])
+        });
+        assert!(
+            recover_inner_card_border(sleeve_corners(), &opaque, &ExtractorConfig::default())
+                .is_none()
+        );
     }
 }

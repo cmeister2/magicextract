@@ -105,6 +105,15 @@ fn busy_playmat_card_matches_saved_ground_truth() -> EvaluationResult<()> {
     )
 }
 
+/// A sleeve boundary does not replace the physical outline of the card inside it.
+#[test]
+fn sleeved_card_matches_saved_ground_truth() -> EvaluationResult<()> {
+    assert_saved_scene_matches(
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/materials/manifest.json"),
+        "sleeve-lightning-bolt-1",
+    )
+}
+
 /// Explicit challenge evaluation reports every unsupported count, outline, or pixel error.
 #[test]
 #[ignore = "includes difficult challenge fixtures; use evaluate_scenes for a complete JSON report"]
