@@ -405,7 +405,10 @@ fn read_verified(
     }
     let bytes = fs::read(root.join(path))
         .map_err(|error| format!("cannot read fixture {relative}: {error}"))?;
-    let actual = format!("{:x}", Sha256::digest(&bytes));
+    let actual = Sha256::digest(&bytes)
+        .iter()
+        .map(|byte| format!("{byte:02x}"))
+        .collect::<String>();
     if &actual != expected {
         return Err(
             format!("SHA-256 mismatch for {relative}: expected {expected}, got {actual}").into(),
