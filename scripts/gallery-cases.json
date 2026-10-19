@@ -69,11 +69,39 @@
           "description": "The visible dark border is recovered outside the inner printed frame, despite the busy background."
         },
         {
+          "corpus": "borders",
+          "id": "white-border-playmat",
+          "title": "White border on a playmat",
+          "result": "Match",
+          "description": "A white-border Lightning Bolt keeps its full printed border against a busy mat."
+        },
+        {
+          "corpus": "borders",
+          "id": "silver-border-playmat",
+          "title": "Silver border on a playmat",
+          "result": "Match",
+          "description": "A silver-border Booster Tutor is extracted along its physical edge, including the pale frame."
+        },
+        {
           "corpus": "materials",
           "id": "sleeve-lightning-bolt-1",
           "title": "Clear sleeve",
           "result": "Match",
           "description": "The card inside the clear sleeve is extracted without the surrounding plastic margin; the reflection remains."
+        },
+        {
+          "corpus": "borders",
+          "id": "white-border-sleeve",
+          "title": "White border in a sleeve",
+          "result": "Match",
+          "description": "The pale card frame is separated from the wider sleeve outline."
+        },
+        {
+          "corpus": "borders",
+          "id": "silver-border-sleeve",
+          "title": "Silver border in a sleeve",
+          "result": "Match",
+          "description": "The silver printed border is retained while the surrounding sleeve margin is removed."
         }
       ]
     },

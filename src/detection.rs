@@ -34,10 +34,12 @@ const BORDER_PROFILE_SAMPLES: usize = 48;
 struct BorderProfile {
     /// Signed outward contrast exceeded by three quarters of the samples.
     lower_quartile: f32,
+    /// Absolute outward contrast exceeded by three quarters of the samples.
+    absolute_lower_quartile: f32,
     /// Signed outward contrast exceeded by one quarter of the samples.
     upper_quartile: f32,
-    /// Number of samples whose inner side belongs to a dark border.
-    dark_samples: usize,
+    /// Minimum coverage of frame continuity and persistent outer contrast.
+    band_samples: usize,
 }
 
 /// A straight observed section of a contour, used to infer missing corner joins.
@@ -138,11 +140,11 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
     // A printed panel can be the only closed contour on a busy surface. Recover
-    // its surrounding dark card border only when all four outer edges are seen.
+    // its surrounding card frame only when all four outer edges are seen.
     // Refine only retained detections so suppressed contours cannot reappear as
     // extra cards when their expanded geometry changes overlap relationships.
     for candidate in &mut retained {
-        if let Some(expanded) = expand_dark_border(candidate.corners, &gray)
+        if let Some(expanded) = expand_card_border(candidate.corners, &gray)
             && let Some(corners) = orient_card_corners(
                 refine_gradient_corners(expanded, &gray),
                 config.aspect_ratio_tolerance,
@@ -517,7 +519,7 @@ fn refine_gradient_corners(corners: [Point; 4], image: &GrayImage) -> [Point; 4]
         // Prefer the local gradient fit, falling back to the observed edge when no fit is available.
         let start = corners[index];
         let end = corners[(index + 1) % 4];
-        gradient_edge_line(start, end, image).unwrap_or((
+        gradient_edge_line(start, end, image, 2.5).unwrap_or((
             start,
             Point {
                 x: end.x - start.x,
@@ -547,41 +549,51 @@ fn refine_gradient_corners(corners: [Point; 4], image: &GrayImage) -> [Point; 4]
     refined
 }
 
-/// Recovers a dark outer border around an observed bright rectangular panel.
+/// Recovers a continuous frame around an observed rectangular printed panel.
 ///
-/// Each panel edge must first cross into a dark band. An enclosing edge is then
-/// accepted only when three quarters of its distributed samples cross from dark
-/// pixels into a brighter surface. Independent edge searches permit a wider
-/// copyright strip without treating arbitrary padding as evidence of a card.
-fn expand_dark_border(corners: [Point; 4], image: &GrayImage) -> Option<[Point; 4]> {
+/// Each panel edge must cross into a consistent observed frame tone. All four
+/// enclosing edges must then cross into a persistently different surface,
+/// allowing dark, white, or metallic gray frames without assuming their color.
+/// Independent searches permit unequal frame widths and a wider copyright strip.
+fn expand_card_border(corners: [Point; 4], image: &GrayImage) -> Option<[Point; 4]> {
     let lengths = edge_lengths(&corners);
     let maximum_offset = lengths.iter().copied().fold(f32::INFINITY, f32::min) * 0.15;
     let mut lines = [(corners[0], corners[0]); 4];
     for index in 0..4 {
-        // Require a dark band and a coherent outer transition on every side.
+        // Estimate the frame from the observed band directly outside the panel.
         let start = corners[index];
         let end = corners[(index + 1) % 4];
         let normal = Point {
             x: (end.y - start.y) / lengths[index],
             y: (start.x - end.x) / lengths[index],
         };
-        if border_profile(start, end, normal, 0.0, image).upper_quartile > -12.0 {
+        let initial = border_profile(start, end, normal, 0.0, image);
+        if initial.upper_quartile > -12.0 && initial.lower_quartile < 12.0 {
             return None;
         }
         let mut best_offset = None;
-        let mut best_contrast = 16.0;
+        let mut best_contrast = 12.0;
+        let mut signed_offset = None;
+        let mut signed_contrast = 16.0;
         for offset in 3..=maximum_offset as u32 {
             // Prefer the transition supported across the edge, rather than one
             // bright spot in surrounding artwork or a mark inside the border.
             let profile = border_profile(start, end, normal, offset as f32, image);
-            if profile.dark_samples >= BORDER_PROFILE_SAMPLES * 3 / 4
-                && profile.lower_quartile > best_contrast
+            let coherent_contrast = profile.lower_quartile.max(-profile.upper_quartile);
+            if profile.band_samples >= BORDER_PROFILE_SAMPLES * 3 / 4
+                && coherent_contrast > signed_contrast
             {
+                signed_offset = Some(offset as f32);
+                signed_contrast = coherent_contrast;
+            }
+            let contrast = profile.absolute_lower_quartile;
+            if profile.band_samples >= BORDER_PROFILE_SAMPLES * 3 / 4 && contrast > best_contrast {
                 best_offset = Some(offset as f32);
-                best_contrast = profile.lower_quartile;
+                best_contrast = contrast;
             }
         }
-        let offset = best_offset?;
+        // Prefer a common polarity; textured surfaces can reverse contrast against gray.
+        let offset = signed_offset.or(best_offset)?;
         let shifted_start = Point {
             x: start.x + offset * normal.x,
             y: start.y + offset * normal.y,
@@ -590,7 +602,7 @@ fn expand_dark_border(corners: [Point; 4], image: &GrayImage) -> Option<[Point; 
             x: end.x + offset * normal.x,
             y: end.y + offset * normal.y,
         };
-        lines[index] = gradient_edge_line(shifted_start, shifted_end, image).unwrap_or((
+        lines[index] = gradient_edge_line(shifted_start, shifted_end, image, 1.5).unwrap_or((
             shifted_start,
             Point {
                 x: end.x - start.x,
@@ -616,7 +628,7 @@ fn expand_dark_border(corners: [Point; 4], image: &GrayImage) -> Option<[Point; 
         .then_some(expanded)
 }
 
-/// Measures signed outward contrast and dark-band coverage along a shifted edge.
+/// Measures coherent contrast across a frame edge and its sustained outer surface.
 fn border_profile(
     start: Point,
     end: Point,
@@ -625,35 +637,66 @@ fn border_profile(
     image: &GrayImage,
 ) -> BorderProfile {
     let mut contrasts = [0.0; BORDER_PROFILE_SAMPLES];
-    let mut dark_samples = 0;
+    let mut inner_tones = [0.0; BORDER_PROFILE_SAMPLES];
+    let mut persistent = [false; BORDER_PROFILE_SAMPLES];
+    let mut near_tones = [0.0; BORDER_PROFILE_SAMPLES];
     for (index, contrast) in contrasts.iter_mut().enumerate() {
-        // Ignore corner sections and span four pixels across the proposed edge.
+        // Ignore corner sections and observe the surface beyond a possible reflection.
         let fraction = 0.12 + 0.76 * index as f32 / (BORDER_PROFILE_SAMPLES - 1) as f32;
         let x = start.x + fraction * (end.x - start.x);
         let y = start.y + fraction * (end.y - start.y);
-        let inner = sample_luma(
-            image,
-            x + (offset - 2.0) * normal.x,
-            y + (offset - 2.0) * normal.y,
-        );
-        let outer = sample_luma(
-            image,
-            x + (offset + 2.0) * normal.x,
-            y + (offset + 2.0) * normal.y,
-        );
-        *contrast = outer - inner;
-        dark_samples += usize::from(inner < 48.0);
+        let at =
+            |distance: f32| sample_luma(image, x + distance * normal.x, y + distance * normal.y);
+        let inner = at(offset - 2.0);
+        inner_tones[index] = inner;
+        // Follow the observed entry polarity through blur or collector-text breaks.
+        let entry_sign = (at(2.0) - at(-2.0)).signum();
+        near_tones[index] = [2.0_f32, 4.0, 6.0]
+            .into_iter()
+            .map(|distance| at(distance.min(offset - 0.5)))
+            // Very narrow frames can end before the first near-band probe.
+            .chain((offset <= 4.0).then_some(inner))
+            .max_by(|left, right| (left * entry_sign).total_cmp(&(right * entry_sign)))
+            .unwrap_or(inner);
+        *contrast = at(offset + 2.0) - inner;
+        persistent[index] = [6.0, 8.0]
+            .into_iter()
+            .map(|distance| (at(offset + distance) - inner).abs())
+            .sum::<f32>()
+            * 0.5
+            > 16.0;
     }
+    let mut sorted_tones = inner_tones;
+    sorted_tones.sort_unstable_by(f32::total_cmp);
+    let frame_tone = sorted_tones[BORDER_PROFILE_SAMPLES / 2];
+    let coherent_inner = inner_tones
+        .into_iter()
+        .filter(|tone| (*tone - frame_tone).abs() <= 24.0)
+        .count();
+    let coherent_band = near_tones
+        .into_iter()
+        .filter(|tone| (*tone - frame_tone).abs() <= 24.0)
+        .count();
+    let persistent_outer = persistent.into_iter().filter(|persists| *persists).count();
+    let band_samples = coherent_inner.min(coherent_band).min(persistent_outer);
+    let mut absolute_contrasts = contrasts.map(f32::abs);
+    absolute_contrasts.sort_unstable_by(f32::total_cmp);
     contrasts.sort_unstable_by(f32::total_cmp);
     BorderProfile {
+        absolute_lower_quartile: absolute_contrasts[BORDER_PROFILE_SAMPLES / 4],
         lower_quartile: contrasts[BORDER_PROFILE_SAMPLES / 4],
         upper_quartile: contrasts[BORDER_PROFILE_SAMPLES * 3 / 4],
-        dark_samples,
+        band_samples,
     }
 }
 
 /// Fits one boundary line to local subpixel gradient peaks away from its corners.
-fn gradient_edge_line(start: Point, end: Point, image: &GrayImage) -> Option<(Point, Point)> {
+fn gradient_edge_line(
+    start: Point,
+    end: Point,
+    image: &GrayImage,
+    search_radius: f32,
+) -> Option<(Point, Point)> {
     let length = squared_distance(start, end).sqrt();
     if length < 12.0 {
         return None;
@@ -672,7 +715,8 @@ fn gradient_edge_line(start: Point, end: Point, image: &GrayImage) -> Option<(Po
         };
         let mut greatest_gradient = 8.0;
         let mut best_offset = None;
-        for step in -10..=10 {
+        let maximum_step = (search_radius * 4.0).round() as i32;
+        for step in -maximum_step..=maximum_step {
             // Locate the strongest nearby luminance change across this edge sample.
             let offset = step as f32 * 0.25;
             let outside = sample_luma(
@@ -1433,7 +1477,7 @@ mod tests {
             Point { x: 252.0, y: 292.0 },
             Point { x: 88.0, y: 292.0 },
         ];
-        let expanded = expand_dark_border(panel, &image).expect("four observed outer edges");
+        let expanded = expand_card_border(panel, &image).expect("four observed outer edges");
         for (actual, expected) in expanded.into_iter().zip([
             Point { x: 79.5, y: 59.5 },
             Point { x: 260.5, y: 59.5 },
@@ -1470,7 +1514,7 @@ mod tests {
                 }])
             });
             assert!(
-                expand_dark_border(panel, &image).is_none(),
+                expand_card_border(panel, &image).is_none(),
                 "edge {missing_edge} has no enclosing boundary"
             );
         }
@@ -2058,6 +2102,174 @@ mod sleeve_colour_tests {
             assert!(
                 recover_inner_card_border(outer(), &empty, &ExtractorConfig::default()).is_none(),
                 "empty colored rim {frame}"
+            );
+        }
+    }
+}
+
+#[cfg(test)]
+/// Verifies that outward frame recovery depends on observed bands, not their color.
+mod frame_colour_tests {
+    use super::*;
+    use image::Luma;
+
+    /// The printed panel deliberately has a wider frame beneath its lower edge.
+    fn panel_corners() -> [Point; 4] {
+        [
+            Point { x: 88.0, y: 68.0 },
+            Point { x: 252.0, y: 68.0 },
+            Point { x: 252.0, y: 292.0 },
+            Point { x: 88.0, y: 292.0 },
+        ]
+    }
+
+    /// Physical half-pixel boundaries of the independent observed card frame.
+    fn physical_corners() -> [Point; 4] {
+        [
+            Point { x: 79.5, y: 59.5 },
+            Point { x: 260.5, y: 59.5 },
+            Point { x: 260.5, y: 312.5 },
+            Point { x: 79.5, y: 312.5 },
+        ]
+    }
+
+    /// Draws a frame, optionally continuing one side without an observable edge.
+    fn framed_scene(tone: u8, missing_edge: Option<usize>) -> GrayImage {
+        GrayImage::from_fn(360, 400, |x, y| {
+            let extended = match missing_edge {
+                Some(0) => y < 60 && (80..=260).contains(&x),
+                Some(1) => x > 260 && (60..=312).contains(&y),
+                Some(2) => y > 312 && (80..=260).contains(&x),
+                Some(3) => x < 80 && (60..=312).contains(&y),
+                _ => false,
+            };
+            Luma([if (88..=252).contains(&x) && (68..=292).contains(&y) {
+                if tone > 200 { 60 } else { 235 }
+            } else if extended || ((80..=260).contains(&x) && (60..=312).contains(&y)) {
+                tone
+            } else {
+                if tone > 100 { 70 } else { 160 }
+            }])
+        })
+    }
+
+    #[test]
+    /// Black, white, and silver frames recover the same independently observed corners.
+    fn recovers_black_white_and_silver_frames() {
+        for tone in [14, 235, 150] {
+            let image = framed_scene(tone, None);
+            let actual = expand_card_border(panel_corners(), &image)
+                .unwrap_or_else(|| panic!("frame {tone} has four observed edges"));
+            for (actual, expected) in actual.into_iter().zip(physical_corners()) {
+                assert!(
+                    squared_distance(actual, expected).sqrt() < 1.0,
+                    "frame {tone}: {actual:?}"
+                );
+            }
+        }
+    }
+
+    #[test]
+    /// Each frame color needs a separately observed outer transition on every side.
+    fn requires_each_frame_edge_for_every_colour() {
+        for tone in [14, 235, 150] {
+            for missing_edge in 0..4 {
+                assert!(
+                    expand_card_border(panel_corners(), &framed_scene(tone, Some(missing_edge)))
+                        .is_none(),
+                    "frame {tone}, missing edge {missing_edge}"
+                );
+            }
+        }
+    }
+
+    #[test]
+    /// Complete physical outlines are left alone rather than padded with surface pixels.
+    fn preserves_selected_physical_edges_for_every_colour() {
+        for tone in [14, 235, 150] {
+            assert!(
+                expand_card_border(physical_corners(), &framed_scene(tone, None)).is_none(),
+                "frame {tone}"
+            );
+        }
+    }
+
+    #[test]
+    /// A reflective sleeve line returning to the surrounding tone cannot enclose a frame.
+    fn does_not_expand_card_into_reflective_sleeve() {
+        for tone in [14, 235, 150] {
+            let card = framed_scene(tone, None);
+            let image = GrayImage::from_fn(360, 400, |x, y| {
+                let physical = (80..=260).contains(&x) && (60..=312).contains(&y);
+                let sleeve = (70..=270).contains(&x) && (50..=322).contains(&y);
+                let rim = sleeve && (x <= 71 || x >= 269 || y <= 51 || y >= 321);
+                if physical {
+                    *card.get_pixel(x, y)
+                } else {
+                    Luma([if rim {
+                        240
+                    } else if sleeve {
+                        110
+                    } else {
+                        100
+                    }])
+                }
+            });
+            assert!(
+                expand_card_border(physical_corners(), &image).is_none(),
+                "frame {tone}"
+            );
+        }
+    }
+
+    #[test]
+    /// Narrow physical borders remain recoverable when the outer transition is nearby.
+    fn recovers_narrow_frames_for_every_colour() {
+        let panel = [
+            Point { x: 83.0, y: 63.0 },
+            Point { x: 257.0, y: 63.0 },
+            Point { x: 257.0, y: 292.0 },
+            Point { x: 83.0, y: 292.0 },
+        ];
+        for tone in [14, 235, 150] {
+            let image = GrayImage::from_fn(360, 400, |x, y| {
+                Luma([if (83..=257).contains(&x) && (63..=292).contains(&y) {
+                    if tone > 200 { 60 } else { 235 }
+                } else if (80..=260).contains(&x) && (60..=312).contains(&y) {
+                    tone
+                } else {
+                    if tone > 100 { 70 } else { 160 }
+                }])
+            });
+            let recovered = expand_card_border(panel, &image).expect("narrow observed frame");
+            for (actual, expected) in recovered.into_iter().zip(physical_corners()) {
+                assert!(
+                    squared_distance(actual, expected).sqrt() < 1.0,
+                    "frame {tone}: {actual:?}"
+                );
+            }
+        }
+    }
+
+    #[test]
+    /// A soft printed-panel edge must not beat a weaker physical border farther out.
+    fn follows_physical_frame_after_blurred_panel_edge() {
+        let image = GrayImage::from_fn(360, 400, |x, y| {
+            Luma([if (88..=252).contains(&x) && (68..=292).contains(&y) {
+                235
+            } else if (80..=260).contains(&x) && (60..=312).contains(&y) {
+                14
+            } else {
+                50
+            }])
+        });
+        let blurred = imageops::blur(&image, 1.3);
+        let recovered =
+            expand_card_border(panel_corners(), &blurred).expect("observed outer frame");
+        for (actual, expected) in recovered.into_iter().zip(physical_corners()) {
+            assert!(
+                squared_distance(actual, expected).sqrt() < 1.5,
+                "{actual:?}"
             );
         }
     }
