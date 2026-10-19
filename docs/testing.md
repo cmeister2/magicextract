@@ -90,6 +90,26 @@ downloaded PNGs. They remain challenge data; their presence does not imply the
 default extractor passes them. See the [material preview](../tests/fixtures/materials/preview.jpg)
 and [learning source credits](../tests/fixtures/learning/sources.json).
 
+## Example gallery
+
+The [GitHub Pages gallery](https://cmeister2.github.io/magicextract/) shows a
+selection of saved inputs beside the default extractor's actual PNG output.
+It separates successful matches, misses and wrong crops, false matches, and
+correct non-matches. These are generated test scenes, not camera photographs.
+
+Regenerate the static page, crops, and scored evidence from a checkout:
+
+```sh
+python3 scripts/build-gallery.py
+```
+
+The builder uses the existing Rust extractor and evaluator. It copies the saved
+JPEGs without changing them and retains failed crops. `site/evidence.json`
+records source hashes, the evaluated code revision, and each scene's metrics.
+Edit `scripts/gallery-cases.json` to change the selection,
+`scripts/gallery-template.html` for page text, and `site/styles.css` for styling.
+The Pages workflow publishes `site/` after changes reach `main`.
+
 ## Source images
 
 Scenes were authored from Scryfall PNGs, preserving transparent rounded corners

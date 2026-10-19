@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Real magicextract output from saved test images: successful card crops, missed cards, wrong crops, and false matches.">
+  <title>magicextract — extraction examples</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#examples">Skip to examples</a>
+  <header class="page-header">
+    <h1>magicextract</h1>
+    <nav aria-label="Project">
+      <a href="https://github.com/cmeister2/magicextract">GitHub</a>
+      <a href="https://crates.io/crates/magicextract">crates.io</a>
+      <a href="https://docs.rs/magicextract">API docs</a>
+    </nav>
+  </header>
+
+  <main id="examples">
+    <h2 class="page-title">Input images and extracted cards</h2>
+    <p>magicextract finds trading card shaped outlines and returns perspective-corrected
+      crops. It does not identify which card it has found. These examples show what
+      works, what gets missed, and what gets mistaken for a card.</p>
+    <p><strong>These are generated test scenes, not camera photographs.</strong>
+      Every output below comes from the default extractor. The crops are shown as
+      returned, including errors and upside-down cards. Click an image to see it full size.</p>
+
+    <nav class="sections" aria-label="Example sections">
+      <a href="#matches">Matches</a>
+      <a href="#misses">Misses &amp; wrong crops</a>
+      <a href="#false-matches">False matches</a>
+      <a href="#non-matches">Correct non-matches</a>
+    </nav>
+
+    <!-- GALLERY -->
+
+    <section class="notes" aria-labelledby="reading-title">
+      <h2 id="reading-title">What counts as a match?</h2>
+      <p>A match passes the saved scene's card count, corner position, and crop image
+        checks. Returning the right number of crops is not enough: the outline can
+        still be wrong. The tests allow up to 8 pixels of corner error and compare
+        crop pixels against the saved reference.</p>
+      <p>All crops use the defaults: 250 × 350 pixels. Covered parts of a card remain
+        covered in the crop. These selected examples show behaviour, not an accuracy
+        benchmark; real-camera performance has not been measured.</p>
+      <!-- PROVENANCE -->
+      <p><a href="https://github.com/cmeister2/magicextract/blob/main/docs/testing.md">Test methodology</a>
+        · <a href="https://github.com/cmeister2/magicextract/blob/main/docs/usage.md">Usage and limitations</a></p>
+    </section>
+
+    <section class="notes" aria-labelledby="try-title">
+      <h2 id="try-title">Try your own image</h2>
+      <p>From a checkout of the repository:</p>
+      <pre><code>cargo run --release --example extract -- photo.jpg crops/</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Card artwork © Wizards of the Coast and/or its artists. Images supplied by
+      <a href="https://scryfall.com">Scryfall</a>:
+      <a href="https://scryfall.com/card/msc/806/lightning-bolt">Lightning Bolt</a> — Milivoj Ćeran;
+      <a href="https://scryfall.com/card/dsc/114/counterspell">Counterspell</a> — Zack Stella;
+      <a href="https://scryfall.com/card/vma/4/black-lotus">Black Lotus</a> — Chris Rahn;
+      <a href="https://scryfall.com/card/frc/21/sol-ring">Sol Ring</a> — Titus Lunter.
+      The patterned card back is a procedural test image.
+      The project's <a href="https://github.com/cmeister2/magicextract/blob/main/LICENSE">MIT license</a>
+      covers its own code.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1074 @@
+{
+  "format_version": 1,
+  "source_revision": "f49441848ef303cbed3584b2b7707e4582764e20",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/f49441848ef303cbed3584b2b7707e4582764e20",
+  "source_sha256": {
+    "src/detection.rs": "f4488938ca02229f162f7ddbe836f17b1ef6949ff779ca3351dba2d7cfdb8328",
+    "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
+    "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
+    "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
+    "Cargo.lock": "e32153297308114be084e9bb29c77140061221f6cadebe8c31a59545d71398de"
+  },
+  "generator": "scripts/build-gallery.py",
+  "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
+  "selection_sha256": "74b7207f43e7fb3578f408e2b80e1a57e5d864ec34e6e2b8a2a5236b3661fe54",
+  "extractor": "CardExtractor::default()",
+  "output_dimensions": [
+    250,
+    350
+  ],
+  "inputs": "Saved generated test scenes; not independent camera photographs.",
+  "cases": [
+    {
+      "corpus": "scenes",
+      "id": "baseline-lightning-bolt-background-green",
+      "title": "Plain background",
+      "result": "Match",
+      "description": "A single card on a plain green surface.",
+      "group": "matches",
+      "input": "images/baseline-lightning-bolt-background-green/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/baseline-lightning-bolt-background-green.jpg",
+      "input_sha256": "1614f158aa7194ddd3cd07ca7f5361a03e179df74443d32863dea5dcc232ebdb",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/baseline-lightning-bolt-background-green/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/baseline-lightning-bolt-background-green/card-000.png": "2d20b355c8bfa56b1317b75f833c20856a09b7dea50f6fa41d3935a569b4f64b"
+      },
+      "report": {
+        "id": "baseline-lightning-bolt-background-green",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                229.3834,
+                133.5
+              ],
+              [
+                410.61432,
+                133.5
+              ],
+              [
+                410.5293,
+                386.5
+              ],
+              [
+                229.53966,
+                386.5
+              ]
+            ],
+            "area": 45820.906
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.7938427,
+            "pixel_mae": 9.943338,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "baseline-lightning-bolt-rotation-minus42",
+      "title": "Rotated card",
+      "result": "Match",
+      "description": "The card is rotated 42 degrees; the crop is straightened.",
+      "group": "matches",
+      "input": "images/baseline-lightning-bolt-rotation-minus42/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/baseline-lightning-bolt-rotation-minus42.jpg",
+      "input_sha256": "b9b562173907a6eafa71394b07eece42b6ac434070b94e077223ebf784f64d7f",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/baseline-lightning-bolt-rotation-minus42/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/baseline-lightning-bolt-rotation-minus42/card-000.png": "08f88f1e1687fe77fc3ede03a9f8383e398268e58f0bcac5d214bd9ac7906e25"
+      },
+      "report": {
+        "id": "baseline-lightning-bolt-rotation-minus42",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                168.26407,
+                226.01212
+              ],
+              [
+                302.91547,
+                105.02332
+              ],
+              [
+                472.0967,
+                293.06738
+              ],
+              [
+                337.535,
+                414.12958
+              ]
+            ],
+            "area": 45797.58
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 1.1700476,
+            "pixel_mae": 9.90702,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "baseline-counterspell-blur",
+      "title": "Mild blur",
+      "result": "Match",
+      "description": "Mild simulated defocus leaves enough of the border to extract the card.",
+      "group": "matches",
+      "input": "images/baseline-counterspell-blur/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/baseline-counterspell-blur.jpg",
+      "input_sha256": "610341e6c457db5d95e2bb2cdcbafb5d9d82d4b6c7c7c775e6fc65f25cac804a",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/baseline-counterspell-blur/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/baseline-counterspell-blur/card-000.png": "98779e5928c6daec8fe9f5e4cb8ad742f70cb9e5c793dcec862fc8db64cc9c8b"
+      },
+      "report": {
+        "id": "baseline-counterspell-blur",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                193.35204,
+                169.59436
+              ],
+              [
+                364.49643,
+                110.707214
+              ],
+              [
+                446.87512,
+                349.86035
+              ],
+              [
+                275.7432,
+                408.9625
+              ]
+            ],
+            "area": 45806.895
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "counterspell",
+            "detected_index": 0,
+            "corner_error": 0.9543607,
+            "pixel_mae": 8.927399,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "baseline-four-cards",
+      "title": "Several separate cards",
+      "result": "Match",
+      "description": "Four separated cards are returned as four separate crops.",
+      "group": "matches",
+      "input": "images/baseline-four-cards/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/baseline-four-cards.jpg",
+      "input_sha256": "c06d63f1b8b8b500d5ac6434ef0526bbf370662b371064ac8bb6025603096261",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/baseline-four-cards/card-000.png",
+        "images/baseline-four-cards/card-001.png",
+        "images/baseline-four-cards/card-002.png",
+        "images/baseline-four-cards/card-003.png"
+      ],
+      "crop_sha256": {
+        "images/baseline-four-cards/card-000.png": "b67d6fbfdfb4ca76cd3466c9b7f35d0c71408821c83d0b7ec389b046fdfdff51",
+        "images/baseline-four-cards/card-001.png": "52963d2a4996da9953530ef4815e3b7f08f7d9c8e26b95da29cc4bbd571a9686",
+        "images/baseline-four-cards/card-002.png": "128c16a0ca141d99b5d01cde0d97e1bcb6e07e545a7b5c3a7b207b209645ad02",
+        "images/baseline-four-cards/card-003.png": "7528ab7d86bebf40dfcee1b7872c380ea85a30a06dcac77758ac00b4d8e92c73"
+      },
+      "report": {
+        "id": "baseline-four-cards",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 4,
+        "detected_count": 4,
+        "detected": [
+          {
+            "corners": [
+              [
+                424.85757,
+                31.996925
+              ],
+              [
+                553.027,
+                59.165142
+              ],
+              [
+                514.90137,
+                238.1521
+              ],
+              [
+                386.75232,
+                210.96579
+              ]
+            ],
+            "area": 23973.54
+          },
+          {
+            "corners": [
+              [
+                82.439095,
+                53.429436
+              ],
+              [
+                212.23569,
+                35.22451
+              ],
+              [
+                237.64185,
+                216.46176
+              ],
+              [
+                107.94166,
+                234.60693
+              ]
+            ],
+            "area": 23974.0
+          },
+          {
+            "corners": [
+              [
+                388.30707,
+                307.54266
+              ],
+              [
+                517.00275,
+                282.62595
+              ],
+              [
+                551.76074,
+                462.26654
+              ],
+              [
+                423.2445,
+                487.18362
+              ]
+            ],
+            "area": 23971.176
+          },
+          {
+            "corners": [
+              [
+                109.60746,
+                284.38574
+              ],
+              [
+                238.90546,
+                304.98264
+              ],
+              [
+                210.31778,
+                485.62897
+              ],
+              [
+                80.97167,
+                465.19318
+              ]
+            ],
+            "area": 23958.977
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 1,
+            "corner_error": 0.81372297,
+            "pixel_mae": 12.109688,
+            "pixel_orientation": "original"
+          },
+          {
+            "expected_index": 1,
+            "source": "counterspell",
+            "detected_index": 0,
+            "corner_error": 0.8827589,
+            "pixel_mae": 9.383123,
+            "pixel_orientation": "original"
+          },
+          {
+            "expected_index": 2,
+            "source": "black-lotus",
+            "detected_index": 3,
+            "corner_error": 0.76408046,
+            "pixel_mae": 12.27299,
+            "pixel_orientation": "original"
+          },
+          {
+            "expected_index": 3,
+            "source": "sol-ring",
+            "detected_index": 2,
+            "corner_error": 0.8533742,
+            "pixel_mae": 13.358352,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "occlusion-finger-corner",
+      "title": "Partly hidden corner",
+      "result": "Match",
+      "description": "The outline is recovered around a partly hidden corner; the finger remains in the crop.",
+      "group": "matches",
+      "input": "images/occlusion-finger-corner/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/occlusion-finger-corner.jpg",
+      "input_sha256": "452d03197fc0bb907ff643df2a1fb6bdbb83bb6b1c1f0537d98728a838e228a6",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/occlusion-finger-corner/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/occlusion-finger-corner/card-000.png": "fcd096a6077824c22a544538ab4c9e82eaf3f9aa2ec25e90d5e0988dc9959c39"
+      },
+      "report": {
+        "id": "occlusion-finger-corner",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                229.49248,
+                133.5
+              ],
+              [
+                410.48013,
+                133.5
+              ],
+              [
+                410.50937,
+                386.5
+              ],
+              [
+                229.5217,
+                386.5
+              ]
+            ],
+            "area": 45789.887
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.71376234,
+            "pixel_mae": 5.330727,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "camera",
+      "id": "camera-table-p65-a090",
+      "title": "Oblique view",
+      "result": "Match",
+      "description": "A simulated camera pitched 65 degrees still returns the full card.",
+      "group": "matches",
+      "input": "images/camera-table-p65-a090/input.jpg",
+      "input_source": "tests/fixtures/camera/images/camera-table-p65-a090.jpg",
+      "input_sha256": "cbb2566cd21e986ee5902cf60ca20e93dbbd1d044decc25b98f14205a68c0f9f",
+      "source_manifest": "tests/fixtures/camera/manifest.json",
+      "source_manifest_sha256": "0ef2afee7228c0a3decd1cd7faa65237afceab0dcb3ce28bdbe3bb504711a9a3",
+      "crops": [
+        "images/camera-table-p65-a090/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/camera-table-p65-a090/card-000.png": "ff83d682dccc832c31a15813e3d2b3da4166bf21230d9a9ba937e60fec94aacf"
+      },
+      "report": {
+        "id": "camera-table-p65-a090",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                249.13531,
+                217.5
+              ],
+              [
+                389.70108,
+                217.5
+              ],
+              [
+                407.26297,
+                311.5
+              ],
+              [
+                231.66133,
+                311.5
+              ]
+            ],
+            "area": 14859.865
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 1.5047234,
+            "pixel_mae": 11.650907,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "materials",
+      "id": "back-pattern0-view0",
+      "title": "Card back",
+      "result": "Match",
+      "description": "An original patterned card back can be extracted without knowing the card's identity.",
+      "group": "matches",
+      "input": "images/back-pattern0-view0/input.jpg",
+      "input_source": "tests/fixtures/materials/images/back-pattern0-view0.jpg",
+      "input_sha256": "386a6239c5b28734e5d8786ef3b9a5aad8000aaa845a679a288f483601d92a88",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [
+        "images/back-pattern0-view0/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/back-pattern0-view0/card-000.png": "e66c9ed10bf7d5a755697420b2c2eff9c3ef75572d7552881be1e07ddc82fd7f"
+      },
+      "report": {
+        "id": "back-pattern0-view0",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                229.5,
+                133.5
+              ],
+              [
+                410.5,
+                133.5
+              ],
+              [
+                410.5,
+                386.5
+              ],
+              [
+                229.5,
+                386.5
+              ]
+            ],
+            "area": 45793.0
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "original-back-0",
+            "detected_index": 0,
+            "corner_error": 0.70710677,
+            "pixel_mae": 3.3002408,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "adversarial",
+      "id": "seed-20261018-case-0048-dim-reduction-2",
+      "title": "Too dim",
+      "result": "Miss",
+      "description": "The dim card is missed completely.",
+      "group": "misses",
+      "input": "images/seed-20261018-case-0048-dim-reduction-2/input.jpg",
+      "input_source": "tests/fixtures/adversarial/images/seed-20261018-case-0048-dim-reduction-2.jpg",
+      "input_sha256": "4adaea5987091770c5d79d4796416387c404a7dc57e7d58e4c72521f7fcc2590",
+      "source_manifest": "tests/fixtures/adversarial/manifest.json",
+      "source_manifest_sha256": "e1f38de0410a0e137db582b875e4768e6d8ec095e678f8fbf7a22e730ac00eeb",
+      "crops": [],
+      "crop_sha256": {},
+      "report": {
+        "id": "seed-20261018-case-0048-dim-reduction-2",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 1,
+        "detected_count": 0,
+        "detected": [],
+        "matches": [],
+        "unmatched_expected": [
+          0
+        ],
+        "unmatched_detected": [],
+        "failures": [
+          "expected 1 cards, detected 0"
+        ]
+      }
+    },
+    {
+      "corpus": "materials",
+      "id": "stack-two-cards-3",
+      "title": "Stacked cards",
+      "result": "Miss",
+      "description": "Neither card is found in this overlapping pair.",
+      "group": "misses",
+      "input": "images/stack-two-cards-3/input.jpg",
+      "input_source": "tests/fixtures/materials/images/stack-two-cards-3.jpg",
+      "input_sha256": "1a8cecc3134432a5f7c5d74c395c665d20bcbf5139140882f628ce4844b08e02",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [],
+      "crop_sha256": {},
+      "report": {
+        "id": "stack-two-cards-3",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 2,
+        "detected_count": 0,
+        "detected": [],
+        "matches": [],
+        "unmatched_expected": [
+          0,
+          1
+        ],
+        "unmatched_detected": [],
+        "failures": [
+          "expected 2 cards, detected 0"
+        ]
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "occlusion-two-cards-1",
+      "title": "Overlapping cards",
+      "result": "Wrong crop",
+      "description": "Two crops are returned, but their outlines do not match the two full cards.",
+      "group": "misses",
+      "input": "images/occlusion-two-cards-1/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/occlusion-two-cards-1.jpg",
+      "input_sha256": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/occlusion-two-cards-1/card-000.png",
+        "images/occlusion-two-cards-1/card-001.png"
+      ],
+      "crop_sha256": {
+        "images/occlusion-two-cards-1/card-000.png": "ea1bc40f6d500f4957f75d2de059ee181f54960743c430ba486c4434790a199e",
+        "images/occlusion-two-cards-1/card-001.png": "7ff197fcd567f300e5282544b72a28be6e20f044851393895d03d188a461dbc9"
+      },
+      "report": {
+        "id": "occlusion-two-cards-1",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 2,
+        "detected_count": 2,
+        "detected": [
+          {
+            "corners": [
+              [
+                185.9553,
+                143.8808
+              ],
+              [
+                383.82086,
+                115.901276
+              ],
+              [
+                324.4979,
+                353.8927
+              ],
+              [
+                217.57355,
+                369.02502
+              ]
+            ],
+            "area": 34991.168
+          },
+          {
+            "corners": [
+              [
+                370.78564,
+                196.8854
+              ],
+              [
+                523.3159,
+                234.79681
+              ],
+              [
+                471.4416,
+                443.14447
+              ],
+              [
+                318.92615,
+                405.15582
+              ]
+            ],
+            "area": 33740.25
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "black-lotus",
+            "detected_index": 0,
+            "corner_error": 67.6798,
+            "pixel_mae": 60.805347,
+            "pixel_orientation": "original"
+          },
+          {
+            "expected_index": 1,
+            "source": "sol-ring",
+            "detected_index": 1,
+            "corner_error": 18.024431,
+            "pixel_mae": 37.51643,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": [
+          "card 0 (black-lotus): corner error 67.680 > 8",
+          "card 0 (black-lotus): interior RGB MAE 60.805 >= 22",
+          "card 1 (sol-ring): corner error 18.024 > 8",
+          "card 1 (sol-ring): interior RGB MAE 37.516 >= 22"
+        ]
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "frame-clipped-left",
+      "title": "Outside the frame",
+      "result": "Wrong crop",
+      "description": "The card runs beyond the image edge; the returned crop has the wrong outline.",
+      "group": "misses",
+      "input": "images/frame-clipped-left/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/frame-clipped-left.jpg",
+      "input_sha256": "dd33bc88614c82244e23fb3ce6d523fa1d28e3f81b2c656df73f68d661e86e8d",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/frame-clipped-left/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/frame-clipped-left/card-000.png": "8ccf964e8ad5f718032894096342d573cf86990827a183c5dd97ac9fec67f7b4"
+      },
+      "report": {
+        "id": "frame-clipped-left",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                1.5000029,
+                167.47104
+              ],
+              [
+                132.42444,
+                149.2551
+              ],
+              [
+                148.08655,
+                262.24866
+              ],
+              [
+                1.5,
+                284.3718
+              ]
+            ],
+            "area": 16107.5
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "sol-ring",
+            "detected_index": 0,
+            "corner_error": 113.65007,
+            "pixel_mae": 77.35887,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": [
+          "card 0 (sol-ring): corner error 113.650 > 8",
+          "card 0 (sol-ring): interior RGB MAE 77.359 >= 22"
+        ]
+      }
+    },
+    {
+      "corpus": "materials",
+      "id": "sleeve-lightning-bolt-1",
+      "title": "Clear sleeve",
+      "result": "Wrong crop",
+      "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop.",
+      "group": "misses",
+      "input": "images/sleeve-lightning-bolt-1/input.jpg",
+      "input_source": "tests/fixtures/materials/images/sleeve-lightning-bolt-1.jpg",
+      "input_sha256": "232ae3280e79085af02e135b76f09fdf0e8cd7fc9b130a0de72a45bd16310042",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [
+        "images/sleeve-lightning-bolt-1/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/sleeve-lightning-bolt-1/card-000.png": "b5714f347b226be96a7f876ee60fa8a1ccda9f205417cafeae3b6d378fce8896"
+      },
+      "report": {
+        "id": "sleeve-lightning-bolt-1",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                265.75717,
+                72.27782
+              ],
+              [
+                479.3255,
+                145.2819
+              ],
+              [
+                377.2058,
+                440.74133
+              ],
+              [
+                163.64366,
+                367.71967
+              ]
+            ],
+            "area": 70553.81
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 20.003344,
+            "pixel_mae": 37.42964,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": [
+          "card 0 (lightning-bolt): corner error 20.003 > 8",
+          "card 0 (lightning-bolt): interior RGB MAE 37.430 >= 22"
+        ]
+      }
+    },
+    {
+      "corpus": "playmats",
+      "id": "playmat-fantasy-forest-lightning-bolt",
+      "title": "Busy playmat",
+      "result": "Wrong crop",
+      "description": "The card is found, but the crop cuts inside its outer border on a busy illustrated surface.",
+      "group": "misses",
+      "input": "images/playmat-fantasy-forest-lightning-bolt/input.jpg",
+      "input_source": "tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
+      "input_sha256": "9d09cf400dbf16e921236f137f037390d9e50f997993360b763d2669c978fa26",
+      "source_manifest": "tests/fixtures/playmats/manifest.json",
+      "source_manifest_sha256": "0bb237b583ad65804d52863ef8cabb8866f7998fbee04481e961a84279e2f45e",
+      "crops": [
+        "images/playmat-fantasy-forest-lightning-bolt/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/playmat-fantasy-forest-lightning-bolt/card-000.png": "249d06aa3708cdcb31709c617894a05adc31cf181ffc29ba0c25d008a9ef7e1e"
+      },
+      "report": {
+        "id": "playmat-fantasy-forest-lightning-bolt",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                107.633224,
+                155.17972
+              ],
+              [
+                267.0222,
+                106.39697
+              ],
+              [
+                333.03653,
+                323.08002
+              ],
+              [
+                173.7821,
+                371.60944
+              ]
+            ],
+            "area": 37717.4
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 20.223696,
+            "pixel_mae": 35.82539,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": [
+          "card 0 (lightning-bolt): corner error 20.224 > 8",
+          "card 0 (lightning-bolt): interior RGB MAE 35.825 >= 22"
+        ]
+      }
+    },
+    {
+      "corpus": "materials",
+      "id": "negative-empty-sleeve",
+      "title": "Empty sleeve",
+      "result": "False match",
+      "description": "An empty sleeve has no card, but its outline produces a crop.",
+      "group": "false-matches",
+      "input": "images/negative-empty-sleeve/input.jpg",
+      "input_source": "tests/fixtures/materials/images/negative-empty-sleeve.jpg",
+      "input_sha256": "7afb55c6ed8eedf6e89d6ca4b275841aea83ae8fbac60b16eaab46e2cc3c2441",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [
+        "images/negative-empty-sleeve/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/negative-empty-sleeve/card-000.png": "fd5d46713f51cd9c32d351d9ead29c1b9020a0f2a751cf80984a37907eb2dade"
+      },
+      "report": {
+        "id": "negative-empty-sleeve",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 0,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                218.5,
+                119.5
+              ],
+              [
+                421.5,
+                119.5
+              ],
+              [
+                421.5,
+                400.5
+              ],
+              [
+                218.5,
+                400.5
+              ]
+            ],
+            "area": 57043.0
+          }
+        ],
+        "matches": [],
+        "unmatched_expected": [],
+        "unmatched_detected": [
+          0
+        ],
+        "failures": [
+          "expected 0 cards, detected 1"
+        ]
+      }
+    },
+    {
+      "corpus": "playmats",
+      "id": "playmat-fantasy-forest-empty-printed-zones",
+      "title": "Printed card zones",
+      "result": "False match",
+      "description": "The empty mat's printed markings produce a crop even though no card is present.",
+      "group": "false-matches",
+      "input": "images/playmat-fantasy-forest-empty-printed-zones/input.jpg",
+      "input_source": "tests/fixtures/playmats/images/playmat-fantasy-forest-empty-printed-zones.jpg",
+      "input_sha256": "de0bc725d60807ad46c6cd70c2082a8d24936b69411105674c3f9e70d93d6fd4",
+      "source_manifest": "tests/fixtures/playmats/manifest.json",
+      "source_manifest_sha256": "0bb237b583ad65804d52863ef8cabb8866f7998fbee04481e961a84279e2f45e",
+      "crops": [
+        "images/playmat-fantasy-forest-empty-printed-zones/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/playmat-fantasy-forest-empty-printed-zones/card-000.png": "6bad9819679ec516c739bb05c4d44695e1deecd14b7ae6556e8d8b2b9ef7c1a9"
+      },
+      "report": {
+        "id": "playmat-fantasy-forest-empty-printed-zones",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 0,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                637.5,
+                123.5
+              ],
+              [
+                637.5,
+                517.5
+              ],
+              [
+                1.5,
+                517.5
+              ],
+              [
+                1.5000083,
+                123.5
+              ]
+            ],
+            "area": 250584.0
+          }
+        ],
+        "matches": [],
+        "unmatched_expected": [],
+        "unmatched_detected": [
+          0
+        ],
+        "failures": [
+          "expected 0 cards, detected 1"
+        ]
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "negative-phone",
+      "title": "Tall phone",
+      "result": "Correct non-match",
+      "description": "This tall phone is rejected because its outline has the wrong proportions.",
+      "group": "non-matches",
+      "input": "images/negative-phone/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/negative-phone.jpg",
+      "input_sha256": "15af932a4c93f5293a8e0429c3b54cb78f552e5413ebff7fbacd6337d73d4208",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [],
+      "crop_sha256": {},
+      "report": {
+        "id": "negative-phone",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 0,
+        "detected_count": 0,
+        "detected": [],
+        "matches": [],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "scenes",
+      "id": "negative-square-paper",
+      "title": "Square paper",
+      "result": "Correct non-match",
+      "description": "The square paper is rejected by the trading-card proportion filter.",
+      "group": "non-matches",
+      "input": "images/negative-square-paper/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/negative-square-paper.jpg",
+      "input_sha256": "aefd0af27566fa2b62ef51a5b3545a125f57cfa67bb1a1eb8d71714e63d3241c",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [],
+      "crop_sha256": {},
+      "report": {
+        "id": "negative-square-paper",
+        "tier": "regression",
+        "passed": true,
+        "expected_count": 0,
+        "detected_count": 0,
+        "detected": [],
+        "matches": [],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    }
+  ]
+}

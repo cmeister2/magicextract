@@ -6,6 +6,9 @@ in the original image. Pure Rust, with no OpenCV or model weights.
 
 Requires **Rust 1.90.0+**.
 
+[Input and output examples](https://cmeister2.github.io/magicextract/) include
+successful matches, missed cards, wrong crops, and false matches.
+
 ```rust,no_run
 use magicextract::{extract_cards, image};
 

@@ -1,0 +1,151 @@
+{
+  "sections": [
+    {
+      "id": "matches",
+      "title": "Matches",
+      "intro": "These examples return the expected cards with accurate outlines and crops.",
+      "cases": [
+        {
+          "corpus": "scenes",
+          "id": "baseline-lightning-bolt-background-green",
+          "title": "Plain background",
+          "result": "Match",
+          "description": "A single card on a plain green surface."
+        },
+        {
+          "corpus": "scenes",
+          "id": "baseline-lightning-bolt-rotation-minus42",
+          "title": "Rotated card",
+          "result": "Match",
+          "description": "The card is rotated 42 degrees; the crop is straightened."
+        },
+        {
+          "corpus": "scenes",
+          "id": "baseline-counterspell-blur",
+          "title": "Mild blur",
+          "result": "Match",
+          "description": "Mild simulated defocus leaves enough of the border to extract the card."
+        },
+        {
+          "corpus": "scenes",
+          "id": "baseline-four-cards",
+          "title": "Several separate cards",
+          "result": "Match",
+          "description": "Four separated cards are returned as four separate crops."
+        },
+        {
+          "corpus": "scenes",
+          "id": "occlusion-finger-corner",
+          "title": "Partly hidden corner",
+          "result": "Match",
+          "description": "The outline is recovered around a partly hidden corner; the finger remains in the crop."
+        },
+        {
+          "corpus": "camera",
+          "id": "camera-table-p65-a090",
+          "title": "Oblique view",
+          "result": "Match",
+          "description": "A simulated camera pitched 65 degrees still returns the full card."
+        },
+        {
+          "corpus": "materials",
+          "id": "back-pattern0-view0",
+          "title": "Card back",
+          "result": "Match",
+          "description": "An original patterned card back can be extracted without knowing the card's identity."
+        }
+      ]
+    },
+    {
+      "id": "misses",
+      "title": "Misses and wrong crops",
+      "intro": "Returning an image does not guarantee a good extraction. These examples either miss cards or return the wrong outline.",
+      "cases": [
+        {
+          "corpus": "adversarial",
+          "id": "seed-20261018-case-0048-dim-reduction-2",
+          "title": "Too dim",
+          "result": "Miss",
+          "description": "The dim card is missed completely."
+        },
+        {
+          "corpus": "materials",
+          "id": "stack-two-cards-3",
+          "title": "Stacked cards",
+          "result": "Miss",
+          "description": "Neither card is found in this overlapping pair."
+        },
+        {
+          "corpus": "scenes",
+          "id": "occlusion-two-cards-1",
+          "title": "Overlapping cards",
+          "result": "Wrong crop",
+          "description": "Two crops are returned, but their outlines do not match the two full cards."
+        },
+        {
+          "corpus": "scenes",
+          "id": "frame-clipped-left",
+          "title": "Outside the frame",
+          "result": "Wrong crop",
+          "description": "The card runs beyond the image edge; the returned crop has the wrong outline."
+        },
+        {
+          "corpus": "materials",
+          "id": "sleeve-lightning-bolt-1",
+          "title": "Clear sleeve",
+          "result": "Wrong crop",
+          "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop."
+        },
+        {
+          "corpus": "playmats",
+          "id": "playmat-fantasy-forest-lightning-bolt",
+          "title": "Busy playmat",
+          "result": "Wrong crop",
+          "description": "The card is found, but the crop cuts inside its outer border on a busy illustrated surface."
+        }
+      ]
+    },
+    {
+      "id": "false-matches",
+      "title": "False matches",
+      "intro": "There are no cards in these inputs. Card-shaped objects can still produce crops.",
+      "cases": [
+        {
+          "corpus": "materials",
+          "id": "negative-empty-sleeve",
+          "title": "Empty sleeve",
+          "result": "False match",
+          "description": "An empty sleeve has no card, but its outline produces a crop."
+        },
+        {
+          "corpus": "playmats",
+          "id": "playmat-fantasy-forest-empty-printed-zones",
+          "title": "Printed card zones",
+          "result": "False match",
+          "description": "The empty mat's printed markings produce a crop even though no card is present."
+        }
+      ]
+    },
+    {
+      "id": "non-matches",
+      "title": "Correct non-matches",
+      "intro": "These objects are correctly rejected. No crops are returned.",
+      "cases": [
+        {
+          "corpus": "scenes",
+          "id": "negative-phone",
+          "title": "Tall phone",
+          "result": "Correct non-match",
+          "description": "This tall phone is rejected because its outline has the wrong proportions."
+        },
+        {
+          "corpus": "scenes",
+          "id": "negative-square-paper",
+          "title": "Square paper",
+          "result": "Correct non-match",
+          "description": "The square paper is rejected by the trading-card proportion filter."
+        }
+      ]
+    }
+  ]
+}
