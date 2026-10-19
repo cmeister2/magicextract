@@ -6,7 +6,8 @@ their saved image corpus are excluded from the published library package.
 Saved scene tests read the permanent JPEG scenes in
 [`tests/fixtures/scenes`](../tests/fixtures/scenes/manifest.json) and
 [`tests/fixtures/playmats`](../tests/fixtures/playmats/manifest.json), plus
-[camera views](../tests/fixtures/camera/manifest.json). They never
+[camera views](../tests/fixtures/camera/manifest.json) and
+[white/silver borders](../tests/fixtures/borders/manifest.json). They never
 render replacements or download images. No Python or source-image cache is needed.
 
 ```sh
@@ -80,6 +81,27 @@ The challenge tier deliberately includes unresolved failures and is excluded
 from default CI assertions, while its image integrity is always checked.
 
 Controlled scenes do not establish real-camera accuracy or video throughput.
+
+The border corpus uses original white-border Lightning Bolt and silver-border
+Booster Tutor faces from Scryfall in six generated planar scenes. Four plain and
+playmat scenes are required regressions; two bright sleeve-outline controls are
+challenge entries. Full physical card corners and observed-face references are
+pinned for every scene. Silver describes the printed border in the source image;
+these scenes do not simulate metallic reflections or plastic optics.
+
+The [source credits and PNG hashes](../tests/fixtures/borders/sources.json) and
+[authoring recipes](../tests/fixtures/borders/recipes.json) are saved separately
+from the source cache. Tests need neither that cache nor Python. To intentionally
+author the scenes, use Pillow 10.2.0 and an offline cache containing the two pinned
+original PNGs named in the source credits:
+
+```sh
+python3 scripts/build-border-fixtures.py --write --sources /path/to/border-source-cache
+```
+
+Existing generated output requires `--force` for intentional replacement.
+Use `--output target/border-preview` to create a separate collection. The tool
+verifies cached PNG and background hashes before writing and never downloads.
 
 The extended research corpora contain 768 source-face-split learning scenes,
 192 saved sequence frames, and 40 material cases covering card backs, sleeves,
