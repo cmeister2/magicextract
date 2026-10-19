@@ -2481,7 +2481,7 @@ fn occlusion_explains_edges(
     };
     occluders.iter().any(|occluder| {
         let (iou, containment) = quadrilateral_overlap(&target, occluder);
-        if iou < 0.02 || iou > 0.45 || containment > 0.9 {
+        if !(0.02..=0.45).contains(&iou) || containment > 0.9 {
             return false;
         }
         (0..4).all(|i| {
@@ -2564,7 +2564,7 @@ fn replacement_follows_three_sides(
         let b = original.corners[(i + 1) % 4];
         occluders.iter().any(|occluder| {
             let (iou, containment) = quadrilateral_overlap(recovered, occluder);
-            if iou < 0.02 || iou > 0.45 || containment > 0.9 {
+            if !(0.02..=0.45).contains(&iou) || containment > 0.9 {
                 return false;
             }
             (0..4).any(|j| {
