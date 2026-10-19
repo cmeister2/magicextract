@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "8ae2f9e1f352e64fdfa796fde21d91afcac2e3e8",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/8ae2f9e1f352e64fdfa796fde21d91afcac2e3e8",
+  "source_revision": "b92029275f4cb7ba27d5d564fc92d8b63783327b",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/b92029275f4cb7ba27d5d564fc92d8b63783327b",
   "source_sha256": {
-    "src/detection.rs": "fe4efaf5bfab3aa0c3448dbd9494f39b317eb060815494f495a8c1c6a1f2d20a",
+    "src/detection.rs": "74a6b7353d02fd402119956ac60ff5396afd2b41ba30288fcec3dac60c9413fd",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
