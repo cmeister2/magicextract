@@ -32,7 +32,10 @@ fn research_scene_bytes_and_scoring_rules_are_pinned() {
             );
             let bytes = fs::read(directory.join(relative)).expect("saved image asset");
             assert_eq!(
-                format!("{:x}", Sha256::digest(&bytes)),
+                Sha256::digest(&bytes)
+                    .iter()
+                    .map(|byte| format!("{byte:02x}"))
+                    .collect::<String>(),
                 expected.as_str().expect("SHA256 string"),
                 "changed saved asset in {name}: {filename}"
             );

@@ -2147,8 +2147,10 @@ mod frame_colour_tests {
                 if tone > 200 { 60 } else { 235 }
             } else if extended || ((80..=260).contains(&x) && (60..=312).contains(&y)) {
                 tone
+            } else if tone > 100 {
+                70
             } else {
-                if tone > 100 { 70 } else { 160 }
+                160
             }])
         })
     }
@@ -2237,8 +2239,10 @@ mod frame_colour_tests {
                     if tone > 200 { 60 } else { 235 }
                 } else if (80..=260).contains(&x) && (60..=312).contains(&y) {
                     tone
+                } else if tone > 100 {
+                    70
                 } else {
-                    if tone > 100 { 70 } else { 160 }
+                    160
                 }])
             });
             let recovered = expand_card_border(panel, &image).expect("narrow observed frame");

@@ -28,7 +28,10 @@ fn border_scene_bytes_and_provenance_are_valid() -> EvaluationResult<()> {
         ("sources.json", "source_manifest_sha256"),
     ] {
         assert_eq!(
-            format!("{:x}", Sha256::digest(fs::read(directory.join(filename))?)),
+            Sha256::digest(fs::read(directory.join(filename))?)
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>(),
             manifest["generator"][hash_key]
                 .as_str()
                 .expect("pinned authoring metadata"),
