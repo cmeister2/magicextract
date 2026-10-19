@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "4b2d65309d507b5a7b06c9e90f71e415c1b838d5",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/4b2d65309d507b5a7b06c9e90f71e415c1b838d5",
+  "source_revision": "8da88ce029f30fa48c0125be3b382ed4bfb6f93f",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/8da88ce029f30fa48c0125be3b382ed4bfb6f93f",
   "source_sha256": {
-    "src/detection.rs": "4afae71d6cfe98d8a03cf77bb80973eaaa2b3d16d873549993778d69db37925c",
+    "src/detection.rs": "74a6b7353d02fd402119956ac60ff5396afd2b41ba30288fcec3dac60c9413fd",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "314ebd120e6bf1d11144b59e4e491f1fdbed8598ab64607c70235ac657262821",
+  "selection_sha256": "c90c96d26dfee53a4df2acd80e1ad85e1f39974c256d218d061df97e634fad34",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -1043,6 +1043,99 @@
       }
     },
     {
+      "corpus": "scenes",
+      "id": "occlusion-two-cards-1",
+      "title": "Overlapping cards",
+      "result": "Match",
+      "description": "Both full card outlines are recovered. The front card still covers part of the rear card in its crop.",
+      "group": "matches",
+      "input": "images/occlusion-two-cards-1/input.jpg",
+      "input_source": "tests/fixtures/scenes/images/occlusion-two-cards-1.jpg",
+      "input_sha256": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
+      "source_manifest": "tests/fixtures/scenes/manifest.json",
+      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "crops": [
+        "images/occlusion-two-cards-1/card-000.png",
+        "images/occlusion-two-cards-1/card-001.png"
+      ],
+      "crop_sha256": {
+        "images/occlusion-two-cards-1/card-000.png": "188268fb2565674cac8b359e0af6e00097967263a550d7cc555532b13046e12d",
+        "images/occlusion-two-cards-1/card-001.png": "5903742e2b3823b0d0ef2fdc44888d12433b39b8248ac56af409bd6777711a21"
+      },
+      "report": {
+        "id": "occlusion-two-cards-1",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 2,
+        "detected_count": 2,
+        "detected": [
+          {
+            "corners": [
+              [
+                177.88351,
+                137.2138
+              ],
+              [
+                356.43967,
+                112.17692
+              ],
+              [
+                394.3946,
+                361.93118
+              ],
+              [
+                213.03806,
+                387.9677
+              ]
+            ],
+            "area": 45968.305
+          },
+          {
+            "corners": [
+              [
+                365.76425,
+                188.38045
+              ],
+              [
+                531.6953,
+                229.75336
+              ],
+              [
+                474.01288,
+                461.7533
+              ],
+              [
+                307.9478,
+                420.49084
+              ]
+            ],
+            "area": 40906.78
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "black-lotus",
+            "detected_index": 0,
+            "corner_error": 2.7529635,
+            "pixel_mae": 13.106831,
+            "pixel_orientation": "original"
+          },
+          {
+            "expected_index": 1,
+            "source": "sol-ring",
+            "detected_index": 1,
+            "corner_error": 0.9840775,
+            "pixel_mae": 5.9872656,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
       "corpus": "borders",
       "id": "white-border-playmat-upper-right",
       "title": "White border with an extra background crop",
@@ -1160,102 +1253,6 @@
         "unmatched_detected": [],
         "failures": [
           "expected 2 cards, detected 0"
-        ]
-      }
-    },
-    {
-      "corpus": "scenes",
-      "id": "occlusion-two-cards-1",
-      "title": "Overlapping cards",
-      "result": "Wrong crop",
-      "description": "Two crops are returned, but their outlines do not match the two full cards.",
-      "group": "misses",
-      "input": "images/occlusion-two-cards-1/input.jpg",
-      "input_source": "tests/fixtures/scenes/images/occlusion-two-cards-1.jpg",
-      "input_sha256": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
-      "source_manifest": "tests/fixtures/scenes/manifest.json",
-      "source_manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
-      "crops": [
-        "images/occlusion-two-cards-1/card-000.png",
-        "images/occlusion-two-cards-1/card-001.png"
-      ],
-      "crop_sha256": {
-        "images/occlusion-two-cards-1/card-000.png": "ea1bc40f6d500f4957f75d2de059ee181f54960743c430ba486c4434790a199e",
-        "images/occlusion-two-cards-1/card-001.png": "5903742e2b3823b0d0ef2fdc44888d12433b39b8248ac56af409bd6777711a21"
-      },
-      "report": {
-        "id": "occlusion-two-cards-1",
-        "tier": "challenge",
-        "passed": false,
-        "expected_count": 2,
-        "detected_count": 2,
-        "detected": [
-          {
-            "corners": [
-              [
-                185.9553,
-                143.8808
-              ],
-              [
-                383.82086,
-                115.901276
-              ],
-              [
-                324.4979,
-                353.8927
-              ],
-              [
-                217.57355,
-                369.02502
-              ]
-            ],
-            "area": 34991.168
-          },
-          {
-            "corners": [
-              [
-                365.76425,
-                188.38045
-              ],
-              [
-                531.6953,
-                229.75336
-              ],
-              [
-                474.01288,
-                461.7533
-              ],
-              [
-                307.9478,
-                420.49084
-              ]
-            ],
-            "area": 40906.78
-          }
-        ],
-        "matches": [
-          {
-            "expected_index": 0,
-            "source": "black-lotus",
-            "detected_index": 0,
-            "corner_error": 67.6798,
-            "pixel_mae": 60.805347,
-            "pixel_orientation": "original"
-          },
-          {
-            "expected_index": 1,
-            "source": "sol-ring",
-            "detected_index": 1,
-            "corner_error": 0.9840775,
-            "pixel_mae": 5.9872656,
-            "pixel_orientation": "original"
-          }
-        ],
-        "unmatched_expected": [],
-        "unmatched_detected": [],
-        "failures": [
-          "card 0 (black-lotus): corner error 67.680 > 8",
-          "card 0 (black-lotus): interior RGB MAE 60.805 >= 22"
         ]
       }
     },
