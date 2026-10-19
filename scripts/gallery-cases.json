@@ -70,17 +70,24 @@
         },
         {
           "corpus": "borders",
-          "id": "white-border-playmat",
-          "title": "White border on a playmat",
+          "id": "white-border-playmat-lower-centre",
+          "title": "White border near the bottom of a playmat",
           "result": "Match",
-          "description": "A white-border Lightning Bolt keeps its full printed border against a busy mat."
+          "description": "A smaller white-border Lightning Bolt near the bottom is recovered at a different position, angle, and size."
         },
         {
           "corpus": "borders",
-          "id": "silver-border-playmat",
-          "title": "Silver border on a playmat",
+          "id": "silver-border-playmat-upper-right",
+          "title": "Silver border at the upper right of a playmat",
           "result": "Match",
-          "description": "A silver-border Booster Tutor is extracted along its physical edge, including the pale frame."
+          "description": "A smaller silver-border Booster Tutor at the upper right is extracted along its full physical edge."
+        },
+        {
+          "corpus": "borders",
+          "id": "silver-border-playmat-lower-centre",
+          "title": "Silver border near the bottom of a playmat",
+          "result": "Match",
+          "description": "The same silver-border card is recovered lower down against a different part of the illustrated mat."
         },
         {
           "corpus": "materials",
@@ -159,6 +166,13 @@
       "title": "Misses and wrong crops",
       "intro": "Returning an image does not guarantee a good extraction. These examples either miss cards or return the wrong outline.",
       "cases": [
+        {
+          "corpus": "borders",
+          "id": "white-border-playmat-upper-right",
+          "title": "White border with an extra background crop",
+          "result": "Wrong crop",
+          "description": "The upper-right white-border card is recovered, but a small patch near the bottom-right background edge also produces a crop. One card is present; two crops are returned."
+        },
         {
           "corpus": "materials",
           "id": "stack-two-cards-3",

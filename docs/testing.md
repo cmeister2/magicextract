@@ -84,11 +84,22 @@ from default CI assertions, while its image integrity is always checked.
 Controlled scenes do not establish real-camera accuracy or video throughput.
 
 The border corpus uses original white-border Lightning Bolt and silver-border
-Booster Tutor faces from Scryfall in six generated planar scenes. Four plain and
-playmat scenes are required regressions; two bright sleeve-outline controls are
-challenge entries, with a separate required test for their sleeve recovery. Full physical card corners and observed-face references are
-pinned for every scene. Silver describes the printed border in the source image;
+Booster Tutor faces from Scryfall in ten generated planar scenes. Seven plain and
+playmat scenes are required regressions; two bright sleeve-outline controls and
+the upper-right white-border playmat scene are challenge entries. A separate
+required test checks both sleeve recoveries. Full physical card corners and
+observed-face references are pinned for every scene. Silver describes the printed
+border in the source image;
 these scenes do not simulate metallic reflections or plastic optics.
+
+Both border colours are tested at each of three playmat placements: the original
+left-hand pose, a smaller card at the upper right, and a smaller card near the
+bottom centre. Positions, angles, and sizes are fixed before evaluation. The
+original scenes stay pinned; four additional saved scenes test different regions
+of the same detailed background. All four new results are shown in the gallery,
+including the upper-right white card, whose correct card crop is accompanied by
+an extra background crop. That scene remains a challenge; no placement or scoring
+threshold was changed after evaluation.
 
 The [source credits and PNG hashes](../tests/fixtures/borders/sources.json) and
 [authoring recipes](../tests/fixtures/borders/recipes.json) are saved separately
