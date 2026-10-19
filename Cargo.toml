@@ -26,10 +26,10 @@ image = { version = "0.25.10", default-features = false }
 imageproc = { version = "0.27.0", default-features = false }
 
 [dev-dependencies]
-image = { version = "0.25.10", default-features = false, features = ["jpeg", "png"] }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-sha2 = "0.10"
+image = { version = "=0.25.10", default-features = false, features = ["jpeg", "png"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.154"
+sha2 = "=0.10.9"
 
 [lints.rust]
 missing_docs = "deny"
