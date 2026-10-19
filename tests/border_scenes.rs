@@ -39,26 +39,28 @@ fn border_scene_bytes_and_provenance_are_valid() -> EvaluationResult<()> {
         );
     }
     let scenes = manifest["scenes"].as_array().expect("saved scenes");
-    assert_eq!(scenes.len(), 6);
+    assert_eq!(scenes.len(), 10);
     assert_eq!(
         scenes
             .iter()
             .filter(|scene| scene["tier"] == "regression")
             .count(),
-        4
+        7
     );
     assert_eq!(
         scenes
             .iter()
             .filter(|scene| scene["tier"] == "challenge")
             .count(),
-        2
+        3
     );
     for scene in scenes {
-        let sleeve = scene["id"].as_str().expect("scene ID").ends_with("-sleeve");
+        let identifier = scene["id"].as_str().expect("scene ID");
+        let challenge =
+            identifier.ends_with("-sleeve") || identifier == "white-border-playmat-upper-right";
         assert_eq!(
             scene["tier"],
-            if sleeve { "challenge" } else { "regression" }
+            if challenge { "challenge" } else { "regression" }
         );
         assert_eq!(scene["corner_tolerance"].as_f64(), Some(8.0));
         assert_eq!(scene["pixel_mae_limit"].as_f64(), Some(22.0));
@@ -92,7 +94,77 @@ fn border_scene_bytes_and_provenance_are_valid() -> EvaluationResult<()> {
 #[test]
 fn white_and_silver_cards_match_saved_ground_truth() -> EvaluationResult<()> {
     let report = evaluate_manifest(&border_manifest_path(), &EvaluationOptions::default())?;
-    assert_eq!(report.summary.scenes, 4);
+    assert_eq!(report.summary.scenes, 7);
     assert_eq!(report.summary.failed, 0, "{}", report.failure_summary());
+    Ok(())
+}
+
+/// Each border color uses the same three visibly different playmat placements.
+#[test]
+fn border_playmat_placements_cover_position_rotation_and_scale() -> EvaluationResult<()> {
+    let manifest: Value = serde_json::from_slice(&fs::read(border_manifest_path())?)?;
+    let scenes = manifest["scenes"].as_array().expect("saved scenes");
+    let playmats: Vec<_> = scenes
+        .iter()
+        .filter(|scene| {
+            scene["tags"]
+                .as_array()
+                .expect("scene tags")
+                .iter()
+                .any(|tag| tag == "playmat")
+        })
+        .collect();
+    assert_eq!(playmats.len(), 6);
+    for source in ["white-lightning-bolt", "silver-booster-tutor"] {
+        let paired: Vec<_> = playmats
+            .iter()
+            .filter(|scene| scene["cards"][0]["source"] == source)
+            .collect();
+        assert_eq!(paired.len(), 3);
+        let measurements: Vec<_> =
+            paired
+                .iter()
+                .map(|scene| {
+                    let corners = scene["cards"][0]["corners"]
+                        .as_array()
+                        .expect("full physical corners");
+                    let points: Vec<_> = corners
+                        .iter()
+                        .map(|point| {
+                            (
+                                point[0].as_f64().expect("corner x"),
+                                point[1].as_f64().expect("corner y"),
+                            )
+                        })
+                        .collect();
+                    assert!(points.iter().all(|&(x, y)| {
+                        (10.0..630.0).contains(&x) && (10.0..510.0).contains(&y)
+                    }));
+                    let center_x = points.iter().map(|point| point.0).sum::<f64>() / 4.0;
+                    let center_y = points.iter().map(|point| point.1).sum::<f64>() / 4.0;
+                    let dx = points[1].0 - points[0].0;
+                    let dy = points[1].1 - points[0].1;
+                    assert!(playmats.iter().any(|other| {
+                        other["cards"][0]["source"] != source
+                            && other["cards"][0]["corners"] == scene["cards"][0]["corners"]
+                    }));
+                    [center_x, center_y, dx.hypot(dy), dy.atan2(dx).to_degrees()]
+                })
+                .collect();
+        for (dimension, minimum_span) in [240.0, 170.0, 25.0, 50.0].into_iter().enumerate() {
+            let minimum = measurements
+                .iter()
+                .map(|measurement| measurement[dimension])
+                .fold(f64::INFINITY, f64::min);
+            let maximum = measurements
+                .iter()
+                .map(|measurement| measurement[dimension])
+                .fold(f64::NEG_INFINITY, f64::max);
+            assert!(
+                maximum - minimum >= minimum_span,
+                "playmat position, rotation, or scale collapsed for {source}: dimension {dimension}"
+            );
+        }
+    }
     Ok(())
 }

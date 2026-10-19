@@ -324,5 +324,177 @@
     "appearance_reference": true,
     "jpeg_quality": 94,
     "pixel_mae_limit": 22
+  },
+  {
+    "id": "white-border-playmat-upper-right",
+    "tier": "challenge",
+    "description": "White-border Lightning Bolt on the forest playmat at the upper right, rotated +24 degrees.",
+    "tags": [
+      "border-colour",
+      "white",
+      "playmat",
+      "varied-placement",
+      "upper-right"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "white-lightning-bolt",
+        "corners": [
+          [
+            447.1590957277545,
+            48.515377865515575
+          ],
+          [
+            589.6721871200002,
+            111.96629418534042
+          ],
+          [
+            500.8409042722455,
+            311.4846221344844
+          ],
+          [
+            358.3278128799997,
+            248.03370581465958
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "id": "white-border-playmat-lower-centre",
+    "tier": "regression",
+    "description": "White-border Lightning Bolt on the forest playmat at the lower centre, rotated -32 degrees.",
+    "tags": [
+      "border-colour",
+      "white",
+      "playmat",
+      "varied-placement",
+      "lower-centre"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "white-lightning-bolt",
+        "corners": [
+          [
+            214.75487004378152,
+            315.69889472106564
+          ],
+          [
+            341.96208446724546,
+            236.21100508608487
+          ],
+          [
+            453.2451299562185,
+            414.30110527893436
+          ],
+          [
+            326.03791553275454,
+            493.78899491391513
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "id": "silver-border-playmat-upper-right",
+    "tier": "regression",
+    "description": "Silver-border Booster Tutor on the forest playmat at the upper right, rotated +24 degrees.",
+    "tags": [
+      "border-colour",
+      "silver",
+      "playmat",
+      "varied-placement",
+      "upper-right"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "silver-booster-tutor",
+        "corners": [
+          [
+            447.1590957277545,
+            48.515377865515575
+          ],
+          [
+            589.6721871200002,
+            111.96629418534042
+          ],
+          [
+            500.8409042722455,
+            311.4846221344844
+          ],
+          [
+            358.3278128799997,
+            248.03370581465958
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
+  },
+  {
+    "id": "silver-border-playmat-lower-centre",
+    "tier": "regression",
+    "description": "Silver-border Booster Tutor on the forest playmat at the lower centre, rotated -32 degrees.",
+    "tags": [
+      "border-colour",
+      "silver",
+      "playmat",
+      "varied-placement",
+      "lower-centre"
+    ],
+    "background": {
+      "kind": "image",
+      "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+      "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+    },
+    "cards": [
+      {
+        "source": "silver-booster-tutor",
+        "corners": [
+          [
+            214.75487004378152,
+            315.69889472106564
+          ],
+          [
+            341.96208446724546,
+            236.21100508608487
+          ],
+          [
+            453.2451299562185,
+            414.30110527893436
+          ],
+          [
+            326.03791553275454,
+            493.78899491391513
+          ]
+        ]
+      }
+    ],
+    "appearance_reference": true,
+    "jpeg_quality": 94,
+    "pixel_mae_limit": 22
   }
 ]
