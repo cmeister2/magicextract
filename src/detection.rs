@@ -161,6 +161,8 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
 
+    refine_occluded_outlines(&edges, &gray, config, &mut retained);
+
     // Enlarged borders can overlap another retained card; suppress duplicates
     // again using the final geometry before mapping corners into source pixels.
     retained.sort_by(|left, right| {
@@ -319,7 +321,7 @@ fn collect_candidates(
             }
         }
         if !found {
-            collect_inferred_candidates(&points, perimeter, mask, config, candidates);
+            collect_inferred_candidates(&points, perimeter, mask, config, &[], candidates);
         }
     }
 }
@@ -334,6 +336,7 @@ fn collect_inferred_candidates(
     perimeter: f32,
     mask: &GrayImage,
     config: &ExtractorConfig,
+    occluders: &[CardDetection],
     candidates: &mut Vec<CardDetection>,
 ) {
     let simplified = simplify_closed(contour, (perimeter * 0.0015).clamp(1.0, 2.0));
@@ -390,7 +393,9 @@ fn collect_inferred_candidates(
                                 || point.x > mask.width() as f32 - 1.0
                                 || point.y > mask.height() as f32 - 1.0
                         })
-                        || !edges_are_supported(&corners, contour)
+                        || !((occluders.is_empty() && edges_are_supported(&corners, contour))
+                            || (!occluders.is_empty()
+                                && occlusion_explains_edges(&corners, contour, occluders)))
                     {
                         continue;
                     }
@@ -1820,5 +1825,481 @@ mod sleeve_tests {
             recover_inner_card_border(sleeve_corners(), &opaque, &ExtractorConfig::default())
                 .is_none()
         );
+    }
+}
+
+/// Reconsiders partially covered outlines only against independently found cards.
+fn refine_occluded_outlines(
+    mask: &GrayImage,
+    image: &GrayImage,
+    config: &ExtractorConfig,
+    candidates: &mut [CardDetection],
+) {
+    if !outlines_may_overlap(candidates) {
+        return;
+    }
+    let occluders: Vec<_> = candidates
+        .iter()
+        .filter(|candidate| {
+            candidate.corners.iter().all(|p| {
+                p.x > 0.0
+                    && p.y > 0.0
+                    && p.x < mask.width() as f32 - 1.0
+                    && p.y < mask.height() as f32 - 1.0
+            })
+        })
+        .cloned()
+        .collect();
+    if occluders.len() < 2 {
+        return;
+    }
+    let image_area = mask.width() as f32 * mask.height() as f32;
+    let mut recovered = Vec::new();
+    for contour in find_contours::<i32>(mask) {
+        if contour.points.len() < 4 {
+            continue;
+        }
+        let points: Vec<_> = contour
+            .points
+            .iter()
+            .map(|p| Point {
+                x: p.x as f32,
+                y: p.y as f32,
+            })
+            .collect();
+        let (minimum, maximum) = bounds(&points);
+        if (maximum.x - minimum.x) * (maximum.y - minimum.y) < config.min_area_fraction * image_area
+        {
+            continue;
+        }
+        if minimum.x <= 0.0
+            && minimum.y <= 0.0
+            && maximum.x >= mask.width() as f32 - 1.0
+            && maximum.y >= mask.height() as f32 - 1.0
+        {
+            continue;
+        }
+        let hull = convex_hull(points.clone());
+        let area = polygon_area(&hull);
+        if hull.len() < 4
+            || area < config.min_area_fraction * image_area
+            || area > config.max_area_fraction * image_area * 1.15
+        {
+            continue;
+        }
+        collect_inferred_candidates(
+            &points,
+            polygon_perimeter(&hull),
+            mask,
+            config,
+            &occluders,
+            &mut recovered,
+        );
+    }
+    recovered.sort_by(|a, b| b.area.total_cmp(&a.area));
+    for mut recovered in recovered {
+        let Some(corners) = orient_card_corners(
+            refine_gradient_corners(recovered.corners, image),
+            config.aspect_ratio_tolerance,
+            image.width(),
+            image.height(),
+        ) else {
+            continue;
+        };
+        recovered.corners = corners;
+        recovered.area = polygon_area(&corners);
+        if let Some(original) = candidates
+            .iter_mut()
+            .find(|original| replacement_follows_three_sides(original, &recovered, &occluders))
+        {
+            *original = recovered;
+        }
+    }
+}
+
+/// Allows recovery only when two retained outlines have touching or overlapping bounds.
+fn outlines_may_overlap(candidates: &[CardDetection]) -> bool {
+    candidates.iter().enumerate().any(|(index, left)| {
+        let (left_minimum, left_maximum) = bounds(&left.corners);
+        candidates[index + 1..].iter().any(|right| {
+            let (right_minimum, right_maximum) = bounds(&right.corners);
+            left_minimum.x <= right_maximum.x
+                && right_minimum.x <= left_maximum.x
+                && left_minimum.y <= right_maximum.y
+                && right_minimum.y <= left_maximum.y
+        })
+    })
+}
+
+/// Requires visible sections on all four sides and a detected occluder over gaps.
+fn occlusion_explains_edges(
+    corners: &[Point; 4],
+    contour: &[Point],
+    occluders: &[CardDetection],
+) -> bool {
+    if occluders.is_empty() {
+        return false;
+    }
+    let mut bins = [[false; 32]; 4];
+    for i in 0..4 {
+        let start = corners[i];
+        let end = corners[(i + 1) % 4];
+        let ls = squared_distance(start, end);
+        let length = ls.sqrt();
+        if length < 12.0 {
+            return false;
+        }
+        let distance = (length * 0.006).clamp(2.0, 3.0);
+        for &p in contour {
+            let v =
+                ((p.x - start.x) * (end.x - start.x) + (p.y - start.y) * (end.y - start.y)) / ls;
+            if (-0.01..=1.01).contains(&v) && cross(start, end, p).abs() / length <= distance {
+                bins[i][((v.clamp(0.0, 1.0) * 32.0) as usize).min(31)] = true;
+            }
+        }
+    }
+    let coverage = bins.map(|edge| edge.iter().filter(|&&v| v).count());
+    if coverage.iter().any(|&v| v < 8)
+        || coverage.iter().filter(|&&v| v >= 28).count() < 2
+        || coverage.iter().all(|&v| v >= 20)
+    {
+        return false;
+    }
+    let target = CardDetection {
+        corners: *corners,
+        area: polygon_area(corners),
+    };
+    occluders.iter().any(|occluder| {
+        let (iou, containment) = quadrilateral_overlap(&target, occluder);
+        if iou < 0.02 || iou > 0.45 || containment > 0.9 {
+            return false;
+        }
+        (0..4).all(|i| {
+            let start = corners[i];
+            let end = corners[(i + 1) % 4];
+            let unexplained = (0..32)
+                .filter(|&bin| {
+                    if bins[i][bin] {
+                        return false;
+                    }
+                    let fraction = (bin as f32 + 0.5) / 32.0;
+                    let p = Point {
+                        x: start.x + (end.x - start.x) * fraction,
+                        y: start.y + (end.y - start.y) * fraction,
+                    };
+                    !(0..4).all(|j| {
+                        cross(occluder.corners[j], occluder.corners[(j + 1) % 4], p)
+                            / squared_distance(occluder.corners[j], occluder.corners[(j + 1) % 4])
+                                .sqrt()
+                            >= -3.0
+                    })
+                })
+                .count();
+            unexplained <= 2
+        })
+    })
+}
+
+/// Replaces a clipped crop only when its fourth side follows an occluder's edge.
+fn replacement_follows_three_sides(
+    original: &CardDetection,
+    recovered: &CardDetection,
+    occluders: &[CardDetection],
+) -> bool {
+    let lengths = edge_lengths(&recovered.corners);
+    if (0..4).any(|i| {
+        let p = recovered.corners[(i + 3) % 4];
+        let c = recovered.corners[i];
+        let n = recovered.corners[(i + 1) % 4];
+        let dot = (p.x - c.x) * (n.x - c.x) + (p.y - c.y) * (n.y - c.y);
+        dot.abs() > lengths[(i + 3) % 4] * lengths[i] * 0.05
+    }) {
+        return false;
+    }
+    if recovered.area < original.area * 1.05 || recovered.area > original.area * 1.6 {
+        return false;
+    }
+    let (iou, containment) = quadrilateral_overlap(original, recovered);
+    if iou < 0.55 || containment < 0.85 {
+        return false;
+    }
+    let distance_limit = edge_lengths(&recovered.corners)
+        .into_iter()
+        .fold(f32::INFINITY, f32::min)
+        * 0.12;
+    (0..4).any(|shift| {
+        let shared: Vec<_> = (0..4)
+            .map(|i| {
+                let a = original.corners[i];
+                let b = original.corners[(i + 1) % 4];
+                let c = recovered.corners[(i + shift) % 4];
+                let d = recovered.corners[(i + shift + 1) % 4];
+                let dot = (b.x - a.x) * (d.x - c.x) + (b.y - a.y) * (d.y - c.y);
+                let parallel = dot.abs() / (squared_distance(a, b) * squared_distance(c, d)).sqrt();
+                let midpoint = Point {
+                    x: (a.x + b.x) * 0.5,
+                    y: (a.y + b.y) * 0.5,
+                };
+                parallel > 0.995
+                    && cross(c, d, midpoint).abs() / squared_distance(c, d).sqrt() <= distance_limit
+            })
+            .collect();
+        if shared.iter().filter(|&&v| v).count() != 3 {
+            return false;
+        }
+        let Some(i) = shared.iter().position(|&v| !v) else {
+            return false;
+        };
+        let a = original.corners[i];
+        let b = original.corners[(i + 1) % 4];
+        occluders.iter().any(|occluder| {
+            let (iou, containment) = quadrilateral_overlap(recovered, occluder);
+            if iou < 0.02 || iou > 0.45 || containment > 0.9 {
+                return false;
+            }
+            (0..4).any(|j| {
+                let c = occluder.corners[j];
+                let d = occluder.corners[(j + 1) % 4];
+                let length = squared_distance(c, d).sqrt();
+                let dot = (b.x - a.x) * (d.x - c.x) + (b.y - a.y) * (d.y - c.y);
+                dot.abs() / (squared_distance(a, b).sqrt() * length) > 0.995
+                    && cross(c, d, a).abs() / length <= 4.0
+                    && cross(c, d, b).abs() / length <= 4.0
+            })
+        })
+    })
+}
+
+#[cfg(test)]
+/// Safety guards for extending a clipped outline behind an observed card.
+mod occlusion_tests {
+    use super::*;
+
+    /// Makes a measured outline from four supplied visible corners.
+    fn outline(corners: [Point; 4]) -> CardDetection {
+        CardDetection {
+            area: polygon_area(&corners),
+            corners,
+        }
+    }
+
+    /// Places an axis-aligned outline at the supplied scene coordinates.
+    fn rectangle(left: f32, top: f32, right: f32, bottom: f32) -> CardDetection {
+        outline([
+            Point { x: left, y: top },
+            Point { x: right, y: top },
+            Point {
+                x: right,
+                y: bottom,
+            },
+            Point { x: left, y: bottom },
+        ])
+    }
+
+    /// Supplies two complete rear sides and the visible starts of its other sides.
+    fn visible_rear_edges() -> Vec<Point> {
+        let mut points = Vec::new();
+        points.extend((100..=200).map(|x| Point {
+            x: x as f32,
+            y: 80.0,
+        }));
+        points.extend((80..=220).map(|y| Point {
+            x: 100.0,
+            y: y as f32,
+        }));
+        points.extend((80..=125).map(|y| Point {
+            x: 200.0,
+            y: y as f32,
+        }));
+        points.extend((100..=165).map(|x| Point {
+            x: x as f32,
+            y: 220.0,
+        }));
+        points
+    }
+
+    #[test]
+    /// A front card explains the rear border gaps while every rear side remains visible.
+    fn visible_side_sections_with_one_covering_card_allow_recovery() {
+        let rear = rectangle(100.0, 80.0, 200.0, 220.0);
+        let front = rectangle(165.0, 120.0, 245.0, 250.0);
+        assert!(occlusion_explains_edges(
+            &rear.corners,
+            &visible_rear_edges(),
+            &[front],
+        ));
+    }
+
+    #[test]
+    /// Missing pixels need an overlapping card rather than absent or unrelated evidence.
+    fn missing_side_sections_require_an_independent_occluder() {
+        let rear = rectangle(100.0, 80.0, 200.0, 220.0);
+        let evidence = visible_rear_edges();
+        for occluders in [
+            Vec::new(),
+            vec![rectangle(260.0, 80.0, 360.0, 220.0)],
+            vec![rear.clone()],
+            vec![rectangle(0.0, 0.0, 640.0, 480.0)],
+        ] {
+            assert!(!occlusion_explains_edges(
+                &rear.corners,
+                &evidence,
+                &occluders
+            ));
+        }
+    }
+
+    #[test]
+    /// Two unrelated objects cannot combine to explain one card's missing border.
+    fn a_single_occluder_must_explain_all_missing_sections() {
+        let rear = rectangle(100.0, 80.0, 200.0, 220.0);
+        let occluders = [
+            rectangle(190.0, 120.0, 250.0, 190.0),
+            rectangle(155.0, 190.0, 220.0, 250.0),
+        ];
+        assert!(!occlusion_explains_edges(
+            &rear.corners,
+            &visible_rear_edges(),
+            &occluders,
+        ));
+    }
+
+    #[test]
+    /// An occluder cannot justify inventing an entirely unobserved rear side.
+    fn an_entirely_hidden_side_still_prevents_recovery() {
+        let rear = rectangle(100.0, 80.0, 200.0, 220.0);
+        let front = rectangle(165.0, 120.0, 245.0, 250.0);
+        let evidence: Vec<_> = visible_rear_edges()
+            .into_iter()
+            .filter(|point| point.x != 200.0 || point.y == 80.0)
+            .collect();
+        assert!(!occlusion_explains_edges(
+            &rear.corners,
+            &evidence,
+            &[front]
+        ));
+    }
+
+    /// Gives a clipped rear crop whose diagonal fourth side belongs to the front card.
+    fn clipped_rear_and_front() -> (CardDetection, CardDetection, CardDetection) {
+        let clipped = outline([
+            Point { x: 100.0, y: 80.0 },
+            Point { x: 185.0, y: 80.0 },
+            Point { x: 150.0, y: 220.0 },
+            Point { x: 100.0, y: 220.0 },
+        ]);
+        let rear = rectangle(100.0, 80.0, 200.0, 220.0);
+        let front = outline([
+            Point { x: 185.0, y: 80.0 },
+            Point { x: 245.0, y: 95.0 },
+            Point { x: 210.0, y: 235.0 },
+            Point { x: 150.0, y: 220.0 },
+        ]);
+        (clipped, rear, front)
+    }
+
+    #[test]
+    /// A mistaken front-card boundary can be replaced while the rear's three sides agree.
+    fn replacement_requires_the_occluders_observed_boundary() {
+        let (clipped, rear, front) = clipped_rear_and_front();
+        assert!(replacement_follows_three_sides(&clipped, &rear, &[front]));
+        assert!(!replacement_follows_three_sides(&clipped, &rear, &[]));
+        let unrelated_boundary = rectangle(165.0, 100.0, 240.0, 245.0);
+        assert!(!replacement_follows_three_sides(
+            &clipped,
+            &rear,
+            &[unrelated_boundary],
+        ));
+    }
+
+    #[test]
+    /// A parallel front edge at another position cannot justify a replacement.
+    fn an_occluder_boundary_must_match_the_clipped_side_position() {
+        let (clipped, rear, mut front) = clipped_rear_and_front();
+        for point in &mut front.corners {
+            point.x += 10.0;
+        }
+        assert!(!replacement_follows_three_sides(&clipped, &rear, &[front]));
+    }
+
+    #[test]
+    /// Border recovery must retain three rear side directions rather than changing two sides.
+    fn replacement_preserves_three_existing_side_lines() {
+        let (mut clipped, rear, front) = clipped_rear_and_front();
+        clipped.corners[1].y += 20.0;
+        clipped.area = polygon_area(&clipped.corners);
+        assert!(!replacement_follows_three_sides(&clipped, &rear, &[front]));
+    }
+
+    #[test]
+    /// Even matching side and occluder evidence does not remove ambiguity in an oblique pose.
+    fn ambiguous_oblique_recovery_is_rejected() {
+        let (clipped, rear, front) = clipped_rear_and_front();
+        let shear = |detection: CardDetection| {
+            outline(detection.corners.map(|point| Point {
+                x: point.x + 0.15 * (point.y - 80.0),
+                y: point.y,
+            }))
+        };
+        assert!(!replacement_follows_three_sides(
+            &shear(clipped),
+            &shear(rear),
+            &[shear(front)],
+        ));
+    }
+
+    #[test]
+    /// An already rectangular crop cannot be enlarged merely because another card overlaps.
+    fn a_complete_rectangular_crop_is_not_arbitrarily_enlarged() {
+        let (_, recovered, front) = clipped_rear_and_front();
+        let original = rectangle(110.0, 90.0, 190.0, 210.0);
+        assert!(!replacement_follows_three_sides(
+            &original,
+            &recovered,
+            &[front]
+        ));
+    }
+
+    #[test]
+    /// Empty scenes and separated cards cannot benefit from occlusion recovery.
+    fn separated_outline_bounds_skip_occlusion_recovery() {
+        let cards = [
+            rectangle(20.0, 20.0, 120.0, 160.0),
+            rectangle(140.0, 20.0, 240.0, 160.0),
+        ];
+        assert!(!outlines_may_overlap(&[]));
+        assert!(!outlines_may_overlap(std::slice::from_ref(&cards[0])));
+        assert!(!outlines_may_overlap(&cards));
+    }
+
+    #[test]
+    /// Bounds that merely touch remain eligible because a clipped rear crop can abut its occluder.
+    fn touching_outline_bounds_remain_eligible() {
+        let cards = [
+            rectangle(20.0, 20.0, 120.0, 160.0),
+            rectangle(120.0, 20.0, 220.0, 160.0),
+        ];
+        assert!(outlines_may_overlap(&cards));
+    }
+
+    #[test]
+    /// The inexpensive gate remains permissive when only rotated bounding boxes overlap.
+    fn overlapping_bounds_do_not_require_polygon_overlap() {
+        let cards = [
+            outline([
+                Point { x: 50.0, y: 0.0 },
+                Point { x: 100.0, y: 50.0 },
+                Point { x: 50.0, y: 100.0 },
+                Point { x: 0.0, y: 50.0 },
+            ]),
+            outline([
+                Point { x: 130.0, y: 80.0 },
+                Point { x: 180.0, y: 130.0 },
+                Point { x: 130.0, y: 180.0 },
+                Point { x: 80.0, y: 130.0 },
+            ]),
+        ];
+        assert_eq!(quadrilateral_overlap(&cards[0], &cards[1]).0, 0.0);
+        assert!(outlines_may_overlap(&cards));
     }
 }

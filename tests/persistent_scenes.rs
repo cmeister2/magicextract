@@ -114,6 +114,15 @@ fn sleeved_card_matches_saved_ground_truth() -> EvaluationResult<()> {
     )
 }
 
+/// Covered corners use the full observed card outlines without replacing occluding pixels.
+#[test]
+fn overlapping_cards_match_saved_ground_truth() -> EvaluationResult<()> {
+    for scene_id in ["occlusion-two-cards-1", "occlusion-two-cards-2"] {
+        assert_saved_scene_matches(default_manifest_path(), scene_id)?;
+    }
+    Ok(())
+}
+
 /// Explicit challenge evaluation reports every unsupported count, outline, or pixel error.
 #[test]
 #[ignore = "includes difficult challenge fixtures; use evaluate_scenes for a complete JSON report"]
