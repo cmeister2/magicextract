@@ -74,6 +74,13 @@
           "title": "Clear sleeve",
           "result": "Match",
           "description": "The card inside the clear sleeve is extracted without the surrounding plastic margin; the reflection remains."
+        },
+        {
+          "corpus": "scenes",
+          "id": "occlusion-two-cards-1",
+          "title": "Overlapping cards",
+          "result": "Match",
+          "description": "Both full outlines are recovered from their visible edges. Covered pixels remain covered in the crops."
         }
       ]
     },
@@ -88,13 +95,6 @@
           "title": "Stacked cards",
           "result": "Miss",
           "description": "Neither card is found in this overlapping pair."
-        },
-        {
-          "corpus": "scenes",
-          "id": "occlusion-two-cards-1",
-          "title": "Overlapping cards",
-          "result": "Wrong crop",
-          "description": "Two crops are returned, but their outlines do not match the two full cards."
         },
         {
           "corpus": "scenes",

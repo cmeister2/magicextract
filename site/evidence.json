@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "b404352d494585ec871b38b4c2d7a64506cda005",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/b404352d494585ec871b38b4c2d7a64506cda005",
+  "source_revision": "818d80db69c6c8d3e84b49b17ca43c668dae6d05",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/818d80db69c6c8d3e84b49b17ca43c668dae6d05",
   "source_sha256": {
-    "src/detection.rs": "1b1a8923fce169481b4b69db50383832b41b14f8ac35cdf0538568af44cf80e2",
+    "src/detection.rs": "3cc7cb719cf58fa6abb9054638b71429c191f167326400c6cfc95e6d21a2bf6f",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "cd1c5f2ea27db4d5235be14df1c45b852bcdb3c20c76fbac4e86cb9f88ddfa7b",
+  "selection_sha256": "49d4caf34849e4c05a9a6d90d17ecc9f390238f8f3fa63079e59782b49b5985c",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -733,44 +733,12 @@
       }
     },
     {
-      "corpus": "materials",
-      "id": "stack-two-cards-3",
-      "title": "Stacked cards",
-      "result": "Miss",
-      "description": "Neither card is found in this overlapping pair.",
-      "group": "misses",
-      "input": "images/stack-two-cards-3/input.jpg",
-      "input_source": "tests/fixtures/materials/images/stack-two-cards-3.jpg",
-      "input_sha256": "1a8cecc3134432a5f7c5d74c395c665d20bcbf5139140882f628ce4844b08e02",
-      "source_manifest": "tests/fixtures/materials/manifest.json",
-      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
-      "crops": [],
-      "crop_sha256": {},
-      "report": {
-        "id": "stack-two-cards-3",
-        "tier": "challenge",
-        "passed": false,
-        "expected_count": 2,
-        "detected_count": 0,
-        "detected": [],
-        "matches": [],
-        "unmatched_expected": [
-          0,
-          1
-        ],
-        "unmatched_detected": [],
-        "failures": [
-          "expected 2 cards, detected 0"
-        ]
-      }
-    },
-    {
       "corpus": "scenes",
       "id": "occlusion-two-cards-1",
       "title": "Overlapping cards",
-      "result": "Wrong crop",
-      "description": "Two crops are returned, but their outlines do not match the two full cards.",
-      "group": "misses",
+      "result": "Match",
+      "description": "Both full outlines are recovered from their visible edges. Covered pixels remain covered in the crops.",
+      "group": "matches",
       "input": "images/occlusion-two-cards-1/input.jpg",
       "input_source": "tests/fixtures/scenes/images/occlusion-two-cards-1.jpg",
       "input_sha256": "07c2264be042921e8e7fab99c8e40a69493f63c2ec9ecc56ed3c569da949fc12",
@@ -781,36 +749,36 @@
         "images/occlusion-two-cards-1/card-001.png"
       ],
       "crop_sha256": {
-        "images/occlusion-two-cards-1/card-000.png": "ea1bc40f6d500f4957f75d2de059ee181f54960743c430ba486c4434790a199e",
+        "images/occlusion-two-cards-1/card-000.png": "188268fb2565674cac8b359e0af6e00097967263a550d7cc555532b13046e12d",
         "images/occlusion-two-cards-1/card-001.png": "5903742e2b3823b0d0ef2fdc44888d12433b39b8248ac56af409bd6777711a21"
       },
       "report": {
         "id": "occlusion-two-cards-1",
         "tier": "challenge",
-        "passed": false,
+        "passed": true,
         "expected_count": 2,
         "detected_count": 2,
         "detected": [
           {
             "corners": [
               [
-                185.9553,
-                143.8808
+                177.88351,
+                137.2138
               ],
               [
-                383.82086,
-                115.901276
+                356.43967,
+                112.17692
               ],
               [
-                324.4979,
-                353.8927
+                394.3946,
+                361.93118
               ],
               [
-                217.57355,
-                369.02502
+                213.03806,
+                387.9677
               ]
             ],
-            "area": 34991.168
+            "area": 45968.305
           },
           {
             "corners": [
@@ -839,8 +807,8 @@
             "expected_index": 0,
             "source": "black-lotus",
             "detected_index": 0,
-            "corner_error": 67.6798,
-            "pixel_mae": 60.805347,
+            "corner_error": 2.7529635,
+            "pixel_mae": 13.106831,
             "pixel_orientation": "original"
           },
           {
@@ -854,9 +822,38 @@
         ],
         "unmatched_expected": [],
         "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "materials",
+      "id": "stack-two-cards-3",
+      "title": "Stacked cards",
+      "result": "Miss",
+      "description": "Neither card is found in this overlapping pair.",
+      "group": "misses",
+      "input": "images/stack-two-cards-3/input.jpg",
+      "input_source": "tests/fixtures/materials/images/stack-two-cards-3.jpg",
+      "input_sha256": "1a8cecc3134432a5f7c5d74c395c665d20bcbf5139140882f628ce4844b08e02",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [],
+      "crop_sha256": {},
+      "report": {
+        "id": "stack-two-cards-3",
+        "tier": "challenge",
+        "passed": false,
+        "expected_count": 2,
+        "detected_count": 0,
+        "detected": [],
+        "matches": [],
+        "unmatched_expected": [
+          0,
+          1
+        ],
+        "unmatched_detected": [],
         "failures": [
-          "card 0 (black-lotus): corner error 67.680 > 8",
-          "card 0 (black-lotus): interior RGB MAE 60.805 >= 22"
+          "expected 2 cards, detected 0"
         ]
       }
     },
