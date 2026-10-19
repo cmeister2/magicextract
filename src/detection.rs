@@ -51,6 +51,29 @@ struct ObservedEdge {
     length: f32,
 }
 
+/// An inferred outline and the retained cards that explain its hidden sections.
+struct InferredOutline {
+    /// Card geometry supported by the observed contour.
+    detection: CardDetection,
+    /// Indices into the occluder slice supplied for this inference pass.
+    occluder_indices: Vec<usize>,
+}
+
+impl InferredOutline {
+    /// Requires one associated card to explain both the gaps and clipped side.
+    fn can_replace(&self, original: &CardDetection, occluders: &[CardDetection]) -> bool {
+        self.occluder_indices.iter().any(|&index| {
+            occluders.get(index).is_some_and(|occluder| {
+                replacement_follows_three_sides(
+                    original,
+                    &self.detection,
+                    std::slice::from_ref(occluder),
+                )
+            })
+        })
+    }
+}
+
 /// Finds card quadrilaterals and expresses their corners in source-image pixels.
 pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<CardDetection> {
     if image.width() < 3 || image.height() < 3 {
@@ -321,7 +344,9 @@ fn collect_candidates(
             }
         }
         if !found {
-            collect_inferred_candidates(&points, perimeter, mask, config, &[], candidates);
+            let mut inferred = Vec::new();
+            collect_inferred_candidates(&points, perimeter, mask, config, &[], &mut inferred);
+            candidates.extend(inferred.into_iter().map(|proposal| proposal.detection));
         }
     }
 }
@@ -337,7 +362,7 @@ fn collect_inferred_candidates(
     mask: &GrayImage,
     config: &ExtractorConfig,
     occluders: &[CardDetection],
-    candidates: &mut Vec<CardDetection>,
+    candidates: &mut Vec<InferredOutline>,
 ) {
     let simplified = simplify_closed(contour, (perimeter * 0.0015).clamp(1.0, 2.0));
     let mut segments: Vec<ObservedEdge> = simplified
@@ -393,19 +418,42 @@ fn collect_inferred_candidates(
                                 || point.x > mask.width() as f32 - 1.0
                                 || point.y > mask.height() as f32 - 1.0
                         })
-                        || !((occluders.is_empty() && edges_are_supported(&corners, contour))
-                            || (!occluders.is_empty()
-                                && occlusion_explains_edges(&corners, contour, occluders)))
                     {
                         continue;
                     }
+                    let occluder_indices = if occluders.is_empty() {
+                        if !edges_are_supported(&corners, contour) {
+                            continue;
+                        }
+                        Vec::new()
+                    } else {
+                        let indices: Vec<_> = occluders
+                            .iter()
+                            .enumerate()
+                            .filter_map(|(index, occluder)| {
+                                occlusion_explains_edges(
+                                    &corners,
+                                    contour,
+                                    std::slice::from_ref(occluder),
+                                )
+                                .then_some(index)
+                            })
+                            .collect();
+                        if indices.is_empty() {
+                            continue;
+                        }
+                        indices
+                    };
                     if let Some(corners) = orient_card_corners(
                         corners,
                         config.aspect_ratio_tolerance,
                         mask.width(),
                         mask.height(),
                     ) {
-                        candidates.push(CardDetection { corners, area });
+                        candidates.push(InferredOutline {
+                            detection: CardDetection { corners, area },
+                            occluder_indices,
+                        });
                     }
                 }
             }
@@ -1896,8 +1944,9 @@ fn refine_occluded_outlines(
             &mut recovered,
         );
     }
-    recovered.sort_by(|a, b| b.area.total_cmp(&a.area));
-    for mut recovered in recovered {
+    recovered.sort_by(|a, b| b.detection.area.total_cmp(&a.detection.area));
+    for mut proposal in recovered {
+        let recovered = &mut proposal.detection;
         let Some(corners) = orient_card_corners(
             refine_gradient_corners(recovered.corners, image),
             config.aspect_ratio_tolerance,
@@ -1908,11 +1957,16 @@ fn refine_occluded_outlines(
         };
         recovered.corners = corners;
         recovered.area = polygon_area(&corners);
+        if recovered.area < config.min_area_fraction * image_area
+            || recovered.area > config.max_area_fraction * image_area
+        {
+            continue;
+        }
         if let Some(original) = candidates
             .iter_mut()
-            .find(|original| replacement_follows_three_sides(original, &recovered, &occluders))
+            .find(|original| proposal.can_replace(original, &occluders))
         {
-            *original = recovered;
+            *original = proposal.detection;
         }
     }
 }
@@ -2065,9 +2119,30 @@ fn replacement_follows_three_sides(
                 dot.abs() / (squared_distance(a, b).sqrt() * length) > 0.995
                     && cross(c, d, a).abs() / length <= 4.0
                     && cross(c, d, b).abs() / length <= 4.0
+                    && observed_segments_overlap(a, b, c, d)
             })
         })
     })
+}
+
+/// Requires a quarter of the shorter observed segment to lie along the other.
+///
+/// Collinearity alone does not establish that the front card occupies the
+/// clipped boundary: a distant segment can share the same infinite line.
+fn observed_segments_overlap(first: Point, second: Point, start: Point, end: Point) -> bool {
+    let first_length = squared_distance(first, second).sqrt();
+    let second_length = squared_distance(start, end).sqrt();
+    if first_length < 1.0 || second_length < 1.0 {
+        return false;
+    }
+    let project = |point: Point| {
+        ((point.x - start.x) * (end.x - start.x) + (point.y - start.y) * (end.y - start.y))
+            / second_length
+    };
+    let first = project(first);
+    let second = project(second);
+    let overlap = first.max(second).min(second_length) - first.min(second).max(0.0);
+    overlap >= first_length.min(second_length) * 0.25
 }
 
 #[cfg(test)]
@@ -2210,6 +2285,80 @@ mod occlusion_tests {
             &rear,
             &[unrelated_boundary],
         ));
+    }
+
+    #[test]
+    /// Separate cards cannot contribute the gap explanation and clipped boundary.
+    fn one_occluder_must_explain_both_gaps_and_clipped_boundary() {
+        let rear = rectangle(100.0, 80.0, 200.0, 220.0);
+        let clipped = outline([
+            Point { x: 100.0, y: 80.0 },
+            Point { x: 200.0, y: 80.0 },
+            Point { x: 170.0, y: 220.0 },
+            Point { x: 100.0, y: 220.0 },
+        ]);
+        let covering = rectangle(165.0, 120.0, 245.0, 250.0);
+        let parallel = outline([
+            Point { x: 185.0, y: 150.0 },
+            Point {
+                x: 285.0,
+                y: 171.428_57,
+            },
+            Point {
+                x: 255.0,
+                y: 311.428_57,
+            },
+            Point { x: 155.0, y: 290.0 },
+        ]);
+        let occluders = [covering, parallel];
+        for detection in [&rear, &clipped, &occluders[0], &occluders[1]] {
+            assert!(orient_card_corners(detection.corners, 0.2, 400, 400).is_some());
+        }
+        let evidence = visible_rear_edges();
+        let associated: Vec<_> = occluders
+            .iter()
+            .enumerate()
+            .filter_map(|(index, occluder)| {
+                occlusion_explains_edges(&rear.corners, &evidence, std::slice::from_ref(occluder))
+                    .then_some(index)
+            })
+            .collect();
+        assert_eq!(associated, vec![0]);
+        assert!(!replacement_follows_three_sides(
+            &clipped,
+            &rear,
+            std::slice::from_ref(&occluders[0]),
+        ));
+        assert!(replacement_follows_three_sides(
+            &clipped,
+            &rear,
+            std::slice::from_ref(&occluders[1]),
+        ));
+        let proposal = InferredOutline {
+            detection: rear,
+            occluder_indices: associated,
+        };
+        assert!(!proposal.can_replace(&clipped, &occluders));
+    }
+
+    #[test]
+    /// A real shared section is required even when infinite edge lines coincide.
+    fn clipped_boundary_requires_finite_observed_segment_overlap() {
+        let point = |y| Point { x: 100.0, y };
+        assert!(observed_segments_overlap(
+            point(0.0),
+            point(100.0),
+            point(60.0),
+            point(160.0),
+        ));
+        for start in [95.0, 101.0] {
+            assert!(!observed_segments_overlap(
+                point(0.0),
+                point(100.0),
+                point(start),
+                point(start + 100.0),
+            ));
+        }
     }
 
     #[test]
