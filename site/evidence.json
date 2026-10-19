@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "e64553ee57e2819e6b92c8de28fc53247f049d34",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/e64553ee57e2819e6b92c8de28fc53247f049d34",
+  "source_revision": "4b2d65309d507b5a7b06c9e90f71e415c1b838d5",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/4b2d65309d507b5a7b06c9e90f71e415c1b838d5",
   "source_sha256": {
-    "src/detection.rs": "ee5c6cbe9e11dcc96a0d6cdcb6f57fac658d5d08fdbf2ec275d6824fd60a51c3",
+    "src/detection.rs": "4afae71d6cfe98d8a03cf77bb80973eaaa2b3d16d873549993778d69db37925c",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "f3f0ab1aabc4bf785eedc0ec18bf624baf35602530a01165b733507a0765dc16",
+  "selection_sha256": "314ebd120e6bf1d11144b59e4e491f1fdbed8598ab64607c70235ac657262821",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -857,6 +857,192 @@
       }
     },
     {
+      "corpus": "materials",
+      "id": "sleeve-lightning-bolt-1",
+      "title": "Clear sleeve",
+      "result": "Match",
+      "description": "The card inside the clear sleeve is extracted without the surrounding plastic margin; the reflection remains.",
+      "group": "matches",
+      "input": "images/sleeve-lightning-bolt-1/input.jpg",
+      "input_source": "tests/fixtures/materials/images/sleeve-lightning-bolt-1.jpg",
+      "input_sha256": "232ae3280e79085af02e135b76f09fdf0e8cd7fc9b130a0de72a45bd16310042",
+      "source_manifest": "tests/fixtures/materials/manifest.json",
+      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
+      "crops": [
+        "images/sleeve-lightning-bolt-1/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/sleeve-lightning-bolt-1/card-000.png": "4980ec5e1651752ed14e3f0b8e06886eb0c1f637203a3b3dcd07ec77923cad76"
+      },
+      "report": {
+        "id": "sleeve-lightning-bolt-1",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                269.31143,
+                90.56238
+              ],
+              [
+                464.1606,
+                157.41193
+              ],
+              [
+                370.17084,
+                430.01056
+              ],
+              [
+                175.5806,
+                362.60846
+              ]
+            ],
+            "area": 59326.977
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.9582633,
+            "pixel_mae": 4.600461,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "borders",
+      "id": "white-border-sleeve",
+      "title": "White border in a sleeve",
+      "result": "Match",
+      "description": "The pale card frame is separated from the wider sleeve outline.",
+      "group": "matches",
+      "input": "images/white-border-sleeve/input.jpg",
+      "input_source": "tests/fixtures/borders/images/white-border-sleeve.jpg",
+      "input_sha256": "dc5de7c327e56dcd3b6b7212fdc47b3306662e65efff3e1e49f7ca633e31f782",
+      "source_manifest": "tests/fixtures/borders/manifest.json",
+      "source_manifest_sha256": "e76bc93d6d899079df51933125833b340c2ca642ee570bc1db816ca736f32315",
+      "crops": [
+        "images/white-border-sleeve/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/white-border-sleeve/card-000.png": "1ee11a490d8196a10b49c2b6f228eb5bd4c4f114cb2bf256bab74921dcdd7c04"
+      },
+      "report": {
+        "id": "white-border-sleeve",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                196.59415,
+                165.31357
+              ],
+              [
+                369.62415,
+                112.424164
+              ],
+              [
+                443.73053,
+                354.35434
+              ],
+              [
+                270.50565,
+                407.29688
+              ]
+            ],
+            "area": 45805.61
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "white-lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.86385626,
+            "pixel_mae": 2.9945571,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "borders",
+      "id": "silver-border-sleeve",
+      "title": "Silver border in a sleeve",
+      "result": "Match",
+      "description": "The silver printed border is retained while the surrounding sleeve margin is removed.",
+      "group": "matches",
+      "input": "images/silver-border-sleeve/input.jpg",
+      "input_source": "tests/fixtures/borders/images/silver-border-sleeve.jpg",
+      "input_sha256": "80377681b51c22d86a0d93ab4c322d4b8780142037dd40ae3cd5c7a60107e1d5",
+      "source_manifest": "tests/fixtures/borders/manifest.json",
+      "source_manifest_sha256": "e76bc93d6d899079df51933125833b340c2ca642ee570bc1db816ca736f32315",
+      "crops": [
+        "images/silver-border-sleeve/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/silver-border-sleeve/card-000.png": "b9a71ecdf294422592d98ffc1d3bab5c05788240d5d41e1c56ca360136327402"
+      },
+      "report": {
+        "id": "silver-border-sleeve",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                296.38947,
+                106.43996
+              ],
+              [
+                457.87704,
+                188.43082
+              ],
+              [
+                342.9051,
+                413.96484
+              ],
+              [
+                181.60916,
+                331.73367
+              ]
+            ],
+            "area": 45812.535
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "silver-booster-tutor",
+            "detected_index": 0,
+            "corner_error": 1.0493706,
+            "pixel_mae": 9.0553665,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
       "corpus": "borders",
       "id": "white-border-playmat-upper-right",
       "title": "White border with an extra background crop",
@@ -1135,71 +1321,6 @@
         "failures": [
           "card 0 (sol-ring): corner error 113.650 > 8",
           "card 0 (sol-ring): interior RGB MAE 77.359 >= 22"
-        ]
-      }
-    },
-    {
-      "corpus": "materials",
-      "id": "sleeve-lightning-bolt-1",
-      "title": "Clear sleeve",
-      "result": "Wrong crop",
-      "description": "The outer sleeve boundary is mistaken for the card edge, leaving sleeve and background in the crop.",
-      "group": "misses",
-      "input": "images/sleeve-lightning-bolt-1/input.jpg",
-      "input_source": "tests/fixtures/materials/images/sleeve-lightning-bolt-1.jpg",
-      "input_sha256": "232ae3280e79085af02e135b76f09fdf0e8cd7fc9b130a0de72a45bd16310042",
-      "source_manifest": "tests/fixtures/materials/manifest.json",
-      "source_manifest_sha256": "a3ba8a79ed4d170ee06e17cbc82966b67cc34703b09182483fb3f58618b56d14",
-      "crops": [
-        "images/sleeve-lightning-bolt-1/card-000.png"
-      ],
-      "crop_sha256": {
-        "images/sleeve-lightning-bolt-1/card-000.png": "b5714f347b226be96a7f876ee60fa8a1ccda9f205417cafeae3b6d378fce8896"
-      },
-      "report": {
-        "id": "sleeve-lightning-bolt-1",
-        "tier": "challenge",
-        "passed": false,
-        "expected_count": 1,
-        "detected_count": 1,
-        "detected": [
-          {
-            "corners": [
-              [
-                265.75717,
-                72.27782
-              ],
-              [
-                479.3255,
-                145.2819
-              ],
-              [
-                377.2058,
-                440.74133
-              ],
-              [
-                163.64366,
-                367.71967
-              ]
-            ],
-            "area": 70553.81
-          }
-        ],
-        "matches": [
-          {
-            "expected_index": 0,
-            "source": "lightning-bolt",
-            "detected_index": 0,
-            "corner_error": 20.003344,
-            "pixel_mae": 37.42964,
-            "pixel_orientation": "original"
-          }
-        ],
-        "unmatched_expected": [],
-        "unmatched_detected": [],
-        "failures": [
-          "card 0 (lightning-bolt): corner error 20.003 > 8",
-          "card 0 (lightning-bolt): interior RGB MAE 37.430 >= 22"
         ]
       }
     },
