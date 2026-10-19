@@ -110,9 +110,10 @@ Lightning Bolt printing (2X2 361) and extended-art Once Upon a Time printing
 (ELD 371). Each appears on a plain surface, an illustrated playmat, and inside a
 simple bright sleeve outline. Annotations describe the full physical card,
 including any outer frame, and references preserve the appearance of the saved
-JPEG. All six entries remain challenges; their presence does not promise
-successful extraction. Tests always validate their saved bytes, source credits,
-treatment metadata, recipes, and scoring limits without rendering replacements.
+JPEG. All six entries remain archived challenges. Tests always validate their
+saved bytes, source credits, treatment metadata, recipes, and scoring limits
+without rendering replacements. A separate required regression checks both
+sleeve examples against full card geometry and crop appearance.
 
 These are planar projections of the credited PNG faces, not independent camera
 captures. The sleeve outlines do not simulate plastic optics or reflections.

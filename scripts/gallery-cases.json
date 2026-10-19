@@ -109,6 +109,20 @@
           "title": "Overlapping cards",
           "result": "Match",
           "description": "Both full card outlines are recovered. The front card still covers part of the rear card in its crop."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-sleeve",
+          "title": "Borderless card in a sleeve",
+          "result": "Match",
+          "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-sleeve",
+          "title": "Extended-art card in a sleeve",
+          "result": "Match",
+          "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges."
         }
       ]
     },
@@ -147,13 +161,6 @@
         },
         {
           "corpus": "art-treatments",
-          "id": "borderless-sleeve",
-          "title": "Borderless card in a sleeve",
-          "result": "Wrong crop",
-          "description": "The clear sleeve is selected instead of the physical card inside."
-        },
-        {
-          "corpus": "art-treatments",
           "id": "extended-art-plain",
           "title": "Extended-art card",
           "result": "Wrong crop",
@@ -165,13 +172,6 @@
           "title": "Extended-art card on a playmat",
           "result": "Wrong crop",
           "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
-        },
-        {
-          "corpus": "art-treatments",
-          "id": "extended-art-sleeve",
-          "title": "Extended-art card in a sleeve",
-          "result": "Wrong crop",
-          "description": "The clear sleeve is selected instead of the physical card inside."
         }
       ]
     },

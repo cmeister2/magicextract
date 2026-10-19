@@ -233,3 +233,33 @@ fn white_and_silver_sleeved_cards_match_saved_ground_truth() -> EvaluationResult
     }
     Ok(())
 }
+
+/// Requires each selected treatment scene to preserve its full physical card and pixels.
+///
+/// # Errors
+///
+/// Returns an error if saved fixtures cannot be read or evaluated.
+///
+/// # Panics
+///
+/// Panics when a selected scene is missing or fails count, corner, or crop checks.
+fn assert_art_treatment_scenes_match(scene_ids: &[&str]) -> EvaluationResult<()> {
+    for scene_id in scene_ids {
+        let report = evaluate_manifest(
+            &art_treatment_manifest_path(),
+            &EvaluationOptions {
+                include_challenges: true,
+                scene_id: Some((*scene_id).to_owned()),
+            },
+        )?;
+        assert_eq!(report.summary.scenes, 1);
+        assert_eq!(report.summary.failed, 0, "{}", report.failure_summary());
+    }
+    Ok(())
+}
+
+/// Borderless and extended-art cards are separated from their clear sleeve outlines.
+#[test]
+fn art_treatment_sleeves_match_saved_ground_truth() -> EvaluationResult<()> {
+    assert_art_treatment_scenes_match(&["borderless-sleeve", "extended-art-sleeve"])
+}
