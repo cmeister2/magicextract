@@ -137,6 +137,20 @@
           "title": "Extended-art card",
           "result": "Match",
           "description": "The complete card perimeter is recovered, including artwork that reaches the edges."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-playmat",
+          "title": "Borderless card on a playmat",
+          "result": "Match",
+          "description": "Observed colour edges recover the full card against the illustrated playmat."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-playmat",
+          "title": "Extended-art card on a playmat",
+          "result": "Match",
+          "description": "Observed colour edges recover the full card against the illustrated playmat."
         }
       ]
     },
@@ -158,20 +172,6 @@
           "title": "Outside the frame",
           "result": "Wrong crop",
           "description": "The card runs beyond the image edge; the returned crop has the wrong outline."
-        },
-        {
-          "corpus": "art-treatments",
-          "id": "borderless-playmat",
-          "title": "Borderless card on a playmat",
-          "result": "Wrong crop",
-          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
-        },
-        {
-          "corpus": "art-treatments",
-          "id": "extended-art-playmat",
-          "title": "Extended-art card on a playmat",
-          "result": "Wrong crop",
-          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
         }
       ]
     },

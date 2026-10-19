@@ -269,3 +269,9 @@ fn art_treatment_sleeves_match_saved_ground_truth() -> EvaluationResult<()> {
 fn art_treatment_plain_cards_match_saved_ground_truth() -> EvaluationResult<()> {
     assert_art_treatment_scenes_match(&["borderless-plain", "extended-art-plain"])
 }
+
+/// Busy surfaces retain both full physical art-treatment perimeters and saved appearance.
+#[test]
+fn art_treatment_playmat_cards_match_saved_ground_truth() -> EvaluationResult<()> {
+    assert_art_treatment_scenes_match(&["borderless-playmat", "extended-art-playmat"])
+}
