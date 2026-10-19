@@ -6,7 +6,7 @@
     "renderer": "scripts/build-scene-fixtures.py",
     "renderer_sha256": "9e543e12ded1b7881ac7abca844330b089b799687c90f53418854d2fd2aca4ed",
     "recipes": "tests/fixtures/borders/recipes.json",
-    "recipes_sha256": "86aaf0221afb14e393f914c39697daa83dbe7ac1d49feb8906507de67d235cb4",
+    "recipes_sha256": "b4bae6e27ad45d04efbbb8011c3577553a759937d6e54a18da8a0a564a2a2f34",
     "source_manifest": "tests/fixtures/borders/sources.json",
     "source_manifest_sha256": "0eef88d5659dd8e8507049095c5a3a6d6a5552c967cb2bc4e22b953c7ea4fe50",
     "pillow": "10.2.0",
@@ -67,7 +67,15 @@
     "images/silver-border-playmat.jpg": "31a52e6c4b39129b3251cb1c52be6d1d61bf14ae5bce4a208f3c04a960946d5e",
     "references/silver-border-playmat-0-silver-booster-tutor.png": "4725d99890d56cd8c478266803df9a085a7f5287803b09d6540d625f58d59c39",
     "images/silver-border-sleeve.jpg": "80377681b51c22d86a0d93ab4c322d4b8780142037dd40ae3cd5c7a60107e1d5",
-    "references/silver-border-sleeve-0-silver-booster-tutor.png": "a059d01dca2d07cbb8a980f1da713a3bf04db6474be9ab079d159765cb73c30a"
+    "references/silver-border-sleeve-0-silver-booster-tutor.png": "a059d01dca2d07cbb8a980f1da713a3bf04db6474be9ab079d159765cb73c30a",
+    "images/white-border-playmat-upper-right.jpg": "efcb6b92d575035b5eb8e7870ebbf5261a39688259a1320a69606731f1e3e4ab",
+    "references/white-border-playmat-upper-right-0-white-lightning-bolt.png": "4006dc13be37f8b00d3eb3c839bc89e8492240cdd719e082babdfb8bc3df48fb",
+    "images/white-border-playmat-lower-centre.jpg": "d7467b7231c6d3c89a493b3a21a1e5c7927b76cf981416b263896b684aef7dd0",
+    "references/white-border-playmat-lower-centre-0-white-lightning-bolt.png": "ae34c5a4da703a6737f0d83b4d3652a1d0c68c12789e996411642e9fc93cc494",
+    "images/silver-border-playmat-upper-right.jpg": "a2bce96def2fa12db9fcb3bfaca5f5ecd63af33883e6dbb8f45f57620ff0a4f1",
+    "references/silver-border-playmat-upper-right-0-silver-booster-tutor.png": "7bc61f1f539327dceefd3621d5ba6a65435a358e6e8cfde54754294c95768845",
+    "images/silver-border-playmat-lower-centre.jpg": "47c9e91546ed81e89b8358b059ff90cd6c1005f91e1f10c189dd85da6e04146c",
+    "references/silver-border-playmat-lower-centre-0-silver-booster-tutor.png": "04b346c9afc72b60cd8564eaf4bf3d9ce26b032b21b13d7d06e12de0c2b67394"
   },
   "scenes": [
     {
@@ -618,6 +626,338 @@
           "border-colour",
           "silver",
           "sleeve"
+        ],
+        "appearance_reference": true,
+        "jpeg_quality": 94,
+        "pixel_mae_limit": 22
+      }
+    },
+    {
+      "id": "white-border-playmat-upper-right",
+      "file": "images/white-border-playmat-upper-right.jpg",
+      "tier": "challenge",
+      "description": "White-border Lightning Bolt on the forest playmat at the upper right, rotated +24 degrees.",
+      "tags": [
+        "border-colour",
+        "white",
+        "playmat",
+        "varied-placement",
+        "upper-right"
+      ],
+      "cards": [
+        {
+          "source": "white-lightning-bolt",
+          "corners": [
+            [
+              447.1590957277545,
+              48.515377865515575
+            ],
+            [
+              589.6721871200002,
+              111.96629418534042
+            ],
+            [
+              500.8409042722455,
+              311.4846221344844
+            ],
+            [
+              358.3278128799997,
+              248.03370581465958
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/white-border-playmat-upper-right-0-white-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22,
+      "params": {
+        "id": "white-border-playmat-upper-right",
+        "tier": "challenge",
+        "description": "White-border Lightning Bolt on the forest playmat at the upper right, rotated +24 degrees.",
+        "tags": [
+          "border-colour",
+          "white",
+          "playmat",
+          "varied-placement",
+          "upper-right"
+        ],
+        "background": {
+          "kind": "image",
+          "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+          "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+        },
+        "cards": [
+          {
+            "source": "white-lightning-bolt",
+            "corners": [
+              [
+                447.1590957277545,
+                48.515377865515575
+              ],
+              [
+                589.6721871200002,
+                111.96629418534042
+              ],
+              [
+                500.8409042722455,
+                311.4846221344844
+              ],
+              [
+                358.3278128799997,
+                248.03370581465958
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "jpeg_quality": 94,
+        "pixel_mae_limit": 22
+      }
+    },
+    {
+      "id": "white-border-playmat-lower-centre",
+      "file": "images/white-border-playmat-lower-centre.jpg",
+      "tier": "regression",
+      "description": "White-border Lightning Bolt on the forest playmat at the lower centre, rotated -32 degrees.",
+      "tags": [
+        "border-colour",
+        "white",
+        "playmat",
+        "varied-placement",
+        "lower-centre"
+      ],
+      "cards": [
+        {
+          "source": "white-lightning-bolt",
+          "corners": [
+            [
+              214.75487004378152,
+              315.69889472106564
+            ],
+            [
+              341.96208446724546,
+              236.21100508608487
+            ],
+            [
+              453.2451299562185,
+              414.30110527893436
+            ],
+            [
+              326.03791553275454,
+              493.78899491391513
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/white-border-playmat-lower-centre-0-white-lightning-bolt.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22,
+      "params": {
+        "id": "white-border-playmat-lower-centre",
+        "tier": "regression",
+        "description": "White-border Lightning Bolt on the forest playmat at the lower centre, rotated -32 degrees.",
+        "tags": [
+          "border-colour",
+          "white",
+          "playmat",
+          "varied-placement",
+          "lower-centre"
+        ],
+        "background": {
+          "kind": "image",
+          "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+          "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+        },
+        "cards": [
+          {
+            "source": "white-lightning-bolt",
+            "corners": [
+              [
+                214.75487004378152,
+                315.69889472106564
+              ],
+              [
+                341.96208446724546,
+                236.21100508608487
+              ],
+              [
+                453.2451299562185,
+                414.30110527893436
+              ],
+              [
+                326.03791553275454,
+                493.78899491391513
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "jpeg_quality": 94,
+        "pixel_mae_limit": 22
+      }
+    },
+    {
+      "id": "silver-border-playmat-upper-right",
+      "file": "images/silver-border-playmat-upper-right.jpg",
+      "tier": "regression",
+      "description": "Silver-border Booster Tutor on the forest playmat at the upper right, rotated +24 degrees.",
+      "tags": [
+        "border-colour",
+        "silver",
+        "playmat",
+        "varied-placement",
+        "upper-right"
+      ],
+      "cards": [
+        {
+          "source": "silver-booster-tutor",
+          "corners": [
+            [
+              447.1590957277545,
+              48.515377865515575
+            ],
+            [
+              589.6721871200002,
+              111.96629418534042
+            ],
+            [
+              500.8409042722455,
+              311.4846221344844
+            ],
+            [
+              358.3278128799997,
+              248.03370581465958
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/silver-border-playmat-upper-right-0-silver-booster-tutor.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22,
+      "params": {
+        "id": "silver-border-playmat-upper-right",
+        "tier": "regression",
+        "description": "Silver-border Booster Tutor on the forest playmat at the upper right, rotated +24 degrees.",
+        "tags": [
+          "border-colour",
+          "silver",
+          "playmat",
+          "varied-placement",
+          "upper-right"
+        ],
+        "background": {
+          "kind": "image",
+          "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+          "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+        },
+        "cards": [
+          {
+            "source": "silver-booster-tutor",
+            "corners": [
+              [
+                447.1590957277545,
+                48.515377865515575
+              ],
+              [
+                589.6721871200002,
+                111.96629418534042
+              ],
+              [
+                500.8409042722455,
+                311.4846221344844
+              ],
+              [
+                358.3278128799997,
+                248.03370581465958
+              ]
+            ]
+          }
+        ],
+        "appearance_reference": true,
+        "jpeg_quality": 94,
+        "pixel_mae_limit": 22
+      }
+    },
+    {
+      "id": "silver-border-playmat-lower-centre",
+      "file": "images/silver-border-playmat-lower-centre.jpg",
+      "tier": "regression",
+      "description": "Silver-border Booster Tutor on the forest playmat at the lower centre, rotated -32 degrees.",
+      "tags": [
+        "border-colour",
+        "silver",
+        "playmat",
+        "varied-placement",
+        "lower-centre"
+      ],
+      "cards": [
+        {
+          "source": "silver-booster-tutor",
+          "corners": [
+            [
+              214.75487004378152,
+              315.69889472106564
+            ],
+            [
+              341.96208446724546,
+              236.21100508608487
+            ],
+            [
+              453.2451299562185,
+              414.30110527893436
+            ],
+            [
+              326.03791553275454,
+              493.78899491391513
+            ]
+          ],
+          "visible_fraction": 1.0,
+          "reference": "references/silver-border-playmat-lower-centre-0-silver-booster-tutor.png"
+        }
+      ],
+      "corner_tolerance": 8.0,
+      "pixel_mae_limit": 22,
+      "params": {
+        "id": "silver-border-playmat-lower-centre",
+        "tier": "regression",
+        "description": "Silver-border Booster Tutor on the forest playmat at the lower centre, rotated -32 degrees.",
+        "tags": [
+          "border-colour",
+          "silver",
+          "playmat",
+          "varied-placement",
+          "lower-centre"
+        ],
+        "background": {
+          "kind": "image",
+          "file": "tests/fixtures/playmats/backgrounds/fantasy-forest.png",
+          "sha256": "73afccce0973242395d530fa71ee9401f28fa6594b067b198117f651567ed55f"
+        },
+        "cards": [
+          {
+            "source": "silver-booster-tutor",
+            "corners": [
+              [
+                214.75487004378152,
+                315.69889472106564
+              ],
+              [
+                341.96208446724546,
+                236.21100508608487
+              ],
+              [
+                453.2451299562185,
+                414.30110527893436
+              ],
+              [
+                326.03791553275454,
+                493.78899491391513
+              ]
+            ]
+          }
         ],
         "appearance_reference": true,
         "jpeg_quality": 94,
