@@ -10,6 +10,20 @@ use scene_evaluation::{
 };
 use std::path::PathBuf;
 
+/// Checks one archived example's counts, full corners, and unchanged crop appearance.
+fn assert_saved_scene_matches(manifest: PathBuf, scene_id: &str) -> EvaluationResult<()> {
+    let report = evaluate_manifest(
+        &manifest,
+        &EvaluationOptions {
+            include_challenges: true,
+            scene_id: Some(scene_id.to_owned()),
+        },
+    )?;
+    assert_eq!(report.summary.scenes, 1);
+    assert_eq!(report.summary.failed, 0, "{}", report.failure_summary());
+    Ok(())
+}
+
 /// Returns the permanent archive of counterexamples found by adversarial search.
 fn adversarial_manifest_path() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/adversarial/manifest.json")
@@ -71,6 +85,15 @@ fn camera_regression_scenes_match_saved_ground_truth() -> EvaluationResult<()> {
     let report = evaluate_manifest(&camera_manifest_path(), &EvaluationOptions::default())?;
     assert_eq!(report.summary.failed, 0, "{}", report.failure_summary());
     Ok(())
+}
+
+/// The dim counterexample retains its observed brightness after outline recovery.
+#[test]
+fn dim_card_matches_saved_ground_truth() -> EvaluationResult<()> {
+    assert_saved_scene_matches(
+        adversarial_manifest_path(),
+        "seed-20261018-case-0048-dim-reduction-2",
+    )
 }
 
 /// Explicit challenge evaluation reports every unsupported count, outline, or pixel error.

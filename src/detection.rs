@@ -76,6 +76,21 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
 
+    // A dim border can have connected weak edges without any gradient strong
+    // enough to seed the default Canny pass. Retry only when no mask found a
+    // plausible outline, scaling thresholds to the available contrast and
+    // limiting amplification to twofold so small intensity noise stays weak.
+    let contrast = maximum - minimum;
+    if candidates.is_empty() && contrast > 0 && contrast < u8::MAX {
+        let scale = (f32::from(contrast) / f32::from(u8::MAX)).max(0.5);
+        let edges = canny(
+            &gray,
+            config.canny_low_threshold * scale,
+            config.canny_high_threshold * scale,
+        );
+        collect_candidates(&edges, config, &mut candidates);
+    }
+
     // Prefer exterior borders over duplicate edges and contained printed panels.
     // A completely contained smaller physical card is geometrically ambiguous
     // with artwork, so the enclosing outline takes priority in that case too.
