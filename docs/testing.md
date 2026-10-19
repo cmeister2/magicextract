@@ -7,7 +7,8 @@ Saved scene tests read the permanent JPEG scenes in
 [`tests/fixtures/scenes`](../tests/fixtures/scenes/manifest.json) and
 [`tests/fixtures/playmats`](../tests/fixtures/playmats/manifest.json), plus
 [camera views](../tests/fixtures/camera/manifest.json) and
-[white/silver borders](../tests/fixtures/borders/manifest.json). They never
+[white/silver borders](../tests/fixtures/borders/manifest.json) and
+[borderless/extended art](../tests/fixtures/art-treatments/manifest.json). They never
 render replacements or download images. No Python or source-image cache is needed.
 
 ```sh
@@ -102,6 +103,33 @@ python3 scripts/build-border-fixtures.py --write --sources /path/to/border-sourc
 Existing generated output requires `--force` for intentional replacement.
 Use `--output target/border-preview` to create a separate collection. The tool
 verifies cached PNG and background hashes before writing and never downloads.
+Omitting `--corpus` continues to select the white/silver border corpus.
+
+The art-treatment corpus adds six generated scenes using the actual borderless
+Lightning Bolt printing (2X2 361) and extended-art Once Upon a Time printing
+(ELD 371). Each appears on a plain surface, an illustrated playmat, and inside a
+simple bright sleeve outline. Annotations describe the full physical card,
+including any outer frame, and references preserve the appearance of the saved
+JPEG. All six entries remain challenges; their presence does not promise
+successful extraction. Tests always validate their saved bytes, source credits,
+treatment metadata, recipes, and scoring limits without rendering replacements.
+
+These are planar projections of the credited PNG faces, not independent camera
+captures. The sleeve outlines do not simulate plastic optics or reflections.
+The [source credits](../tests/fixtures/art-treatments/sources.json) retain the
+original treatment metadata and PNG hashes; the original PNGs stay outside the
+repository in the offline authoring cache.
+
+The same authoring tool selects this corpus with `--corpus art-treatments`:
+
+```sh
+python3 scripts/build-border-fixtures.py --corpus art-treatments --write --sources /path/to/art-treatment-source-cache --output target/art-treatment-preview
+cargo run --release --locked --example evaluate_scenes -- --manifest tests/fixtures/art-treatments/manifest.json --include-challenges --output target/art-treatments.json
+```
+
+Without `--output`, the chosen corpus is the destination. Replacing its existing
+saved images still requires `--force`; cached PNG and background checksums are
+verified before any scene is written.
 
 The extended research corpora contain 768 source-face-split learning scenes,
 192 saved sequence frames, and 40 material cases covering card backs, sleeves,
