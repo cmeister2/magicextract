@@ -130,6 +130,48 @@
           "title": "Outside the frame",
           "result": "Wrong crop",
           "description": "The card runs beyond the image edge; the returned crop has the wrong outline."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-plain",
+          "title": "Borderless card",
+          "result": "Wrong crop",
+          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-playmat",
+          "title": "Borderless card on a playmat",
+          "result": "Wrong crop",
+          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "borderless-sleeve",
+          "title": "Borderless card in a sleeve",
+          "result": "Wrong crop",
+          "description": "The clear sleeve is selected instead of the physical card inside."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-plain",
+          "title": "Extended-art card",
+          "result": "Wrong crop",
+          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-playmat",
+          "title": "Extended-art card on a playmat",
+          "result": "Wrong crop",
+          "description": "Artwork reaches the edges; the lower text panel is returned instead of the full card."
+        },
+        {
+          "corpus": "art-treatments",
+          "id": "extended-art-sleeve",
+          "title": "Extended-art card in a sleeve",
+          "result": "Wrong crop",
+          "description": "The clear sleeve is selected instead of the physical card inside."
         }
       ]
     },
