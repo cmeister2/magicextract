@@ -1,9 +1,9 @@
 {
   "format_version": 1,
-  "source_revision": "8da88ce029f30fa48c0125be3b382ed4bfb6f93f",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/8da88ce029f30fa48c0125be3b382ed4bfb6f93f",
+  "source_revision": "a8363255c1dc7ac683d6d8c3676097c7968187fa",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/a8363255c1dc7ac683d6d8c3676097c7968187fa",
   "source_sha256": {
-    "src/detection.rs": "74a6b7353d02fd402119956ac60ff5396afd2b41ba30288fcec3dac60c9413fd",
+    "src/detection.rs": "75b79261140533e1eb4dbd92b38b62ead44615937b52bdf81d8252a5dfe63033",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
     "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
@@ -11,7 +11,7 @@
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
-  "selection_sha256": "c90c96d26dfee53a4df2acd80e1ad85e1f39974c256d218d061df97e634fad34",
+  "selection_sha256": "4a0a0d3518c6b34b62fdfc16e1ba366419033ce8700f69b7759aa20b298458ba",
   "extractor": "CardExtractor::default()",
   "output_dimensions": [
     250,
@@ -1127,6 +1127,378 @@
             "detected_index": 1,
             "corner_error": 0.9840775,
             "pixel_mae": 5.9872656,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "art-treatments",
+      "id": "borderless-sleeve",
+      "title": "Borderless card in a sleeve",
+      "result": "Match",
+      "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges.",
+      "group": "matches",
+      "input": "images/borderless-sleeve/input.jpg",
+      "input_source": "tests/fixtures/art-treatments/images/borderless-sleeve.jpg",
+      "input_sha256": "ae47e7c5954127062412919bb266edea697ea9a6570f591a4143fec9f1bb5573",
+      "source_manifest": "tests/fixtures/art-treatments/manifest.json",
+      "source_manifest_sha256": "0032aeeb9bb0817c6d3049f50854083ab2977daa9ccd21f0a22d0c1d8a461ae0",
+      "crops": [
+        "images/borderless-sleeve/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/borderless-sleeve/card-000.png": "ce4728a1cfc38463800a26cf1d05a9743ac14bdc09fef3e21273e3bca8d21627"
+      },
+      "report": {
+        "id": "borderless-sleeve",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                196.55493,
+                165.2734
+              ],
+              [
+                369.646,
+                112.45956
+              ],
+              [
+                443.71063,
+                354.32526
+              ],
+              [
+                270.53104,
+                407.29147
+              ]
+            ],
+            "area": 45803.633
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "borderless-lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.8431496,
+            "pixel_mae": 4.019749,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "art-treatments",
+      "id": "extended-art-sleeve",
+      "title": "Extended-art card in a sleeve",
+      "result": "Match",
+      "description": "The full physical card is recovered inside the clear sleeve, including artwork at the edges.",
+      "group": "matches",
+      "input": "images/extended-art-sleeve/input.jpg",
+      "input_source": "tests/fixtures/art-treatments/images/extended-art-sleeve.jpg",
+      "input_sha256": "f354965a2476d8cf4dad43106af5d215f7d51c661c065a862726ccea93dbfae7",
+      "source_manifest": "tests/fixtures/art-treatments/manifest.json",
+      "source_manifest_sha256": "0032aeeb9bb0817c6d3049f50854083ab2977daa9ccd21f0a22d0c1d8a461ae0",
+      "crops": [
+        "images/extended-art-sleeve/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/extended-art-sleeve/card-000.png": "064a08e161841e48e9a83a8a1e9ff3ccce6754fe29f9c2c2e261c3bed4be1e3e"
+      },
+      "report": {
+        "id": "extended-art-sleeve",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                296.46344,
+                106.4134
+              ],
+              [
+                457.6839,
+                188.34546
+              ],
+              [
+                342.96442,
+                413.9729
+              ],
+              [
+                181.58646,
+                331.74188
+              ]
+            ],
+            "area": 45792.23
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "extended-once-upon-a-time",
+            "detected_index": 0,
+            "corner_error": 1.0735028,
+            "pixel_mae": 6.4845467,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "art-treatments",
+      "id": "borderless-plain",
+      "title": "Borderless card",
+      "result": "Match",
+      "description": "The complete card perimeter is recovered, including artwork that reaches the edges.",
+      "group": "matches",
+      "input": "images/borderless-plain/input.jpg",
+      "input_source": "tests/fixtures/art-treatments/images/borderless-plain.jpg",
+      "input_sha256": "27850941fc2e46eafd9ecea8da996b398003f79db7b616320b303330ee2e6dc4",
+      "source_manifest": "tests/fixtures/art-treatments/manifest.json",
+      "source_manifest_sha256": "0032aeeb9bb0817c6d3049f50854083ab2977daa9ccd21f0a22d0c1d8a461ae0",
+      "crops": [
+        "images/borderless-plain/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/borderless-plain/card-000.png": "9ddd705e733b738047817aeaccb0ecb92823c744243a4748373cc968b0f721bb"
+      },
+      "report": {
+        "id": "borderless-plain",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                196.50241,
+                165.31258
+              ],
+              [
+                369.58615,
+                112.592896
+              ],
+              [
+                443.7354,
+                354.3396
+              ],
+              [
+                270.82828,
+                406.94318
+              ]
+            ],
+            "area": 45720.508
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "borderless-lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 0.8442061,
+            "pixel_mae": 3.880384,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "art-treatments",
+      "id": "extended-art-plain",
+      "title": "Extended-art card",
+      "result": "Match",
+      "description": "The complete card perimeter is recovered, including artwork that reaches the edges.",
+      "group": "matches",
+      "input": "images/extended-art-plain/input.jpg",
+      "input_source": "tests/fixtures/art-treatments/images/extended-art-plain.jpg",
+      "input_sha256": "c109d43c234a868bf2725638b768e38ca233905e351278c196b2acc34208d7cf",
+      "source_manifest": "tests/fixtures/art-treatments/manifest.json",
+      "source_manifest_sha256": "0032aeeb9bb0817c6d3049f50854083ab2977daa9ccd21f0a22d0c1d8a461ae0",
+      "crops": [
+        "images/extended-art-plain/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/extended-art-plain/card-000.png": "31b680cec6445f4bb40cdafb0d61630d7a3d9000040aaacb15258336832c4355"
+      },
+      "report": {
+        "id": "extended-art-plain",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                296.4816,
+                106.33405
+              ],
+              [
+                457.64923,
+                188.41608
+              ],
+              [
+                342.94736,
+                413.9691
+              ],
+              [
+                181.69339,
+                331.89194
+              ]
+            ],
+            "area": 45780.203
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "extended-once-upon-a-time",
+            "detected_index": 0,
+            "corner_error": 1.033672,
+            "pixel_mae": 6.890763,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "art-treatments",
+      "id": "borderless-playmat",
+      "title": "Borderless card on a playmat",
+      "result": "Match",
+      "description": "Observed colour edges recover the full card against the illustrated playmat.",
+      "group": "matches",
+      "input": "images/borderless-playmat/input.jpg",
+      "input_source": "tests/fixtures/art-treatments/images/borderless-playmat.jpg",
+      "input_sha256": "4457e4cd8dc7ca93c7c605496982dce708e43e8abb3f05ce0e97601a23df70d1",
+      "source_manifest": "tests/fixtures/art-treatments/manifest.json",
+      "source_manifest_sha256": "0032aeeb9bb0817c6d3049f50854083ab2977daa9ccd21f0a22d0c1d8a461ae0",
+      "crops": [
+        "images/borderless-playmat/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/borderless-playmat/card-000.png": "b66ff3d8fc036644a73597194f3faa389b7cf7a20885c9bf561b08e234aacd4d"
+      },
+      "report": {
+        "id": "borderless-playmat",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                98.50618,
+                149.80646
+              ],
+              [
+                272.00974,
+                97.372925
+              ],
+              [
+                345.33844,
+                339.3448
+              ],
+              [
+                172.71002,
+                392.41077
+              ]
+            ],
+            "area": 45822.973
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "borderless-lightning-bolt",
+            "detected_index": 0,
+            "corner_error": 1.1707208,
+            "pixel_mae": 10.491864,
+            "pixel_orientation": "original"
+          }
+        ],
+        "unmatched_expected": [],
+        "unmatched_detected": [],
+        "failures": []
+      }
+    },
+    {
+      "corpus": "art-treatments",
+      "id": "extended-art-playmat",
+      "title": "Extended-art card on a playmat",
+      "result": "Match",
+      "description": "Observed colour edges recover the full card against the illustrated playmat.",
+      "group": "matches",
+      "input": "images/extended-art-playmat/input.jpg",
+      "input_source": "tests/fixtures/art-treatments/images/extended-art-playmat.jpg",
+      "input_sha256": "f48dfecf76c6f62ac4da392e40b1aa727b1dd74e788d2d4a93e441172fc7e572",
+      "source_manifest": "tests/fixtures/art-treatments/manifest.json",
+      "source_manifest_sha256": "0032aeeb9bb0817c6d3049f50854083ab2977daa9ccd21f0a22d0c1d8a461ae0",
+      "crops": [
+        "images/extended-art-playmat/card-000.png"
+      ],
+      "crop_sha256": {
+        "images/extended-art-playmat/card-000.png": "410fe0fc2df1443f1aac958d92358c9020415ab54d8be12d0dcead7847c7ea29"
+      },
+      "report": {
+        "id": "extended-art-playmat",
+        "tier": "challenge",
+        "passed": true,
+        "expected_count": 1,
+        "detected_count": 1,
+        "detected": [
+          {
+            "corners": [
+              [
+                98.69082,
+                150.40707
+              ],
+              [
+                271.71368,
+                98.17371
+              ],
+              [
+                345.8732,
+                340.3706
+              ],
+              [
+                172.85693,
+                392.57584
+              ]
+            ],
+            "area": 45775.094
+          }
+        ],
+        "matches": [
+          {
+            "expected_index": 0,
+            "source": "extended-once-upon-a-time",
+            "detected_index": 0,
+            "corner_error": 1.5330683,
+            "pixel_mae": 13.129908,
             "pixel_orientation": "original"
           }
         ],
