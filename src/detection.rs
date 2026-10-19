@@ -1195,11 +1195,11 @@ fn polygon_perimeter(points: &[Point]) -> f32 {
         .sum()
 }
 
-/// Replaces a reflective outer rim with a nearby four-sided dark card frame.
+/// Replaces a reflective sleeve rim with a separately observed physical card frame.
 ///
-/// A narrow bright rim with similar luminance on both sides can enclose plastic
-/// rather than the card. Each replacement edge must separately mark a supported
-/// transition into a dark frame, within a bounded fraction of the current size.
+/// The frame must sustain a coherent tone distinct from the sleeve's clear band.
+/// Either contrast polarity is allowed, so black, white, and gray borders share
+/// the same evidence requirements. Printed details must remain inside the frame.
 fn recover_inner_card_border(
     corners: [Point; 4],
     image: &GrayImage,
@@ -1210,6 +1210,7 @@ fn recover_inner_card_border(
         .fold(f32::INFINITY, f32::min);
     let search_limit = short_side * 0.15;
     let mut lines = Vec::with_capacity(4);
+    let mut frame_tones = Vec::with_capacity(4);
     for index in 0..4 {
         let start = corners[index];
         let end = corners[(index + 1) % 4];
@@ -1225,13 +1226,15 @@ fn recover_inner_card_border(
                 start.y + (end.y - start.y) * fraction + normal.y * offset,
             )
         };
-        // Require a bright line returning to similar background tones on both sides.
+        // A narrow bright line must return to similar background tones on both sides.
         let mut rim_support = 0;
-        for sample in 0..40 {
+        let mut clear_band = [0.0; 40];
+        for (sample, tone) in clear_band.iter_mut().enumerate() {
             let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
             let outside = (at(fraction, -4.0) + at(fraction, -6.0)) * 0.5;
             let inside = (at(fraction, 4.0) + at(fraction, 6.0)) * 0.5;
-            let peak = [-1.0, 0.0, 1.0, 2.0]
+            *tone = inside;
+            let peak = [-1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0]
                 .into_iter()
                 .map(|offset| at(fraction, offset))
                 .fold(0.0, f32::max);
@@ -1246,28 +1249,59 @@ fn recover_inner_card_border(
         if rim_support < 30 {
             return None;
         }
-        // Find the inward light-to-dark boundary, allowing reflections to interrupt it.
-        let mut best: Option<(f32, f32)> = None;
+        // Select the first sustained frame transition, rather than stronger nested artwork.
+        let mut selected = None;
         for step in 8..=(search_limit * 2.0) as i32 {
             let offset = step as f32 * 0.5;
-            let mut support = 0;
-            let mut strength = 0.0;
+            let mut tones = [0.0; 40];
+            for (sample, tone) in tones.iter_mut().enumerate() {
+                let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
+                *tone = (at(fraction, offset + 2.0) + at(fraction, offset + 4.0)) * 0.5;
+            }
+            let mut ordered = tones;
+            ordered.sort_by(f32::total_cmp);
+            if ordered[30] - ordered[10] > 20.0 {
+                continue;
+            }
+            let frame_tone = ordered[20];
+            let mut support = [0; 2];
             for sample in 0..40 {
                 let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
                 let before = at(fraction, offset - 1.0);
                 let after = at(fraction, offset + 1.0);
-                let dark = (at(fraction, offset + 2.0) + at(fraction, offset + 4.0)) * 0.5;
-                if before - after > 25.0 && dark < 65.0 && before > dark + 35.0 {
-                    support += 1;
-                    strength += before - after;
+                let near = at(fraction, offset + 2.0);
+                let middle = at(fraction, offset + 3.0);
+                let far = at(fraction, offset + 4.0);
+                for (polarity, sign) in [-1.0, 1.0].into_iter().enumerate() {
+                    if (before - clear_band[sample]).abs() < 20.0
+                        && sign * (after - before) > 25.0
+                        && sign * (tones[sample] - clear_band[sample]) > 25.0
+                        && (near - middle).abs() < 20.0
+                        && (middle - far).abs() < 20.0
+                        && (near - far).abs() < 20.0
+                        && (tones[sample] - frame_tone).abs() < 20.0
+                    {
+                        support[polarity] += 1;
+                    }
                 }
             }
-            if support >= 30 && best.as_ref().is_none_or(|(_, score)| strength > *score) {
-                best = Some((offset, strength));
+            if let Some(polarity) = support.into_iter().position(|count| count >= 30) {
+                selected = Some((offset, [-1.0, 1.0][polarity], frame_tone));
+                break;
             }
         }
-        let (offset, _) = best?;
-        // Fit observed local gradient peaks rather than assuming equal sleeve margins.
+        let (offset, sign, frame_tone) = selected?;
+        frame_tones.push(frame_tone);
+        if frame_tones
+            .iter()
+            .copied()
+            .fold(f32::NEG_INFINITY, f32::max)
+            - frame_tones.iter().copied().fold(f32::INFINITY, f32::min)
+            > 20.0
+        {
+            return None;
+        }
+        // Fit observed subpixel gradients near that first coherent physical boundary.
         let mut points = Vec::new();
         for sample in 0..48 {
             let fraction = 0.15 + 0.7 * sample as f32 / 47.0;
@@ -1275,8 +1309,13 @@ fn recover_inner_card_border(
             let mut best_offset = None;
             for step in -6..=6 {
                 let trial = offset + step as f32 * 0.25;
-                let gradient = at(fraction, trial - 0.5) - at(fraction, trial + 0.5);
-                if gradient > best_gradient && at(fraction, trial + 2.0) < 65.0 {
+                let gradient = sign * (at(fraction, trial + 0.5) - at(fraction, trial - 0.5));
+                if gradient > best_gradient
+                    && (at(fraction, trial + 1.0) - frame_tone).abs() < 20.0
+                    && (at(fraction, trial - 1.0) - (at(fraction, 4.0) + at(fraction, 6.0)) * 0.5)
+                        .abs()
+                        < 20.0
+                {
                     best_gradient = gradient;
                     best_offset = Some(trial);
                 }
@@ -1314,10 +1353,27 @@ fn recover_inner_card_border(
         image.height(),
     )?;
     let area = polygon_area(&refined);
-    (area >= polygon_area(&corners) * 0.60
-        && area < polygon_area(&corners) * 0.95
-        && area >= config.min_area_fraction * image.width() as f32 * image.height() as f32)
-        .then_some(refined)
+    if area < polygon_area(&corners) * 0.60
+        || area >= polygon_area(&corners) * 0.95
+        || area < config.min_area_fraction * image.width() as f32 * image.height() as f32
+    {
+        return None;
+    }
+    // Interior variation distinguishes printed card content from another empty plastic seam.
+    let mut interior = [0.0; 63];
+    for (index, tone) in interior.iter_mut().enumerate() {
+        let x = 0.15 + 0.7 * (index % 7) as f32 / 6.0;
+        let y = 0.15 + 0.7 * (index / 7) as f32 / 8.0;
+        let point = Point {
+            x: (1.0 - y) * ((1.0 - x) * refined[0].x + x * refined[1].x)
+                + y * ((1.0 - x) * refined[3].x + x * refined[2].x),
+            y: (1.0 - y) * ((1.0 - x) * refined[0].y + x * refined[1].y)
+                + y * ((1.0 - x) * refined[3].y + x * refined[2].y),
+        };
+        *tone = sample_luma(image, point.x, point.y);
+    }
+    interior.sort_by(f32::total_cmp);
+    (interior[47] - interior[15] >= 15.0).then_some(refined)
 }
 
 #[cfg(test)]
@@ -1737,8 +1793,10 @@ mod sleeve_tests {
             let pixel = if sleeve_edge {
                 220
             } else if in_card {
-                if in_panel || (missing_frame && x > 222) {
-                    200
+                if missing_frame && x > 222 {
+                    110
+                } else if in_panel {
+                    (70 + (x * 17 + y * 31) % 150) as u8
                 } else {
                     14
                 }
@@ -1820,5 +1878,187 @@ mod sleeve_tests {
             recover_inner_card_border(sleeve_corners(), &opaque, &ExtractorConfig::default())
                 .is_none()
         );
+    }
+}
+
+#[cfg(test)]
+/// Independent black, white, and silver-gray card controls around reflective sleeve rims.
+mod sleeve_colour_tests {
+    use super::*;
+    use crate::CardExtractor;
+    use image::Luma;
+
+    /// Draws an unequal sleeve margin, sustained physical frame, and printed interior.
+    fn scene(frame: u8, background: u8, sleeve: bool, inner_seam: bool) -> GrayImage {
+        GrayImage::from_fn(280, 340, |x, y| {
+            let in_sleeve = sleeve && (40..=240).contains(&x) && (30..=310).contains(&y);
+            let rim = in_sleeve && (x == 40 || x == 240 || y == 30 || y == 310);
+            let seam = inner_seam
+                && in_sleeve
+                && ((x == 47 || x == 233) && (39..=302).contains(&y)
+                    || (y == 39 || y == 302) && (47..=233).contains(&x));
+            let in_card = (50..=230).contains(&x) && (47..=299).contains(&y);
+            let in_panel = (58..=222).contains(&x) && (55..=279).contains(&y);
+            let value = if rim || seam {
+                250
+            } else if in_card {
+                if in_panel && (!(62..=218).contains(&x) || !(59..=275).contains(&y)) {
+                    (60 + (x * 17 + y * 31) % 160) as u8
+                } else if in_panel {
+                    let base = if x < 108 {
+                        70
+                    } else if x < 171 {
+                        140
+                    } else {
+                        210
+                    };
+                    base + (if (y / 30) % 2 == 0 { 10 } else { 0 })
+                } else {
+                    frame
+                }
+            } else if in_sleeve {
+                background + 10
+            } else {
+                background
+            };
+            Luma([value])
+        })
+    }
+
+    /// The sleeve perimeter is separate from the independently rendered physical frame.
+    fn outer() -> [Point; 4] {
+        [
+            Point { x: 39.5, y: 29.5 },
+            Point { x: 240.5, y: 29.5 },
+            Point { x: 240.5, y: 310.5 },
+            Point { x: 39.5, y: 310.5 },
+        ]
+    }
+
+    /// Physical pixel transitions give these corners without relying on detector output.
+    fn physical() -> [Point; 4] {
+        [
+            Point { x: 49.5, y: 46.5 },
+            Point { x: 230.5, y: 46.5 },
+            Point { x: 230.5, y: 299.5 },
+            Point { x: 49.5, y: 299.5 },
+        ]
+    }
+
+    #[test]
+    /// All frame colors use observed edges and preserve the complete card in public extraction.
+    fn recovers_black_white_and_silver_frames_with_crop_fidelity() {
+        for frame in [14, 150, 235] {
+            for background in [100, 180] {
+                let gray = scene(frame, background, true, false);
+                let refined =
+                    recover_inner_card_border(outer(), &gray, &ExtractorConfig::default())
+                        .expect("four colored physical edges");
+                for (actual, expected) in refined.into_iter().zip(physical()) {
+                    assert!(
+                        squared_distance(actual, expected).sqrt() < 1.0,
+                        "frame {frame}, background {background}, actual {actual:?}"
+                    );
+                }
+                let image = DynamicImage::ImageLuma8(gray.clone());
+                let cards = CardExtractor::default()
+                    .extract(&image)
+                    .expect("valid image");
+                assert_eq!(cards.len(), 1, "frame {frame}, background {background}");
+                for (actual, expected) in cards[0].detection.corners.into_iter().zip(physical()) {
+                    assert!(
+                        squared_distance(actual, expected).sqrt() < 1.0,
+                        "public frame {frame}, background {background}, actual {actual:?}"
+                    );
+                }
+                for (x, y) in [(50, 70), (125, 120), (200, 230), (2, 175)] {
+                    let source_x = 49.5 + x as f32 / 249.0 * 181.0;
+                    let source_y = 46.5 + y as f32 / 349.0 * 253.0;
+                    let expected = sample_luma(&gray, source_x, source_y);
+                    let actual = f32::from(cards[0].image.get_pixel(x, y)[0]);
+                    assert!(
+                        (actual - expected).abs() < 3.0,
+                        "frame {frame}, sample {x}/{y}: {actual} vs {expected}"
+                    );
+                }
+            }
+        }
+    }
+
+    #[test]
+    /// A thin bright seam cannot replace the first sustained physical frame.
+    fn ignores_inner_sleeve_seam_and_stronger_printed_panels() {
+        for frame in [14, 150, 235] {
+            let gray = scene(frame, 100, true, true);
+            let refined = recover_inner_card_border(outer(), &gray, &ExtractorConfig::default())
+                .expect("physical frame after thin seam");
+            for (actual, expected) in refined.into_iter().zip(physical()) {
+                assert!(
+                    squared_distance(actual, expected).sqrt() < 1.0,
+                    "frame {frame}, {actual:?}"
+                );
+            }
+        }
+    }
+
+    #[test]
+    /// Opaque white and silver frames with printed panels remain physical boundaries.
+    fn preserves_unsleeved_white_and_silver_cards() {
+        for frame in [14, 150, 235] {
+            for background in [100, 180] {
+                let gray = scene(frame, background, false, false);
+                assert!(
+                    recover_inner_card_border(physical(), &gray, &ExtractorConfig::default())
+                        .is_none()
+                );
+                let cards = CardExtractor::default()
+                    .detect(&DynamicImage::ImageLuma8(gray))
+                    .expect("valid image");
+                assert_eq!(cards.len(), 1);
+                for (actual, expected) in cards[0].corners.into_iter().zip(physical()) {
+                    assert!(
+                        squared_distance(actual, expected).sqrt() < 1.0,
+                        "unsleeved frame {frame}, {actual:?}"
+                    );
+                }
+            }
+        }
+    }
+    #[test]
+    /// Every color requires four physical frame edges and printed interior content.
+    fn rejects_missing_edges_and_empty_colored_rims() {
+        for frame in [14, 150, 235] {
+            for missing in 0..4 {
+                let mut image = scene(frame, 100, true, false);
+                for y in 47..=299 {
+                    for x in 50..=230 {
+                        let absent = match missing {
+                            0 => y < 55,
+                            1 => x > 222,
+                            2 => y > 279,
+                            _ => x < 58,
+                        };
+                        if absent {
+                            image.put_pixel(x, y, Luma([110]));
+                        }
+                    }
+                }
+                assert!(
+                    recover_inner_card_border(outer(), &image, &ExtractorConfig::default())
+                        .is_none(),
+                    "frame {frame}, missing {missing}"
+                );
+            }
+            let mut empty = scene(frame, 100, true, false);
+            for y in 55..=279 {
+                for x in 58..=222 {
+                    empty.put_pixel(x, y, Luma([110]));
+                }
+            }
+            assert!(
+                recover_inner_card_border(outer(), &empty, &ExtractorConfig::default()).is_none(),
+                "empty colored rim {frame}"
+            );
+        }
     }
 }
