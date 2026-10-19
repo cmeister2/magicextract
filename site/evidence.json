@@ -1,13 +1,13 @@
 {
   "format_version": 1,
-  "source_revision": "8217db886842f83b97d650cb3a933d2f4affdc8d",
-  "source_url": "https://github.com/cmeister2/magicextract/tree/8217db886842f83b97d650cb3a933d2f4affdc8d",
+  "source_revision": "c039fedf2f0900d7ea120107056b07d169df8116",
+  "source_url": "https://github.com/cmeister2/magicextract/tree/c039fedf2f0900d7ea120107056b07d169df8116",
   "source_sha256": {
     "src/detection.rs": "0fa593f6ead4b8c5db4a0c71009b4b8fc383be0e24f34e2d81297f4e5d5bda9c",
     "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
     "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
-    "Cargo.toml": "e45ed915b38a806e94ac25a86e0ceec6573ddec9b45c6b06e25e9044a21d968c",
-    "Cargo.lock": "e32153297308114be084e9bb29c77140061221f6cadebe8c31a59545d71398de"
+    "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
+    "Cargo.lock": "b35c57cb57cda0af3314737508428377406acc04ed8dbf8108ab0fd4a042dd14"
   },
   "generator": "scripts/build-gallery.py",
   "generator_sha256": "8835b034e15e149f76361b4836aca10cafa4868fd23417c16bb656a513bc96f3",
