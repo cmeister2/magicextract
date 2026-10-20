@@ -1,0 +1,133 @@
+{
+  "format_version": 1,
+  "scene": "playmat-fantasy-forest-lightning-bolt",
+  "fixture": "tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
+  "fixture_sha256": "9d09cf400dbf16e921236f137f037390d9e50f997993360b763d2669c978fa26",
+  "corner_source": "benchmarks/rectification/results-desktop.json",
+  "corner_source_sha256": "0286c88852cd04dc0426509302f3daf8e8044c11fd4e8158fcfabf6aac04d144",
+  "corners_original_image_pixels": [
+    [
+      98.57457,
+      150.34238
+    ],
+    [
+      271.65118,
+      97.33049
+    ],
+    [
+      345.58826,
+      339.30133
+    ],
+    [
+      172.4595,
+      392.41055
+    ]
+  ],
+  "first_order": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "second_order": [
+    2,
+    3,
+    0,
+    1
+  ],
+  "method": "Two actual CardExtractor::rectify calls; no detect call or timing",
+  "composition": "Native-size source and crops; numbered outline drawn only on the source",
+  "verification": {
+    "source_dimensions": [
+      640,
+      520
+    ],
+    "crop_dimensions": [
+      250,
+      350
+    ],
+    "half_turn_max_channel_difference": 1,
+    "half_turn_mean_absolute_channel_difference": 0.001321904761904762
+  },
+  "compiled_source_sha256": {
+    "src/detection.rs": "22b15127c96b1fe76a0b45f9a752e6044369646b0887138dbda8a1cfa8f14aec",
+    "src/fast_edges.rs": "17a7aa5913eb91a3d4f5d6bf38c1a8839dbf75f06286d1dcd293da967998cee2",
+    "src/geometry.rs": "b162ec78d072972bc44ce0f12d4361d0b712f7be7e4c391bf554486d8ebd2137",
+    "src/lib.rs": "2a5cc2299d2e3388412ced408f878bba7ed423ebab3e6aff3a96135aa5ac2695",
+    "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
+    "Cargo.lock": "b35c57cb57cda0af3314737508428377406acc04ed8dbf8108ab0fd4a042dd14",
+    "benchmarks/rectification/render_example.rs": "c744acd6f9f28c4d0172c1ea7735cc195be89fdcf9c50d3bf45dd7aec7bc1cb3",
+    "benchmarks/rectification/render-example.py": "a14366cb632019f8e5ec0aba930ac3385177a587092d2d418dd4f1da4bf5a1cf"
+  },
+  "library_sha256": "40116609c66b6672d24e2b5d6ed19d21b2679d240ffeb73bef04b715c2bc87b7",
+  "executable_sha256": "3a49acd09580521c55358d37e84e53673ab59c9859d9e516425e25cb3770f854",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+  "cargo_command": [
+    "cargo",
+    "build",
+    "--release",
+    "--locked",
+    "--example",
+    "benchmark",
+    "--message-format=json"
+  ],
+  "rustc_command": [
+    "rustc",
+    "--edition=2024",
+    "-C",
+    "opt-level=3",
+    "/home/max/code/github/magicextract/benchmarks/rectification/render_example.rs",
+    "-L",
+    "dependency=/home/max/code/github/magicextract/target/release/deps",
+    "--extern",
+    "magicextract=/home/max/code/github/magicextract/target/release/deps/libmagicextract-a824a51e17c70f60.rlib",
+    "-o",
+    "/home/max/code/github/magicextract/target/rectification-example/render_example"
+  ],
+  "invocation": [
+    "/home/max/code/github/magicextract/target/rectification-example/render_example",
+    "/home/max/code/github/magicextract/tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
+    "/home/max/code/github/magicextract/target/rectification-example",
+    "98.57457",
+    "150.34238",
+    "271.65118",
+    "97.33049",
+    "345.58826",
+    "339.30133",
+    "172.4595",
+    "392.41055"
+  ],
+  "pillow_version": "10.2.0",
+  "font_sha256": {
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895"
+  },
+  "api_output_sha256": {
+    "source.png": {
+      "png_file": "adc84b30544cc657f5ee7b6c51cccb457098dbef975a9411bd9ae71c66832366",
+      "rgb_pixels": "55bae7bdafe0e9bcd7e6a880bacd980139037af15eb4903cfa84764e0ac6a546",
+      "dimensions": [
+        640,
+        520
+      ]
+    },
+    "crop.png": {
+      "png_file": "9cf6e55fa90cbd1dd4b9fd89ae27bcf1f73232413362b0569d2f57313542bb84",
+      "rgb_pixels": "ae3053ed6c84131d488babea2fe92bb0905eb1ba3942bed58335433bb90d7684",
+      "dimensions": [
+        250,
+        350
+      ]
+    },
+    "crop-rotated.png": {
+      "png_file": "f1b229c456f2e56073419a20ab2c4505b2d3d8ecc85072cce33fdc8d1ea57c28",
+      "rgb_pixels": "07c46d4d9cbce77556d457055d738d52b7765df470a31ddd2d4502afa12302d9",
+      "dimensions": [
+        250,
+        350
+      ]
+    }
+  },
+  "artifact": "benchmarks/rectification/example.png",
+  "artifact_sha256": "b80111426db7a543bb0d7fb2cc5aaa883e089f1bbd54c78386d26c863e15f40d"
+}

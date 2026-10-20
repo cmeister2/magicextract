@@ -121,6 +121,10 @@ python3 benchmarks/2026-10-20/render-performance-chart.py
 python3 benchmarks/2026-10-20/render-detection-examples.py
 ```
 
+The archived comparison and images describe commit
+`536d864d3b4eefaa98a283ce2e52caf476e0dcad`. Run the detection-examples generator
+from that revision, using a separate checkout if needed: it deliberately refuses
+source changes, including later additive APIs. The chart uses the archived JSON.
 The examples generator builds a small Rust helper against the locked production
 library. [Visual provenance](../benchmarks/2026-10-20/images/detection-evidence.json)
 records the fixture hashes, source hashes, actual corners, and crop hashes.

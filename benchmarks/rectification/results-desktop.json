@@ -1,0 +1,406 @@
+{
+  "format_version": 1,
+  "metadata": {
+    "built_at_utc": "2026-10-20T09:28:43.733525+00:00",
+    "compiled_source_sha256": {
+      "src/detection.rs": "22b15127c96b1fe76a0b45f9a752e6044369646b0887138dbda8a1cfa8f14aec",
+      "src/fast_edges.rs": "17a7aa5913eb91a3d4f5d6bf38c1a8839dbf75f06286d1dcd293da967998cee2",
+      "src/geometry.rs": "b162ec78d072972bc44ce0f12d4361d0b712f7be7e4c391bf554486d8ebd2137",
+      "src/lib.rs": "2a5cc2299d2e3388412ced408f878bba7ed423ebab3e6aff3a96135aa5ac2695",
+      "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
+      "Cargo.lock": "b35c57cb57cda0af3314737508428377406acc04ed8dbf8108ab0fd4a042dd14",
+      "benchmarks/rectification/crop_benchmark.rs": "619de236a051c15af460be45bc2c6f351975ce67bc408495a1a9036add636567",
+      "benchmarks/rectification/run.py": "26ed918307fbf2ac603cf0f1376169616e59677179773ed3282d0737765fdbf3"
+    },
+    "executable_sha256": "fa27933e750cc895603f7936acf5dd1f6aac5a1be790b008612a05392ce75477",
+    "library_sha256": "40116609c66b6672d24e2b5d6ed19d21b2679d240ffeb73bef04b715c2bc87b7",
+    "cargo_command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked",
+      "--example",
+      "benchmark",
+      "--message-format=json"
+    ],
+    "rustc_command": [
+      "rustc",
+      "--edition=2024",
+      "-C",
+      "opt-level=3",
+      "/home/max/code/github/magicextract/benchmarks/rectification/crop_benchmark.rs",
+      "-L",
+      "dependency=/home/max/code/github/magicextract/target/release/deps",
+      "--extern",
+      "magicextract=/home/max/code/github/magicextract/target/release/deps/libmagicextract-a824a51e17c70f60.rlib",
+      "-o",
+      "/home/max/code/github/magicextract/target/rectification-benchmark/crop_benchmark"
+    ],
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+    "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
+    "build_environment": {},
+    "measured_at_utc": "2026-10-20T09:28:43.929345+00:00",
+    "git_revision": "536d864d3b4eefaa98a283ce2e52caf476e0dcad",
+    "git_status": "M docs/performance.md\n M docs/usage.md\n M src/geometry.rs\n M src/lib.rs\n?? benchmarks/rectification/\n?? tests/rectification.rs",
+    "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "cpu": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "command": [
+      "/home/max/code/github/magicextract/target/rectification-benchmark/crop_benchmark",
+      "/home/max/code/github/magicextract/tests/fixtures/scenes/images/baseline-lightning-bolt-background-green.jpg",
+      "/home/max/code/github/magicextract/tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
+      "/home/max/code/github/magicextract/tests/fixtures/camera/images/camera-forest-normal-control.jpg"
+    ]
+  },
+  "methodology": {
+    "platform_scope": "Desktop host only; no Android device measurement",
+    "extract": "Full mode, maximum detection dimension 640, RGB8 input, output 250x350",
+    "rectify": "Known source-pixel corners; validation, allocation, and RGB warp included",
+    "calls_per_operation_per_scene": 31,
+    "warmups_per_operation_per_scene": 5,
+    "order": "Alternate extract/rectify first each call; invert first operation for odd scene index",
+    "pixels_verified": "Detect once before timing; rectify output exactly equals extract output",
+    "excluded": [
+      "fixture I/O and integrity checks",
+      "image decoding",
+      "input RGB8 conversion",
+      "crop verification",
+      "output serialization and destruction",
+      "camera capture and display",
+      "OCR",
+      "tracking",
+      "detection needed to obtain corners for rectify"
+    ],
+    "p95": "Nearest rank: sorted sample at ceil(0.95 * count)-1"
+  },
+  "scenes": [
+    {
+      "id": "baseline-lightning-bolt-background-green",
+      "manifest": "tests/fixtures/scenes/manifest.json",
+      "manifest_sha256": "9c3dd848cf36bae715c14921cbe123b251042d99ff5b97ec62b6c05379ec89d1",
+      "image": "tests/fixtures/scenes/images/baseline-lightning-bolt-background-green.jpg",
+      "image_sha256": "1614f158aa7194ddd3cd07ca7f5361a03e179df74443d32863dea5dcc232ebdb",
+      "size": [
+        640,
+        520
+      ],
+      "corners": [
+        [
+          229.3834,
+          133.5
+        ],
+        [
+          410.61432,
+          133.5
+        ],
+        [
+          410.5293,
+          386.5
+        ],
+        [
+          229.53966,
+          386.5
+        ]
+      ],
+      "exact_crop_pixels": true,
+      "extract_ms": [
+        53.488699,
+        54.671685,
+        54.5803,
+        54.547633,
+        55.761483,
+        73.9632,
+        54.269564,
+        53.902029,
+        56.987395,
+        54.971374,
+        54.37383,
+        56.443834,
+        55.274908,
+        55.209047,
+        54.356565,
+        54.782647,
+        60.714368,
+        54.393093,
+        54.502877,
+        57.594211,
+        54.037497,
+        115.352857,
+        72.044156,
+        55.610843,
+        68.2754,
+        54.032587,
+        55.578427,
+        55.851611,
+        54.752468,
+        54.885424,
+        54.906351
+      ],
+      "rectify_ms": [
+        5.292568,
+        4.974363,
+        5.618675,
+        5.534802,
+        5.248393,
+        6.128452,
+        5.247348,
+        5.155595,
+        5.214096,
+        5.112885,
+        5.64083,
+        5.489448,
+        5.109068,
+        5.311799,
+        5.216381,
+        5.231665,
+        4.893404,
+        5.184579,
+        5.549016,
+        5.308082,
+        5.137891,
+        6.325092,
+        5.046893,
+        5.486657,
+        9.128937,
+        9.808012,
+        5.37958,
+        5.812002,
+        5.992733,
+        5.138515,
+        5.290874
+      ],
+      "extract": {
+        "calls": 31,
+        "median_ms": 54.906351,
+        "p95_ms": 73.9632,
+        "max_ms": 115.352857
+      },
+      "rectify": {
+        "calls": 31,
+        "median_ms": 5.292568,
+        "p95_ms": 9.128937,
+        "max_ms": 9.808012
+      },
+      "median_ratio_extract_to_rectify": 10.374236287563996
+    },
+    {
+      "id": "playmat-fantasy-forest-lightning-bolt",
+      "manifest": "tests/fixtures/playmats/manifest.json",
+      "manifest_sha256": "0bb237b583ad65804d52863ef8cabb8866f7998fbee04481e961a84279e2f45e",
+      "image": "tests/fixtures/playmats/images/playmat-fantasy-forest-lightning-bolt.jpg",
+      "image_sha256": "9d09cf400dbf16e921236f137f037390d9e50f997993360b763d2669c978fa26",
+      "size": [
+        640,
+        520
+      ],
+      "corners": [
+        [
+          98.57457,
+          150.34238
+        ],
+        [
+          271.65118,
+          97.33049
+        ],
+        [
+          345.58826,
+          339.30133
+        ],
+        [
+          172.4595,
+          392.41055
+        ]
+      ],
+      "exact_crop_pixels": true,
+      "extract_ms": [
+        148.693131,
+        151.150979,
+        149.477016,
+        169.078498,
+        157.729966,
+        244.506174,
+        175.469321,
+        178.017109,
+        150.673757,
+        168.020373,
+        159.071232,
+        157.104649,
+        177.428667,
+        219.143739,
+        209.080827,
+        267.663455,
+        157.043855,
+        154.056417,
+        149.27356,
+        224.940174,
+        177.256999,
+        175.652434,
+        166.34987,
+        193.75169,
+        214.059896,
+        351.543245,
+        185.436995,
+        271.847329,
+        155.235228,
+        175.260716,
+        171.360699
+      ],
+      "rectify_ms": [
+        5.944083,
+        5.280728,
+        5.183087,
+        5.300329,
+        6.632459,
+        5.230973,
+        5.258685,
+        4.426317,
+        5.563854,
+        5.959006,
+        5.134616,
+        5.346289,
+        5.374091,
+        5.118381,
+        5.395841,
+        7.341133,
+        8.760621,
+        4.945561,
+        5.14262,
+        7.066272,
+        5.711372,
+        5.134759,
+        5.875357,
+        9.496352,
+        5.376526,
+        9.46291,
+        5.220812,
+        5.391831,
+        5.231326,
+        6.945583,
+        9.216751
+      ],
+      "extract": {
+        "calls": 31,
+        "median_ms": 175.260716,
+        "p95_ms": 271.847329,
+        "max_ms": 351.543245
+      },
+      "rectify": {
+        "calls": 31,
+        "median_ms": 5.376526,
+        "p95_ms": 9.46291,
+        "max_ms": 9.496352
+      },
+      "median_ratio_extract_to_rectify": 32.59739021070483
+    },
+    {
+      "id": "camera-forest-normal-control",
+      "manifest": "tests/fixtures/camera/manifest.json",
+      "manifest_sha256": "0ef2afee7228c0a3decd1cd7faa65237afceab0dcb3ce28bdbe3bb504711a9a3",
+      "image": "tests/fixtures/camera/images/camera-forest-normal-control.jpg",
+      "image_sha256": "85236cfeeffb06c99935fa508003585f2e5fcff89a5e6982ccd8711e1e861656",
+      "size": [
+        640,
+        520
+      ],
+      "corners": [
+        [
+          241.5,
+          150.42203
+        ],
+        [
+          397.5,
+          150.53635
+        ],
+        [
+          397.5,
+          368.5106
+        ],
+        [
+          241.5,
+          368.5148
+        ]
+      ],
+      "exact_crop_pixels": true,
+      "extract_ms": [
+        132.54946,
+        155.499533,
+        138.37494,
+        131.540144,
+        136.536778,
+        153.234898,
+        143.505399,
+        143.055598,
+        138.928255,
+        134.950397,
+        126.181093,
+        124.966438,
+        124.369674,
+        132.235878,
+        128.639912,
+        140.400528,
+        125.913363,
+        130.750283,
+        126.611936,
+        118.251171,
+        129.088513,
+        112.724032,
+        125.525838,
+        108.038126,
+        114.317455,
+        96.657827,
+        93.669703,
+        104.362802,
+        101.610208,
+        113.580898,
+        92.805105
+      ],
+      "rectify_ms": [
+        6.227422,
+        6.863334,
+        4.980022,
+        5.254391,
+        5.091509,
+        5.548045,
+        6.647828,
+        5.107739,
+        5.13217,
+        6.08531,
+        5.3648,
+        4.971512,
+        4.890411,
+        8.608444,
+        4.885498,
+        5.028841,
+        4.864224,
+        6.515804,
+        5.201672,
+        5.498949,
+        5.021522,
+        5.235472,
+        3.874613,
+        3.5606,
+        4.517443,
+        3.290112,
+        3.270607,
+        4.121536,
+        3.579951,
+        4.165323,
+        2.960844
+      ],
+      "extract": {
+        "calls": 31,
+        "median_ms": 126.611936,
+        "p95_ms": 153.234898,
+        "max_ms": 155.499533
+      },
+      "rectify": {
+        "calls": 31,
+        "median_ms": 5.028841,
+        "p95_ms": 6.863334,
+        "max_ms": 8.608444
+      },
+      "median_ratio_extract_to_rectify": 25.177160303934844
+    }
+  ]
+}

@@ -257,6 +257,10 @@ pub enum Error {
     ImageTooLarge,
     /// The configured detection region extends beyond the input image.
     InvalidRegion,
+    /// Crop corners do not form an in-bounds clockwise convex quadrilateral.
+    ///
+    /// Also returned for a noninvertible or numerically unstable projection.
+    InvalidQuadrilateral,
 }
 
 impl fmt::Display for Error {
@@ -272,6 +276,9 @@ impl fmt::Display for Error {
             Self::InvalidRegion => {
                 formatter.write_str("the detection region must fit entirely inside the input image")
             }
+            Self::InvalidQuadrilateral => formatter.write_str(
+                "crop corners must define an in-bounds clockwise convex quadrilateral with a stable, invertible projection",
+            ),
         }
     }
 }
@@ -339,6 +346,72 @@ impl CardExtractor {
         Ok(detection::detect_in_region(image, &self.config, region))
     }
 
+    /// Rectify known source-image corners without running detection.
+    ///
+    /// Uses [`ExtractorConfig::output_width`] and [`ExtractorConfig::output_height`].
+    /// Detection regions, angle constraints, area bounds, and recovery mode do
+    /// not apply. Tracked corners or corners detected in a preview must already
+    /// be mapped into this input image's pixel coordinates.
+    ///
+    /// Corners must be clockwise and form a strictly convex quadrilateral, with
+    /// finite coordinates inside `0..=width - 1` and `0..=height - 1`. Points on
+    /// the valid pixel boundary are accepted; points outside it are rejected.
+    /// The supplied order is preserved: corners 0, 1, 2, and 3 map to the output's
+    /// top-left, top-right, bottom-right, and bottom-left pixel centers.
+    /// Rotating the array by two chooses the opposite artwork orientation.
+    /// This method does not determine which way the artwork faces.
+    ///
+    /// Samples original pixels with bilinear interpolation and returns an RGB
+    /// crop. RGB8 input is borrowed; other formats are converted to RGB8 before
+    /// sampling. Alpha is discarded, so composite transparent input first.
+    ///
+    /// ```
+    /// use magicextract::{CardExtractor, Point, image::DynamicImage};
+    ///
+    /// # fn main() -> Result<(), magicextract::Error> {
+    /// let frame = DynamicImage::new_rgb8(640, 480);
+    /// let tracked = [
+    ///     Point { x: 100.0, y: 60.0 },
+    ///     Point { x: 300.0, y: 60.0 },
+    ///     Point { x: 300.0, y: 340.0 },
+    ///     Point { x: 100.0, y: 340.0 },
+    /// ];
+    /// let crop = CardExtractor::default().rectify(&frame, &tracked)?;
+    /// assert_eq!(crop.dimensions(), (250, 350));
+    /// # Ok(())
+    /// # }
+    /// ```
+    ///
+    /// # Errors
+    ///
+    /// Returns [`Error::EmptyImage`] for a zero image dimension or
+    /// [`Error::ImageTooLarge`] for a dimension larger than [`i32::MAX`].
+    /// Returns [`Error::InvalidQuadrilateral`] for nonfinite, out-of-frame,
+    /// non-clockwise, nonconvex, or degenerate corners, or a noninvertible or
+    /// numerically unstable projection.
+    pub fn rectify(
+        &self,
+        image: &image::DynamicImage,
+        corners: &[Point; 4],
+    ) -> Result<image::RgbImage, Error> {
+        validate_image(image)?;
+        validate_quadrilateral(corners, image.width(), image.height())?;
+        let converted;
+        let source = if let Some(source) = image.as_rgb8() {
+            source
+        } else {
+            converted = image.to_rgb8();
+            &converted
+        };
+        geometry::rectify_checked(
+            source,
+            corners,
+            self.config.output_width,
+            self.config.output_height,
+        )
+        .ok_or(Error::InvalidQuadrilateral)
+    }
+
     /// Find outlines and rectify each into an RGB crop sampled from the input.
     ///
     /// Projectively degenerate candidates are skipped. RGB conversion discards
@@ -401,6 +474,42 @@ fn validate_image(image: &image::DynamicImage) -> Result<(), Error> {
     }
     if image.width() > i32::MAX as u32 || image.height() > i32::MAX as u32 {
         return Err(Error::ImageTooLarge);
+    }
+    Ok(())
+}
+
+/// Validate external crop corners after the source dimensions have been checked.
+///
+/// Positive turns in downward-positive image coordinates require clockwise
+/// winding and strict convexity, rejecting duplicates, collinear points,
+/// concavities, and self-intersections. Compute turns in f64 to avoid losing
+/// valid small turns through f32 intermediate rounding.
+///
+/// # Errors
+///
+/// Returns [`Error::InvalidQuadrilateral`] for invalid coordinates or geometry.
+fn validate_quadrilateral(corners: &[Point; 4], width: u32, height: u32) -> Result<(), Error> {
+    let right = f64::from(width - 1);
+    let bottom = f64::from(height - 1);
+    if corners.iter().any(|point| {
+        !point.x.is_finite()
+            || !point.y.is_finite()
+            || !(0.0..=right).contains(&f64::from(point.x))
+            || !(0.0..=bottom).contains(&f64::from(point.y))
+    }) {
+        return Err(Error::InvalidQuadrilateral);
+    }
+    for index in 0..4 {
+        let first = corners[index];
+        let second = corners[(index + 1) % 4];
+        let third = corners[(index + 2) % 4];
+        let first_dx = f64::from(second.x) - f64::from(first.x);
+        let first_dy = f64::from(second.y) - f64::from(first.y);
+        let second_dx = f64::from(third.x) - f64::from(second.x);
+        let second_dy = f64::from(third.y) - f64::from(second.y);
+        if first_dx * second_dy - first_dy * second_dx <= 0.0 {
+            return Err(Error::InvalidQuadrilateral);
+        }
     }
     Ok(())
 }

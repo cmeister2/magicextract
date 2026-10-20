@@ -44,6 +44,42 @@ distinct candidates before sorting. Reuse an extractor across frames.
 
 Generate the full API reference with `cargo doc --open`.
 
+## Rectifying tracked or selected outlines
+
+When you already have a card's four corners, use `rectify` to sample the original
+frame without rerunning detection:
+
+```rust
+let crop = extractor.rectify(&original_frame, &source_corners)?;
+```
+
+The corners must be in `original_frame` pixel coordinates. The caller owns
+preview-to-source transforms, including camera rotation, preview resizing, and
+any crop offset. Corners returned by `detect` already include the configured
+detection-region offset; do not add it again.
+
+`rectify` uses the configured output width and height. It ignores detection
+regions, angles, area bounds, aspect-ratio tests, and recovery modes. It accepts
+any strictly convex clockwise quad with finite coordinates on or inside the
+valid pixel boundary (`0..=width - 1`, `0..=height - 1`). It returns
+`Error::InvalidQuadrilateral` for invalid corners or a noninvertible or
+numerically unstable projection.
+No out-of-frame corners are silently clipped.
+
+The supplied order determines the crop: corner 0 maps to its top-left, then
+corners 1, 2, and 3 map to top-right, bottom-right, and bottom-left. To choose
+the opposite artwork orientation, rotate the corner array by two before calling
+`rectify`. The library does not determine which end contains the title. The app
+owns that decision and title-band extraction for OCR.
+
+The result is an RGB crop from one bilinear warp of the original source. RGB8
+input is borrowed; other input formats incur conversion to RGB8. For grayscale
+camera input, this still converts the complete input frame before rectification.
+Calls are independent and do not track a card between frames.
+
+The [known-corner benchmark](../benchmarks/rectification/README.md) compares this
+operation with complete extraction and records exact crop-pixel agreement.
+
 ## Camera frame latency
 
 Use a release build and measure `detect` or `extract` on the target phone. A
