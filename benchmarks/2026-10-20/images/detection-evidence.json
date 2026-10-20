@@ -1,0 +1,599 @@
+{
+  "generator": "benchmarks/2026-10-20/render-detection-examples.py",
+  "generator_sha256": "15300cd8d524169f30454315129b42a7f9162a7d1904851981d7354f8cac71cc",
+  "helper_sha256": "d65b311ca145d73b9c1d0d465df6d1bba31ce65bb4718b873b1884859829c19a",
+  "benchmark": "benchmarks/2026-10-20/domain-final.json.gz",
+  "benchmark_sha256": "40a46a5addd380f4c63cb48cc299188bb384c1f92f1f0da1c79538e35a541809",
+  "source_sha256": {
+    "Cargo.lock": "b35c57cb57cda0af3314737508428377406acc04ed8dbf8108ab0fd4a042dd14",
+    "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
+    "examples/benchmark.rs": "527e8925ed507a051eb354094976871a6d3da97a3db23ce3d761436fdebd881c",
+    "src/detection.rs": "22b15127c96b1fe76a0b45f9a752e6044369646b0887138dbda8a1cfa8f14aec",
+    "src/fast_edges.rs": "17a7aa5913eb91a3d4f5d6bf38c1a8839dbf75f06286d1dcd293da967998cee2",
+    "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
+    "src/lib.rs": "09b9074eecf09fc34527321f7411f816265605531981d168cab0bc1220833ef6",
+    "tests/support/mod.rs": "8a1f57c96bb0bfb1737a3147a35210c2cb74736478d388f03ff3faafd00a4598"
+  },
+  "limits": "Saved synthetic scenes. Desktop timings, no phone timing claim. No retouched crops: production extract() output, resized only for display.",
+  "figures_sha256": {
+    "detection-examples.png": "e43552f18b7acb81ec39f8959e4c73fada557dfb63911c08d8698bf8a8290309",
+    "accuracy-tradeoffs.png": "42a3c17c7cf2af8737d90123db793cda8dd9efb7441b0de03f6593c931a0bcf3"
+  },
+  "cases": [
+    {
+      "scene_id": "camera-table-p35-a000",
+      "variant": "full-640",
+      "source": "tests/fixtures/camera/images/camera-table-p35-a000.jpg",
+      "source_sha256": "44858060ad279f16c801c45aef9b09cb013d7ef4bc6bcc55837b03a18adb31f3",
+      "detections": [
+        {
+          "corners": [
+            [
+              258.50375,
+              155.66624
+            ],
+            [
+              386.5,
+              144.93628
+            ],
+            [
+              386.5,
+              374.0246
+            ],
+            [
+              258.50748,
+              363.137
+            ]
+          ]
+        }
+      ],
+      "crops_sha256": [
+        "30390b87cf8051daacf64feb6c8a1fb8f9e9586ef7672b3917cfe06a48e3f1e4"
+      ],
+      "archived_result": {
+        "accuracy": {
+          "count_passed": true,
+          "detected_count": 1,
+          "detections": [
+            {
+              "area": 27938.548828125,
+              "corners": [
+                [
+                  258.5037536621094,
+                  155.66624450683594
+                ],
+                [
+                  386.5,
+                  144.936279296875
+                ],
+                [
+                  386.5,
+                  374.02459716796875
+                ],
+                [
+                  258.5074768066406,
+                  363.1369934082031
+                ]
+              ],
+              "crop_dimensions": [
+                250,
+                350
+              ]
+            }
+          ],
+          "expected_count": 1,
+          "matches": [
+            {
+              "corner_tolerance": 8.0,
+              "detected_index": 0,
+              "expected_index": 0,
+              "geometry_passed": true,
+              "interior_rgb_mae": 7.873702049255371,
+              "max_corner_error": 1.1775504350662231,
+              "pixel_mae_limit": 22.0,
+              "pixel_orientation": "original",
+              "pixels_passed": true,
+              "source": "lightning-bolt"
+            }
+          ],
+          "passed": true,
+          "unmatched_detected": [],
+          "unmatched_expected": []
+        },
+        "card_eligibility": [
+          {
+            "eligible": true,
+            "inside_angle_constraint": true,
+            "inside_roi": true,
+            "mean_short_edge_angle_degrees": 6.9008328864583746e-06,
+            "source": "lightning-bolt"
+          }
+        ],
+        "detect_extract_geometry_agree": true,
+        "detect_ms": {
+          "max": 19.189545,
+          "median": 18.971873,
+          "p95": 19.189545,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "detect_samples_ms": [
+          18.971873,
+          18.514527,
+          19.189545
+        ],
+        "detection_region": null,
+        "domain_eligible": true,
+        "extract_ms": {
+          "max": 21.507901999999998,
+          "median": 21.484479,
+          "p95": 21.507901999999998,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "extract_samples_ms": [
+          21.484479,
+          21.507901999999998,
+          21.104225
+        ],
+        "id": "camera-table-p35-a000",
+        "image_dimensions": [
+          640,
+          520
+        ],
+        "manifest": "tests/fixtures/camera/manifest.json",
+        "tier": "regression"
+      }
+    },
+    {
+      "scene_id": "camera-table-p35-a000",
+      "variant": "fast-480-roi",
+      "source": "tests/fixtures/camera/images/camera-table-p35-a000.jpg",
+      "source_sha256": "44858060ad279f16c801c45aef9b09cb013d7ef4bc6bcc55837b03a18adb31f3",
+      "detections": [
+        {
+          "corners": [
+            [
+              258.7,
+              155.80768
+            ],
+            [
+              386.7,
+              144.8634
+            ],
+            [
+              386.7,
+              374.0256
+            ],
+            [
+              258.7,
+              362.95334
+            ]
+          ]
+        }
+      ],
+      "crops_sha256": [
+        "6005d0ebae04fdc1d63b232413c266896b5ad24ecbf0c23ae04cb4c2e6acd03b"
+      ],
+      "archived_result": {
+        "accuracy": {
+          "count_passed": true,
+          "detected_count": 1,
+          "detections": [
+            {
+              "area": 27923.69921875,
+              "corners": [
+                [
+                  258.70001220703125,
+                  155.80767822265625
+                ],
+                [
+                  386.70001220703125,
+                  144.8634033203125
+                ],
+                [
+                  386.70001220703125,
+                  374.0256042480469
+                ],
+                [
+                  258.70001220703125,
+                  362.9533386230469
+                ]
+              ],
+              "crop_dimensions": [
+                250,
+                350
+              ]
+            }
+          ],
+          "expected_count": 1,
+          "matches": [
+            {
+              "corner_tolerance": 8.0,
+              "detected_index": 0,
+              "expected_index": 0,
+              "geometry_passed": true,
+              "interior_rgb_mae": 7.4775166511535645,
+              "max_corner_error": 1.2870323657989502,
+              "pixel_mae_limit": 22.0,
+              "pixel_orientation": "original",
+              "pixels_passed": true,
+              "source": "lightning-bolt"
+            }
+          ],
+          "passed": true,
+          "unmatched_detected": [],
+          "unmatched_expected": []
+        },
+        "card_eligibility": [
+          {
+            "eligible": true,
+            "inside_angle_constraint": true,
+            "inside_roi": true,
+            "mean_short_edge_angle_degrees": 6.9008328864583746e-06,
+            "source": "lightning-bolt"
+          }
+        ],
+        "detect_extract_geometry_agree": true,
+        "detect_ms": {
+          "max": 8.056521,
+          "median": 7.272444,
+          "p95": 8.056521,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "detect_samples_ms": [
+          8.056521,
+          7.272444,
+          7.111946
+        ],
+        "detection_region": {
+          "height": 416,
+          "width": 512,
+          "x": 64,
+          "y": 52
+        },
+        "domain_eligible": true,
+        "extract_ms": {
+          "max": 9.458704000000001,
+          "median": 9.442594,
+          "p95": 9.458704000000001,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "extract_samples_ms": [
+          9.458704000000001,
+          9.442594,
+          9.371032
+        ],
+        "id": "camera-table-p35-a000",
+        "image_dimensions": [
+          640,
+          520
+        ],
+        "manifest": "tests/fixtures/camera/manifest.json",
+        "tier": "regression"
+      }
+    },
+    {
+      "scene_id": "extended-art-playmat",
+      "variant": "full-640",
+      "source": "tests/fixtures/art-treatments/images/extended-art-playmat.jpg",
+      "source_sha256": "f48dfecf76c6f62ac4da392e40b1aa727b1dd74e788d2d4a93e441172fc7e572",
+      "detections": [
+        {
+          "corners": [
+            [
+              98.69082,
+              150.40707
+            ],
+            [
+              271.71368,
+              98.17371
+            ],
+            [
+              345.8732,
+              340.3706
+            ],
+            [
+              172.85693,
+              392.57584
+            ]
+          ]
+        }
+      ],
+      "crops_sha256": [
+        "410fe0fc2df1443f1aac958d92358c9020415ab54d8be12d0dcead7847c7ea29"
+      ],
+      "archived_result": {
+        "accuracy": {
+          "count_passed": true,
+          "detected_count": 1,
+          "detections": [
+            {
+              "area": 45775.09375,
+              "corners": [
+                [
+                  98.6908187866211,
+                  150.40707397460938
+                ],
+                [
+                  271.71368408203125,
+                  98.17371368408203
+                ],
+                [
+                  345.8731994628906,
+                  340.37060546875
+                ],
+                [
+                  172.85693359375,
+                  392.5758361816406
+                ]
+              ],
+              "crop_dimensions": [
+                250,
+                350
+              ]
+            }
+          ],
+          "expected_count": 1,
+          "matches": [
+            {
+              "corner_tolerance": 8.0,
+              "detected_index": 0,
+              "expected_index": 0,
+              "geometry_passed": true,
+              "interior_rgb_mae": 13.129907608032227,
+              "max_corner_error": 1.533068299293518,
+              "pixel_mae_limit": 22.0,
+              "pixel_orientation": "original",
+              "pixels_passed": true,
+              "source": "extended-once-upon-a-time"
+            }
+          ],
+          "passed": true,
+          "unmatched_detected": [],
+          "unmatched_expected": []
+        },
+        "card_eligibility": [
+          {
+            "eligible": true,
+            "inside_angle_constraint": true,
+            "inside_roi": true,
+            "mean_short_edge_angle_degrees": 163.0,
+            "source": "extended-once-upon-a-time"
+          }
+        ],
+        "detect_extract_geometry_agree": true,
+        "detect_ms": {
+          "max": 114.53967399999999,
+          "median": 111.565566,
+          "p95": 114.53967399999999,
+          "samples": 3,
+          "samples_within_15fps_budget": 0
+        },
+        "detect_samples_ms": [
+          111.565566,
+          110.780937,
+          114.53967399999999
+        ],
+        "detection_region": null,
+        "domain_eligible": true,
+        "extract_ms": {
+          "max": 114.792849,
+          "median": 114.070623,
+          "p95": 114.792849,
+          "samples": 3,
+          "samples_within_15fps_budget": 0
+        },
+        "extract_samples_ms": [
+          114.070623,
+          114.792849,
+          113.816452
+        ],
+        "id": "extended-art-playmat",
+        "image_dimensions": [
+          640,
+          520
+        ],
+        "manifest": "tests/fixtures/art-treatments/manifest.json",
+        "tier": "challenge"
+      }
+    },
+    {
+      "scene_id": "extended-art-playmat",
+      "variant": "full-640-roi",
+      "source": "tests/fixtures/art-treatments/images/extended-art-playmat.jpg",
+      "source_sha256": "f48dfecf76c6f62ac4da392e40b1aa727b1dd74e788d2d4a93e441172fc7e572",
+      "detections": [
+        {
+          "corners": [
+            [
+              303.55942,
+              134.10878
+            ],
+            [
+              340.21906,
+              147.0259
+            ],
+            [
+              335.69855,
+              178.04935
+            ],
+            [
+              315.54492,
+              189.60979
+            ]
+          ]
+        }
+      ],
+      "crops_sha256": [
+        "af0c17476cdc39711693e39ec9184f28a3d08bba23ef61536a11a1e467977426"
+      ],
+      "archived_result": {
+        "accuracy": {
+          "count_passed": true,
+          "detected_count": 1,
+          "detections": [
+            {
+              "area": 1226.4033203125,
+              "corners": [
+                [
+                  303.5594177246094,
+                  134.10877990722656
+                ],
+                [
+                  340.21905517578125,
+                  147.02589416503906
+                ],
+                [
+                  335.69854736328125,
+                  178.04934692382812
+                ],
+                [
+                  315.544921875,
+                  189.6097869873047
+                ]
+              ],
+              "crop_dimensions": [
+                250,
+                350
+              ]
+            }
+          ],
+          "expected_count": 1,
+          "matches": [
+            {
+              "corner_tolerance": 8.0,
+              "detected_index": 0,
+              "expected_index": 0,
+              "geometry_passed": false,
+              "interior_rgb_mae": 71.72925567626953,
+              "max_corner_error": 247.5244140625,
+              "pixel_mae_limit": 22.0,
+              "pixel_orientation": "original",
+              "pixels_passed": false,
+              "source": "extended-once-upon-a-time"
+            }
+          ],
+          "passed": false,
+          "unmatched_detected": [],
+          "unmatched_expected": []
+        },
+        "card_eligibility": [
+          {
+            "eligible": true,
+            "inside_angle_constraint": true,
+            "inside_roi": true,
+            "mean_short_edge_angle_degrees": 163.0,
+            "source": "extended-once-upon-a-time"
+          }
+        ],
+        "detect_extract_geometry_agree": true,
+        "detect_ms": {
+          "max": 55.198847,
+          "median": 53.549355999999996,
+          "p95": 55.198847,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "detect_samples_ms": [
+          55.198847,
+          53.549355999999996,
+          53.300872
+        ],
+        "detection_region": {
+          "height": 416,
+          "width": 512,
+          "x": 64,
+          "y": 52
+        },
+        "domain_eligible": true,
+        "extract_ms": {
+          "max": 56.534492,
+          "median": 55.708876999999994,
+          "p95": 56.534492,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "extract_samples_ms": [
+          56.534492,
+          55.703996,
+          55.708876999999994
+        ],
+        "id": "extended-art-playmat",
+        "image_dimensions": [
+          640,
+          520
+        ],
+        "manifest": "tests/fixtures/art-treatments/manifest.json",
+        "tier": "challenge"
+      }
+    },
+    {
+      "scene_id": "extended-art-playmat",
+      "variant": "fast-480",
+      "source": "tests/fixtures/art-treatments/images/extended-art-playmat.jpg",
+      "source_sha256": "f48dfecf76c6f62ac4da392e40b1aa727b1dd74e788d2d4a93e441172fc7e572",
+      "detections": [],
+      "crops_sha256": [],
+      "archived_result": {
+        "accuracy": {
+          "count_passed": false,
+          "detected_count": 0,
+          "detections": [],
+          "expected_count": 1,
+          "matches": [],
+          "passed": false,
+          "unmatched_detected": [],
+          "unmatched_expected": [
+            0
+          ]
+        },
+        "card_eligibility": [
+          {
+            "eligible": true,
+            "inside_angle_constraint": true,
+            "inside_roi": true,
+            "mean_short_edge_angle_degrees": 163.0,
+            "source": "extended-once-upon-a-time"
+          }
+        ],
+        "detect_extract_geometry_agree": true,
+        "detect_ms": {
+          "max": 20.132226,
+          "median": 19.991120000000002,
+          "p95": 20.132226,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "detect_samples_ms": [
+          19.991120000000002,
+          18.929895,
+          20.132226
+        ],
+        "detection_region": null,
+        "domain_eligible": true,
+        "extract_ms": {
+          "max": 19.176259,
+          "median": 19.126255,
+          "p95": 19.176259,
+          "samples": 3,
+          "samples_within_15fps_budget": 3
+        },
+        "extract_samples_ms": [
+          19.126255,
+          18.609532,
+          19.176259
+        ],
+        "id": "extended-art-playmat",
+        "image_dimensions": [
+          640,
+          520
+        ],
+        "manifest": "tests/fixtures/art-treatments/manifest.json",
+        "tier": "challenge"
+      }
+    }
+  ]
+}

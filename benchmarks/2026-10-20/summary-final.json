@@ -1,0 +1,2751 @@
+{
+  "metadata": {
+    "architecture": "x86_64",
+    "command": [
+      "target/release/examples/benchmark",
+      "--manifest",
+      "tests/fixtures/scenes/manifest.json",
+      "--manifest",
+      "tests/fixtures/camera/manifest.json",
+      "--manifest",
+      "tests/fixtures/playmats/manifest.json",
+      "--manifest",
+      "tests/fixtures/borders/manifest.json",
+      "--challenge-manifest",
+      "tests/fixtures/art-treatments/manifest.json",
+      "--iterations",
+      "3",
+      "--warmup",
+      "1",
+      "--output",
+      "target/performance/domain-final.json"
+    ],
+    "compiled_source_sha256": {
+      "Cargo.lock": "b35c57cb57cda0af3314737508428377406acc04ed8dbf8108ab0fd4a042dd14",
+      "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
+      "examples/benchmark.rs": "527e8925ed507a051eb354094976871a6d3da97a3db23ce3d761436fdebd881c",
+      "src/detection.rs": "22b15127c96b1fe76a0b45f9a752e6044369646b0887138dbda8a1cfa8f14aec",
+      "src/fast_edges.rs": "17a7aa5913eb91a3d4f5d6bf38c1a8839dbf75f06286d1dcd293da967998cee2",
+      "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
+      "src/lib.rs": "09b9074eecf09fc34527321f7411f816265605531981d168cab0bc1220833ef6",
+      "tests/support/mod.rs": "8a1f57c96bb0bfb1737a3147a35210c2cb74736478d388f03ff3faafd00a4598"
+    },
+    "cpu": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+    "executable_sha256": "aeeb9090928f275e5a2fdd3ec298288b8a6e9d52d1acd1808b25cafcd3878bd9",
+    "git_revision": "63d2bbaf3626f77254a8d9c53d4b2cf5465d96e5",
+    "git_status": "M README.md\n M docs/testing.md\n M docs/usage.md\n M src/detection.rs\n M src/lib.rs\n?? benchmarks/\n?? docs/edge-research.md\n?? docs/performance.md\n?? examples/benchmark.rs\n?? src/fast_edges.rs\n?? tests/domain.rs",
+    "kernel": "Linux phoenix 6.6.114.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Mon Dec  1 20:46:23 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+    "logical_cpus": 16,
+    "os": "linux",
+    "release": true,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+    "rustflags": null,
+    "unix_time_seconds": 1792484465
+  },
+  "methodology": {
+    "domain_eligibility": "all ground-truth cards fully inside the fixed ROI and mean short-edge angle inside the constraint; negatives are eligible",
+    "excluded_from_timing": [
+      "fixture hash validation",
+      "image decoding",
+      "scoring",
+      "JSON output"
+    ],
+    "execution": "sequential, single caller thread, alternating detect and extract; no concurrent benchmark processes",
+    "iterations_per_scene_api": 3,
+    "percentiles": "nearest rank: sorted[ceil(p*n)-1]; samples equally weighted across scenes",
+    "phone_target_ms": 66.66666666666667,
+    "scope": "decoded-frame CPU measurements on the reported host; handset capture, decoding, display, thermal behavior and sustained FPS require measurements on the target phone",
+    "speedup": "ratio of median durations against default on exactly the same eligible scenes",
+    "timed_apis": [
+      "detect",
+      "extract (includes detection and RGB crop allocation)"
+    ],
+    "warmup_per_scene_api": 1
+  },
+  "variants": [
+    {
+      "name": "default",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 1600,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "failed": 0,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 1.0,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 1.0,
+        "passed": 111,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 111,
+        "expected_cards": 105,
+        "detected_cards": 105,
+        "failures": []
+      }
+    },
+    {
+      "name": "full-640",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 640,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 133.95066599999998,
+          "median": 25.590085,
+          "p95": 80.83053,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "extract_ms": {
+          "max": 135.552637,
+          "median": 28.015205,
+          "p95": 82.650992,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "failed": 0,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 0.9938891176016024,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 1.0000150632486895,
+        "passed": 111,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 111,
+        "expected_cards": 105,
+        "detected_cards": 105,
+        "failures": []
+      }
+    },
+    {
+      "name": "full-480",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 480,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 61.945886,
+          "median": 21.132985,
+          "p95": 55.701642,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "extract_ms": {
+          "max": 63.25560099999999,
+          "median": 23.708636000000002,
+          "p95": 57.316471,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "failed": 4,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 1.2035075499272818,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 1.1816633820688798,
+        "passed": 107,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 107,
+        "expected_cards": 105,
+        "detected_cards": 103,
+        "failures": [
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 8.827033996582031,
+            "max_pixel_mae": 23.3729190826416
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.387712478637695,
+            "max_pixel_mae": 43.05415725708008
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "full-320",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 320,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 39.610358999999995,
+          "median": 12.719364,
+          "p95": 36.915717,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "extract_ms": {
+          "max": 44.232654000000004,
+          "median": 15.235735,
+          "p95": 40.666655000000006,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "failed": 11,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 1.999605247557975,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 1.838810336357255,
+        "passed": 100,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 100,
+        "expected_cards": 105,
+        "detected_cards": 107,
+        "failures": [
+          {
+            "id": "camera-solid-p50-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 3.8251500129699707,
+            "max_pixel_mae": 34.01640701293945
+          },
+          {
+            "id": "camera-solid-p65-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 3.2328410148620605,
+            "max_pixel_mae": 33.731327056884766
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 2,
+            "max_corner_error": 13.64757251739502,
+            "max_pixel_mae": 19.349308013916016
+          },
+          {
+            "id": "camera-table-p20-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 4.998538970947266,
+            "max_pixel_mae": 24.7001953125
+          },
+          {
+            "id": "camera-table-p65-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 3.2434566020965576,
+            "max_pixel_mae": 33.735374450683594
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.342069625854492,
+            "max_pixel_mae": 42.1928825378418
+          },
+          {
+            "id": "silver-border-playmat-upper-right",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 9.704418182373047,
+            "max_pixel_mae": 41.35663986206055
+          },
+          {
+            "id": "silver-border-playmat-lower-centre",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 9.386968612670898,
+            "max_pixel_mae": 40.17890930175781
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 274.4122314453125,
+            "max_pixel_mae": 61.894466400146484
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 2,
+            "max_corner_error": 157.9865264892578,
+            "max_pixel_mae": 87.52222442626953
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 23.459266662597656,
+            "max_pixel_mae": 53.22011947631836
+          }
+        ]
+      }
+    },
+    {
+      "name": "fast-640",
+      "settings": {
+        "detection_mode": "fast",
+        "max_detection_dimension": 640,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 31.785926,
+          "median": 6.694478,
+          "p95": 27.964104,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "extract_ms": {
+          "max": 34.459499,
+          "median": 9.151608,
+          "p95": 30.231035,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "failed": 11,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 3.7992068985811884,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 3.0612791762933904,
+        "passed": 100,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 100,
+        "expected_cards": 105,
+        "detected_cards": 96,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.240522384643555,
+            "max_pixel_mae": 31.224905014038086
+          },
+          {
+            "id": "extended-art-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.112281799316406,
+            "max_pixel_mae": 51.955265045166016
+          }
+        ]
+      }
+    },
+    {
+      "name": "fast-480",
+      "settings": {
+        "detection_mode": "fast",
+        "max_detection_dimension": 480,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 26.374125000000003,
+          "median": 7.633375,
+          "p95": 19.837978999999997,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "extract_ms": {
+          "max": 26.434691,
+          "median": 10.053861000000001,
+          "p95": 21.651338,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "failed": 12,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 3.3319084939492685,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 2.7865540412782708,
+        "passed": 99,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 99,
+        "expected_cards": 105,
+        "detected_cards": 97,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 119.41946411132812,
+            "max_pixel_mae": 63.41306686401367
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.387712478637695,
+            "max_pixel_mae": 43.05415725708008
+          },
+          {
+            "id": "borderless-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 21.078716278076172,
+            "max_pixel_mae": 30.377931594848633
+          },
+          {
+            "id": "extended-art-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.731184005737305,
+            "max_pixel_mae": 52.538734436035156
+          }
+        ]
+      }
+    },
+    {
+      "name": "fast-320",
+      "settings": {
+        "detection_mode": "fast",
+        "max_detection_dimension": 320,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 14.323207,
+          "median": 4.23733,
+          "p95": 9.940192,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "extract_ms": {
+          "max": 17.013206,
+          "median": 6.684366,
+          "p95": 12.262781,
+          "samples": 333,
+          "samples_within_15fps_budget": 333
+        },
+        "failed": 20,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.433707,
+          "p95": 79.241669,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_detect_speedup": 6.002295549319972,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 28.015627000000002,
+          "p95": 83.08312199999999,
+          "samples": 333,
+          "samples_within_15fps_budget": 309
+        },
+        "paired_default_extract_speedup": 4.191216788548084,
+        "passed": 91,
+        "scenes": 111
+      },
+      "accuracy": {
+        "scenes": 111,
+        "passed": 91,
+        "expected_cards": 105,
+        "detected_cards": 98,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-solid-p50-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 3.8251500129699707,
+            "max_pixel_mae": 34.01640701293945
+          },
+          {
+            "id": "camera-solid-p65-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 3.2328410148620605,
+            "max_pixel_mae": 33.731327056884766
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 119.42417907714844,
+            "max_pixel_mae": 63.633609771728516
+          },
+          {
+            "id": "camera-table-p20-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 5.594984531402588,
+            "max_pixel_mae": 27.406389236450195
+          },
+          {
+            "id": "camera-table-p35-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 4.935546875,
+            "max_pixel_mae": 30.713241577148438
+          },
+          {
+            "id": "camera-table-p35-a180",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 7.707252025604248,
+            "max_pixel_mae": 23.017189025878906
+          },
+          {
+            "id": "camera-table-p65-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 3.2434566020965576,
+            "max_pixel_mae": 33.735374450683594
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.342069625854492,
+            "max_pixel_mae": 42.1928825378418
+          },
+          {
+            "id": "silver-border-playmat-upper-right",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 9.704418182373047,
+            "max_pixel_mae": 41.35663986206055
+          },
+          {
+            "id": "silver-border-playmat-lower-centre",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 9.386968612670898,
+            "max_pixel_mae": 40.17890930175781
+          },
+          {
+            "id": "borderless-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 21.16156005859375,
+            "max_pixel_mae": 30.06644058227539
+          },
+          {
+            "id": "extended-art-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 158.11810302734375,
+            "max_pixel_mae": 87.49267578125
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 23.459266662597656,
+            "max_pixel_mae": 53.22011947631836
+          }
+        ]
+      }
+    },
+    {
+      "name": "full-640-roi",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 640,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": [
+          0.10000000149011612,
+          0.10000000149011612,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 108.68593899999999,
+          "median": 14.74823,
+          "p95": 44.297799999999995,
+          "samples": 321,
+          "samples_within_15fps_budget": 318
+        },
+        "extract_ms": {
+          "max": 113.165328,
+          "median": 17.204200999999998,
+          "p95": 46.923473,
+          "samples": 321,
+          "samples_within_15fps_budget": 318
+        },
+        "failed": 5,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.322941,
+          "p95": 56.242428,
+          "samples": 321,
+          "samples_within_15fps_budget": 306
+        },
+        "paired_default_detect_speedup": 1.7170156011941773,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 27.796002,
+          "p95": 58.060038,
+          "samples": 321,
+          "samples_within_15fps_budget": 306
+        },
+        "paired_default_extract_speedup": 1.615652014295811,
+        "passed": 102,
+        "scenes": 107
+      },
+      "accuracy": {
+        "scenes": 107,
+        "passed": 102,
+        "expected_cards": 98,
+        "detected_cards": 98,
+        "failures": [
+          {
+            "id": "camera-solid-p50-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 197.72926330566406,
+            "max_pixel_mae": 82.04782104492188
+          },
+          {
+            "id": "camera-solid-p50-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 197.72926330566406,
+            "max_pixel_mae": 82.46312713623047
+          },
+          {
+            "id": "camera-solid-p65-a000",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 154.794189453125,
+            "max_pixel_mae": 75.71170806884766
+          },
+          {
+            "id": "camera-solid-p65-a180",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 153.98358154296875,
+            "max_pixel_mae": 75.47029876708984
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 247.5244140625,
+            "max_pixel_mae": 71.72925567626953
+          }
+        ]
+      }
+    },
+    {
+      "name": "full-640-angle",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 640,
+        "orientation_degrees": 0.0,
+        "orientation_tolerance_degrees": 15.0,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 72.07094,
+          "median": 16.00571,
+          "p95": 29.381655,
+          "samples": 210,
+          "samples_within_15fps_budget": 207
+        },
+        "extract_ms": {
+          "max": 73.823195,
+          "median": 18.567717000000002,
+          "p95": 38.209576000000006,
+          "samples": 210,
+          "samples_within_15fps_budget": 207
+        },
+        "failed": 0,
+        "paired_default_detect_ms": {
+          "max": 83.262908,
+          "median": 22.93454,
+          "p95": 42.862169,
+          "samples": 210,
+          "samples_within_15fps_budget": 207
+        },
+        "paired_default_detect_speedup": 1.4328973847458186,
+        "paired_default_extract_ms": {
+          "max": 84.195392,
+          "median": 24.743114,
+          "p95": 43.367146000000005,
+          "samples": 210,
+          "samples_within_15fps_budget": 207
+        },
+        "paired_default_extract_speedup": 1.3325878458832605,
+        "passed": 70,
+        "scenes": 70
+      },
+      "accuracy": {
+        "scenes": 70,
+        "passed": 70,
+        "expected_cards": 64,
+        "detected_cards": 64,
+        "failures": []
+      }
+    },
+    {
+      "name": "full-640-roi-angle",
+      "settings": {
+        "detection_mode": "full",
+        "max_detection_dimension": 640,
+        "orientation_degrees": 0.0,
+        "orientation_tolerance_degrees": 15.0,
+        "roi_normalized": [
+          0.10000000149011612,
+          0.10000000149011612,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 50.526458000000005,
+          "median": 12.449937,
+          "p95": 16.287599,
+          "samples": 207,
+          "samples_within_15fps_budget": 207
+        },
+        "extract_ms": {
+          "max": 53.209015,
+          "median": 15.021509,
+          "p95": 19.135883999999997,
+          "samples": 207,
+          "samples_within_15fps_budget": 207
+        },
+        "failed": 2,
+        "paired_default_detect_ms": {
+          "max": 83.262908,
+          "median": 22.835384,
+          "p95": 29.824733,
+          "samples": 207,
+          "samples_within_15fps_budget": 204
+        },
+        "paired_default_detect_speedup": 1.8341766709341583,
+        "paired_default_extract_ms": {
+          "max": 84.195392,
+          "median": 24.531956,
+          "p95": 33.046882,
+          "samples": 207,
+          "samples_within_15fps_budget": 204
+        },
+        "paired_default_extract_speedup": 1.6331219453385144,
+        "passed": 67,
+        "scenes": 69
+      },
+      "accuracy": {
+        "scenes": 69,
+        "passed": 67,
+        "expected_cards": 60,
+        "detected_cards": 60,
+        "failures": [
+          {
+            "id": "camera-solid-p65-a000",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 154.794189453125,
+            "max_pixel_mae": 75.71170806884766
+          },
+          {
+            "id": "camera-solid-p65-a180",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 153.98358154296875,
+            "max_pixel_mae": 75.47029876708984
+          }
+        ]
+      }
+    },
+    {
+      "name": "fast-480-roi",
+      "settings": {
+        "detection_mode": "fast",
+        "max_detection_dimension": 480,
+        "orientation_degrees": null,
+        "orientation_tolerance_degrees": null,
+        "roi_normalized": [
+          0.10000000149011612,
+          0.10000000149011612,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 26.235446,
+          "median": 7.735666,
+          "p95": 19.614521999999997,
+          "samples": 321,
+          "samples_within_15fps_budget": 321
+        },
+        "extract_ms": {
+          "max": 30.599416,
+          "median": 10.212957999999999,
+          "p95": 21.492136,
+          "samples": 321,
+          "samples_within_15fps_budget": 321
+        },
+        "failed": 13,
+        "paired_default_detect_ms": {
+          "max": 130.693536,
+          "median": 25.322941,
+          "p95": 56.242428,
+          "samples": 321,
+          "samples_within_15fps_budget": 306
+        },
+        "paired_default_detect_speedup": 3.2735308116974027,
+        "paired_default_extract_ms": {
+          "max": 135.146952,
+          "median": 27.796002,
+          "p95": 58.060038,
+          "samples": 321,
+          "samples_within_15fps_budget": 306
+        },
+        "paired_default_extract_speedup": 2.721640684314966,
+        "passed": 94,
+        "scenes": 107
+      },
+      "accuracy": {
+        "scenes": 107,
+        "passed": 94,
+        "expected_cards": 98,
+        "detected_cards": 90,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 234.02635192871094,
+            "max_pixel_mae": 78.45580291748047
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.038717746734619,
+            "max_pixel_mae": 29.814786911010742
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.43726634979248,
+            "max_pixel_mae": 42.91386032104492
+          },
+          {
+            "id": "borderless-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.311599731445312,
+            "max_pixel_mae": 31.43930435180664
+          },
+          {
+            "id": "extended-art-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.37466049194336,
+            "max_pixel_mae": 52.22934341430664
+          }
+        ]
+      }
+    },
+    {
+      "name": "fast-480-angle",
+      "settings": {
+        "detection_mode": "fast",
+        "max_detection_dimension": 480,
+        "orientation_degrees": 0.0,
+        "orientation_tolerance_degrees": 15.0,
+        "roi_normalized": null,
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 26.570664,
+          "median": 7.460350999999999,
+          "p95": 10.512723999999999,
+          "samples": 210,
+          "samples_within_15fps_budget": 210
+        },
+        "extract_ms": {
+          "max": 27.448986,
+          "median": 9.706742,
+          "p95": 19.40675,
+          "samples": 210,
+          "samples_within_15fps_budget": 210
+        },
+        "failed": 6,
+        "paired_default_detect_ms": {
+          "max": 83.262908,
+          "median": 22.93454,
+          "p95": 42.862169,
+          "samples": 210,
+          "samples_within_15fps_budget": 207
+        },
+        "paired_default_detect_speedup": 3.074190477096855,
+        "paired_default_extract_ms": {
+          "max": 84.195392,
+          "median": 24.743114,
+          "p95": 43.367146000000005,
+          "samples": 210,
+          "samples_within_15fps_budget": 207
+        },
+        "paired_default_extract_speedup": 2.549064763439679,
+        "passed": 64,
+        "scenes": 70
+      },
+      "accuracy": {
+        "scenes": 70,
+        "passed": 64,
+        "expected_cards": 64,
+        "detected_cards": 59,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.910432815551758,
+            "max_pixel_mae": 33.4489860534668
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "fast-480-roi-angle",
+      "settings": {
+        "detection_mode": "fast",
+        "max_detection_dimension": 480,
+        "orientation_degrees": 0.0,
+        "orientation_tolerance_degrees": 15.0,
+        "roi_normalized": [
+          0.10000000149011612,
+          0.10000000149011612,
+          0.800000011920929,
+          0.800000011920929
+        ],
+        "roi_pixels": null
+      },
+      "eligible_summary": {
+        "detect_ms": {
+          "max": 26.767336,
+          "median": 7.644332,
+          "p95": 13.493622,
+          "samples": 207,
+          "samples_within_15fps_budget": 207
+        },
+        "extract_ms": {
+          "max": 26.955545,
+          "median": 9.914397000000001,
+          "p95": 14.205457,
+          "samples": 207,
+          "samples_within_15fps_budget": 207
+        },
+        "failed": 6,
+        "paired_default_detect_ms": {
+          "max": 83.262908,
+          "median": 22.835384,
+          "p95": 29.824733,
+          "samples": 207,
+          "samples_within_15fps_budget": 204
+        },
+        "paired_default_detect_speedup": 2.9872308005460777,
+        "paired_default_extract_ms": {
+          "max": 84.195392,
+          "median": 24.531956,
+          "p95": 33.046882,
+          "samples": 207,
+          "samples_within_15fps_budget": 204
+        },
+        "paired_default_extract_speedup": 2.4743770095145474,
+        "passed": 63,
+        "scenes": 69
+      },
+      "accuracy": {
+        "scenes": 69,
+        "passed": 63,
+        "expected_cards": 60,
+        "detected_cards": 55,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.038717746734619,
+            "max_pixel_mae": 29.814786911010742
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "description": "full-640 -> full-640-roi, identical eligible scenes",
+      "scene_ids": [
+        "baseline-lightning-bolt-background-green",
+        "baseline-lightning-bolt-background-dark",
+        "baseline-lightning-bolt-background-light",
+        "baseline-lightning-bolt-rotation-minus42",
+        "baseline-lightning-bolt-rotation-minus13",
+        "baseline-lightning-bolt-rotation-27",
+        "baseline-lightning-bolt-rotation-73",
+        "baseline-lightning-bolt-rotation-155",
+        "baseline-lightning-bolt-perspective-1",
+        "baseline-lightning-bolt-perspective-2",
+        "baseline-lightning-bolt-soft-shadow",
+        "baseline-lightning-bolt-blur",
+        "baseline-lightning-bolt-jpeg",
+        "baseline-lightning-bolt-sensor-noise",
+        "baseline-counterspell-background-green",
+        "baseline-counterspell-background-dark",
+        "baseline-counterspell-background-light",
+        "baseline-counterspell-rotation-minus42",
+        "baseline-counterspell-rotation-minus13",
+        "baseline-counterspell-rotation-27",
+        "baseline-counterspell-rotation-73",
+        "baseline-counterspell-rotation-155",
+        "baseline-counterspell-perspective-1",
+        "baseline-counterspell-perspective-2",
+        "baseline-counterspell-soft-shadow",
+        "baseline-counterspell-blur",
+        "baseline-counterspell-jpeg",
+        "baseline-counterspell-sensor-noise",
+        "baseline-black-lotus-background-green",
+        "baseline-black-lotus-background-dark",
+        "baseline-black-lotus-background-light",
+        "baseline-black-lotus-rotation-minus42",
+        "baseline-black-lotus-rotation-minus13",
+        "baseline-black-lotus-rotation-27",
+        "baseline-black-lotus-rotation-73",
+        "baseline-black-lotus-rotation-155",
+        "baseline-black-lotus-perspective-1",
+        "baseline-black-lotus-perspective-2",
+        "baseline-black-lotus-soft-shadow",
+        "baseline-black-lotus-blur",
+        "baseline-black-lotus-jpeg",
+        "baseline-black-lotus-sensor-noise",
+        "baseline-sol-ring-background-green",
+        "baseline-sol-ring-background-dark",
+        "baseline-sol-ring-background-light",
+        "baseline-sol-ring-rotation-minus42",
+        "baseline-sol-ring-rotation-minus13",
+        "baseline-sol-ring-rotation-27",
+        "baseline-sol-ring-rotation-73",
+        "baseline-sol-ring-rotation-155",
+        "baseline-sol-ring-perspective-1",
+        "baseline-sol-ring-perspective-2",
+        "baseline-sol-ring-soft-shadow",
+        "baseline-sol-ring-blur",
+        "baseline-sol-ring-jpeg",
+        "baseline-sol-ring-sensor-noise",
+        "occlusion-corner-top-left",
+        "occlusion-edge-top",
+        "occlusion-finger-corner",
+        "negative-empty-table",
+        "negative-poker-chip",
+        "negative-finger",
+        "negative-phone",
+        "negative-square-paper",
+        "negative-triangle-paper",
+        "negative-deep-notched-paper",
+        "negative-receipt",
+        "camera-solid-p35-a000",
+        "camera-solid-p35-a180",
+        "camera-solid-p50-a000",
+        "camera-solid-p50-a090",
+        "camera-solid-p50-a180",
+        "camera-solid-p50-a270",
+        "camera-solid-p65-a000",
+        "camera-solid-p65-a090",
+        "camera-solid-p65-a180",
+        "camera-solid-p65-a270",
+        "camera-forest-p35-combined",
+        "camera-table-p0-a000",
+        "camera-table-p20-a000",
+        "camera-table-p20-a090",
+        "camera-table-p20-a180",
+        "camera-table-p20-a270",
+        "camera-table-p35-a000",
+        "camera-table-p35-a090",
+        "camera-table-p35-a180",
+        "camera-table-p35-a270",
+        "camera-table-p50-a000",
+        "camera-table-p50-a090",
+        "camera-table-p50-a180",
+        "camera-table-p50-a270",
+        "camera-table-p65-a000",
+        "camera-table-p65-a090",
+        "camera-table-p65-a180",
+        "camera-table-p65-a270",
+        "playmat-fantasy-forest-empty",
+        "playmat-fantasy-forest-finger-corner",
+        "white-border-plain",
+        "white-border-playmat",
+        "silver-border-plain",
+        "silver-border-playmat",
+        "borderless-plain",
+        "borderless-playmat",
+        "borderless-sleeve",
+        "extended-art-plain",
+        "extended-art-playmat",
+        "extended-art-sleeve"
+      ],
+      "before_accuracy": {
+        "scenes": 107,
+        "passed": 107,
+        "expected_cards": 98,
+        "detected_cards": 98,
+        "failures": []
+      },
+      "after_accuracy": {
+        "scenes": 107,
+        "passed": 102,
+        "expected_cards": 98,
+        "detected_cards": 98,
+        "failures": [
+          {
+            "id": "camera-solid-p50-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 197.72926330566406,
+            "max_pixel_mae": 82.04782104492188
+          },
+          {
+            "id": "camera-solid-p50-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 197.72926330566406,
+            "max_pixel_mae": 82.46312713623047
+          },
+          {
+            "id": "camera-solid-p65-a000",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 154.794189453125,
+            "max_pixel_mae": 75.71170806884766
+          },
+          {
+            "id": "camera-solid-p65-a180",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 153.98358154296875,
+            "max_pixel_mae": 75.47029876708984
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 247.5244140625,
+            "max_pixel_mae": 71.72925567626953
+          }
+        ]
+      },
+      "detect": {
+        "before_ms": {
+          "median": 25.442968999999998,
+          "p95": 55.453592,
+          "max": 133.95066599999998
+        },
+        "after_ms": {
+          "median": 14.74823,
+          "p95": 44.297799999999995,
+          "max": 108.68593899999999
+        },
+        "median_speedup": 1.7251540693357779
+      },
+      "extract": {
+        "before_ms": {
+          "median": 27.889332,
+          "p95": 57.451665999999996,
+          "max": 135.552637
+        },
+        "after_ms": {
+          "median": 17.204200999999998,
+          "p95": 46.923473,
+          "max": 113.165328
+        },
+        "median_speedup": 1.6210768521014143
+      }
+    },
+    {
+      "description": "full-640 -> full-640-angle, identical eligible scenes",
+      "scene_ids": [
+        "baseline-lightning-bolt-background-green",
+        "baseline-lightning-bolt-background-dark",
+        "baseline-lightning-bolt-background-light",
+        "baseline-lightning-bolt-rotation-minus13",
+        "baseline-lightning-bolt-perspective-1",
+        "baseline-lightning-bolt-perspective-2",
+        "baseline-lightning-bolt-sensor-noise",
+        "baseline-counterspell-background-green",
+        "baseline-counterspell-background-dark",
+        "baseline-counterspell-background-light",
+        "baseline-counterspell-rotation-minus13",
+        "baseline-counterspell-perspective-1",
+        "baseline-counterspell-perspective-2",
+        "baseline-counterspell-sensor-noise",
+        "baseline-black-lotus-background-green",
+        "baseline-black-lotus-background-dark",
+        "baseline-black-lotus-background-light",
+        "baseline-black-lotus-rotation-minus13",
+        "baseline-black-lotus-perspective-1",
+        "baseline-black-lotus-perspective-2",
+        "baseline-black-lotus-sensor-noise",
+        "baseline-sol-ring-background-green",
+        "baseline-sol-ring-background-dark",
+        "baseline-sol-ring-background-light",
+        "baseline-sol-ring-rotation-minus13",
+        "baseline-sol-ring-perspective-1",
+        "baseline-sol-ring-perspective-2",
+        "baseline-sol-ring-sensor-noise",
+        "baseline-four-cards",
+        "occlusion-corner-top-left",
+        "occlusion-edge-top",
+        "occlusion-finger-corner",
+        "negative-empty-table",
+        "negative-poker-chip",
+        "negative-finger",
+        "negative-phone",
+        "negative-square-paper",
+        "negative-triangle-paper",
+        "negative-deep-notched-paper",
+        "negative-receipt",
+        "camera-solid-p35-a000",
+        "camera-solid-p35-a180",
+        "camera-solid-p50-a000",
+        "camera-solid-p50-a090",
+        "camera-solid-p50-a180",
+        "camera-solid-p50-a270",
+        "camera-solid-p65-a000",
+        "camera-solid-p65-a090",
+        "camera-solid-p65-a180",
+        "camera-solid-p65-a270",
+        "camera-forest-p35-combined",
+        "camera-table-p0-a000",
+        "camera-table-p20-a000",
+        "camera-table-p20-a090",
+        "camera-table-p20-a180",
+        "camera-table-p20-a270",
+        "camera-table-p35-a000",
+        "camera-table-p35-a090",
+        "camera-table-p35-a180",
+        "camera-table-p35-a270",
+        "camera-table-p50-a000",
+        "camera-table-p50-a090",
+        "camera-table-p50-a180",
+        "camera-table-p50-a270",
+        "camera-table-p65-a000",
+        "camera-table-p65-a090",
+        "camera-table-p65-a180",
+        "camera-table-p65-a270",
+        "playmat-fantasy-forest-empty",
+        "playmat-fantasy-forest-finger-corner"
+      ],
+      "before_accuracy": {
+        "scenes": 70,
+        "passed": 70,
+        "expected_cards": 64,
+        "detected_cards": 64,
+        "failures": []
+      },
+      "after_accuracy": {
+        "scenes": 70,
+        "passed": 70,
+        "expected_cards": 64,
+        "detected_cards": 64,
+        "failures": []
+      },
+      "detect": {
+        "before_ms": {
+          "median": 23.252141,
+          "p95": 41.778155,
+          "max": 83.67645399999999
+        },
+        "after_ms": {
+          "median": 16.00571,
+          "p95": 29.381655,
+          "max": 72.07094
+        },
+        "median_speedup": 1.4527403657819615
+      },
+      "extract": {
+        "before_ms": {
+          "median": 25.528506999999998,
+          "p95": 45.071397,
+          "max": 88.950309
+        },
+        "after_ms": {
+          "median": 18.567717000000002,
+          "p95": 38.209576000000006,
+          "max": 73.823195
+        },
+        "median_speedup": 1.3748866917779927
+      }
+    },
+    {
+      "description": "full-640-roi -> full-640-roi-angle, identical eligible scenes",
+      "scene_ids": [
+        "baseline-lightning-bolt-background-green",
+        "baseline-lightning-bolt-background-dark",
+        "baseline-lightning-bolt-background-light",
+        "baseline-lightning-bolt-rotation-minus13",
+        "baseline-lightning-bolt-perspective-1",
+        "baseline-lightning-bolt-perspective-2",
+        "baseline-lightning-bolt-sensor-noise",
+        "baseline-counterspell-background-green",
+        "baseline-counterspell-background-dark",
+        "baseline-counterspell-background-light",
+        "baseline-counterspell-rotation-minus13",
+        "baseline-counterspell-perspective-1",
+        "baseline-counterspell-perspective-2",
+        "baseline-counterspell-sensor-noise",
+        "baseline-black-lotus-background-green",
+        "baseline-black-lotus-background-dark",
+        "baseline-black-lotus-background-light",
+        "baseline-black-lotus-rotation-minus13",
+        "baseline-black-lotus-perspective-1",
+        "baseline-black-lotus-perspective-2",
+        "baseline-black-lotus-sensor-noise",
+        "baseline-sol-ring-background-green",
+        "baseline-sol-ring-background-dark",
+        "baseline-sol-ring-background-light",
+        "baseline-sol-ring-rotation-minus13",
+        "baseline-sol-ring-perspective-1",
+        "baseline-sol-ring-perspective-2",
+        "baseline-sol-ring-sensor-noise",
+        "occlusion-corner-top-left",
+        "occlusion-edge-top",
+        "occlusion-finger-corner",
+        "negative-empty-table",
+        "negative-poker-chip",
+        "negative-finger",
+        "negative-phone",
+        "negative-square-paper",
+        "negative-triangle-paper",
+        "negative-deep-notched-paper",
+        "negative-receipt",
+        "camera-solid-p35-a000",
+        "camera-solid-p35-a180",
+        "camera-solid-p50-a000",
+        "camera-solid-p50-a090",
+        "camera-solid-p50-a180",
+        "camera-solid-p50-a270",
+        "camera-solid-p65-a000",
+        "camera-solid-p65-a090",
+        "camera-solid-p65-a180",
+        "camera-solid-p65-a270",
+        "camera-forest-p35-combined",
+        "camera-table-p0-a000",
+        "camera-table-p20-a000",
+        "camera-table-p20-a090",
+        "camera-table-p20-a180",
+        "camera-table-p20-a270",
+        "camera-table-p35-a000",
+        "camera-table-p35-a090",
+        "camera-table-p35-a180",
+        "camera-table-p35-a270",
+        "camera-table-p50-a000",
+        "camera-table-p50-a090",
+        "camera-table-p50-a180",
+        "camera-table-p50-a270",
+        "camera-table-p65-a000",
+        "camera-table-p65-a090",
+        "camera-table-p65-a180",
+        "camera-table-p65-a270",
+        "playmat-fantasy-forest-empty",
+        "playmat-fantasy-forest-finger-corner"
+      ],
+      "before_accuracy": {
+        "scenes": 69,
+        "passed": 65,
+        "expected_cards": 60,
+        "detected_cards": 60,
+        "failures": [
+          {
+            "id": "camera-solid-p50-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 197.72926330566406,
+            "max_pixel_mae": 82.04782104492188
+          },
+          {
+            "id": "camera-solid-p50-a270",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 197.72926330566406,
+            "max_pixel_mae": 82.46312713623047
+          },
+          {
+            "id": "camera-solid-p65-a000",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 154.794189453125,
+            "max_pixel_mae": 75.71170806884766
+          },
+          {
+            "id": "camera-solid-p65-a180",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 153.98358154296875,
+            "max_pixel_mae": 75.47029876708984
+          }
+        ]
+      },
+      "after_accuracy": {
+        "scenes": 69,
+        "passed": 67,
+        "expected_cards": 60,
+        "detected_cards": 60,
+        "failures": [
+          {
+            "id": "camera-solid-p65-a000",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 154.794189453125,
+            "max_pixel_mae": 75.71170806884766
+          },
+          {
+            "id": "camera-solid-p65-a180",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 153.98358154296875,
+            "max_pixel_mae": 75.47029876708984
+          }
+        ]
+      },
+      "detect": {
+        "before_ms": {
+          "median": 14.340013,
+          "p95": 17.816116,
+          "max": 53.513873000000004
+        },
+        "after_ms": {
+          "median": 12.449937,
+          "p95": 16.287599,
+          "max": 50.526458000000005
+        },
+        "median_speedup": 1.1518141015492689
+      },
+      "extract": {
+        "before_ms": {
+          "median": 16.830292,
+          "p95": 20.066777000000002,
+          "max": 57.111866
+        },
+        "after_ms": {
+          "median": 15.021509,
+          "p95": 19.135883999999997,
+          "max": 53.209015
+        },
+        "median_speedup": 1.1204128693062727
+      }
+    },
+    {
+      "description": "fast-480 -> fast-480-roi, identical eligible scenes",
+      "scene_ids": [
+        "baseline-lightning-bolt-background-green",
+        "baseline-lightning-bolt-background-dark",
+        "baseline-lightning-bolt-background-light",
+        "baseline-lightning-bolt-rotation-minus42",
+        "baseline-lightning-bolt-rotation-minus13",
+        "baseline-lightning-bolt-rotation-27",
+        "baseline-lightning-bolt-rotation-73",
+        "baseline-lightning-bolt-rotation-155",
+        "baseline-lightning-bolt-perspective-1",
+        "baseline-lightning-bolt-perspective-2",
+        "baseline-lightning-bolt-soft-shadow",
+        "baseline-lightning-bolt-blur",
+        "baseline-lightning-bolt-jpeg",
+        "baseline-lightning-bolt-sensor-noise",
+        "baseline-counterspell-background-green",
+        "baseline-counterspell-background-dark",
+        "baseline-counterspell-background-light",
+        "baseline-counterspell-rotation-minus42",
+        "baseline-counterspell-rotation-minus13",
+        "baseline-counterspell-rotation-27",
+        "baseline-counterspell-rotation-73",
+        "baseline-counterspell-rotation-155",
+        "baseline-counterspell-perspective-1",
+        "baseline-counterspell-perspective-2",
+        "baseline-counterspell-soft-shadow",
+        "baseline-counterspell-blur",
+        "baseline-counterspell-jpeg",
+        "baseline-counterspell-sensor-noise",
+        "baseline-black-lotus-background-green",
+        "baseline-black-lotus-background-dark",
+        "baseline-black-lotus-background-light",
+        "baseline-black-lotus-rotation-minus42",
+        "baseline-black-lotus-rotation-minus13",
+        "baseline-black-lotus-rotation-27",
+        "baseline-black-lotus-rotation-73",
+        "baseline-black-lotus-rotation-155",
+        "baseline-black-lotus-perspective-1",
+        "baseline-black-lotus-perspective-2",
+        "baseline-black-lotus-soft-shadow",
+        "baseline-black-lotus-blur",
+        "baseline-black-lotus-jpeg",
+        "baseline-black-lotus-sensor-noise",
+        "baseline-sol-ring-background-green",
+        "baseline-sol-ring-background-dark",
+        "baseline-sol-ring-background-light",
+        "baseline-sol-ring-rotation-minus42",
+        "baseline-sol-ring-rotation-minus13",
+        "baseline-sol-ring-rotation-27",
+        "baseline-sol-ring-rotation-73",
+        "baseline-sol-ring-rotation-155",
+        "baseline-sol-ring-perspective-1",
+        "baseline-sol-ring-perspective-2",
+        "baseline-sol-ring-soft-shadow",
+        "baseline-sol-ring-blur",
+        "baseline-sol-ring-jpeg",
+        "baseline-sol-ring-sensor-noise",
+        "occlusion-corner-top-left",
+        "occlusion-edge-top",
+        "occlusion-finger-corner",
+        "negative-empty-table",
+        "negative-poker-chip",
+        "negative-finger",
+        "negative-phone",
+        "negative-square-paper",
+        "negative-triangle-paper",
+        "negative-deep-notched-paper",
+        "negative-receipt",
+        "camera-solid-p35-a000",
+        "camera-solid-p35-a180",
+        "camera-solid-p50-a000",
+        "camera-solid-p50-a090",
+        "camera-solid-p50-a180",
+        "camera-solid-p50-a270",
+        "camera-solid-p65-a000",
+        "camera-solid-p65-a090",
+        "camera-solid-p65-a180",
+        "camera-solid-p65-a270",
+        "camera-forest-p35-combined",
+        "camera-table-p0-a000",
+        "camera-table-p20-a000",
+        "camera-table-p20-a090",
+        "camera-table-p20-a180",
+        "camera-table-p20-a270",
+        "camera-table-p35-a000",
+        "camera-table-p35-a090",
+        "camera-table-p35-a180",
+        "camera-table-p35-a270",
+        "camera-table-p50-a000",
+        "camera-table-p50-a090",
+        "camera-table-p50-a180",
+        "camera-table-p50-a270",
+        "camera-table-p65-a000",
+        "camera-table-p65-a090",
+        "camera-table-p65-a180",
+        "camera-table-p65-a270",
+        "playmat-fantasy-forest-empty",
+        "playmat-fantasy-forest-finger-corner",
+        "white-border-plain",
+        "white-border-playmat",
+        "silver-border-plain",
+        "silver-border-playmat",
+        "borderless-plain",
+        "borderless-playmat",
+        "borderless-sleeve",
+        "extended-art-plain",
+        "extended-art-playmat",
+        "extended-art-sleeve"
+      ],
+      "before_accuracy": {
+        "scenes": 107,
+        "passed": 95,
+        "expected_cards": 98,
+        "detected_cards": 90,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 119.41946411132812,
+            "max_pixel_mae": 63.41306686401367
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.387712478637695,
+            "max_pixel_mae": 43.05415725708008
+          },
+          {
+            "id": "borderless-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 21.078716278076172,
+            "max_pixel_mae": 30.377931594848633
+          },
+          {
+            "id": "extended-art-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.731184005737305,
+            "max_pixel_mae": 52.538734436035156
+          }
+        ]
+      },
+      "after_accuracy": {
+        "scenes": 107,
+        "passed": 94,
+        "expected_cards": 98,
+        "detected_cards": 90,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 234.02635192871094,
+            "max_pixel_mae": 78.45580291748047
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.038717746734619,
+            "max_pixel_mae": 29.814786911010742
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "silver-border-playmat",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 11.43726634979248,
+            "max_pixel_mae": 42.91386032104492
+          },
+          {
+            "id": "borderless-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "borderless-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.311599731445312,
+            "max_pixel_mae": 31.43930435180664
+          },
+          {
+            "id": "extended-art-plain",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-playmat",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "extended-art-sleeve",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 22.37466049194336,
+            "max_pixel_mae": 52.22934341430664
+          }
+        ]
+      },
+      "detect": {
+        "before_ms": {
+          "median": 7.611612999999999,
+          "p95": 18.499147,
+          "max": 26.374125000000003
+        },
+        "after_ms": {
+          "median": 7.735666,
+          "p95": 19.614521999999997,
+          "max": 26.235446
+        },
+        "median_speedup": 0.9839635010094798
+      },
+      "extract": {
+        "before_ms": {
+          "median": 10.045155,
+          "p95": 19.126255,
+          "max": 26.434691
+        },
+        "after_ms": {
+          "median": 10.212957999999999,
+          "p95": 21.492136,
+          "max": 30.599416
+        },
+        "median_speedup": 0.9835695985433408
+      }
+    },
+    {
+      "description": "fast-480 -> fast-480-angle, identical eligible scenes",
+      "scene_ids": [
+        "baseline-lightning-bolt-background-green",
+        "baseline-lightning-bolt-background-dark",
+        "baseline-lightning-bolt-background-light",
+        "baseline-lightning-bolt-rotation-minus13",
+        "baseline-lightning-bolt-perspective-1",
+        "baseline-lightning-bolt-perspective-2",
+        "baseline-lightning-bolt-sensor-noise",
+        "baseline-counterspell-background-green",
+        "baseline-counterspell-background-dark",
+        "baseline-counterspell-background-light",
+        "baseline-counterspell-rotation-minus13",
+        "baseline-counterspell-perspective-1",
+        "baseline-counterspell-perspective-2",
+        "baseline-counterspell-sensor-noise",
+        "baseline-black-lotus-background-green",
+        "baseline-black-lotus-background-dark",
+        "baseline-black-lotus-background-light",
+        "baseline-black-lotus-rotation-minus13",
+        "baseline-black-lotus-perspective-1",
+        "baseline-black-lotus-perspective-2",
+        "baseline-black-lotus-sensor-noise",
+        "baseline-sol-ring-background-green",
+        "baseline-sol-ring-background-dark",
+        "baseline-sol-ring-background-light",
+        "baseline-sol-ring-rotation-minus13",
+        "baseline-sol-ring-perspective-1",
+        "baseline-sol-ring-perspective-2",
+        "baseline-sol-ring-sensor-noise",
+        "baseline-four-cards",
+        "occlusion-corner-top-left",
+        "occlusion-edge-top",
+        "occlusion-finger-corner",
+        "negative-empty-table",
+        "negative-poker-chip",
+        "negative-finger",
+        "negative-phone",
+        "negative-square-paper",
+        "negative-triangle-paper",
+        "negative-deep-notched-paper",
+        "negative-receipt",
+        "camera-solid-p35-a000",
+        "camera-solid-p35-a180",
+        "camera-solid-p50-a000",
+        "camera-solid-p50-a090",
+        "camera-solid-p50-a180",
+        "camera-solid-p50-a270",
+        "camera-solid-p65-a000",
+        "camera-solid-p65-a090",
+        "camera-solid-p65-a180",
+        "camera-solid-p65-a270",
+        "camera-forest-p35-combined",
+        "camera-table-p0-a000",
+        "camera-table-p20-a000",
+        "camera-table-p20-a090",
+        "camera-table-p20-a180",
+        "camera-table-p20-a270",
+        "camera-table-p35-a000",
+        "camera-table-p35-a090",
+        "camera-table-p35-a180",
+        "camera-table-p35-a270",
+        "camera-table-p50-a000",
+        "camera-table-p50-a090",
+        "camera-table-p50-a180",
+        "camera-table-p50-a270",
+        "camera-table-p65-a000",
+        "camera-table-p65-a090",
+        "camera-table-p65-a180",
+        "camera-table-p65-a270",
+        "playmat-fantasy-forest-empty",
+        "playmat-fantasy-forest-finger-corner"
+      ],
+      "before_accuracy": {
+        "scenes": 70,
+        "passed": 65,
+        "expected_cards": 64,
+        "detected_cards": 60,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 119.41946411132812,
+            "max_pixel_mae": 63.41306686401367
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      },
+      "after_accuracy": {
+        "scenes": 70,
+        "passed": 64,
+        "expected_cards": 64,
+        "detected_cards": 59,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.910432815551758,
+            "max_pixel_mae": 33.4489860534668
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      },
+      "detect": {
+        "before_ms": {
+          "median": 7.553438,
+          "p95": 10.749398000000001,
+          "max": 26.374125000000003
+        },
+        "after_ms": {
+          "median": 7.460350999999999,
+          "p95": 10.512723999999999,
+          "max": 26.570664
+        },
+        "median_speedup": 1.0124775630529985
+      },
+      "extract": {
+        "before_ms": {
+          "median": 9.809078000000001,
+          "p95": 16.419665,
+          "max": 26.434691
+        },
+        "after_ms": {
+          "median": 9.706742,
+          "p95": 19.40675,
+          "max": 27.448986
+        },
+        "median_speedup": 1.0105427753204939
+      }
+    },
+    {
+      "description": "fast-480-roi -> fast-480-roi-angle, identical eligible scenes",
+      "scene_ids": [
+        "baseline-lightning-bolt-background-green",
+        "baseline-lightning-bolt-background-dark",
+        "baseline-lightning-bolt-background-light",
+        "baseline-lightning-bolt-rotation-minus13",
+        "baseline-lightning-bolt-perspective-1",
+        "baseline-lightning-bolt-perspective-2",
+        "baseline-lightning-bolt-sensor-noise",
+        "baseline-counterspell-background-green",
+        "baseline-counterspell-background-dark",
+        "baseline-counterspell-background-light",
+        "baseline-counterspell-rotation-minus13",
+        "baseline-counterspell-perspective-1",
+        "baseline-counterspell-perspective-2",
+        "baseline-counterspell-sensor-noise",
+        "baseline-black-lotus-background-green",
+        "baseline-black-lotus-background-dark",
+        "baseline-black-lotus-background-light",
+        "baseline-black-lotus-rotation-minus13",
+        "baseline-black-lotus-perspective-1",
+        "baseline-black-lotus-perspective-2",
+        "baseline-black-lotus-sensor-noise",
+        "baseline-sol-ring-background-green",
+        "baseline-sol-ring-background-dark",
+        "baseline-sol-ring-background-light",
+        "baseline-sol-ring-rotation-minus13",
+        "baseline-sol-ring-perspective-1",
+        "baseline-sol-ring-perspective-2",
+        "baseline-sol-ring-sensor-noise",
+        "occlusion-corner-top-left",
+        "occlusion-edge-top",
+        "occlusion-finger-corner",
+        "negative-empty-table",
+        "negative-poker-chip",
+        "negative-finger",
+        "negative-phone",
+        "negative-square-paper",
+        "negative-triangle-paper",
+        "negative-deep-notched-paper",
+        "negative-receipt",
+        "camera-solid-p35-a000",
+        "camera-solid-p35-a180",
+        "camera-solid-p50-a000",
+        "camera-solid-p50-a090",
+        "camera-solid-p50-a180",
+        "camera-solid-p50-a270",
+        "camera-solid-p65-a000",
+        "camera-solid-p65-a090",
+        "camera-solid-p65-a180",
+        "camera-solid-p65-a270",
+        "camera-forest-p35-combined",
+        "camera-table-p0-a000",
+        "camera-table-p20-a000",
+        "camera-table-p20-a090",
+        "camera-table-p20-a180",
+        "camera-table-p20-a270",
+        "camera-table-p35-a000",
+        "camera-table-p35-a090",
+        "camera-table-p35-a180",
+        "camera-table-p35-a270",
+        "camera-table-p50-a000",
+        "camera-table-p50-a090",
+        "camera-table-p50-a180",
+        "camera-table-p50-a270",
+        "camera-table-p65-a000",
+        "camera-table-p65-a090",
+        "camera-table-p65-a180",
+        "camera-table-p65-a270",
+        "playmat-fantasy-forest-empty",
+        "playmat-fantasy-forest-finger-corner"
+      ],
+      "before_accuracy": {
+        "scenes": 69,
+        "passed": 63,
+        "expected_cards": 60,
+        "detected_cards": 56,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 234.02635192871094,
+            "max_pixel_mae": 78.45580291748047
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.038717746734619,
+            "max_pixel_mae": 29.814786911010742
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      },
+      "after_accuracy": {
+        "scenes": 69,
+        "passed": 63,
+        "expected_cards": 60,
+        "detected_cards": 55,
+        "failures": [
+          {
+            "id": "occlusion-corner-top-left",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-edge-top",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "occlusion-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-forest-p35-combined",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          },
+          {
+            "id": "camera-table-p65-a090",
+            "expected_cards": 1,
+            "detected_cards": 1,
+            "max_corner_error": 2.038717746734619,
+            "max_pixel_mae": 29.814786911010742
+          },
+          {
+            "id": "playmat-fantasy-forest-finger-corner",
+            "expected_cards": 1,
+            "detected_cards": 0,
+            "max_corner_error": null,
+            "max_pixel_mae": null
+          }
+        ]
+      },
+      "detect": {
+        "before_ms": {
+          "median": 7.623524,
+          "p95": 9.686973,
+          "max": 26.235446
+        },
+        "after_ms": {
+          "median": 7.644332,
+          "p95": 13.493622,
+          "max": 26.767336
+        },
+        "median_speedup": 0.9972779832168461
+      },
+      "extract": {
+        "before_ms": {
+          "median": 9.919832999999999,
+          "p95": 11.940475000000001,
+          "max": 27.228650000000002
+        },
+        "after_ms": {
+          "median": 9.914397000000001,
+          "p95": 14.205457,
+          "max": 26.955545
+        },
+        "median_speedup": 1.0005482935573387
+      }
+    }
+  ],
+  "baseline_comparison": {
+    "description": "frozen pre-change Full -> optimized Full, same68primary regressions",
+    "scene_ids": [
+      "baseline-lightning-bolt-background-green",
+      "baseline-lightning-bolt-background-dark",
+      "baseline-lightning-bolt-background-light",
+      "baseline-lightning-bolt-rotation-minus42",
+      "baseline-lightning-bolt-rotation-minus13",
+      "baseline-lightning-bolt-rotation-27",
+      "baseline-lightning-bolt-rotation-73",
+      "baseline-lightning-bolt-rotation-155",
+      "baseline-lightning-bolt-perspective-1",
+      "baseline-lightning-bolt-perspective-2",
+      "baseline-lightning-bolt-soft-shadow",
+      "baseline-lightning-bolt-blur",
+      "baseline-lightning-bolt-jpeg",
+      "baseline-lightning-bolt-sensor-noise",
+      "baseline-counterspell-background-green",
+      "baseline-counterspell-background-dark",
+      "baseline-counterspell-background-light",
+      "baseline-counterspell-rotation-minus42",
+      "baseline-counterspell-rotation-minus13",
+      "baseline-counterspell-rotation-27",
+      "baseline-counterspell-rotation-73",
+      "baseline-counterspell-rotation-155",
+      "baseline-counterspell-perspective-1",
+      "baseline-counterspell-perspective-2",
+      "baseline-counterspell-soft-shadow",
+      "baseline-counterspell-blur",
+      "baseline-counterspell-jpeg",
+      "baseline-counterspell-sensor-noise",
+      "baseline-black-lotus-background-green",
+      "baseline-black-lotus-background-dark",
+      "baseline-black-lotus-background-light",
+      "baseline-black-lotus-rotation-minus42",
+      "baseline-black-lotus-rotation-minus13",
+      "baseline-black-lotus-rotation-27",
+      "baseline-black-lotus-rotation-73",
+      "baseline-black-lotus-rotation-155",
+      "baseline-black-lotus-perspective-1",
+      "baseline-black-lotus-perspective-2",
+      "baseline-black-lotus-soft-shadow",
+      "baseline-black-lotus-blur",
+      "baseline-black-lotus-jpeg",
+      "baseline-black-lotus-sensor-noise",
+      "baseline-sol-ring-background-green",
+      "baseline-sol-ring-background-dark",
+      "baseline-sol-ring-background-light",
+      "baseline-sol-ring-rotation-minus42",
+      "baseline-sol-ring-rotation-minus13",
+      "baseline-sol-ring-rotation-27",
+      "baseline-sol-ring-rotation-73",
+      "baseline-sol-ring-rotation-155",
+      "baseline-sol-ring-perspective-1",
+      "baseline-sol-ring-perspective-2",
+      "baseline-sol-ring-soft-shadow",
+      "baseline-sol-ring-blur",
+      "baseline-sol-ring-jpeg",
+      "baseline-sol-ring-sensor-noise",
+      "baseline-four-cards",
+      "occlusion-corner-top-left",
+      "occlusion-edge-top",
+      "occlusion-finger-corner",
+      "negative-empty-table",
+      "negative-poker-chip",
+      "negative-finger",
+      "negative-phone",
+      "negative-square-paper",
+      "negative-triangle-paper",
+      "negative-deep-notched-paper",
+      "negative-receipt"
+    ],
+    "before_accuracy": {
+      "scenes": 68,
+      "passed": 68,
+      "expected_cards": 63,
+      "detected_cards": 63,
+      "failures": []
+    },
+    "after_accuracy": {
+      "scenes": 68,
+      "passed": 68,
+      "expected_cards": 63,
+      "detected_cards": 63,
+      "failures": []
+    },
+    "detect": {
+      "before_ms": {
+        "median": 70.177164,
+        "p95": 83.69666600000001,
+        "max": 88.061468
+      },
+      "after_ms": {
+        "median": 25.637574,
+        "p95": 28.773436999999998,
+        "max": 42.937258
+      },
+      "median_speedup": 2.7372778719234514
+    },
+    "extract": {
+      "before_ms": {
+        "median": 72.60582699999999,
+        "p95": 85.520682,
+        "max": 100.18414100000001
+      },
+      "after_ms": {
+        "median": 28.130113,
+        "p95": 31.728522,
+        "max": 55.169000000000004
+      },
+      "median_speedup": 2.5810712882667763
+    }
+  },
+  "baseline_metadata": {
+    "architecture": "x86_64",
+    "command": [
+      "/tmp/magicextract-baseline/target/release/examples/benchmark",
+      "--manifest",
+      "/home/max/code/github/magicextract/tests/fixtures/scenes/manifest.json",
+      "--variant",
+      "default",
+      "--iterations",
+      "3",
+      "--warmup",
+      "1",
+      "--output",
+      "target/performance/baseline-primary.json"
+    ],
+    "compiled_source_sha256": {
+      "Cargo.lock": "b35c57cb57cda0af3314737508428377406acc04ed8dbf8108ab0fd4a042dd14",
+      "Cargo.toml": "745f2aeec00a87f102de7c055495c028a22d82e5798f2fe725b49f9222c0f4c6",
+      "examples/benchmark.rs": "f66208f848d8c3e128fa286fa6dede6417ae1d71379e956b1d224292fe3d70af",
+      "src/detection.rs": "75b79261140533e1eb4dbd92b38b62ead44615937b52bdf81d8252a5dfe63033",
+      "src/geometry.rs": "f051f69e6a95fc43fa41a0fd32de84e28091eb97cdffcbf1ffdcbda6cbd07d6d",
+      "src/lib.rs": "c7b85172c27064b0210fe1bd528c3e584224de22c89dcb929453e5c864f69daf",
+      "tests/support/mod.rs": "8a1f57c96bb0bfb1737a3147a35210c2cb74736478d388f03ff3faafd00a4598"
+    },
+    "cpu": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+    "executable_sha256": "6d3c8e7e0beb33dd1334ebc4109721cc7fb6842fd0b82d0402efdc40a67c4d3e",
+    "git_revision": "63d2bbaf3626f77254a8d9c53d4b2cf5465d96e5",
+    "git_status": "M docs/usage.md\n M src/detection.rs\n M src/lib.rs\n?? docs/edge-research.md\n?? examples/benchmark.rs\n?? src/fast_edges.rs\n?? tests/domain.rs",
+    "kernel": "Linux phoenix 6.6.114.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Mon Dec  1 20:46:23 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+    "logical_cpus": 16,
+    "os": "linux",
+    "release": true,
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 23.1.1",
+    "rustflags": null,
+    "unix_time_seconds": 1792483348
+  }
+}

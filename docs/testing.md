@@ -153,6 +153,30 @@ downloaded PNGs. They remain challenge data; their presence does not imply the
 default extractor passes them. See the [material preview](../tests/fixtures/materials/preview.jpg)
 and [learning source credits](../tests/fixtures/learning/sources.json).
 
+## Performance comparisons
+
+The release-only benchmark checks fixture integrity, decodes inputs once, then
+times both outline detection and complete RGB extraction. Accuracy scoring and
+I/O stay outside the measured calls. It compares resolution, a fixed screen
+window, allowed angles, and the optional Fast mode:
+
+```sh
+cargo run --release --locked --example benchmark -- --iterations 5 --output target/performance.json
+```
+
+Use `--help` for corpus, scene, variant, and region selection. Reports include
+individual samples, median/p95/maximum durations, counts, unique corner matches,
+crop appearance, and source/binary hashes. Domain-restricted summaries include
+only scenes whose annotated cards all satisfy the declared window and angle;
+out-of-domain results are retained separately. Restrictions are fixed before
+detection and never inferred from annotations.
+
+Stop other CPU workloads while timing. Compare the same scene set, including
+negatives, and check accuracy before treating lower latency as an improvement.
+See the [measured results and reproduction steps](performance.md). The tests
+also compare optimized Canny pixels against the dependency's reference
+implementation, including every possible integer Sobel direction.
+
 ## Example gallery
 
 The [GitHub Pages gallery](https://cmeister2.github.io/magicextract/) shows a

@@ -64,6 +64,53 @@ pub struct ExtractedCard {
     pub detection: CardDetection,
 }
 
+/// A rectangular detection window in original-image pixels.
+///
+/// The region must fit entirely inside each input image. Detection processes
+/// only this window; returned corners and extracted crops still use the original
+/// image's coordinates and pixels.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct DetectionRegion {
+    /// Leftmost included source pixel.
+    pub x: u32,
+    /// Topmost included source pixel.
+    pub y: u32,
+    /// Number of included columns; must be nonzero.
+    pub width: u32,
+    /// Number of included rows; must be nonzero.
+    pub height: u32,
+}
+
+/// The balance between detection robustness and processing time.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum DetectionMode {
+    /// Use all recovery passes for difficult borders and partially hidden cards.
+    #[default]
+    Full,
+    /// Favor frame latency by omitting expensive candidate recovery passes.
+    ///
+    /// Keeps grayscale edges, threshold contours, gradient refinement, and
+    /// observed frame expansion. Skips inferred four-line joins, overlapping
+    /// card recovery, color perimeter recovery, and inner sleeve recovery.
+    /// This mode is intended for clear, isolated card outlines in camera frames;
+    /// difficult borders and occluded cards can be missed or cropped incorrectly.
+    Fast,
+}
+
+/// An allowed angle for the card's short edge in image coordinates.
+///
+/// Zero degrees describes an upright portrait card; 90 degrees describes a
+/// landscape card. The direction averages the two short edges of the canonical
+/// outline, from corners 0 to 1 and 3 to 2. Angles increase clockwise and are
+/// equivalent modulo 180 degrees, so artwork facing up and down are indistinguishable.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct OrientationConstraint {
+    /// Central allowed angle, in degrees; must be finite.
+    pub angle_degrees: f32,
+    /// Maximum angular deviation, in degrees; must be finite and in 0..=90.
+    pub tolerance_degrees: f32,
+}
+
 /// Detection and output settings, validated by [`CardExtractor::new`].
 ///
 /// Start with [`Self::default`] and change the settings relevant to your input.
@@ -80,11 +127,12 @@ pub struct ExtractorConfig {
     /// centered, square-pixel pinhole camera model; its physical-ratio tolerance
     /// is capped at 0.08 to limit implausible projective matches.
     pub aspect_ratio_tolerance: f32,
-    /// Smallest candidate area as a fraction of the image. Default: 0.005.
+    /// Smallest candidate area as a fraction of the detection region. Default: 0.005.
     ///
     /// Must be finite, positive, and smaller than [`Self::max_area_fraction`].
+    /// Without [`Self::detection_region`], the region is the entire input image.
     pub min_area_fraction: f32,
-    /// Largest candidate area as a fraction of the image. Default: 0.95.
+    /// Largest candidate area as a fraction of the detection region. Default: 0.95.
     ///
     /// Must be finite, at most one, and larger than [`Self::min_area_fraction`].
     pub max_area_fraction: f32,
@@ -98,6 +146,16 @@ pub struct ExtractorConfig {
     pub canny_high_threshold: f32,
     /// Maximum number of returned cards; must be nonzero. Default: 64.
     pub max_cards: usize,
+    /// Optional window in source pixels, cropped before grayscale and resizing.
+    ///
+    /// The window must have nonzero dimensions and fit inside each input image.
+    /// Limiting it reduces detection work and excludes outlines outside it.
+    /// Default: `None`, which processes the full image.
+    pub detection_region: Option<DetectionRegion>,
+    /// Recovery strategy used for candidate outlines. Default: [`DetectionMode::Full`].
+    pub detection_mode: DetectionMode,
+    /// Optional allowed short-edge angle. Default: `None`, accepting every angle.
+    pub orientation: Option<OrientationConstraint>,
 }
 
 impl Default for ExtractorConfig {
@@ -112,6 +170,9 @@ impl Default for ExtractorConfig {
             canny_low_threshold: 15.0,
             canny_high_threshold: 45.0,
             max_cards: 64,
+            detection_region: None,
+            detection_mode: DetectionMode::Full,
+            orientation: None,
         }
     }
 }
@@ -163,6 +224,23 @@ impl ExtractorConfig {
         if self.max_cards == 0 {
             return Err(Error::InvalidConfig("maximum card count must be nonzero"));
         }
+        if self
+            .detection_region
+            .is_some_and(|region| region.width == 0 || region.height == 0)
+        {
+            return Err(Error::InvalidConfig(
+                "detection region dimensions must be nonzero",
+            ));
+        }
+        if self.orientation.is_some_and(|orientation| {
+            !orientation.angle_degrees.is_finite()
+                || !orientation.tolerance_degrees.is_finite()
+                || !(0.0..=90.0).contains(&orientation.tolerance_degrees)
+        }) {
+            return Err(Error::InvalidConfig(
+                "orientation angle must be finite and tolerance must be in 0..=90",
+            ));
+        }
         Ok(())
     }
 }
@@ -177,6 +255,8 @@ pub enum Error {
     EmptyImage,
     /// The input has a dimension beyond the detector's signed coordinate range.
     ImageTooLarge,
+    /// The configured detection region extends beyond the input image.
+    InvalidRegion,
 }
 
 impl fmt::Display for Error {
@@ -188,6 +268,9 @@ impl fmt::Display for Error {
             Self::EmptyImage => formatter.write_str("the input image must not be empty"),
             Self::ImageTooLarge => {
                 formatter.write_str("input dimensions must fit in a signed 32-bit coordinate")
+            }
+            Self::InvalidRegion => {
+                formatter.write_str("the detection region must fit entirely inside the input image")
             }
         }
     }
@@ -232,9 +315,28 @@ impl CardExtractor {
     ///
     /// Returns [`Error::EmptyImage`] for a zero dimension or
     /// [`Error::ImageTooLarge`] for a dimension larger than [`i32::MAX`].
+    /// Returns [`Error::InvalidRegion`] if the configured detection window does
+    /// not fit entirely inside this image.
     pub fn detect(&self, image: &image::DynamicImage) -> Result<Vec<CardDetection>, Error> {
         validate_image(image)?;
-        Ok(detection::detect(image, &self.config))
+        let Some(region) = self.config.detection_region else {
+            return Ok(detection::detect(image, &self.config));
+        };
+        if region.x >= image.width()
+            || region.y >= image.height()
+            || region.width > image.width() - region.x
+            || region.height > image.height() - region.y
+        {
+            return Err(Error::InvalidRegion);
+        }
+        if region.x == 0
+            && region.y == 0
+            && region.width == image.width()
+            && region.height == image.height()
+        {
+            return Ok(detection::detect(image, &self.config));
+        }
+        Ok(detection::detect_in_region(image, &self.config, region))
     }
 
     /// Find outlines and rectify each into an RGB crop sampled from the input.
@@ -246,17 +348,25 @@ impl CardExtractor {
     ///
     /// Returns [`Error::EmptyImage`] for a zero dimension or
     /// [`Error::ImageTooLarge`] for a dimension larger than [`i32::MAX`].
+    /// Returns [`Error::InvalidRegion`] if the configured detection window does
+    /// not fit entirely inside this image.
     pub fn extract(&self, image: &image::DynamicImage) -> Result<Vec<ExtractedCard>, Error> {
         let detections = self.detect(image)?;
         if detections.is_empty() {
             return Ok(Vec::new());
         }
-        let source = image.to_rgb8();
+        let converted;
+        let source = if let Some(source) = image.as_rgb8() {
+            source
+        } else {
+            converted = image.to_rgb8();
+            &converted
+        };
         Ok(detections
             .into_iter()
             .filter_map(|detection| {
                 let image = geometry::rectify(
-                    &source,
+                    source,
                     &detection.corners,
                     self.config.output_width,
                     self.config.output_height,
