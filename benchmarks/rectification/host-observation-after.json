@@ -1,0 +1,63 @@
+{
+  "observed_at_utc": "2026-10-20T09:29:46.830993+00:00",
+  "relationship_to_measurement": "Post-benchmark observation only; does not prove concurrent activity during the recorded timing interval. Windows-host scheduling and power state are not observable from this WSL guest.",
+  "loadavg_before": {
+    "one_minute": 5.18,
+    "five_minutes": 5.93,
+    "fifteen_minutes": 3.84,
+    "runnable_and_total_tasks": "1/929"
+  },
+  "loadavg_after": {
+    "one_minute": 4.84,
+    "five_minutes": 5.84,
+    "fifteen_minutes": 3.83,
+    "runnable_and_total_tasks": "1/917"
+  },
+  "logical_cpus": 16,
+  "process_cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "cgroup_files": {
+    "/proc/self/cgroup": "0::/init.scope",
+    "/sys/fs/cgroup/cpu.max": null,
+    "/sys/fs/cgroup/cpu.stat": "usage_usec 68778444000\nuser_usec 56327128000\nsystem_usec 12451316000\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+    "/sys/fs/cgroup/cpuset.cpus.effective": "0-15",
+    "/sys/fs/cgroup/cpu/cpu.cfs_quota_us": null,
+    "/sys/fs/cgroup/cpu/cpu.cfs_period_us": null,
+    "/sys/fs/cgroup/init.scope/cpu.max": "max 100000",
+    "/sys/fs/cgroup/init.scope/cpu.stat": "usage_usec 70777395993\nuser_usec 60280944018\nsystem_usec 10496451975\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+    "/sys/fs/cgroup/init.scope/cpuset.cpus.effective": "0-15",
+    "/sys/fs/cgroup/init.scope/cpu.pressure": "some avg10=0.03 avg60=2.24 avg300=4.55 total=316633505\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=51952034"
+  },
+  "sample_interval_seconds": 2.007468489013263,
+  "active_process_categories": {
+    "agent sessions": {
+      "count": 4,
+      "aggregate_cpu_percent_one_core": 18.93
+    },
+    "editor processes": {
+      "count": 2,
+      "aggregate_cpu_percent_one_core": 8.96
+    },
+    "environment services": {
+      "count": 1,
+      "aggregate_cpu_percent_one_core": 1.0
+    }
+  },
+  "compiler_or_benchmark_process_count_at_end": 0
+}
