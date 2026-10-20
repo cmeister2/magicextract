@@ -42,11 +42,11 @@ before running those optional local tools.
 ## Flow comments
 
 CI also requires [Evenflow](https://github.com/cmeister2/evenflow) in strict mode.
-The action commit and binary version are pinned in the workflow. To reproduce
-the check locally:
+The action commit and binary version are pinned in the
+[workflow](../.github/workflows/ci.yml). Renovate tracks both the action reference
+and the annotated binary release. Install that binary version locally, then run:
 
 ```sh
-cargo install --locked evenflow --version 0.2.2
 evenflow check . --strict
 ```
 

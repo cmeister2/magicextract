@@ -1,4 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>cmeister2/renovate"]
+  "extends": ["github>cmeister2/renovate"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update annotated GitHub Action binary versions",
+      "managerFilePatterns": ["/^\\.github/workflows/[^/]+\\.ya?ml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>github-releases) depName=(?<depName>[^\\s]+)\\s+version:\\s*['\"]?(?<currentValue>[0-9]+\\.[0-9]+\\.[0-9]+)['\"]?"
+      ],
+      "versioningTemplate": "semver"
+    }
+  ]
 }
