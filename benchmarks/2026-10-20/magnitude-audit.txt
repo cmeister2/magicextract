@@ -1,0 +1,1 @@
+1,042,441 gradients; 311538 distinct squared strengths; 0 equal-square float mismatches; 0 magnitude ordering violations

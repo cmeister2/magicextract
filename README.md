@@ -30,5 +30,5 @@ Try the included example:
 cargo run --release --example extract -- table.jpg crops/
 ```
 
-[Usage and limitations](docs/usage.md) · [Testing](docs/testing.md) ·
+[Usage and limitations](docs/usage.md) · [Performance](docs/performance.md) · [Testing](docs/testing.md) ·
 [Releases](docs/releasing.md) · [MIT license](LICENSE)

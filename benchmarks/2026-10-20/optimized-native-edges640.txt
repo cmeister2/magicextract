@@ -1,0 +1,12 @@
+tests/fixtures/scenes/images/baseline-black-lotus-jpeg.jpg
+different_pixels 0
+normal: 10.712 ms
+fast: 1.657 ms
+tests/fixtures/scenes/images/baseline-sol-ring-perspective-1.jpg
+different_pixels 0
+normal: 10.693 ms
+fast: 1.736 ms
+tests/fixtures/scenes/images/occlusion-two-cards-1.jpg
+different_pixels 0
+normal: 11.381 ms
+fast: 1.813 ms

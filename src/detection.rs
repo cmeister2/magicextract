@@ -4,13 +4,28 @@ use image::{DynamicImage, GrayImage, imageops};
 use imageproc::{
     contours::find_contours,
     contrast::{ThresholdType, otsu_level, threshold},
-    edges::canny,
 };
 
-use crate::{CardDetection, ExtractorConfig, Point, TRADING_CARD_ASPECT_RATIO};
+/// Optimized Canny with pixel-level compatibility with the original edge masks.
+#[path = "fast_edges.rs"]
+mod fast_edges;
+
+use fast_edges::canny;
+
+use crate::{
+    CardDetection, DetectionMode, DetectionRegion, ExtractorConfig, Point,
+    TRADING_CARD_ASPECT_RATIO,
+};
 
 /// Douglas–Peucker tolerances, expressed as fractions of a contour's perimeter.
 const SIMPLIFICATION_FRACTIONS: [f32; 6] = [0.008, 0.012, 0.018, 0.025, 0.035, 0.05];
+
+/// Squared focal lengths shared by all bounded camera-model evaluations.
+///
+/// Computing the same exponential grid once avoids 65 `powf` calls per candidate.
+static FOCAL_LENGTH_SQUARED: std::sync::LazyLock<[f64; 65]> = std::sync::LazyLock::new(|| {
+    std::array::from_fn(|step| (0.5 * 4.0_f64.powf(step as f64 / 64.0)).powi(2))
+});
 
 /// Maximum intersection-over-union for two candidates to remain separate.
 const DUPLICATE_IOU: f32 = 0.6;
@@ -76,8 +91,168 @@ impl InferredOutline {
     }
 }
 
-/// Finds card quadrilaterals and expresses their corners in source-image pixels.
+/// Lazily converted and scaled RGB pixels shared by every color recovery pass.
+struct WorkingColour<'a> {
+    /// Original input or the already cropped detection window.
+    source: &'a DynamicImage,
+    /// Detection resolution shared with the grayscale image.
+    dimensions: (u32, u32),
+    /// One conversion/resampling per frame, with zero-copy RGB8 at native size.
+    pixels: std::cell::OnceCell<std::borrow::Cow<'a, image::RgbImage>>,
+}
+
+impl<'a> WorkingColour<'a> {
+    /// Defers all RGB work until a retained candidate requires color recovery.
+    fn new(source: &'a DynamicImage, dimensions: (u32, u32)) -> Self {
+        Self {
+            source,
+            dimensions,
+            pixels: std::cell::OnceCell::new(),
+        }
+    }
+
+    /// Borrows source RGB pixels or computes the shared scaled image once.
+    fn rgb(&self) -> &image::RgbImage {
+        self.pixels.get_or_init(|| {
+            let source = self.source.as_rgb8().map_or_else(
+                || std::borrow::Cow::Owned(self.source.to_rgb8()),
+                std::borrow::Cow::Borrowed,
+            );
+            if source.dimensions() == self.dimensions {
+                source
+            } else {
+                std::borrow::Cow::Owned(imageops::resize(
+                    &*source,
+                    self.dimensions.0,
+                    self.dimensions.1,
+                    imageops::FilterType::Triangle,
+                ))
+            }
+        })
+    }
+}
+
+/// Source-camera geometry in detection-image coordinates.
+#[derive(Clone, Copy)]
+struct CameraGeometry {
+    /// Principal point measured from the cropped detection image's origin.
+    center: [f64; 2],
+    /// Full frame diagonal after scaling to detection pixels.
+    diagonal: f64,
+}
+
+impl CameraGeometry {
+    /// Assumes a principal point at the full input frame's center.
+    fn centered(width: u32, height: u32) -> Self {
+        Self {
+            center: [
+                (f64::from(width) - 1.0) * 0.5,
+                (f64::from(height) - 1.0) * 0.5,
+            ],
+            diagonal: f64::from(width).hypot(f64::from(height)),
+        }
+    }
+}
+
+/// Immutable settings with camera calibration retained when the input is cropped.
+struct DetectionConfig<'a> {
+    /// Validated public settings shared with the caller.
+    settings: &'a ExtractorConfig,
+    /// Full source dimensions and crop, absent for ordinary full-frame detection.
+    region: Option<((u32, u32), DetectionRegion)>,
+    /// Dimensions before detection resizing, used to measure angles in source pixels.
+    source_dimensions: Option<(u32, u32)>,
+}
+
+impl<'a> DetectionConfig<'a> {
+    /// Wraps ordinary full-frame settings without altering their geometry.
+    fn new(settings: &'a ExtractorConfig) -> Self {
+        Self {
+            settings,
+            region: None,
+            source_dimensions: None,
+        }
+    }
+
+    /// Accepts physical proportions and the requested short-edge direction.
+    fn orient(&self, corners: [Point; 4], width: u32, height: u32) -> Option<[Point; 4]> {
+        let camera = self.region.map_or_else(
+            || CameraGeometry::centered(width, height),
+            |((full_width, full_height), region)| {
+                let sx = f64::from(width) / f64::from(region.width);
+                let sy = f64::from(height) / f64::from(region.height);
+                CameraGeometry {
+                    center: [
+                        (f64::from(full_width) * 0.5 - f64::from(region.x)) * sx - 0.5,
+                        (f64::from(full_height) * 0.5 - f64::from(region.y)) * sy - 0.5,
+                    ],
+                    diagonal: (f64::from(full_width) * sx).hypot(f64::from(full_height) * sy),
+                }
+            },
+        );
+        let corners = orient_with_camera(corners, self.aspect_ratio_tolerance, camera)?;
+        self.allows_orientation(&corners, width, height)
+            .then_some(corners)
+    }
+
+    /// Tests the average short-edge direction modulo 180 degrees.
+    fn allows_orientation(&self, corners: &[Point; 4], width: u32, height: u32) -> bool {
+        let Some(constraint) = self.orientation else {
+            return true;
+        };
+        let dx = corners[1].x - corners[0].x + corners[2].x - corners[3].x;
+        let dy = corners[1].y - corners[0].y + corners[2].y - corners[3].y;
+        let (source_width, source_height) = self.source_dimensions.unwrap_or((width, height));
+        let dx = dx * (source_width as f32 / width as f32);
+        let dy = dy * (source_height as f32 / height as f32);
+        let angle = dy.atan2(dx).to_degrees();
+        let difference =
+            (angle - constraint.angle_degrees.rem_euclid(180.0) + 90.0).rem_euclid(180.0) - 90.0;
+        difference.abs() <= constraint.tolerance_degrees
+    }
+}
+
+impl std::ops::Deref for DetectionConfig<'_> {
+    type Target = ExtractorConfig;
+
+    fn deref(&self) -> &Self::Target {
+        self.settings
+    }
+}
+
+/// Finds card quadrilaterals in the full input image.
 pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<CardDetection> {
+    let mut settings = DetectionConfig::new(config);
+    settings.source_dimensions = Some((image.width(), image.height()));
+    detect_working(image, &settings)
+}
+
+/// Crops before preprocessing while preserving the original camera principal point.
+///
+/// The caller validates the nonempty region and its bounds against the input.
+pub(crate) fn detect_in_region(
+    image: &DynamicImage,
+    config: &ExtractorConfig,
+    region: DetectionRegion,
+) -> Vec<CardDetection> {
+    let cropped = image.crop_imm(region.x, region.y, region.width, region.height);
+    let settings = DetectionConfig {
+        settings: config,
+        region: Some(((image.width(), image.height()), region)),
+        source_dimensions: Some((region.width, region.height)),
+    };
+    let mut detections = detect_working(&cropped, &settings);
+    for detection in &mut detections {
+        for point in &mut detection.corners {
+            point.x += region.x as f32;
+            point.y += region.y as f32;
+        }
+    }
+    detections
+}
+
+/// Finds card quadrilaterals and expresses their corners in source-image pixels.
+fn detect_working(image: &DynamicImage, config: &DetectionConfig<'_>) -> Vec<CardDetection> {
     if image.width() < 3 || image.height() < 3 {
         return Vec::new();
     }
@@ -86,6 +261,7 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         return Vec::new();
     }
 
+    let colour = WorkingColour::new(image, gray.dimensions());
     let mut candidates = Vec::new();
     let edges = canny(
         &gray,
@@ -146,12 +322,7 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }) {
             // Polish an unsuppressed outline, then recheck its proportions before retaining it.
             let refined = refine_gradient_corners(candidate.corners, &gray);
-            let Some(corners) = orient_card_corners(
-                refined,
-                config.aspect_ratio_tolerance,
-                gray.width(),
-                gray.height(),
-            ) else {
+            let Some(corners) = config.orient(refined, gray.width(), gray.height()) else {
                 continue;
             };
             candidate.corners = corners;
@@ -168,9 +339,8 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
     // extra cards when their expanded geometry changes overlap relationships.
     for candidate in &mut retained {
         if let Some(expanded) = expand_card_border(candidate.corners, &gray)
-            && let Some(corners) = orient_card_corners(
+            && let Some(corners) = config.orient(
                 refine_gradient_corners(expanded, &gray),
-                config.aspect_ratio_tolerance,
                 gray.width(),
                 gray.height(),
             )
@@ -186,7 +356,9 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
 
-    refine_occluded_outlines(&edges, &gray, config, &mut retained);
+    if config.detection_mode == DetectionMode::Full {
+        refine_occluded_outlines(&edges, &gray, config, &mut retained);
+    }
 
     // Enlarged borders can overlap another retained card; suppress duplicates
     // again using the final geometry before mapping corners into source pixels.
@@ -206,13 +378,16 @@ pub(crate) fn detect(image: &DynamicImage, config: &ExtractorConfig) -> Vec<Card
         }
     }
     let mut retained = distinct;
-    recover_colour_perimeters(image, &gray, &edges, config, &mut retained);
-    recover_guided_colour_perimeters(image, &gray, config, &mut retained);
+    if config.detection_mode == DetectionMode::Full {
+        recover_colour_perimeters(&colour, &gray, &edges, config, &mut retained);
+        recover_guided_colour_perimeters(&colour, &gray, config, &mut retained);
+    }
     // A clear sleeve may surround a separately observed physical card frame.
     // Refine only retained outlines so nested printed panels stay suppressed.
     for candidate in &mut retained {
-        if let Some(corners) = recover_inner_card_border(candidate.corners, &gray, config)
-            .or_else(|| recover_inner_artwork(candidate.corners, &gray, image, config))
+        if config.detection_mode == DetectionMode::Full
+            && let Some(corners) = recover_inner_card_border(candidate.corners, &gray, config)
+                .or_else(|| recover_inner_artwork(candidate.corners, &gray, &colour, config))
         {
             candidate.corners = corners;
             candidate.area = polygon_area(&corners);
@@ -282,7 +457,7 @@ fn working_image(image: &DynamicImage, maximum_dimension: u32) -> GrayImage {
 /// Adds geometrically plausible quadrilaterals from one binary mask.
 fn collect_candidates(
     mask: &GrayImage,
-    config: &ExtractorConfig,
+    config: &DetectionConfig<'_>,
     candidates: &mut Vec<CardDetection>,
 ) {
     let image_area = mask.width() as f32 * mask.height() as f32;
@@ -335,12 +510,7 @@ fn collect_candidates(
                     && area <= maximum_area
                     && area >= hull_area * 0.85
                     && edges_are_supported(&corners, &points)
-                    && let Some(corners) = orient_card_corners(
-                        corners,
-                        config.aspect_ratio_tolerance,
-                        mask.width(),
-                        mask.height(),
-                    )
+                    && let Some(corners) = config.orient(corners, mask.width(), mask.height())
                 {
                     // Keep the first supported approximation for this contour.
                     candidates.push(CardDetection { corners, area });
@@ -349,7 +519,7 @@ fn collect_candidates(
                 }
             }
         }
-        if !found {
+        if !found && config.detection_mode == DetectionMode::Full {
             let mut inferred = Vec::new();
             collect_inferred_candidates(&points, perimeter, mask, config, &[], &mut inferred);
             candidates.extend(inferred.into_iter().map(|proposal| proposal.detection));
@@ -366,7 +536,7 @@ fn collect_inferred_candidates(
     contour: &[Point],
     perimeter: f32,
     mask: &GrayImage,
-    config: &ExtractorConfig,
+    config: &DetectionConfig<'_>,
     occluders: &[CardDetection],
     candidates: &mut Vec<InferredOutline>,
 ) {
@@ -450,12 +620,7 @@ fn collect_inferred_candidates(
                         }
                         indices
                     };
-                    if let Some(corners) = orient_card_corners(
-                        corners,
-                        config.aspect_ratio_tolerance,
-                        mask.width(),
-                        mask.height(),
-                    ) {
+                    if let Some(corners) = config.orient(corners, mask.width(), mask.height()) {
                         candidates.push(InferredOutline {
                             detection: CardDetection { corners, area },
                             occluder_indices,
@@ -1063,6 +1228,7 @@ fn plausible_quadrilateral(corners: &[Point; 4]) -> bool {
     true
 }
 
+#[cfg(test)]
 /// Accepts card proportions and places the physical short side first when observable.
 fn orient_card_corners(
     corners: [Point; 4],
@@ -1070,11 +1236,20 @@ fn orient_card_corners(
     width: u32,
     height: u32,
 ) -> Option<[Point; 4]> {
+    orient_with_camera(corners, tolerance, CameraGeometry::centered(width, height))
+}
+
+/// Orients a candidate using the full source camera even inside a detection window.
+fn orient_with_camera(
+    corners: [Point; 4],
+    tolerance: f32,
+    camera: CameraGeometry,
+) -> Option<[Point; 4]> {
     if !plausible_quadrilateral(&corners) {
         return None;
     }
     let corners = order_corners(corners);
-    let assignments = projective_card_assignments(&corners, tolerance, width, height);
+    let assignments = projective_card_assignments(&corners, tolerance, camera);
     let rotate = match assignments {
         [None, Some(_)] => true,
         [Some(first), Some(second)] => second + 0.02 < first,
@@ -1112,10 +1287,9 @@ fn orient_card_corners(
 fn projective_card_assignments(
     corners: &[Point; 4],
     tolerance: f32,
-    width: u32,
-    height: u32,
+    camera: CameraGeometry,
 ) -> [Option<f64>; 2] {
-    let Some([first, second]) = centered_homography_columns(corners, width, height) else {
+    let Some([first, second]) = centered_homography_columns(corners, camera) else {
         return [None; 2];
     };
     if first[2].abs().max(second[2].abs()) < 0.02 {
@@ -1124,15 +1298,14 @@ fn projective_card_assignments(
     let ratio_tolerance = f64::from(tolerance).min(0.08);
     let expected_ratio = f64::from(TRADING_CARD_ASPECT_RATIO);
     let mut assignments: [Option<f64>; 2] = [None; 2];
-    for step in 0..=64 {
+    for &focal_squared in FOCAL_LENGTH_SQUARED.iter() {
         // Test both physical edge assignments against calibrated columns at this focal length.
-        let focal = 0.5 * 4.0_f64.powf(f64::from(step) / 64.0);
         let first_norm =
-            ((first[0].powi(2) + first[1].powi(2)) / focal.powi(2) + first[2].powi(2)).sqrt();
+            ((first[0].powi(2) + first[1].powi(2)) / focal_squared + first[2].powi(2)).sqrt();
         let second_norm =
-            ((second[0].powi(2) + second[1].powi(2)) / focal.powi(2) + second[2].powi(2)).sqrt();
+            ((second[0].powi(2) + second[1].powi(2)) / focal_squared + second[2].powi(2)).sqrt();
         let dot =
-            (first[0] * second[0] + first[1] * second[1]) / focal.powi(2) + first[2] * second[2];
+            (first[0] * second[0] + first[1] * second[1]) / focal_squared + first[2] * second[2];
         let cosine = dot.abs() / (first_norm * second_norm);
         if cosine > 0.10 {
             continue;
@@ -1152,8 +1325,7 @@ fn projective_card_assignments(
 /// Derives the first two unit-square homography columns in centered image units.
 fn centered_homography_columns(
     corners: &[Point; 4],
-    width: u32,
-    height: u32,
+    camera: CameraGeometry,
 ) -> Option<[[f64; 3]; 2]> {
     let points = corners.map(|point| [f64::from(point.x), f64::from(point.y)]);
     let dx_first = points[1][0] - points[2][0];
@@ -1168,9 +1340,8 @@ fn centered_homography_columns(
     }
     let projective_first = (dx_diagonal * dy_second - dx_second * dy_diagonal) / determinant;
     let projective_second = (dx_first * dy_diagonal - dx_diagonal * dy_first) / determinant;
-    let center_x = (f64::from(width) - 1.0) * 0.5;
-    let center_y = (f64::from(height) - 1.0) * 0.5;
-    let diagonal = f64::from(width).hypot(f64::from(height));
+    let [center_x, center_y] = camera.center;
+    let diagonal = camera.diagonal;
     Some([
         [
             (points[1][0] - points[0][0] + projective_first * (points[1][0] - center_x)) / diagonal,
@@ -1332,8 +1503,8 @@ fn colour_distance_squared(left: [f32; 3], right: [f32; 3]) -> f32 {
 fn recover_inner_artwork(
     corners: [Point; 4],
     gray: &GrayImage,
-    source: &DynamicImage,
-    config: &ExtractorConfig,
+    source: &WorkingColour<'_>,
+    config: &DetectionConfig<'_>,
 ) -> Option<[Point; 4]> {
     let lengths = edge_lengths(&corners);
     let short_side = lengths.into_iter().fold(f32::INFINITY, f32::min);
@@ -1372,17 +1543,7 @@ fn recover_inner_artwork(
             return None;
         }
     }
-    let colour_image = source.to_rgb8();
-    let colour_image = if colour_image.dimensions() == gray.dimensions() {
-        colour_image
-    } else {
-        imageops::resize(
-            &colour_image,
-            gray.width(),
-            gray.height(),
-            imageops::FilterType::Triangle,
-        )
-    };
+    let colour_image = source.rgb();
     let mut lines = Vec::with_capacity(4);
     for index in 0..4 {
         let start = corners[index];
@@ -1393,7 +1554,7 @@ fn recover_inner_artwork(
         };
         let at = |fraction: f32, offset: f32| {
             sample_colour(
-                &colour_image,
+                colour_image,
                 start.x + (end.x - start.x) * fraction + normal.x * offset,
                 start.y + (end.y - start.y) * fraction + normal.y * offset,
             )
@@ -1520,12 +1681,7 @@ fn recover_inner_artwork(
         }
         refined[index] = point;
     }
-    let refined = orient_card_corners(
-        refined,
-        config.aspect_ratio_tolerance,
-        gray.width(),
-        gray.height(),
-    )?;
+    let refined = config.orient(refined, gray.width(), gray.height())?;
     let area = polygon_area(&refined);
     if area < polygon_area(&corners) * 0.60
         || area >= polygon_area(&corners) * 0.95
@@ -1558,7 +1714,7 @@ fn recover_inner_artwork(
 fn recover_inner_card_border(
     corners: [Point; 4],
     image: &GrayImage,
-    config: &ExtractorConfig,
+    config: &DetectionConfig<'_>,
 ) -> Option<[Point; 4]> {
     let short_side = edge_lengths(&corners)
         .into_iter()
@@ -1701,12 +1857,7 @@ fn recover_inner_card_border(
         }
         refined[index] = point;
     }
-    let refined = orient_card_corners(
-        refined,
-        config.aspect_ratio_tolerance,
-        image.width(),
-        image.height(),
-    )?;
+    let refined = config.orient(refined, image.width(), image.height())?;
     let area = polygon_area(&refined);
     if area < polygon_area(&corners) * 0.60
         || area >= polygon_area(&corners) * 0.95
@@ -1893,7 +2044,7 @@ mod tests {
         });
         let detections = detect(
             &DynamicImage::ImageLuma8(image),
-            &ExtractorConfig::default(),
+            &DetectionConfig::new(&ExtractorConfig::default()),
         );
         assert!(
             detections.is_empty(),
@@ -1920,7 +2071,7 @@ mod tests {
         });
         let detections = detect(
             &DynamicImage::ImageLuma8(image),
-            &ExtractorConfig::default(),
+            &DetectionConfig::new(&ExtractorConfig::default()),
         );
         assert!(
             detections.is_empty(),
@@ -1970,7 +2121,7 @@ mod tests {
         });
         let detections = detect(
             &DynamicImage::ImageLuma8(image),
-            &ExtractorConfig::default(),
+            &DetectionConfig::new(&ExtractorConfig::default()),
         );
         assert_eq!(detections.len(), 1);
         assert!(detections[0].area > 55_000.0);
@@ -2025,7 +2176,7 @@ mod tests {
             });
             let detections = detect(
                 &DynamicImage::ImageLuma8(image),
-                &ExtractorConfig::default(),
+                &DetectionConfig::new(&ExtractorConfig::default()),
             );
             assert_eq!(detections.len(), 1, "circular={circular}: {detections:?}");
             let (minimum, maximum) = bounds(&detections[0].corners);
@@ -2060,7 +2211,7 @@ mod tests {
         }
         let detections = detect(
             &DynamicImage::ImageLuma8(image),
-            &ExtractorConfig::default(),
+            &DetectionConfig::new(&ExtractorConfig::default()),
         );
         assert_eq!(detections.len(), 1, "{detections:?}");
         for corner in corners {
@@ -2178,9 +2329,12 @@ mod sleeve_tests {
     /// Independent observed frame lines recover unequal sleeve margins.
     fn selects_card_frame_inside_reflective_rim() {
         let image = sleeve_control(true, false);
-        let refined =
-            recover_inner_card_border(sleeve_corners(), &image, &ExtractorConfig::default())
-                .expect("four physical frame edges");
+        let refined = recover_inner_card_border(
+            sleeve_corners(),
+            &image,
+            &DetectionConfig::new(&ExtractorConfig::default()),
+        )
+        .expect("four physical frame edges");
         let expected = [
             Point { x: 49.5, y: 46.5 },
             Point { x: 230.5, y: 46.5 },
@@ -2200,7 +2354,7 @@ mod sleeve_tests {
                 recover_inner_card_border(
                     sleeve_corners(),
                     &sleeve_control(card, missing_frame),
-                    &ExtractorConfig::default()
+                    &DetectionConfig::new(&ExtractorConfig::default())
                 )
                 .is_none()
             );
@@ -2217,7 +2371,14 @@ mod sleeve_tests {
             Point { x: 230.5, y: 299.5 },
             Point { x: 49.5, y: 299.5 },
         ];
-        assert!(recover_inner_card_border(physical, &image, &ExtractorConfig::default()).is_none());
+        assert!(
+            recover_inner_card_border(
+                physical,
+                &image,
+                &DetectionConfig::new(&ExtractorConfig::default())
+            )
+            .is_none()
+        );
         let opaque = GrayImage::from_fn(280, 340, |x, y| {
             let in_card = (40..=240).contains(&x) && (30..=310).contains(&y);
             let in_printed_panel = (50..=230).contains(&x) && (47..=299).contains(&y);
@@ -2230,8 +2391,12 @@ mod sleeve_tests {
             }])
         });
         assert!(
-            recover_inner_card_border(sleeve_corners(), &opaque, &ExtractorConfig::default())
-                .is_none()
+            recover_inner_card_border(
+                sleeve_corners(),
+                &opaque,
+                &DetectionConfig::new(&ExtractorConfig::default())
+            )
+            .is_none()
         );
     }
 }
@@ -2306,9 +2471,12 @@ mod sleeve_colour_tests {
         for frame in [14, 150, 235] {
             for background in [100, 180] {
                 let gray = scene(frame, background, true, false);
-                let refined =
-                    recover_inner_card_border(outer(), &gray, &ExtractorConfig::default())
-                        .expect("four colored physical edges");
+                let refined = recover_inner_card_border(
+                    outer(),
+                    &gray,
+                    &DetectionConfig::new(&ExtractorConfig::default()),
+                )
+                .expect("four colored physical edges");
                 for (actual, expected) in refined.into_iter().zip(physical()) {
                     assert!(
                         squared_distance(actual, expected).sqrt() < 1.0,
@@ -2345,8 +2513,12 @@ mod sleeve_colour_tests {
     fn ignores_inner_sleeve_seam_and_stronger_printed_panels() {
         for frame in [14, 150, 235] {
             let gray = scene(frame, 100, true, true);
-            let refined = recover_inner_card_border(outer(), &gray, &ExtractorConfig::default())
-                .expect("physical frame after thin seam");
+            let refined = recover_inner_card_border(
+                outer(),
+                &gray,
+                &DetectionConfig::new(&ExtractorConfig::default()),
+            )
+            .expect("physical frame after thin seam");
             for (actual, expected) in refined.into_iter().zip(physical()) {
                 assert!(
                     squared_distance(actual, expected).sqrt() < 1.0,
@@ -2363,8 +2535,12 @@ mod sleeve_colour_tests {
             for background in [100, 180] {
                 let gray = scene(frame, background, false, false);
                 assert!(
-                    recover_inner_card_border(physical(), &gray, &ExtractorConfig::default())
-                        .is_none()
+                    recover_inner_card_border(
+                        physical(),
+                        &gray,
+                        &DetectionConfig::new(&ExtractorConfig::default())
+                    )
+                    .is_none()
                 );
                 let cards = CardExtractor::default()
                     .detect(&DynamicImage::ImageLuma8(gray))
@@ -2399,8 +2575,12 @@ mod sleeve_colour_tests {
                     }
                 }
                 assert!(
-                    recover_inner_card_border(outer(), &image, &ExtractorConfig::default())
-                        .is_none(),
+                    recover_inner_card_border(
+                        outer(),
+                        &image,
+                        &DetectionConfig::new(&ExtractorConfig::default())
+                    )
+                    .is_none(),
                     "frame {frame}, missing {missing}"
                 );
             }
@@ -2411,7 +2591,12 @@ mod sleeve_colour_tests {
                 }
             }
             assert!(
-                recover_inner_card_border(outer(), &empty, &ExtractorConfig::default()).is_none(),
+                recover_inner_card_border(
+                    outer(),
+                    &empty,
+                    &DetectionConfig::new(&ExtractorConfig::default())
+                )
+                .is_none(),
                 "empty colored rim {frame}"
             );
         }
@@ -2594,7 +2779,7 @@ mod frame_colour_tests {
 fn refine_occluded_outlines(
     mask: &GrayImage,
     image: &GrayImage,
-    config: &ExtractorConfig,
+    config: &DetectionConfig<'_>,
     candidates: &mut [CardDetection],
 ) {
     if !outlines_may_overlap(candidates) {
@@ -2661,9 +2846,8 @@ fn refine_occluded_outlines(
     recovered.sort_by(|a, b| b.detection.area.total_cmp(&a.detection.area));
     for mut proposal in recovered {
         let recovered = &mut proposal.detection;
-        let Some(corners) = orient_card_corners(
+        let Some(corners) = config.orient(
             refine_gradient_corners(recovered.corners, image),
-            config.aspect_ratio_tolerance,
             image.width(),
             image.height(),
         ) else {
@@ -3237,8 +3421,13 @@ mod artwork_sleeve_tests {
         let rgb = scene(true, true, false);
         let image = DynamicImage::ImageRgb8(rgb.clone());
         let gray = image.to_luma8();
-        let recovered = recover_inner_artwork(outer(), &gray, &image, &ExtractorConfig::default())
-            .expect("four physical color boundaries");
+        let recovered = recover_inner_artwork(
+            outer(),
+            &gray,
+            &WorkingColour::new(&image, gray.dimensions()),
+            &DetectionConfig::new(&ExtractorConfig::default()),
+        )
+        .expect("four physical color boundaries");
         for (actual, expected) in recovered.into_iter().zip(physical()) {
             assert!(
                 squared_distance(actual, expected).sqrt() < 1.0,
@@ -3284,8 +3473,8 @@ mod artwork_sleeve_tests {
                 recover_inner_artwork(
                     outer(),
                     &image.to_luma8(),
-                    &image,
-                    &ExtractorConfig::default()
+                    &WorkingColour::new(&image, (image.width(), image.height())),
+                    &DetectionConfig::new(&ExtractorConfig::default())
                 )
                 .is_none()
             );
@@ -3315,8 +3504,8 @@ mod artwork_sleeve_tests {
                 recover_inner_artwork(
                     outer(),
                     &image.to_luma8(),
-                    &image,
-                    &ExtractorConfig::default()
+                    &WorkingColour::new(&image, (image.width(), image.height())),
+                    &DetectionConfig::new(&ExtractorConfig::default())
                 )
                 .is_none(),
                 "side {side}"
@@ -3332,8 +3521,8 @@ mod artwork_sleeve_tests {
             recover_inner_artwork(
                 physical(),
                 &image.to_luma8(),
-                &image,
-                &ExtractorConfig::default()
+                &WorkingColour::new(&image, (image.width(), image.height())),
+                &DetectionConfig::new(&ExtractorConfig::default())
             )
             .is_none()
         );
@@ -3522,26 +3711,16 @@ fn colour_perimeter_follows_panel(original: &CardDetection, recovered: &CardDete
 /// Color-channel edges are combined only for this replacement pass: they never
 /// introduce another detection or relax the normal contour geometry checks.
 fn recover_colour_perimeters(
-    image: &DynamicImage,
+    image: &WorkingColour<'_>,
     gray: &GrayImage,
     gray_edges: &GrayImage,
-    config: &ExtractorConfig,
+    config: &DetectionConfig<'_>,
     retained: &mut [CardDetection],
 ) {
     if retained.is_empty() {
         return;
     }
-    let rgb = image.to_rgb8();
-    let rgb = if rgb.dimensions() == gray.dimensions() {
-        rgb
-    } else {
-        imageops::resize(
-            &rgb,
-            gray.width(),
-            gray.height(),
-            imageops::FilterType::Triangle,
-        )
-    };
+    let rgb = image.rgb();
     let mut edges = gray_edges.clone();
     for channel in 0..3 {
         let plane = GrayImage::from_fn(rgb.width(), rgb.height(), |x, y| {
@@ -3572,7 +3751,7 @@ fn recover_colour_perimeters(
                 if let Some(fitted) = colour_outline_line(
                     candidate.corners[i],
                     candidate.corners[(i + 1) % 4],
-                    &rgb,
+                    rgb,
                     3.0,
                     30,
                 ) {
@@ -3597,17 +3776,12 @@ fn recover_colour_perimeters(
             if !complete
                 || (0..4).any(|i| {
                     squared_distance(corners[i], candidate.corners[i]) > 16.0
-                        || !colour_outline_support(corners[i], corners[(i + 1) % 4], &rgb, 30)
+                        || !colour_outline_support(corners[i], corners[(i + 1) % 4], rgb, 30)
                 })
             {
                 continue;
             }
-            let Some(corners) = orient_card_corners(
-                corners,
-                config.aspect_ratio_tolerance,
-                gray.width(),
-                gray.height(),
-            ) else {
+            let Some(corners) = config.orient(corners, gray.width(), gray.height()) else {
                 continue;
             };
             let recovered = CardDetection {
@@ -3827,25 +4001,15 @@ fn colour_outline_lines(
 
 /// Replaces a clipped outline only after observing its four physical color edges.
 fn recover_guided_colour_perimeters(
-    image: &DynamicImage,
+    image: &WorkingColour<'_>,
     gray: &GrayImage,
-    config: &ExtractorConfig,
+    config: &DetectionConfig<'_>,
     retained: &mut [CardDetection],
 ) {
     if retained.is_empty() {
         return;
     }
-    let rgb = image.to_rgb8();
-    let rgb = if rgb.dimensions() == gray.dimensions() {
-        rgb
-    } else {
-        imageops::resize(
-            &rgb,
-            gray.width(),
-            gray.height(),
-            imageops::FilterType::Triangle,
-        )
-    };
+    let rgb = image.rgb();
     let originals = retained.to_vec();
     for (index, original) in originals.iter().enumerate() {
         let lengths = edge_lengths(&original.corners);
@@ -3883,20 +4047,14 @@ fn recover_guided_colour_perimeters(
                             || p.x > gray.width() as f32 - 3.0
                             || p.y > gray.height() as f32 - 3.0
                     })
-                    || orient_card_corners(
-                        seed,
-                        config.aspect_ratio_tolerance,
-                        gray.width(),
-                        gray.height(),
-                    )
-                    .is_none()
+                    || config.orient(seed, gray.width(), gray.height()).is_none()
                 {
                     continue;
                 }
                 // The new side must be observed before fitting the three shared sides.
                 let mut choices: [Vec<(Point, Point)>; 4] = std::array::from_fn(|_| Vec::new());
                 choices[moving] =
-                    colour_outline_lines(seed[moving], seed[(moving + 1) % 4], &rgb, 1.5, false);
+                    colour_outline_lines(seed[moving], seed[(moving + 1) % 4], rgb, 1.5, false);
                 if choices[moving].is_empty() {
                     continue;
                 }
@@ -3907,7 +4065,7 @@ fn recover_guided_colour_perimeters(
                     *lines = colour_outline_lines(
                         seed[side],
                         seed[(side + 1) % 4],
-                        &rgb,
+                        rgb,
                         (shortest * 0.17).min(18.0),
                         true,
                     );
@@ -3923,8 +4081,7 @@ fn recover_guided_colour_perimeters(
                         for &third in &choices[2] {
                             for &fourth in &choices[3] {
                                 let lines = [first, second, third, fourth];
-                                let Some(corners) =
-                                    polish_colour_outline_lines(lines, &rgb, moving)
+                                let Some(corners) = polish_colour_outline_lines(lines, rgb, moving)
                                 else {
                                     continue;
                                 };
@@ -3938,12 +4095,9 @@ fn recover_guided_colour_perimeters(
                                 }) {
                                     continue;
                                 }
-                                let Some(corners) = orient_card_corners(
-                                    corners,
-                                    config.aspect_ratio_tolerance,
-                                    gray.width(),
-                                    gray.height(),
-                                ) else {
+                                let Some(corners) =
+                                    config.orient(corners, gray.width(), gray.height())
+                                else {
                                     continue;
                                 };
                                 let area = polygon_area(&corners);
@@ -4018,7 +4172,12 @@ mod guided_colour_tests {
         let image = DynamicImage::ImageRgb8(image);
         let gray = image.to_luma8();
         let mut retained = vec![printed_panel()];
-        recover_guided_colour_perimeters(&image, &gray, &ExtractorConfig::default(), &mut retained);
+        recover_guided_colour_perimeters(
+            &WorkingColour::new(&image, gray.dimensions()),
+            &gray,
+            &DetectionConfig::new(&ExtractorConfig::default()),
+            &mut retained,
+        );
         retained
     }
 
@@ -4179,5 +4338,38 @@ mod faint_artwork_sleeve_tests {
                 );
             }
         }
+    }
+}
+
+#[cfg(test)]
+/// Angle limits are applied in source pixels, including rounded resize dimensions.
+mod orientation_scale_tests {
+    use super::*;
+    use crate::OrientationConstraint;
+
+    #[test]
+    /// Anisotropic resize rounding must not rotate a candidate's allowed source angle.
+    fn orientation_uses_source_pixel_scale() {
+        let settings = ExtractorConfig {
+            orientation: Some(OrientationConstraint {
+                angle_degrees: 45.0,
+                tolerance_degrees: 0.01,
+            }),
+            ..ExtractorConfig::default()
+        };
+        let mut config = DetectionConfig::new(&settings);
+        config.source_dimensions = Some((101, 59));
+        let source = [
+            Point { x: 30.0, y: 10.0 },
+            Point { x: 40.0, y: 20.0 },
+            Point { x: 26.0, y: 34.0 },
+            Point { x: 16.0, y: 24.0 },
+        ];
+        let resized = source.map(|p| Point {
+            x: (p.x + 0.5) * 32.0 / 101.0 - 0.5,
+            y: (p.y + 0.5) * 19.0 / 59.0 - 0.5,
+        });
+        assert!(config.allows_orientation(&resized, 32, 19));
+        assert!(!DetectionConfig::new(&settings).allows_orientation(&resized, 32, 19));
     }
 }
