@@ -28,11 +28,13 @@ pub(super) fn canny(image: &GrayImage, low: f32, high: f32) -> GrayImage {
     let mut magnitude = vec![0_u32; pixels.len()];
 
     for y in 0..row_count {
+        // Compute both Sobel gradients from shared rows, replicating image edges.
         let top = &pixels[y.saturating_sub(1) * row_length..][..row_length];
         let middle = &pixels[y * row_length..][..row_length];
         let bottom = &pixels[(y + 1).min(row_count - 1) * row_length..][..row_length];
         let offset = y * row_length;
         for x in [0, row_length - 1] {
+            // Clamp the boundary neighbors before evaluating the scalar kernels.
             let left = x.saturating_sub(1);
             let right = (x + 1).min(row_length - 1);
             let dx = i32::from(top[right]) - i32::from(top[left])
@@ -62,6 +64,7 @@ pub(super) fn canny(image: &GrayImage, low: f32, high: f32) -> GrayImage {
         let vertical_row = &mut vertical[offset + 1..offset + row_length - 1];
         let magnitude_row = &mut magnitude[offset + 1..offset + row_length - 1];
         for x in 0..count {
+            // Store signed gradients and squared strength in one vectorizable pass.
             let dx = i32::from(top_right[x]) - i32::from(top_left[x])
                 + 2 * (i32::from(middle_right[x]) - i32::from(middle_left[x]))
                 + i32::from(bottom_right[x])
@@ -83,6 +86,7 @@ pub(super) fn canny(image: &GrayImage, low: f32, high: f32) -> GrayImage {
     let mut output = vec![0_u8; pixels.len()];
     for y in 1..row_count - 1 {
         for x in 1..row_length - 1 {
+            // Reject weak or nonmaximal gradients before computing exact strength.
             let index = y * row_length + x;
             let value = magnitude[index];
             if value == 0 || value < minimum_squared {
@@ -162,6 +166,7 @@ fn follow_edges(output: &mut [u8], width: usize, height: usize) {
     let mut pending = Vec::new();
     for y in 1..height - 1 {
         for x in 1..width - 1 {
+            // Grow each unvisited strong edge through connected weak candidates.
             let index = y * width + x;
             if output[index] != 2 {
                 continue;
@@ -207,6 +212,7 @@ fn gaussian_blur(image: &GrayImage) -> GrayImage {
         .chunks_exact(row_length)
         .zip(horizontal.chunks_exact_mut(row_length))
     {
+        // Replicated padding keeps horizontal convolution free of boundary branches.
         padded[..3].fill(input[0]);
         padded[3..row_length + 3].copy_from_slice(input);
         padded[row_length + 3..].fill(input[row_length - 1]);
@@ -251,6 +257,7 @@ fn gaussian_kernel() -> &'static [f32; 7] {
         let sigma = std::hint::black_box(1.4_f32);
         let mut kernel = [0.0; 7];
         for index in 0..=3 {
+            // Mirror each Gaussian weight around the center before normalization.
             let value = (sigma * (2.0 * std::f32::consts::PI).sqrt()).recip()
                 * (-(index as f32).powi(2) / (2.0 * sigma.powi(2))).exp();
             kernel[3 + index] = value;

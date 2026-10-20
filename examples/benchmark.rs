@@ -174,6 +174,7 @@ fn run() -> Result<()> {
     }
     let mut results = Vec::new();
     for variant in &variants {
+        // Measure every selected scene before moving to the next configuration.
         eprintln!("{}: {} decoded scenes", variant.name, inputs.len());
         let mut measurements = Vec::new();
         for (index, input) in inputs.iter().enumerate() {
@@ -185,6 +186,7 @@ fn run() -> Result<()> {
         .iter()
         .position(|variant| variant.name == "default");
     let reports: Vec<_> = variants.iter().zip(&results).map(|(variant, measurements)| {
+        // Compare this variant with the default on exactly the same eligible scenes.
         let eligible: Vec<_> = measurements.iter().filter(|m| m.eligible).collect();
         let baseline_paired: Vec<_> = baseline.map_or_else(Vec::new, |index| {
             results[index].iter().filter(|m| measurements[m.input].eligible).collect()
@@ -264,6 +266,7 @@ fn options() -> Result<Option<Options>> {
                 arguments.next().ok_or("--manifest needs a path")?,
             )),
             "--challenge-manifest" => {
+                // Include this corpus and enable its challenge tier without broadening others.
                 let path = PathBuf::from(
                     arguments
                         .next()
@@ -306,6 +309,7 @@ fn options() -> Result<Option<Options>> {
                     .parse()?
             }
             "--roi" => {
+                // Parse a normalized rectangle and require exactly four coordinates.
                 let value = arguments
                     .next()
                     .ok_or("--roi needs normalized x,y,width,height")?;
@@ -318,6 +322,7 @@ fn options() -> Result<Option<Options>> {
                     .map_err(|_| "--roi requires four comma-separated values")?;
             }
             "--region" => {
+                // Parse four pixel coordinates for the explicit detection window.
                 let value = arguments
                     .next()
                     .ok_or("--region needs pixel x,y,width,height")?;
@@ -433,11 +438,13 @@ fn variants() -> Vec<Variant> {
 fn load_inputs(options: &Options) -> Result<Vec<Input>> {
     let mut inputs = Vec::new();
     for path in &options.manifests {
+        // Validate each corpus and cache its decoded references before any timing.
         scene_evaluation::validate_fixture_integrity(path)?;
         let manifest: Manifest = serde_json::from_slice(&fs::read(path)?)?;
         let root = path.parent().unwrap_or_else(|| Path::new("."));
         let mut decoded = BTreeMap::new();
         for scene in manifest.scenes {
+            // Apply scene selection, then preload the frame and any crop references.
             if (!options.challenges
                 && !options.challenge_manifests.contains(path)
                 && scene.tier != "regression")
@@ -538,6 +545,7 @@ fn measure(
     let mut detect = Vec::with_capacity(options.iterations);
     let mut extract = Vec::with_capacity(options.iterations);
     for _ in 0..options.iterations {
+        // Time detection and complete extraction separately on the same decoded input.
         let started = Instant::now();
         let result = extractor.detect(black_box(&input.image))?;
         detect.push(started.elapsed().as_secs_f64() * 1000.0);
@@ -554,6 +562,7 @@ fn measure(
         .cards
         .iter()
         .map(|card| {
+            // Classify the annotated outline against the fixed region and angle restrictions.
             let in_roi = roi.is_none_or(|roi| {
                 card.corners.iter().all(|p| {
                     p[0] >= roi.x as f32
@@ -627,8 +636,10 @@ fn score(input: &Input, cards: &[ExtractedCard]) -> Value {
                     .all(|p| p.x.is_finite() && p.y.is_finite())
         });
     for (i, expected) in scene.cards.iter().enumerate() {
+        // Score the assigned detection against both its physical outline and reference crop.
         let j = assignment[i];
         let Some(actual) = cards.get(j) else {
+            // Record missing detections as failures without attempting geometry or pixel scoring.
             unmatched.push(i);
             passed = false;
             continue;
@@ -676,6 +687,7 @@ fn corner_error(detected: &CardDetection, expected: &[[f32; 2]; 4]) -> f32 {
 /// Measures canonical interior RGB MAE, permitting the same 180° ambiguity as tests.
 fn interior_error(actual: &RgbImage, reference: &RgbImage) -> (f32, bool) {
     let error = |rotated| {
+        // Average interior RGB differences for one allowed artwork orientation.
         let mut total = 0_u64;
         for y in 20..330 {
             for x in 20..230 {
@@ -708,16 +720,19 @@ fn minimum_assignment(costs: &[Vec<f64>]) -> Vec<usize> {
     let mut row_at_column = vec![0; size + 1];
     let mut predecessor = vec![0; size + 1];
     for row in 1..=size {
+        // Extend the assignment by finding an augmenting path for the next row.
         row_at_column[0] = row;
         let mut column = 0;
         let mut minimum = vec![f64::INFINITY; size + 1];
         let mut visited = vec![false; size + 1];
         loop {
+            // Advance through the cheapest reduced-cost column until an unmatched one is found.
             visited[column] = true;
             let current_row = row_at_column[column];
             let mut delta = f64::INFINITY;
             let mut next_column = 0;
             for candidate in 1..=size {
+                // Relax unvisited columns and retain the cheapest next step.
                 if visited[candidate] {
                     continue;
                 }
@@ -747,6 +762,7 @@ fn minimum_assignment(costs: &[Vec<f64>]) -> Vec<usize> {
             }
         }
         loop {
+            // Follow predecessors backward to install the new augmenting path.
             let previous = predecessor[column];
             row_at_column[column] = row_at_column[previous];
             column = previous;

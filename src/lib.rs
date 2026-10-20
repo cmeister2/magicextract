@@ -500,6 +500,7 @@ fn validate_quadrilateral(corners: &[Point; 4], width: u32, height: u32) -> Resu
         return Err(Error::InvalidQuadrilateral);
     }
     for index in 0..4 {
+        // Require a positive turn at every vertex to enforce clockwise convexity.
         let first = corners[index];
         let second = corners[(index + 1) % 4];
         let third = corners[(index + 2) % 4];

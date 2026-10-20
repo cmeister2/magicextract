@@ -46,6 +46,7 @@ fn verify(mut paths: Vec<PathBuf>) {
     let mut masks = 0_u64;
     let mut pixels = 0_u64;
     for path in &paths {
+        // Compare grayscale and individual color channels at the same bounded resolution.
         let rgb = bounded_rgb(path);
         let gray = image::DynamicImage::ImageRgb8(rgb.clone()).to_luma8();
         let planes = std::iter::once(gray).chain((0..3).map(|channel| {
@@ -55,6 +56,7 @@ fn verify(mut paths: Vec<PathBuf>) {
         }));
         for (channel, plane) in planes.enumerate() {
             for (low, high) in [(15.0, 45.0), (7.5, 22.5)] {
+                // Require exact mask equality before counting the verified pixels.
                 let reference = imageproc::edges::canny(&plane, low, high);
                 let actual = fast_edges::canny(&plane, low, high);
                 assert_eq!(
@@ -86,6 +88,7 @@ fn benchmark(mut paths: Vec<PathBuf>) {
         .into();
     }
     for path in paths {
+        // Check equivalence and warm both filters before alternating timed calls.
         let rgb = bounded_rgb(&path);
         let gray = image::DynamicImage::ImageRgb8(rgb).to_luma8();
         let upstream = || imageproc::edges::canny(&gray, 15.0, 45.0);
@@ -98,6 +101,7 @@ fn benchmark(mut paths: Vec<PathBuf>) {
         let mut times = [Vec::new(), Vec::new()];
         for iteration in 0..32 {
             for index in [iteration % 2, 1 - iteration % 2] {
+                // Record one filter call while alternating which implementation runs first.
                 let start = Instant::now();
                 std::hint::black_box(if index == 0 { upstream() } else { optimized() });
                 times[index].push(start.elapsed().as_secs_f64() * 1000.0);

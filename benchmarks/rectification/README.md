@@ -44,6 +44,11 @@ The [saved run](results-desktop.json) used an AMD Ryzen 7 PRO 7840U under WSL2,
 Rust 1.99.0, and the release build. All three crop pixel comparisons passed.
 These are milliseconds from one paired run, with 31 calls per operation:
 
+The recorded timings and visual describe commit
+`cd5953e9c82a7de8fe34ea72899cc210fc08cf03`. Use that revision in a separate
+checkout to reproduce the same source snapshot: subsequent changes, including
+flow comments, alter its source hashes. The original reports remain unchanged.
+
 | Scene | Extract median | Extract p95 | Rectify median | Rectify p95 |
 | --- | ---: | ---: | ---: | ---: |
 | Plain green background | 54.906 | 73.963 | 5.293 | 9.129 |

@@ -39,6 +39,23 @@ cargo llvm-cov --locked --all-features --workspace --lcov --output-path lcov.inf
 Install `cargo-msrv`, `cargo-llvm-cov`, and the Rust `llvm-tools-preview` component
 before running those optional local tools.
 
+## Flow comments
+
+CI also requires [Evenflow](https://github.com/cmeister2/evenflow) in strict mode.
+The action commit and binary version are pinned in the
+[workflow](../.github/workflows/ci.yml). Renovate tracks both the action reference
+and the annotated binary release. Install that binary version locally, then run:
+
+```sh
+evenflow check . --strict
+```
+
+Explain substantial nested blocks with an opening flow comment. The existing
+[`evenflow.toml`](../evenflow.toml) excludes local `research/` work; Evenflow's
+default scope also skips tests and generated/build files. Coverage notes remain
+advisory, while lint warnings and analysis errors fail the check. The `Success`
+job requires Evenflow before a main-branch release can run.
+
 ## Saved scene contract
 
 Each scene has a JPEG, full card outlines, expected card count, visibility
