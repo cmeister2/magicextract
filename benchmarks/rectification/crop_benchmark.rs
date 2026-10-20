@@ -70,6 +70,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     })?;
     let mut scenes = Vec::new();
     for path in paths {
+        // Decode once and require identical detected geometry and crop pixels before timing.
         let frame = DynamicImage::ImageRgb8(image::open(&path)?.into_rgb8());
         let detections = extractor.detect(&frame)?;
         if detections.len() != 1 {
@@ -93,6 +94,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let mut results = Vec::new();
     for (scene_index, scene) in scenes.iter().enumerate() {
+        // Warm both operations, then alternate their order to balance timing effects.
         for iteration in 0..WARMUPS {
             if (scene_index + iteration) % 2 == 0 {
                 extract_ms(&extractor, scene)?;

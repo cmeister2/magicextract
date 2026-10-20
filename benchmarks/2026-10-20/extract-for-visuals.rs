@@ -16,6 +16,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let directory = PathBuf::from(&arguments[1]);
     let dimension = arguments[3].parse()?;
     let region = if arguments[4] == "roi" {
+        // Convert the central 80% window to the original frame's pixel coordinates.
         let x = (frame.width() as f32 * 0.1).round() as u32;
         let y = (frame.height() as f32 * 0.1).round() as u32;
         let right = (frame.width() as f32 * 0.9).round() as u32;
@@ -43,6 +44,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let cards = extractor.extract(&frame)?;
     let mut serialized = Vec::new();
     for (index, card) in cards.iter().enumerate() {
+        // Save the actual crop and return its source corners for the visual overlay.
         card.image
             .save(directory.join(format!("card-{index:03}.png")))?;
         let corners: Vec<_> = card

@@ -179,6 +179,7 @@ impl<'a> DetectionConfig<'a> {
         let camera = self.region.map_or_else(
             || CameraGeometry::centered(width, height),
             |((full_width, full_height), region)| {
+                // Map the full camera calibration into the cropped working image.
                 let sx = f64::from(width) / f64::from(region.width);
                 let sy = f64::from(height) / f64::from(region.height);
                 CameraGeometry {
@@ -296,6 +297,7 @@ fn detect_working(image: &DynamicImage, config: &DetectionConfig<'_>) -> Vec<Car
     // limiting amplification to twofold so small intensity noise stays weak.
     let contrast = maximum - minimum;
     if candidates.is_empty() && contrast > 0 && contrast < u8::MAX {
+        // Scale both hysteresis thresholds together before retrying the empty candidate set.
         let scale = (f32::from(contrast) / f32::from(u8::MAX)).max(0.5);
         let edges = canny(
             &gray,
@@ -345,6 +347,7 @@ fn detect_working(image: &DynamicImage, config: &DetectionConfig<'_>) -> Vec<Car
                 gray.height(),
             )
         {
+            // Apply area bounds to the expanded outline before updating the retained card.
             let area = polygon_area(&corners);
             let image_area = gray.width() as f32 * gray.height() as f32;
             if area >= config.min_area_fraction * image_area
@@ -520,6 +523,7 @@ fn collect_candidates(
             }
         }
         if !found && config.detection_mode == DetectionMode::Full {
+            // Infer missing corner joins when direct quadrilateral fitting failed.
             let mut inferred = Vec::new();
             collect_inferred_candidates(&points, perimeter, mask, config, &[], &mut inferred);
             candidates.extend(inferred.into_iter().map(|proposal| proposal.detection));
@@ -603,6 +607,7 @@ fn collect_inferred_candidates(
                         }
                         Vec::new()
                     } else {
+                        // Retain the specific occluders that explain this outline's missing edges.
                         let indices: Vec<_> = occluders
                             .iter()
                             .enumerate()
@@ -1478,6 +1483,7 @@ fn sample_colour(image: &image::RgbImage, x: f32, y: f32) -> [f32; 3] {
     let horizontal = x - left as f32;
     let vertical = y - top as f32;
     std::array::from_fn(|channel| {
+        // Blend horizontally in each row, then interpolate between those row values.
         let upper = f32::from(image.get_pixel(left, top)[channel]) * (1.0 - horizontal)
             + f32::from(image.get_pixel(right, top)[channel]) * horizontal;
         let lower = f32::from(image.get_pixel(left, bottom)[channel]) * (1.0 - horizontal)
@@ -1511,6 +1517,7 @@ fn recover_inner_artwork(
     let search_limit = short_side * 0.15;
     // Complete the inexpensive reflective-rim proof before converting source colors.
     for index in 0..4 {
+        // Require a reflective rim along every side before attempting color recovery.
         let start = corners[index];
         let end = corners[(index + 1) % 4];
         let normal = Point {
@@ -1526,6 +1533,7 @@ fn recover_inner_artwork(
         };
         let support = (0..40)
             .filter(|&sample| {
+                // Compare the narrow luminance peak with clear sleeve pixels on both sides.
                 let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
                 let outside = (at(fraction, -4.0) + at(fraction, -6.0)) * 0.5;
                 let inside = (at(fraction, 4.0) + at(fraction, 6.0)) * 0.5;
@@ -1546,6 +1554,7 @@ fn recover_inner_artwork(
     let colour_image = source.rgb();
     let mut lines = Vec::with_capacity(4);
     for index in 0..4 {
+        // Find the first persistent color boundary inside this confirmed sleeve edge.
         let start = corners[index];
         let end = corners[(index + 1) % 4];
         let normal = Point {
@@ -1562,6 +1571,7 @@ fn recover_inner_artwork(
         let mut clear_band = [[0.0; 3]; 40];
         let mut clear_support = 0;
         for (sample, clear) in clear_band.iter_mut().enumerate() {
+            // Record the clear sleeve color and count matching samples across the rim.
             let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
             let inside =
                 std::array::from_fn(|c| (at(fraction, 4.0)[c] + at(fraction, 6.0)[c]) * 0.5);
@@ -1576,9 +1586,11 @@ fn recover_inner_artwork(
         }
         let mut selected = None;
         for step in 8..=(search_limit * 2.0) as i32 {
+            // Search inward until enough samples support the same physical boundary.
             let offset = step as f32 * 0.5;
             let support = (0..40)
                 .filter(|&sample| {
+                    // Require a clear band before the edge and a sustained color change after it.
                     let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
                     let before = at(fraction, offset - 1.0);
                     let after = at(fraction, offset + 1.0);
@@ -1613,9 +1625,12 @@ fn recover_inner_artwork(
         // Half-strength color thresholds flag ambiguity rather than establish
         // a replacement edge.
         for step in 4..=((offset - 3.0) * 2.0) as i32 {
+            // Reject a later edge when an earlier persistent transition makes it ambiguous.
             let earlier = step as f32 * 0.5;
             let support = (0..40)
                 .filter(|&sample| {
+                    // Count weaker transitions that persistently depart from the sleeve's outside
+                    // color.
                     let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
                     let outside = std::array::from_fn(|channel| {
                         (at(fraction, -4.0)[channel] + at(fraction, -6.0)[channel]) * 0.5
@@ -1638,12 +1653,14 @@ fn recover_inner_artwork(
         }
         let mut points = Vec::new();
         for sample in 0..48 {
+            // Collect subpixel edge points along the chosen boundary for line fitting.
             let fraction = 0.15 + 0.7 * sample as f32 / 47.0;
             let clear =
                 std::array::from_fn(|c| (at(fraction, 4.0)[c] + at(fraction, 6.0)[c]) * 0.5);
             let mut greatest = 20.0_f32.powi(2);
             let mut found = None;
             for step in -6..=6 {
+                // Keep the strongest local gradient that separates clear sleeve from card.
                 let trial = offset + step as f32 * 0.25;
                 let gradient =
                     colour_distance_squared(at(fraction, trial - 0.5), at(fraction, trial + 0.5));
@@ -1669,6 +1686,7 @@ fn recover_inner_artwork(
     }
     let mut refined = corners;
     for index in 0..4 {
+        // Intersect adjacent fitted edges and require each corner to remain inside the sleeve.
         let point = intersect_lines(lines[(index + 3) % 4], lines[index])?;
         if squared_distance(point, corners[index]) > (short_side * 0.20).powi(2)
             || point.x < 0.0
@@ -1692,6 +1710,7 @@ fn recover_inner_artwork(
     // Empty seams cannot justify replacing a rim with an unprinted uniform interior.
     let mut interior = [0.0; 63];
     for (index, tone) in interior.iter_mut().enumerate() {
+        // Sample a 7-by-9 interior grid to check for printed content.
         let x = 0.15 + 0.7 * (index % 7) as f32 / 6.0;
         let y = 0.15 + 0.7 * (index / 7) as f32 / 8.0;
         let point = Point {
@@ -1723,6 +1742,7 @@ fn recover_inner_card_border(
     let mut lines = Vec::with_capacity(4);
     let mut frame_tones = Vec::with_capacity(4);
     for index in 0..4 {
+        // Recover a consistent inner frame along each side of the reflective sleeve.
         let start = corners[index];
         let end = corners[(index + 1) % 4];
         let length = squared_distance(start, end).sqrt();
@@ -1741,6 +1761,7 @@ fn recover_inner_card_border(
         let mut rim_support = 0;
         let mut clear_band = [0.0; 40];
         for (sample, tone) in clear_band.iter_mut().enumerate() {
+            // Measure the bright rim against matching clear tones on either side.
             let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
             let outside = (at(fraction, -4.0) + at(fraction, -6.0)) * 0.5;
             let inside = (at(fraction, 4.0) + at(fraction, 6.0)) * 0.5;
@@ -1763,6 +1784,7 @@ fn recover_inner_card_border(
         // Select the first sustained frame transition, rather than stronger nested artwork.
         let mut selected = None;
         for step in 8..=(search_limit * 2.0) as i32 {
+            // Require a uniform frame tone before scoring the first persistent transition.
             let offset = step as f32 * 0.5;
             let mut tones = [0.0; 40];
             for (sample, tone) in tones.iter_mut().enumerate() {
@@ -1777,6 +1799,8 @@ fn recover_inner_card_border(
             let frame_tone = ordered[20];
             let mut support = [0; 2];
             for sample in 0..40 {
+                // Count dark and light edge support separately using stable tones past the
+                // boundary.
                 let fraction = 0.15 + 0.7 * sample as f32 / 39.0;
                 let before = at(fraction, offset - 1.0);
                 let after = at(fraction, offset + 1.0);
@@ -1815,10 +1839,12 @@ fn recover_inner_card_border(
         // Fit observed subpixel gradients near that first coherent physical boundary.
         let mut points = Vec::new();
         for sample in 0..48 {
+            // Collect nearby gradients that agree with the selected frame tone and polarity.
             let fraction = 0.15 + 0.7 * sample as f32 / 47.0;
             let mut best_gradient = 25.0;
             let mut best_offset = None;
             for step in -6..=6 {
+                // Keep the strongest local transition from the clear band into the frame.
                 let trial = offset + step as f32 * 0.25;
                 let gradient = sign * (at(fraction, trial + 0.5) - at(fraction, trial - 0.5));
                 if gradient > best_gradient
@@ -1845,6 +1871,7 @@ fn recover_inner_card_border(
     }
     let mut refined = corners;
     for index in 0..4 {
+        // Intersect adjacent frame edges, rejecting corners outside the sleeve or image.
         let point = intersect_lines(lines[(index + 3) % 4], lines[index])?;
         if squared_distance(point, corners[index]) > (short_side * 0.20).powi(2)
             || point.x < 0.0
@@ -1868,6 +1895,7 @@ fn recover_inner_card_border(
     // Interior variation distinguishes printed card content from another empty plastic seam.
     let mut interior = [0.0; 63];
     for (index, tone) in interior.iter_mut().enumerate() {
+        // Sample the recovered interior before requiring evidence of printed content.
         let x = 0.15 + 0.7 * (index % 7) as f32 / 6.0;
         let y = 0.15 + 0.7 * (index / 7) as f32 / 8.0;
         let point = Point {
@@ -2803,6 +2831,7 @@ fn refine_occluded_outlines(
     let image_area = mask.width() as f32 * mask.height() as f32;
     let mut recovered = Vec::new();
     for contour in find_contours::<i32>(mask) {
+        // Filter small and image-wide contours before inferring outlines behind known cards.
         if contour.points.len() < 4 {
             continue;
         }
@@ -2845,6 +2874,7 @@ fn refine_occluded_outlines(
     }
     recovered.sort_by(|a, b| b.detection.area.total_cmp(&a.detection.area));
     for mut proposal in recovered {
+        // Refine and revalidate the proposal before replacing a matching clipped candidate.
         let recovered = &mut proposal.detection;
         let Some(corners) = config.orient(
             refine_gradient_corners(recovered.corners, image),
@@ -2894,6 +2924,7 @@ fn occlusion_explains_edges(
     }
     let mut bins = [[false; 32]; 4];
     for i in 0..4 {
+        // Bin nearby contour points along this side to identify gaps that need an occluder.
         let start = corners[i];
         let end = corners[(i + 1) % 4];
         let ls = squared_distance(start, end);
@@ -2922,15 +2953,19 @@ fn occlusion_explains_edges(
         area: polygon_area(corners),
     };
     occluders.iter().any(|occluder| {
+        // Require one partially overlapping card to explain the gaps on every side.
         let (iou, containment) = quadrilateral_overlap(&target, occluder);
         if !(0.02..=0.45).contains(&iou) || containment > 0.9 {
             return false;
         }
         (0..4).all(|i| {
+            // Allow only a small number of gaps that this occluder cannot explain.
             let start = corners[i];
             let end = corners[(i + 1) % 4];
             let unexplained = (0..32)
                 .filter(|&bin| {
+                    // Count a gap only when it has neither contour evidence nor coverage by the
+                    // occluder.
                     if bins[i][bin] {
                         return false;
                     }
@@ -2960,6 +2995,7 @@ fn replacement_follows_three_sides(
 ) -> bool {
     let lengths = edge_lengths(&recovered.corners);
     if (0..4).any(|i| {
+        // Require right angles before comparing a clipped rectangle with its replacement.
         let p = recovered.corners[(i + 3) % 4];
         let c = recovered.corners[i];
         let n = recovered.corners[(i + 1) % 4];
@@ -2980,8 +3016,10 @@ fn replacement_follows_three_sides(
         .fold(f32::INFINITY, f32::min)
         * 0.12;
     (0..4).any(|shift| {
+        // Try cyclic corner orders to match three sides and explain the fourth.
         let shared: Vec<_> = (0..4)
             .map(|i| {
+                // Match side directions and midpoint distances within the allowed displacement.
                 let a = original.corners[i];
                 let b = original.corners[(i + 1) % 4];
                 let c = recovered.corners[(i + shift) % 4];
@@ -3005,11 +3043,13 @@ fn replacement_follows_three_sides(
         let a = original.corners[i];
         let b = original.corners[(i + 1) % 4];
         occluders.iter().any(|occluder| {
+            // Require a partially overlapping card whose edge explains the clipped side.
             let (iou, containment) = quadrilateral_overlap(recovered, occluder);
             if !(0.02..=0.45).contains(&iou) || containment > 0.9 {
                 return false;
             }
             (0..4).any(|j| {
+                // Match the clipped segment to this occluder edge's direction, position, and span.
                 let c = occluder.corners[j];
                 let d = occluder.corners[(j + 1) % 4];
                 let length = squared_distance(c, d).sqrt();
@@ -3566,6 +3606,7 @@ fn colour_outline_support(
     };
     let mut present = [false; 48];
     for (sample, value) in present.iter_mut().enumerate() {
+        // Sample distributed edge evidence with a small margin at each endpoint.
         let fraction = 0.03 + 0.94 * sample as f32 / 47.0;
         let point = Point {
             x: start.x + (end.x - start.x) * fraction,
@@ -3604,10 +3645,12 @@ fn colour_outline_line(
     };
     let mut best = None;
     for step in -((radius * 2.0) as i32)..=((radius * 2.0) as i32) {
+        // Rank candidate offsets by distributed support, then by total edge strength.
         let offset = step as f32 * 0.5;
         let mut supported = [false; 48];
         let mut total = 0.0;
         for (sample, present) in supported.iter_mut().enumerate() {
+            // Record which samples support the line while accumulating its color strength.
             let value = strength(0.03 + 0.94 * sample as f32 / 47.0, offset);
             *present = value > 0.0;
             total += value;
@@ -3627,10 +3670,12 @@ fn colour_outline_line(
     let (offset, _) = best?;
     let mut points = Vec::new();
     for sample in 0..48 {
+        // Gather locally refined points around the best supported offset.
         let fraction = 0.03 + 0.94 * sample as f32 / 47.0;
         let mut chosen = None;
         let mut greatest = 20.0;
         for step in -6..=6 {
+            // Keep the strongest quarter-pixel candidate near the selected line.
             let trial = offset + step as f32 * 0.25;
             let value = strength(fraction, trial);
             if value > greatest {
@@ -3691,6 +3736,8 @@ fn colour_perimeter_follows_panel(original: &CardDetection, recovered: &CardDete
     (0..4).any(|shift| {
         (0..4)
             .filter(|&i| {
+                // Count sides whose direction and endpoint distances agree with the enclosing
+                // perimeter.
                 let a = original.corners[i];
                 let b = original.corners[(i + 1) % 4];
                 let c = recovered.corners[(i + shift) % 4];
@@ -3723,6 +3770,7 @@ fn recover_colour_perimeters(
     let rgb = image.rgb();
     let mut edges = gray_edges.clone();
     for channel in 0..3 {
+        // Merge each channel's edges so hue boundaries survive weak grayscale contrast.
         let plane = GrayImage::from_fn(rgb.width(), rgb.height(), |x, y| {
             image::Luma([rgb.get_pixel(x, y)[channel]])
         });
@@ -3740,8 +3788,10 @@ fn recover_colour_perimeters(
     candidates.sort_by(|a, b| b.area.total_cmp(&a.area).then_with(|| spatial_order(a, b)));
     let originals = retained.to_vec();
     for (index, original) in originals.iter().enumerate() {
+        // Replace this panel only when exactly one verified enclosing perimeter remains.
         let mut proposals: Vec<CardDetection> = Vec::new();
         for candidate in &candidates {
+            // Fit a compatible perimeter, then recheck its geometry, coverage, and overlaps.
             if !colour_perimeter_follows_panel(original, candidate) {
                 continue;
             }
@@ -3825,6 +3875,7 @@ fn colour_outline_coverage(
     };
     let mut present = [false; 48];
     for (sample, value) in present.iter_mut().enumerate() {
+        // Record distributed edge evidence for total and endpoint coverage.
         let fraction = 0.03 + 0.94 * sample as f32 / 47.0;
         let point = Point {
             x: start.x + (end.x - start.x) * fraction,
@@ -3882,12 +3933,15 @@ fn polish_colour_outline_lines(
         for &second in &shifts {
             for &third in &shifts {
                 for &fourth in &shifts {
+                    // Reject costlier shifts before intersecting and checking the four adjusted
+                    // lines.
                     let offsets = [first, second, third, fourth];
                     let cost = offsets.into_iter().map(f32::abs).sum::<f32>();
                     if best.as_ref().is_some_and(|&(old, _)| cost >= old) {
                         continue;
                     }
                     let adjusted = std::array::from_fn(|side| {
+                        // Move the line anchor along its normal without changing its direction.
                         let mut line = lines[side];
                         line.0.x += line.1.y * offsets[side];
                         line.0.y -= line.1.x * offsets[side];
@@ -3937,10 +3991,12 @@ fn colour_outline_lines(
     let maximum_step = (radius * 2.0) as i32;
     let minimum_step = if outward_only { -3 } else { -maximum_step };
     for step in minimum_step..=maximum_step {
+        // Keep offsets supported across the line, including both endpoint sections.
         let offset = step as f32 * 0.5;
         let mut supported = [false; 48];
         let mut total = 0.0;
         for (sample, present) in supported.iter_mut().enumerate() {
+            // Record which samples support the line while accumulating its color strength.
             let value = strength(0.03 + 0.94 * sample as f32 / 47.0, offset);
             *present = value > 0.0;
             total += value;
@@ -3958,16 +4014,19 @@ fn colour_outline_lines(
     let mut selected = Vec::<f32>::new();
     let mut lines = Vec::new();
     for (offset, _) in offsets {
+        // Refine distinct offsets so nearby responses do not consume the line limit.
         if selected.iter().any(|old| (old - offset).abs() < 2.5) {
             continue;
         }
         selected.push(offset);
         let mut points = Vec::new();
         for sample in 0..48 {
+            // Collect the strongest permitted local edge point at each sample position.
             let fraction = 0.03 + 0.94 * sample as f32 / 47.0;
             let mut chosen = None;
             let mut greatest = 20.0;
             for step in -6..=6 {
+                // Respect the outward search bound before selecting a stronger local gradient.
                 let trial = offset + step as f32 * 0.25;
                 if outward_only && trial < -1.5 {
                     continue;
@@ -4012,10 +4071,12 @@ fn recover_guided_colour_perimeters(
     let rgb = image.rgb();
     let originals = retained.to_vec();
     for (index, original) in originals.iter().enumerate() {
+        // Expand only rectangular panels and require a unique replacement perimeter.
         let lengths = edge_lengths(&original.corners);
         let shortest = lengths.into_iter().fold(f32::INFINITY, f32::min);
         // A clipped rectangular panel supplies three side lines, not a guessed perimeter.
         if (0..4).any(|i| {
+            // Check each corner's normalized dot product before treating the panel as rectangular.
             let a = original.corners[(i + 3) % 4];
             let b = original.corners[i];
             let c = original.corners[(i + 1) % 4];
@@ -4026,6 +4087,7 @@ fn recover_guided_colour_perimeters(
         }
         let mut proposals: Vec<CardDetection> = Vec::new();
         for moving in 0..4 {
+            // Use this side as the clipped boundary and search along its outward normal.
             let a = original.corners[moving];
             let b = original.corners[(moving + 1) % 4];
             let normal = Point {
@@ -4033,6 +4095,7 @@ fn recover_guided_colour_perimeters(
                 y: (a.x - b.x) / lengths[moving],
             };
             for distance in (shortest * 0.5) as u32..=(shortest * 2.2) as u32 {
+                // Check each expanded seed's geometry before fitting observed color boundaries.
                 let mut seed = original.corners;
                 seed[moving].x += normal.x * distance as f32;
                 seed[moving].y += normal.y * distance as f32;
@@ -4059,6 +4122,7 @@ fn recover_guided_colour_perimeters(
                     continue;
                 }
                 for (side, lines) in choices.iter_mut().enumerate() {
+                    // Fit the shared sides only after the displaced side has observed edge support.
                     if side == moving {
                         continue;
                     }
@@ -4080,6 +4144,8 @@ fn recover_guided_colour_perimeters(
                     for &second in &choices[1] {
                         for &third in &choices[2] {
                             for &fourth in &choices[3] {
+                                // Verify each line combination fully before deduplicating plausible
+                                // replacements.
                                 let lines = [first, second, third, fourth];
                                 let Some(corners) = polish_colour_outline_lines(lines, rgb, moving)
                                 else {

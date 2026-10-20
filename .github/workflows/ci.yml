@@ -17,6 +17,16 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  evenflow:
+    name: Evenflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: cmeister2/evenflow@04f472228b2f0f3e0bd65e11e88cd2fa26e34158
+        with:
+          version: '0.2.2'
+          strict: 'true'
+
   rust:
     name: Rust ${{ matrix.toolchain }}
     runs-on: ubuntu-latest
@@ -74,7 +84,7 @@ jobs:
 
   success:
     name: Success
-    needs: [rust, msrv, coverage, release-tooling]
+    needs: [evenflow, rust, msrv, coverage, release-tooling]
     if: always()
     runs-on: ubuntu-latest
     steps:
