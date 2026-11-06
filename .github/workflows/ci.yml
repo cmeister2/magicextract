@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: cmeister2/evenflow@d5b382c8a9eced67d15ded86c2afba46ce3c0504 # main
+      - uses: cmeister2/evenflow@53a6a89a3516f1d95865b4ca9d3443df29d77d97 # main
         with:
           # renovate: datasource=github-releases depName=cmeister2/evenflow
           version: '0.2.2'
